@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
+    <title>在学习中成长</title>
+    <link rel="icon" href="/image/myicon.png" type="image/x-icon"/>
+    <link rel='stylesheet' type='text/css' href='/lib/bootstrap-4.0.0/css/bootstrap.min.css'>
+    <script src='/lib/jquery-3.2.1.min.js'></script>
+    <script src='../local.js'></script>
+    <script src='/lib/common.js'></script>
+    <style>
+    </style>
+    <script>
+        var article_id = "";
+        var article_type = "";
+        $(function () {
+            article_show_check();
+            $(".mychoice").click(function () {
+                var id = $(this).attr("choice");
+                $("#" + id).removeClass("btn-secondary");
+                $("#" + id).addClass("btn-danger");
+                $(".mychoice").attr("disabled", "disabled");
+                $("#morecontent").show();
+            });
+        });
+        window.onresize = function () {
+            changeFrameHeight();
+        }
+    </script>
+</head>
+<body>
+<iframe id="head" name="head" src="/template/head_article.html" class="w-100" scrolling="no" frameborder="0"
+        onload="changeFrameHeight(); initPageData();"></iframe>
+<div id="content" class="container">
+    <div class="row">
+        <div class="col-12">
+
+            <div class="alert alert-primary" role="alert"><span id="current_title"></span> <span
+                    class="badge badge-danger">玩</span>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    这是一个通过游戏来丰富人生经历的板块，今天我们一起来走近【<code>囚徒困境</code>】。
+                </div>
+            </div>
+            <div class="card mt-2 bg-info text-white">
+                <div class="card-header">
+                    囚徒困境-介绍
+                </div>
+                <ul class="list-group list-group-flush text-primary">
+                    <li class="list-group-item">
+                        1. <code>张三</code>和<code>李四，</code><kbd>持枪</kbd>，<kbd>抢劫银行</kbd>后，某天被抓；<br>
+                        2. 但警方只有他们非法持枪的证据，没有抢劫银行的证据；<br>
+                        3. 警方把张三，李四分开审问并说到以下规定：
+                        <ul>
+                            <li>3.1 如果两人都不交待：两人都判1年（非法持枪）；</li>
+                            <li>3.2 如果一人交待抢劫：交待的无罪释放，没交待的人判20年；</li>
+                            <li>3.3 如果都交待了抢劫：两人都判10年；</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="card mt-2 bg-primary text-white">
+                <div class="card-header">
+                    游戏时间-你的选择
+                </div>
+                <ul class="list-group list-group-flush text-primary">
+                    <li class="list-group-item">
+                        假设<code>你是张三</code>，<code>我是李四</code>。那么你的选择是（选择后看后续内容）：<br>
+                        <div class="d-flex justify-content-center mt-2">
+                            <button type="button" choice="yes" class="mychoice btn btn-primary mr-2">我要交待</button>
+                            <button type="button" choice="no" class="mychoice btn btn-danger">拒绝交待</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div id="morecontent" style="display: none;">
+                <div class="card mt-2 bg-info text-white">
+                    <div class="card-header">
+                        最后的结局
+                    </div>
+                    <ul class="list-group list-group-flush text-primary">
+                        <li class="list-group-item">
+                            我一定选择<code>交待</code>，所以最后的结局是：
+                            <div class="mt-2" style="text-align: center;">
+                                <button type="button" class="btn btn-secondary mt-2 mr-2">张三：01年，李四：01年</button>
+                                <button type="button" id="no" class="btn btn-secondary mt-2 mr-2">张三：20年，李四：00年</button>
+                                <br>
+                                <button type="button" class="btn btn-secondary mt-2 mr-2">张三：00年，李四：20年</button>
+                                <button type="button" id="yes" class="btn btn-secondary mt-2 mr-2">张三：10年，李四：10年
+                                </button>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card mt-2 bg-info text-white">
+                    <div class="card-header">
+                        游戏分析
+                    </div>
+                    <ul class="list-group list-group-flush text-primary">
+                        <li class="list-group-item">
+                            为什么<code>我一定会选择“交待”</code>，请看下图：
+                            <div class="w-100" style="text-align: center;"><img src="../image/choice1.png"
+                                                                                class="img-thumbnail"></div>
+                            <ul>
+                                <li>在张三<code>交待</code>时：李四选<code>交待</code>比<code>抗拒</code>划算；</li>
+                                <li>在张三<code>抗拒</code>时：李四选<code>交待</code>比<code>抗拒</code>划算。</li>
+                                <li>所以无论张三选什么：李四选<code>交待</code>都比<code>抗拒</code>划算。</li>
+                                <li>同理张三也会这么想，所以只要是聪明人，最终的答案只会是<code>两人各判10年</code>。</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card mt-2 bg-danger text-white">
+                    <div class="card-header">
+                        游戏的智慧
+                    </div>
+                    <ul class="list-group list-group-flush text-dark">
+                        <li class="list-group-item">
+                            明明两人的最优解是：<kbd>两个都抗拒，然后各判1年。</kbd>但为什么却实现不了呢？这就是在社交过程中对人性的解读。
+                        </li>
+                        <li class="list-group-item">
+                            解读：<br>
+                            假设张三和李四事先商量好，如果被抓都抗拒不交待，那么可以实现两人的利益最大化（各判1年）。然而如果这时有一个人反悔了，则将实现他个人利益的最大化（无罪释放）。<br>
+                            <kbd>那么如果你作为当事人，你会反悔吗？或者说你会无条件相信对方也会抗拒到底吗？毕竟如果对方反悔了你将面临20年的处罚。</kbd><br>
+                            相信每人人心中都有自己的答案，这里暂不讨论。我们先来看看生活中类似的场景。
+                        </li>
+                        <li class="list-group-item">
+                            <code>生活中的智慧</code><br>
+                            现在网购已成为大家日常生活中重要的组成部分。我们用一个实物来举例：<br>
+                            <div class="text-primary mt-2">
+                                网购一个水杯，分为<code>高配版</code>与<code>低配版</code>，只是材料不同，但普通用户从外观上看不出任何差距。<code>高配版要200元</code>，<code>低配版要100元</code>。<br>
+                                <kdb>作为顾客：你会选择<code>买</code>哪一款呢？</kdb>
+                                <br>
+                                <kdb>作为商家：你会选择<code>发</code>哪一款呢？</kdb>
+                                <br>
+                            </div>
+                            <div class="mt-2">
+                                分析：<br>
+                                1. 按照游戏中的分析方法来看，作为顾客：只有买低配版时才有可能利益最大化，如下图：
+                                <div class="w-100" style="text-align: center;"><img src="../image/choice2.png"
+                                                                                    class="img-thumbnail"></div>
+                                2. 按照游戏中的分析方法来看，作为商家：只有发低配版时才有可能利益最大化，如下图：
+                                <div class="w-100" style="text-align: center;"><img src="../image/choice3.png"
+                                                                                    class="img-thumbnail"></div>
+                                3. 当然，以上分析是暂时抛开了商家的诚信来看的（这种商家在生活中也确实不少）；<br>
+                                4.
+                                实际上，顾客在自己能力范围内尽量买相对好的，而产商也同时发出相应质量的产品才能实现双方利益的都大化，即便买卖双方可以约定，但就像游戏里那样，怎么才能保证“不反悔”呢？<br>
+                                5. 对于依靠<code>“回头客”</code>生存的商家，双方的约定可能比较可靠，因为如果这次效果不理想就不会“再回头”了。
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card mt-2 bg-info text-white">
+                    <div class="card-header">
+                        最后的总结
+                    </div>
+                    <ul class="list-group list-group-flush text-primary">
+                        <li class="list-group-item">
+                            不管是个人还是商人，怎么在社交过程中保障自己的利益不受侵害是一门大学问。不同的情况有不同的分析方法和手段。本文只是给大家展示了一种基础的分析方法，希望能给大家带来启发。
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<iframe id="foot" src="/template/foot.html" class="w-100 mt-2" scrolling="no" frameborder="0"
+        style="height: 100px; display: block;"></iframe>
+</body>
+</html>

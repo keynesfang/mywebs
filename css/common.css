@@ -1,0 +1,26 @@
+.none-border-radius {
+    border-radius: 0;
+}
+
+.none-display {
+    display: none;
+}
+
+.none-outline {
+    outline: none; /*选中时的边框*/
+}
+
+.auto_form {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.font_kaiti {
+    font-family: '楷体';
+}
+
+@media (max-width: 575.98px) {
+    .mobile_hide {
+        display: none;
+    }
+}

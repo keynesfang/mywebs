@@ -1,0 +1,65 @@
+.ui {
+    width: 100%;
+    max-width: 800px;
+    background-color: #000;
+    border: 1px solid sandybrown;
+    color: silver;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.title {
+    font-size: 25px;
+    font-weight: bold;
+    padding: 10px;
+}
+
+.sub-title {
+    margin-left: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.split-line {
+    width: 100%;
+    border-bottom: 1px solid silver;
+}
+
+.chapter-title {
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px;
+}
+
+.chapter-content {
+    padding: 20px;
+}
+
+.mark {
+    color: #000;
+}
+
+.important {
+    font-size: 16px;
+    font-weight: bold;
+    color: red;
+}
+
+.img-div {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+code {
+    font-size: 14px;
+}
+
+.emphasize
+{
+    color: #ffcc11;
+}

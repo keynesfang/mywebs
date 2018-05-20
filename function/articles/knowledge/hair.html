@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
+    <title>在学习中成长</title>
+    <link rel="icon" href="/image/myicon.png" type="image/x-icon"/>
+    <link rel='stylesheet' type='text/css' href='/lib/bootstrap-4.0.0/css/bootstrap.min.css'>
+    <script src='/lib/jquery-3.2.1.min.js'></script>
+    <script src='../local.js'></script>
+    <script src='/lib/common.js'></script>
+    <script>
+        var article_id = "";
+        var article_type = "涨知识啦";
+        $(function () {
+            article_show_check();
+        });
+    </script>
+</head>
+<body>
+<iframe id="head" name="head" src="/template/head_article.html" class="w-100" scrolling="no" frameborder="0"
+        onload="changeFrameHeight(); initPageData();"></iframe>
+<div id="content" class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="alert alert-primary" role="alert"><span id="current_title"></span> <span
+                    class="badge badge-danger">涨知识</span></div>
+            <div class="card">
+                <div class="card-body">
+                    发型可以改变一个人的外表，咦，我的头发呢？好吧，没有头发也是一种外表。
+                </div>
+            </div>
+            <div class="card mt-2 bg-info text-white">
+                <div class="card-header">
+                    头发多少是天生的？
+                </div>
+                <ul class="list-group list-group-flush text-primary">
+                    <li class="list-group-item">有个词叫<code>“聪明绝顶”</code>：意为太聪明了会秃顶。看来科学界的某些大咖们该加油了，因为你们还不够“聪明”。</li>
+                    <li class="list-group-item">
+                        事实的真相是：正常情况下，头皮毛发的数量其实在出生期就已经定型了，一般人大约有10万根头发。随着年龄的增长，毛囊会减少，新生儿密度为1135/cm2，20-30岁为615/cm2，30-50岁为485/cm2，70-80岁仅为435/cm2，这也是老年人头发稀少的原因。
+                    </li>
+                </ul>
+            </div>
+            <div class="card text-center mt-2">
+                <div class="card-header">
+                    <ul class="nav nav-tabs card-header-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active text-danger" href="#">头发的奥秘</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title text-left text-primary">生长规律</h5>
+                    <p class="card-text text-left">
+                        头发的生长周期分为生长期、退行期和休止期。头发的生长期为4-6年，退行期为2-3周，休止期约为3个月。每根头发都有自己的生长周期，掉发会缩短这根头发的寿命，但只要毛囊没有受损，依旧可以长出新的头发。但随着年龄增长，毛囊的作用逐渐减弱，脱发现象等随之发生。</p>
+                </div>
+            </div>
+            <div class="card text-center mt-2">
+                <div class="card-header">
+                    <ul class="nav nav-tabs card-header-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active text-danger" href="#">怎样保持头发浓密</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <p class="card-text text-left">从头发的生长规则中可以看出，头发的多少主要还是取决于毛囊。所以我们要关注的是如何保持毛囊的健康。</p>
+                    <h5 class="card-title text-left text-primary">保持干爽</h5>
+                    <p class="card-text text-left">
+                        如果头发太油腻会造成毛囊堵塞，从则造成毛囊坏死。
+                    </p>
+                    <h5 class="card-title text-left text-primary">减少刺激</h5>
+                    <p class="card-text text-left">
+                        洗发水虽然有清洁的作用，但毕竟也属于化学品，所以不要让其在头发上停留过长时间，避免对毛囊造成损伤。洗头发时水温不需太高，与体温接近即可。
+                    </p>
+                    <h5 class="card-title text-left text-primary">避免损害</h5>
+                    <p class="card-text text-left">
+                        当人们解决不出问题的时候，往往喜欢挠头，如果指甲太长，用力过猛，也会对毛囊造成伤害。但勤梳头也是一种物理按摩法，可加速毛囊局部的血液循环，使毛球部的色素细胞营养得到改善。另外，染发、烫发对头发会造成损伤。建议染发、烫发间隔要在三到六个月之间。
+                    </p>
+                    <h5 class="card-title text-left text-primary">保持乐观</h5>
+                    <p class="card-text text-left">
+                        对生活持乐观的态度和保持愉快的情绪，将有助于头发乌黑韵华。不管面临什么样的困难，冷静的情绪总是比焦虑时处理得更好。
+                    </p>
+                    <h5 class="card-title text-left text-primary">加强营养</h5>
+                    <p class="card-text text-left">
+                        可摄入富含促进新陈代谢的维他命E、B族维生素、烟酸、及铁和铜等食物, 推荐蛋白质成份高的鱼类及动物肝脏、蛋类、黑木耳、海带、大豆、芝麻酱、虾蟹类、坚果类等。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<iframe id="foot" src="/template/foot.html" class="w-100 mt-2" scrolling="no" frameborder="0"
+        style="height: 100px; display: block;"></iframe>
+</body>
+</html>

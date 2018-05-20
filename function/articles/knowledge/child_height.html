@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
+    <title>在学习中成长</title>
+    <link rel="icon" href="/image/myicon.png" type="image/x-icon"/>
+    <link rel='stylesheet' type='text/css' href='/lib/bootstrap-4.0.0/css/bootstrap.min.css'>
+    <script src='/lib/jquery-3.2.1.min.js'></script>
+    <script src='../local.js'></script>
+    <script src='/lib/common.js'></script>
+    <script>
+        var article_id = "";
+        var article_type = "涨知识啦";
+        $(function () {
+            article_show_check();
+        });
+
+        function getChildHeight() {
+            var fh = parseInt($("#fatherheight").val());
+            var mh = parseInt($("#motherheight").val());
+            var sex = $("input[name='kid_sex']:checked").val();
+            var p1 = 45.99;
+            var p2 = 0.78;
+            if (sex == "girl") {
+                p1 = 37.85;
+                p2 = 0.75;
+            }
+            var kidh = p1 + ((fh + mh) / 2 * p2);
+            var kidh_down = (kidh - 5.29).toFixed(2);
+            var kidh_up = (kidh + 5.29).toFixed(2);
+            var kidh_down_rate = kidh_down / 200 < 1 ? kidh_down / 200 * 100 : 100;
+            var kidh_up_rate = kidh_up / 200 < 1 ? kidh_up / 200 * 100 : 100;
+            $("#down").css("width", kidh_down_rate + "%");
+            $("#down").html(kidh_down);
+            $("#up").css("width", kidh_up_rate + "%");
+            $("#up").html(kidh_up);
+        }
+    </script>
+</head>
+<body>
+<iframe id="head" name="head" src="/template/head_article.html" class="w-100" scrolling="no" frameborder="0"
+        onload="changeFrameHeight(); initPageData();"></iframe>
+<div id="content" class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="alert alert-primary" role="alert"><span id="current_title"></span> <span class="badge badge-danger">准</span></div>
+            <div class="card">
+                <div class="card-body">
+                    经过研究，目前FPH（the Final Height for Parental Height）公式是测算孩子未来身高比较靠谱的方法。
+                </div>
+            </div>
+            <div class="card mt-2">
+                <div class="card-header">
+                    孩子身高测算
+                </div>
+                <div class="card-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="fatherheight" class="text-primary">父亲身高</label>
+                            <input type="number" class="form-control" id="fatherheight">
+                            <small id="emailHelp" class="form-text text-muted">以厘米为单位，如：1.8米，输入180。</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="motherheight" class="text-primary">母亲身高</label>
+                            <input type="number" class="form-control" id="motherheight">
+                        </div>
+                        <div class="form-check d-inline-block">
+                            <input type="radio" class="form-check-input" id="boy" name="kid_sex" value="boy" checked>
+                            <label class="form-check-label text-primary" for="boy">男孩</label>
+                        </div>
+                        <div class="form-check d-inline-block ml-5">
+                            <input type="radio" class="form-check-input" id="girl" name="kid_sex" value="girl">
+                            <label class="form-check-label text-primary" for="girl">女孩</label>
+                        </div>
+                        <div class="d-flex justify-content-end mt-3">
+                            <button type="button" class="btn btn-outline-primary" onclick="getChildHeight();">未来身高测算
+                            </button>
+                        </div>
+                    </form>
+                    <div class="mt-3 text-info">身高测算区间：</div>
+                    <div class="progress mt-2">
+                        <div id="down" class="progress-bar bg-danger" role="progressbar" style="width: 1%"
+                             aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <div class="progress mt-2">
+                        <div id="up" class="progress-bar bg-success" role="progressbar" style="width: 1%"
+                             aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="card text-center mt-2">
+                <div class="card-header">
+                    <ul class="nav nav-tabs card-header-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">促进长高的因素</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title text-left text-primary">充足的睡眠</h5>
+                    <p class="card-text text-left">最好早睡，生长激素分泌最旺盛的时间是从晚上10点至半夜2点。</p>
+                    <h5 class="card-title text-left text-primary">远离垃圾食品</h5>
+                    <p class="card-text text-left">
+                        碳酸性饮料，磷含量过高，特别容易导致体内钙、磷比例失调，造成发育迟缓；油炸、腌制、膨化食品等，在制作过程中使用了各种添加剂，重油重盐，长期食用不仅容易造成营养不良影响长高，还严重影响孩子的身体健康；牛初乳、蜂王浆、动物内脏、禽类脖子这些激素含量较高的食品，经常食用更容易造成孩子性早熟，骨骼闭合，不再长高。</p>
+                    <h5 class="card-title text-left text-primary">合理的营养搭配</h5>
+                    <p class="card-text text-left">
+                        包括蛋白质、脂肪、碳水化合物、膳食纤维、维生素及各种微量元素，譬如钙、铁、锌等。在孩子的平时饮食上，要注意多样化的合理搭配，荤素都要有，不挑食、不偏食。</p>
+                    <h5 class="card-title text-left text-primary">生命在于运动</h5>
+                    <p class="card-text text-left">
+                        运动绝对是助力孩子长高最好的方法，游泳、跳绳、篮球、排球、羽毛球、拉伸运动等，都可以加速孩子身体代谢，促进骨骼生长，有助于孩子长高。</p>
+                    <h5 class="card-title text-left text-primary"><span class="text-danger">不要</span>猛补钙</h5>
+                    <p class="card-text text-left">
+                        缺钙会造成生长发育迟缓，但一般正常喂养的孩子很少会缺钙。钙的主要功能是增加骨质密度，强化骨骼，并不是促进骨骼变长，钙补过头反而可能会降低吸收率，甚至导致肾结石。</p>
+                    <h5 class="card-title text-left text-primary"><span class="text-primary">人体骨骺线未闭合</span></h5>
+                    <p class="card-text text-left">
+                        当人体骨骺线闭合后，再想长高只能靠奇迹了。下图中左侧为<code>未闭合</code>，右侧为<code>已闭合</code>状态：
+                        <img src="../image/bone.png" class="img-thumbnail d-block">
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<iframe id="foot" src="/template/foot.html" class="w-100 mt-2" scrolling="no" frameborder="0"
+        style="height: 100px; display: block;"></iframe>
+</body>
+</html>

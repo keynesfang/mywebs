@@ -1,0 +1,188 @@
+body {
+    margin: 0;
+    overflow-x: hidden;
+}
+
+.a {
+    width: 100vw;
+
+
+    box-sizing: border-box;
+}
+
+.b {
+    background: #1E88E5;
+}
+
+.c {
+    overflow: hidden;
+}
+
+.d {
+    position: relative;
+}
+
+.e {
+    background: -webkit-linear-gradient(90deg, #2196F3, #1E88E5);
+    background: -moz-linear-gradient(90deg, #2196F3, #1E88E5);
+}
+
+.f {
+    position: absolute;
+}
+
+.g {
+    top: 0;
+}
+
+.h {
+    height: 550px;
+}
+
+.i {
+    -webkit-transform: skewY(-5deg) translateY(-90%);
+    transform: skewY(-5deg) translateY(-90%);
+}
+
+.j {
+    background: #fff;
+}
+
+.k {
+    bottom: 0;
+}
+
+.l {
+    -webkit-transform: skewY(-5deg) translateY(76%);
+    transform: skewY(-5deg) translateY(76%);
+}
+
+.n {
+    width: 100%;
+}
+
+.o {
+    z-index: 2;
+}
+
+.p {
+    background-color: #1E88E5;
+}
+
+.q {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    box-sizing: border-box;
+}
+
+.s {
+    color: #fff;
+}
+
+.t {
+    margin: 0 auto;
+}
+
+.u {
+    max-width: 1040px;
+}
+
+.v {
+    padding: 10px 20px;
+}
+
+.w {
+    margin: 0;
+}
+
+.x {
+    font-family: '楷体';
+    font-size: 30px;
+}
+
+.y {
+    font-weight: 400;
+}
+
+.ar {
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+}
+
+.au {
+    -webkit-flex: 1 0 470px;
+    flex: 1 0 470px;
+}
+
+.as {
+    padding: 100px 20px 90px 20px;
+}
+
+.av {
+    max-width: 100%;
+}
+
+.bi {
+    -webkit-flex: 1 0 auto;
+    flex: 1 0 auto;
+    z-index: 99;
+}
+
+.title {
+    font-size: 20px;
+    font-family: '楷体';
+}
+
+.title_add {
+    margin-top: 20px;
+}
+
+.study_img {
+    width: 400px;
+    height: 300px;
+}
+
+#mobile {
+    display: none;
+}
+
+.study_list {
+}
+
+.footer {
+    margin-top: 30px;
+    text-align: center;
+    line-height: 50px;
+    width: 100%;
+    height: 50px;
+    color: #fff;
+    background-color: #000;
+}
+
+.content_type, .content {
+    margin-bottom: 10px;
+}
+
+@media (max-width: 575.98px) {
+    .as {
+        padding: 15px 20px 15px 20px;
+        height: 130px;
+    }
+
+    #mobile {
+        display: block;
+    }
+
+    #computer {
+        display: none;
+    }
+
+    .title {
+        color: #000;
+    }
+}

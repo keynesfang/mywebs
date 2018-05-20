@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
+    <title>在学习中成长</title>
+    <link rel="icon" href="/image/myicon.png" type="image/x-icon"/>
+    <link rel='stylesheet' type='text/css' href='/lib/bootstrap-4.0.0/css/bootstrap.min.css'>
+    <script src='/lib/jquery-3.2.1.min.js'></script>
+    <script src='../local.js'></script>
+    <script src='/lib/common.js'></script>
+    <script>
+        var article_id = "";
+        var article_type = "涨知识啦";
+        $(function () {
+            article_show_check();
+        });
+    </script>
+</head>
+<body>
+<iframe id="head" name="head" src="/template/head_article.html" class="w-100" scrolling="no" frameborder="0"
+        onload="changeFrameHeight(); initPageData();"></iframe>
+<div id="content" class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="alert alert-primary" role="alert"><span id="current_title"></span> <span
+                    class="badge badge-danger">涨知识</span></div>
+            <div class="card text-center mt-2">
+                <div class="card-header">
+                    <ul class="nav nav-tabs card-header-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active text-danger" href="#">你与大师的差距</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <p class="card-text text-left">
+                        很多记忆大师在成为大师前，在记忆能力上和普通人也是一样的。在朋友中并没有什么突出的表现。只是在经过不断的训练后才慢慢的脱颖而出，成为了别人眼中的天才。
+                        所以首先不要否定自己的才能，要尝试与学习一些记忆的方法，而不是整天抱怨自己的记忆力不好，因为你与大师是零距离。
+                    </p>
+                </div>
+            </div>
+
+            <div class="card text-center mt-2">
+                <div class="card-header">
+                    <ul class="nav nav-tabs card-header-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active text-danger" href="#">记忆的原理</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title text-left text-primary">电脑的记忆方法</h5>
+                    <p class="card-text text-left">
+                        电脑的内存与硬盘都可以存储信息。但内存的容量小，里面的信息很容易被后来的信息所覆盖，而且一旦断电，内存里的所有信息都将被清除。而硬盘则是容量大，且可以长时间存储信息。
+                    </p>
+                    <h5 class="card-title text-left text-primary">人脑的存储方法</h5>
+                    <p class="card-text text-left">
+                        你可以把人的大脑看成内存与硬盘相似的一种结构。人的大脑分为了短时存储区与永久存储区。刚接收的信息会进入短时存储区，只有将短时存储区中的内容放入了永久存储区，你才算是把信息记住了。
+                        这也是为什么在听课时，你觉得听懂了也记住了，但如果不复习，过一段时间就会忘的原因所在了。
+                        所以我们要锻炼的目标就是怎么把短时记忆快速的转化为永久记忆。而且你不用担心你的永久存储区会被填满。因为人类对大脑的利用程度还不到20%。
+                    </p>
+                </div>
+            </div>
+
+            <div class="card text-center mt-2">
+                <div class="card-header">
+                    <ul class="nav nav-tabs card-header-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active text-danger" href="#">遗忘是怎样产生的</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title text-left text-primary">不重要的信息会被自动删除掉</h5>
+                    <p class="card-text text-left">
+                        大脑会把刚接收到的信息先放到短时存储区，过一段时间后，发现该信息没有被再次使用到，或者大脑判定这不是一个重要的信息，就会把该信息从短时存储区删除掉。从而导致了你忘记这条信息。
+                    </p>
+                </div>
+            </div>
+
+            <div class="card text-center mt-2">
+                <div class="card-header">
+                    <ul class="nav nav-tabs card-header-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active text-danger" href="#">什么是重要的信息</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <div class="mb-2" style="text-align: left;">上面提到大脑认为重要的信息才会被记忆下来，那么哪些才是重要的信息呢？主要有以下两类：</div>
+                    <h5 class="card-title text-left text-primary">大脑本身认为重要的信息</h5>
+                    <p class="card-text text-left">
+                        某天你在路上走的时候，突然一只老虎蹿到你面前。这个画面就会刺激到你的神经元，从而释放到一些化学物质，让大脑认识到这个信息很重要，所以你一辈子都不会忘记这样的经历。
+                    </p>
+                    <h5 class="card-title text-left text-primary">你让大脑认为这是重要的信息</h5>
+                    <p class="card-text text-left">
+                        一个英文单词背了很容易忘记，但如果通过反复记忆，就能告诉大脑这个信息很重要，大脑也能把该信息移动到永久存储区，这样你就能长期记忆了。
+                    </p>
+                </div>
+            </div>
+
+            <div class="card text-center mt-2">
+                <div class="card-header">
+                    <ul class="nav nav-tabs card-header-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active text-danger" href="#">如何把不重要的变成重要</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <div class="mb-2" style="text-align: left;">那么怎样才能告诉大脑哪些信息是重要的呢？</div>
+                    <h5 class="card-title text-left text-primary">痴心妄想法</h5>
+                    <p class="card-text text-left">
+                        在记忆事物的时候心里想一遍这个信息很重要，大脑就会认为这个信息很重要。。。。。貌似，这个方法说了我自己都不信，所以只能是痴心妄想了。
+                    </p>
+                    <h5 class="card-title text-left text-primary">艾宾浩斯记忆法</h5>
+                    <p class="card-text text-left">
+                        大脑是人体中最奥妙的组织，人类还不能完全自主的控制它。但要告诉它哪些信息是重要的，通过人类不断的研究还是找出了一些实用的方法，如【艾宾浩斯记忆法】。<br>
+                        方法告诉你了，具体内容请百度一下会更权威。大概就是告诉你要记住一件事物，有几个关键的复习时间点，只要按时复习了记忆的内容就能告诉大脑这个信息很重要，大脑也能把该信息移动到永久存储区，这样你就能长期记忆了。
+                    </p>
+                    <h5 class="card-title text-left text-primary">与重要的信息相关联</h5>
+                    <p class="card-text text-left">
+                        举个例子：你早上出门忘了带钥匙，回家后，进不了门。<br>
+                        后果1：如果家里有人，那你第二天可能再次忘记带钥匙。<br>
+                        后果2：如果家里没人，你只能一个人在非常寒冷夜晚里吹一整夜的风。那你的大脑会记住绝对不要让这类事发生第二次。<br>
+                        这个例子说明，一个信息本身不一定重要，但如果它关联上了一件重要的信息，那这个信息也变得重要了。
+                    </p>
+                </div>
+            </div>
+
+            <div class="card mt-2 bg-primary text-white">
+                <div class="card-header">
+                    总结：过目不忘的原理
+                </div>
+                <ul class="list-group list-group-flush text-primary">
+                    <li class="list-group-item">根据上面讲到的理论，如果要做到过目不忘的话，就必须让大脑在第一时间就认定该信息是重要的信息：比如把一件不重要的信息和你以前就长期记忆的事件联系起来，这样一来这件<code>不重要</code>的事也会变得<code>重要</code>了。</li>
+                    <li class="list-group-item">
+                        要让大脑把所有信息都在第一时间认定为重要信息还是非常困难的。大家可以结合自身的情况不断的尝试，总结出适合于自己的记忆方法。要记住，记忆力也是可以被锻炼的！如果以后有好的方法，我也会在第一时间分享给大家。
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</div>
+<iframe id="foot" src="/template/foot.html" class="w-100 mt-2" scrolling="no" frameborder="0"
+        style="height: 100px; display: block;"></iframe>
+</body>
+</html>

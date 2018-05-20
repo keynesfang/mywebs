@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
+    <title>在学习中成长</title>
+    <link rel="icon" href="/image/myicon.png" type="image/x-icon"/>
+    <link rel='stylesheet' type='text/css' href='/lib/bootstrap-4.0.0/css/bootstrap.min.css'>
+    <script src='/lib/jquery-3.2.1.min.js'></script>
+    <script src='../local.js'></script>
+    <script src='/lib/common.js'></script>
+    <style>
+    </style>
+    <script>
+        var article_id = "";
+        var article_type = "";
+        $(function () {
+            article_show_check();
+        });
+        window.onresize = function () {
+            changeFrameHeight();
+        }
+    </script>
+</head>
+<body>
+<iframe id="head" name="head" src="/template/head_article.html" class="w-100" scrolling="no" frameborder="0"
+        onload="changeFrameHeight(); initPageData();"></iframe>
+<div id="content" class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="alert alert-primary" role="alert"><span id="current_title"></span> <span
+                    class="badge badge-danger">热</span>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    近年来比特币越来越火了。好多吃瓜群众都知道有这么个东西，也挺值钱，但就是说不清，道不明。今天我们就来看看这到底是个什么玩意。
+                </div>
+            </div>
+            <div class="card mt-2 bg-info text-white">
+                <div class="card-header">
+                    比特币有多值钱？
+                </div>
+                <ul class="list-group list-group-flush text-primary">
+                    <li class="list-group-item">我们通过一道“数学题”来更形象的了解比特币有多值钱：</li>
+                    <li class="list-group-item text-dark">
+                        一个程序员，在2010年的时候，花10000个比特币买了两块披萨，好开心。没花一分钱，饱餐了一顿。7年多过去了，10000个比特币价值近10亿人民币，求这位程序员的心理阴影面积是多少？
+                    </li>
+                </ul>
+            </div>
+            <div class="card mt-2 bg-primary text-white">
+                <div class="card-header">
+                    比特币是怎样产生的？
+                </div>
+                <ul class="list-group list-group-flush text-primary">
+                    <li class="list-group-item text-dark">
+                        了解了比特币的价值，是不是产马产生了扛起锄头开挖的冲动呢？先别激动，接下来就科普比特币是怎样产生的！
+                    </li>
+                    <li class="list-group-item text-dark">
+                        <span class="text-primary">在比特币产生前要了解两个概念【<code>去中心化</code>】和【<code>区块链</code>】：</span><br>
+                        如果你把钱存进银行，那银行就是一个管理中心。它提供了所有的服务，并定制了相应的规则，你必须去遵守。因为规则有可能不完善或服务质量太差会让人不爽，所以为了追求自由平等的交易方式，
+                        就要去掉这个中心。<br>
+                        但去掉中心后，交易信息由谁来记录和保存呢？这时候区块链就登场了。把一定时间内的交易的记录都保存在一个区块中，然后上传到网络上，与以前的区块连接在一起就形成了区块链。<br>
+                        网络上每一台参与进来的计算机都同步保存了同一区块链的信息，所以大家的信息平等的，自由的。
+                    </li>
+                    <li class="list-group-item text-dark">
+                        <span class="text-primary">打起精神，关键的来的：</span><br>
+                        挖比特币（“挖矿”）的本质就是制作区块并上传到区块链的尾部。同一时间内，全世界的计算机都在做这件事，谁的计算机先完成，就谁就挖到了比特币，其它的计算机就算陪跑了一轮。<br>
+                        挖矿间隔大约平均在10多分钟一轮。“挖矿”成功的计算机可以得到如下奖项：
+                        <div class="text-danger">
+                            1. 固定奖励：根据区块链上的编号，奖励会逐渐减少（每21万个区块奖励减半），如下：
+                            <ul>
+                                <li>0 - 21万：50个</li>
+                                <li>21万 - 42万：25个</li>
+                                <li>42万 - 63万：12.5个 （2017年水平）</li>
+                                <li>......</li>
+                                <li>693万开始，没有固定奖励，只能收取交易费。</li>
+                                <li>所以比特币的总量不可能超过2100万。</li>
+                            </ul>
+                            2. 交易手续费：区块中所含交易金额的比例。
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="card mt-2 bg-info text-white">
+                <div class="card-header">
+                    比特币存在哪里？
+                </div>
+                <ul class="list-group list-group-flush text-primary">
+                    <li class="list-group-item text-dark">
+                        比特币存在客户端软件的数据文件里，如果你把数据搞丢了，比如硬盘坏了。那这部分比特币将会永远从网络世界里消失。所以理论上比特币会越来越少，属于不可再生资源。
+                    </li>
+                </ul>
+            </div>
+            <div class="card mt-2 bg-info text-white">
+                <div class="card-header">
+                    比特币的支付与微信，支付宝的区别？
+                </div>
+                <ul class="list-group list-group-flush text-primary">
+                    <li class="list-group-item text-dark">
+                        比特币不是任何银行或金融机构发行的（这是去中心化的理念）。所以如果你转错了账什么的，是没有地方可以申诉的。因为比特币不受任何机构的监督和管理。是一个充满了自由的平台。
+                    </li>
+                </ul>
+            </div>
+            <div class="card mt-2 bg-info text-white">
+                <div class="card-header">
+                    再啰嗦两句：
+                </div>
+                <ul class="list-group list-group-flush text-primary">
+                    <li class="list-group-item text-dark">
+                        1. 由于比特币这么火，所以全球早就有专业的机构用专业的机器进行专业的挖矿，所以非专业的你想通过家里的计算来成功挖矿，你也可以试试，万一成功了呢。
+                    </li>
+                    <li class="list-group-item text-dark">
+                        2. 本文只是针对吃瓜群众的科普文，如果要深究更系统的理论知识，请参考相关专业文章。
+                    </li>
+                    <li class="list-group-item text-dark">
+                        3. 比特币的发明者至今真实身份未知，网名叫“中本聪”，跟我也没啥关系，就不深究了，据说是日裔美国人。
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<iframe id="foot" src="/template/foot.html" class="w-100 mt-2" scrolling="no" frameborder="0"
+        style="height: 100px; display: block;"></iframe>
+</body>
+</html>

@@ -1,0 +1,151 @@
+::-webkit-scrollbar {
+    display: none;
+}
+
+#sub_frame {
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.my_card {
+    border: 1px solid rgba(0, 0, 0, .125);
+    border-radius: .25rem;
+}
+
+.family_bkgd {
+    background: url(../image/bkgd.png);
+}
+
+.user_header_media_female {
+    background-color: #f26a7e;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+}
+
+.user_header_media_male {
+    background-color: #5da7c0;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+}
+
+.user_header_media_mother {
+    background-color: orange;
+    color: #fff;
+}
+
+.user_header_media_lover {
+    background-color: red;
+    color: #fff;
+}
+
+.person_dead {
+    background-color: silver;
+}
+
+.user_header_img {
+    width: 60px;
+    height: 60px;
+}
+
+.first_name_div {
+    background-image: url(../image/char_bg.jpg);
+    font-family: '楷体';
+    width: 98px;
+    height: 100px;
+    font-weight: bold;
+    font-size: 70px;
+    text-align: center;
+    display: inline-block;
+    margin-top: 5px;
+}
+
+.explain_words {
+    text-indent: 30px;
+    font-family: '楷体';
+}
+
+.family_list_item {
+    position: relative;
+}
+
+.show_family_span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 30px;
+    line-height: 16px;
+    text-align: center;
+    padding: 3px;
+    font-family: '楷体';
+}
+
+.apply_family_span {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 30px;
+    line-height: 16px;
+    text-align: center;
+    padding: 3px;
+    font-family: '楷体';
+}
+
+.user_flag {
+    font-size: 30px;
+    font-family: '楷体';
+    text-align: center;
+    border-radius: 5px;
+    background: url(../image/search_bg.jpg) no-repeat;
+    min-height: 100px;
+    height: 200px;
+    line-height: 200px;
+    background-size: 100% 100%;
+    box-sizing: border-box;
+}
+
+.generation_bg {
+    background: url(../image/generation2.jpg) no-repeat;
+    background-size: 100% 100%;
+    border: 1px solid silver;
+}
+
+@media (max-width: 575.98px) {
+    .user_flag {
+        height: 100px;
+        line-height: 100px;
+    }
+
+    .generation_bg {
+        background: url(../image/generation3.jpg) no-repeat;
+    }
+
+    .event_btn_toolbar {
+        display: none;
+    }
+}
+
+.generation {
+    position: absolute;
+    top: 30px;
+    left: 115px;
+    font-size: 50px;
+    font-family: '楷体';
+}
+
+.generation_h {
+    background: url(../image/char_bg.jpg) no-repeat;
+    background-size: 100% 100%;
+    font-family: '楷体';
+    width: 70px;
+    height: 70px;
+    font-weight: bold;
+    font-size: 50px;
+    text-align: center;
+    display: inline-block;
+}
+
+.generation_blank {
+    opacity: 0;
+}

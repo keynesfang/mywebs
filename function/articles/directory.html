@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
+    <link rel="icon" href="/image/myicon.png" type="image/x-icon"/>
+    <link rel='stylesheet' type='text/css' href='/index.css'>
+    <link rel='stylesheet' type='text/css' href='/lib/bootstrap-4.0.0/css/bootstrap.min.css'>
+    <script src='/lib/jquery-3.2.1.min.js'></script>
+    <script src='/lib/common.js'></script>
+    <title>在学习中成长</title>
+    <style>
+        .special {
+            padding-top: 0;
+            padding-bottom: 10px;
+        }
+
+        @media (max-width: 575.98px) {
+            .special {
+                padding-top: 10px;
+            }
+        }
+    </style>
+    <script>
+        $(function () {
+            var type = GetQueryString("type");
+            var sql = "SELECT * FROM g_articles WHERE tp='" + type + "' ORDER BY article_date DESC";
+            $.post("../common_logic.php", {
+                type: "query_sql_get_data2",
+                sql: sql
+            }, function (data) {
+                var html = "";
+                var article_info = eval("(" + data + ")");
+                var article_list_count = 0;
+                $.each(article_info, function (idx, itm) {
+                    html += "<li class='list-group-item d-flex justify-content-between align-items-center p-0 border-0 mb-1 article_entry' article_id='" + itm.id + "' article_link='" + itm.content + "'>";
+                    html += "    <div class='w-100 card bg-info text-white'>";
+                    html += "       <div class='card-body'>";
+                    html += "           <h5 class='card-title'>" + itm.title + "</h5>";
+                    html += "           <p class='card-text'>" + itm.descript + "</p>";
+                    html += "           <div class='w-100 d-flex justify-content-end'>";
+                    html += "               <kbd><span>浏览次数</span>：" + itm.viewcount + "</kbd>";
+                    html += "           </div>";
+                    html += "       </div>";
+                    html += "   </div>";
+                    html += "</li>";
+                    article_list_count += 1;
+                });
+                $("#article_list_count").html(article_list_count);
+                $("#article_list").html(html);
+
+                $(".article_entry").click(function () {
+                    location.href = "/function/articles" + $(this).attr("article_link") + "?article_id=" + $(this).attr("article_id");
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+<div class="a b c d" style="z-index: 12;">
+    <div class="e f g h a i"></div>
+    <div class="j f k h a l m"></div>
+    <header class="n o p">
+        <div class="q r s t u d">
+            <h1 class="v w x y"><img src="/image/head.jpg" style="width: 45px; float: left;"> <span
+                    class="v">在学习中成长</span></h1>
+        </div>
+    </header>
+    <div class="ar q s u t n as at special">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="d-flex justify-content-end">
+                        <button type="button" class="btn btn-primary mr-1">
+                            <span id="type"></span> <span class="badge badge-light" id="article_list_count">0</span>
+                            <span class="sr-only"></span>
+                        </button>
+                        <button type="button" class="btn btn-secondary" onclick="top_page();">
+                            首页
+                        </button>
+                    </div>
+                    <hr>
+                    <h3 class="text-dark mt-4" style="font-size: 16px; font-weight: bold;">点击列表，可查看详细内容： <span
+                            class="badge badge-danger">Hot</span></h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container mb-2">
+    <div class="row">
+        <div class="col-12">
+            <ul class="list-group" id="article_list">
+            </ul>
+        </div>
+    </div>
+</div>
+
+<iframe id="foot" src="/template/foot.html" class="w-100" scrolling="no" frameborder="0"
+        style="height: 100px; display: block;"></iframe>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
+    <title>在学习中成长</title>
+    <link rel="icon" href="/image/myicon.png" type="image/x-icon"/>
+    <link rel='stylesheet' type='text/css' href='/lib/bootstrap-4.0.0/css/bootstrap.min.css'>
+    <script src='/lib/jquery-3.2.1.min.js'></script>
+    <script src='../local.js'></script>
+    <script src='/lib/common.js'></script>
+    <script>
+        var article_id = "";
+        var article_type = "涨知识啦";
+        $(function () {
+            article_show_check();
+        });
+    </script>
+</head>
+<body>
+<iframe id="head" name="head" src="/template/head_article.html" class="w-100" scrolling="no" frameborder="0"
+        onload="changeFrameHeight(); initPageData();"></iframe>
+<div id="content" class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="alert alert-primary" role="alert"><span id="current_title"></span> <span
+                    class="badge badge-danger">涨知识</span></div>
+            <div class="card">
+                <div class="card-body">
+                    美国科学家进行的一项调查研究显示，身高在1.5748米以下的男性寿命最长。
+                </div>
+            </div>
+            <div class="card mt-2 bg-info text-white">
+                <div class="card-header">
+                    个子矮的人活得久？
+                </div>
+                <ul class="list-group list-group-flush text-primary">
+                    <li class="list-group-item">中国老年医学研究所曾对100名90岁以上的寿星进行检测，发现平均身高男性为1.50米，女性为1.40米。</li>
+                    <li class="list-group-item">研究人员发现，矮个子男性更可能拥有一种名为“FOXO3”的保护性长寿基因。这种基因令人在早期发育阶段身材矮小，令寿命更长。</li>
+                    <li class="list-group-item">矮个子的人有更低水平的胰岛素和胰岛素类一型生长因子(IGF-1)。</li>
+                    <li class="list-group-item">矮个子的人心脏和肺占身体体重的比率更大，心肺的负荷更小。</li>
+                    <li class="list-group-item">矮个子的人比高个子患心室肥大和高血压的少。</li>
+                    <li class="list-group-item">矮个子的人由于BMI(身体质量指数)相对较低，高血压、冠心病、脑血管中风相关的致死率更低。</li>
+                    <li class="list-group-item text-danger">高个子的人也不用担心。身高对寿命的影响不是直接的，只是增加了某些疾病患病的可能性。健康的生活习惯才是决定寿命长短的最重要的因素。</li>
+                </ul>
+            </div>
+            <div class="card text-center mt-2">
+                <div class="card-header">
+                    <ul class="nav nav-tabs card-header-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active text-danger" href="#">促进长高的因素</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title text-left text-primary">遗传基因</h5>
+                    <p class="card-text text-left">科学研究发现，HMGA2的基因，是控制身高的基因之一，其它身高基因还有待发现。有<code>90%</code>的身高取决于遗传基因。</p>
+                    <h5 class="card-title text-left text-primary">后天原因</h5>
+                    <p class="card-text text-left">
+                        请参考：<a href="child_height.html?article_id=6">神算你的孩子能长多高！</a>
+                    </p>
+                </div>
+            </div>
+            <div class="card text-center mt-2">
+                <div class="card-header">
+                    <ul class="nav nav-tabs card-header-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active text-danger" href="#">促进长寿的因素</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <p class="card-text text-left">遗传基因、环境因素、性别、生活方式（如饮食、营养、运动等）、情绪性格、医疗卫生条件等都会对人的寿命产生影响。</p>
+                    <h5 class="card-title text-left text-primary">控制饮食</h5>
+                    <p class="card-text text-left">
+                        低盐低脂饮食，适当摄入新鲜蔬菜水果，主食做到粗细搭配，增加豆制品食物，少吃糖果、糕点，少饮或不饮酒。
+                    </p>
+                    <h5 class="card-title text-left text-primary">规律运动</h5>
+                    <p class="card-text text-left">
+                        建议选择有氧运动，如慢跑、游泳、骑自行车等。
+                    </p>
+                    <h5 class="card-title text-left text-primary">良好社交</h5>
+                    <p class="card-text text-left">
+                        良好的人际关系可以帮助缓解压力，提高机体的免疫能力。
+                    </p>
+                    <h5 class="card-title text-left text-primary">健康情绪</h5>
+                    <p class="card-text text-left">
+                        避免愤怒、悲伤、忧思、焦虑、恐惧等不良情绪，积极的情绪和情感，可增强预防疾病和抗衰的能力。
+                    </p>
+                    <h5 class="card-title text-left text-primary">睡眠充足</h5>
+                    <p class="card-text text-left">
+                        每晚保证７至８小时的睡眠，日间午睡半小时左右为宜，最好别超过1小时。有良好午睡习惯的人，免疫功能要比不睡午觉者强。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<iframe id="foot" src="/template/foot.html" class="w-100 mt-2" scrolling="no" frameborder="0"
+        style="height: 100px; display: block;"></iframe>
+</body>
+</html>

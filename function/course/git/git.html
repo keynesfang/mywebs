@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
+    <script src='../../../lib/jquery-3.2.1.min.js'></script>
+    <script src='../../../lib/common.js'></script>
+    <script src='../js/common.js'></script>
+    <link rel='stylesheet' type='text/css' href='../../../lib/bootstrap-3.3.7/css/bootstrap.min.css'>
+    <link rel='stylesheet' type='text/css' href='../css/common.css'>
+    <title>Git</title>
+</head>
+<body>
+<div class="ui">
+    <div class="title"><img src="./img/0.png" style="width: 50px; height: 50px;"> Git 学习<span
+            class="sub-title">by 破晓黎明</span></div>
+    <div class="split-line"></div>
+    <div class="content">
+        <div class="chapter">
+            <div class="chapter-title">1：为什么用 Git</div>
+            <div class="chapter-content">
+                <p>大家好，我是破晓黎明，一个程序员，准备介绍Git。</p>
+                <p>我准备全教程通过一个写小说的故事来介绍Git的使用方法和它所起的作用。不是程序员吗，怎么通过写小说来讲Git？</p>
+                <p>因为Git是一款全民健身工具，而小说也是全民的费眼神器，任何人都可以看。通过小说来讲，通俗易懂，老少皆宜。如果你对小说不感兴趣，你可以往你需要的内容上去类比。</p>
+                <p>好了，废话不多说，就再说两句啊：</p>
+                <p>回想一下，在你的记忆中有没有这样的场景，那些搞文学创作的，憋了半天，写个半张纸，发现不给力，揉成一团，丢了。再写-再揉-再丢-再写-再揉-再丢，要不了多久就被他丢满了一盆。</p>
+                <p>到阳台抽根烟冷静一下，突然发现之前被丢的一有张还写得不错。于是立马在那一盆里找，找得到算你运气好，找不到的拿脑袋撞墙的都有。我告诉你。</p>
+                <p>好吧，也许现在都进入信息时代了，大家都用电脑写稿子，谁还用纸呀？那你保存稿子的文件夹可能是这个样子的：</p>
+                <div class="img-div"><img src="./img/1.png" class="img-thumbnail"></div>
+                <p>如果你写作压力太大，想找到帮手写点支线情节和者第2结局什么的，你们之间的文档怎么管理与同步，就更加是个麻烦的问题。</p>
+                <div class="chapter-result">
+                    <p class="important">当前的困镜与问题：</p>
+                    <ul>
+                        <li><code>文件内容管理混乱</code></li>
+                        <li><code>文件修改记录难以查找</code></li>
+                        <li><code>多人协同工作困难</code></li>
+                    </ul>
+                </div>
+                <div>
+                    <p>到此，我们知道了为什么要使用Git，它能解决我们怎样的问题，给我们的工作带来什么好处。下一讲我们将正式介绍Git的使用方法。</p>
+                </div>
+            </div>
+        </div>
+        <div class="chapter">
+            <div class="chapter-title">2：Git 安装及重要概念理解</div>
+            <div class="chapter-content">
+                <p class="important">在Windows上安装Git:</p>
+                <p>首先从Git官网下载Windows版的<a href="https://git-scm.com/downloads">安装程序</a>，然后按默认选项安装即可。</p>
+                <p>Mac OS X与Linux上的Git安装方法请自行在百度与Google上搜索。</p>
+                <p>装好后，在开始菜单里找到【Git】->【Git Bash】，蹦出一个类似命令行窗口的东西，就说明Git安装成功！如下图：</p>
+                <div class="img-div"><img src="./img/2.png" class="img-thumbnail"></div>
+                <p class="important">在弹出的对话框中输入以下命令：</p>
+                <ul>
+                    <li><code>$ git config --global user.name "Your Name"</code></li>
+                    <li><code>$ git config --global user.email "email@example.com"</code></li>
+                </ul>
+                <p>命令行中的"Your Name"与"email@example.com"是用户自己定义的。在你的电脑中可以建立多个Git仓库，
+                    git config命令的--global参数，用了这个参数，表示你这台机器上所有的Git仓库都会使用这个配置，当然也可以对某个仓库指定不同的用户名和Email地址。到此，Git已成功部署在我们的电脑中了。</p>
+                <p class="important">把文件夹变成Git仓库</p>
+                <p><code>1：在Windows操作系统上创建一个用于小说编写的专有空白目录；</code>【<span class="emphasize">为了避免遇到各种莫名其妙的问题，请确保目录名（包括父目录）不包含中文。</span>】</p>
+                <p><code>2：通过git init命令把这个目录变成Git可以管理的仓库；如下图：</code>【<span class="emphasize">理论上一台电脑可以有无数个这样的独立仓库</span>】</p>
+                <div class="img-div"><img src="./img/3.png" class="img-thumbnail"></div>
+                <p>仓库创建好后，目录中会多出一个.git的目录，因为这个目录默认是隐藏的，如果你要看到它必须把系统中的显示隐藏文件选项打开。</p>
+                <p class="emphasize">【.git目录】是Git来跟踪管理版本库的，不要手动去尝试操作它，不然会把Git仓库给破坏掉的。</p>
+                <p>那么Git是怎么把我们的文件夹变成一个仓库的呢？先上一个图，再进行看图说话：</p>
+                <div class="img-div"><img src="./img/4.png" class="img-thumbnail"></div>
+                <p class="important">重要概念</p>
+                <ul>
+                    <li><code>工作区：【.git目录】的父文件夹。你所有的创作工作，都是在工作区进行的。</code></li>
+                    <li><code>版本库：【.git目录】。它管理着你各个版本的工作成果。你可以把最新的成果提交到版本库中，也可以随时把版本库中某一版本恢复到工作区中。</code></li>
+                    <li><code>stage（暂存区）：临时存放文件修改内容的地方。</code></li>
+                    <li><code>master（主分支）：记录了小说相关的全部最终内容的地方。除了【主分支】外，还可以在某一时间点创建【其它分支】。比如小说完结后，很多读者对这个结局
+                    不是很满意，这时我可以创建一个【第二结局分支】，这样大家就可以选择自己想看的结局了，皆大欢喜。</code>【<span class="emphasize">对于程序代码来说，【主分支】
+                    可以提供一个全功能收费版的，而【其它分支】可以提供部分功能版的，以供免费用户使用。这样妈妈再也不用担心你的软件被破解了。</span>】</li>
+                    <li><code>HEAD指针：总是指向当前分支的一个标记。</code></li>
+                </ul>
+                <p class="important">重要概念的理解与消化</p>
+                <p>现在大家对Git仓库有了一个概念上的认识，但怎样才能和我们的小说创作结合起来的，请往下看：</p>
+                <ul>
+                    <li><code>工作区：【.git目录】的父文件夹。你所有的创作工作，都是在工作区进行的。</code></li>
+                </ul>
+            </div>
+        </div>
+        <div class="chapter">
+            <div class="chapter-title">3：开始创作我的小说</div>
+            <div class="chapter-content">
+            </div>
+        </div>
+        <div class="chapter">
+            <div class="chapter-title">4：继续工作并查看记录</div>
+            <div class="chapter-content">
+            </div>
+        </div>
+        <div class="chapter">
+            <div class="chapter-title">5：放弃之前的工作成果</div>
+            <div class="chapter-content">
+            </div>
+        </div>
+        <div class="chapter">
+            <div class="chapter-title">6：创建工作分支</div>
+            <div class="chapter-content">
+            </div>
+        </div>
+        <div class="chapter">
+            <div class="chapter-title">7：分支合并及冲突解决</div>
+            <div class="chapter-content">
+            </div>
+        </div>
+        <div class="chapter">
+            <div class="chapter-title">8：解决突发任务</div>
+            <div class="chapter-content">
+            </div>
+        </div>
+        <div class="chapter">
+            <div class="chapter-title">9：协同工作之GitHub</div>
+            <div class="chapter-content">
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
