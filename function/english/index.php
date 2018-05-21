@@ -91,6 +91,7 @@ session_start();
         </ul>
     </div>
 </nav>
-<button id="fulls" class="btn btn-secondary fixed-top" style="left: 90px;">全屏</button>
+<button class="btn btn-secondary fixed-top" style="left: 90px;" onclick="top_page();">首页</button>
+<!--<button id="fulls" class="btn btn-secondary fixed-top" style="left: 90px;">全屏</button>-->
 </body>
 </html>

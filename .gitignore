@@ -4,6 +4,7 @@ function/english/video/resources/
 lib/bootstrap-3.3.7/
 lib/bootstrap-4.0.0/
 lib/bootstrap-treeview/
+lib/jquery-ui-1.12.1/
 lib/bootstrap-wysiwyg/
 lib/font-awesome-4.7.0/
 lib/jOrgChart/
@@ -14,6 +15,7 @@ lib/jquery-2.2.0.min.js
 lib/jquery-3.2.1.min.js
 peoplemanage/
 pm/
+fx/
 pylib/
 wamplangues/
 wampthemes/
