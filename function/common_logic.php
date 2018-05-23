@@ -21,7 +21,8 @@ function get_session_info($session_info_info_struct)
     return $session_info;
 }
 
-function session_operation($method, $session_info) {
+function session_operation($method, $session_info)
+{
     if ($method == "logout") {
         session_destroy();
         echo "";
@@ -32,11 +33,11 @@ function session_operation($method, $session_info) {
             } else {
                 $_SESSION['init'] = "yes";
                 set_session_info($session_info);
-                $session_info =  "set_success";
+                $session_info = "set_success";
             }
         } else if ($method == "set_info") {
             set_session_info($session_info);
-            $session_info =  "set_success";
+            $session_info = "set_success";
         } else if ($method == "get_info") {
             $session_info = get_session_info($session_info);
         }
@@ -70,12 +71,14 @@ function query_sql_get_data2($dbop, $sql)
 }
 
 // $condition: a='b' and c='d'
-function  modify_sql_get_data($dbop, $tableName, $fieldArr, $condition) {
+function modify_sql_get_data($dbop, $tableName, $fieldArr, $condition)
+{
     $result = $dbop->update($tableName, $fieldArr, $condition);
     return $result;
 }
 
-function add_record_to_database($dbop, $table_name, $fields_value_array) {
+function add_record_to_database($dbop, $table_name, $fields_value_array)
+{
     $result = $dbop->insert($table_name, $fields_value_array);
     if ($result) {
         echo $dbop->insert_id();
@@ -84,7 +87,8 @@ function add_record_to_database($dbop, $table_name, $fields_value_array) {
     }
 }
 
-function delete_record_from_database($dbop, $tableName, $sql) {
+function delete_record_from_database($dbop, $tableName, $sql)
+{
     $result = $dbop->delete($tableName, $sql); // a='b' and c='d'
     return $result;
 }
@@ -135,7 +139,6 @@ if ($type == "query_sql_get_data") {
 }
 
 
-
 if ($type == "query_sql_get_data2") {
     $data_list = array();
     $sql = $_REQUEST['sql'];
@@ -153,6 +156,14 @@ if ($type == "modify_sql_get_data") {
     } else {
         echo "fail";
     }
+}
+
+if ($type == "field_value_add_by_num") {
+    $tableName = $_REQUEST['tableName'];
+    $fieldName = $_REQUEST['fieldName'];
+    $num = $_REQUEST['num'];
+    $condition = $_REQUEST['condition'];
+    $dbop->field_update_itself($tableName, $fieldName, $num, $condition);
 }
 
 if ($type == "eng_word_translate") {
