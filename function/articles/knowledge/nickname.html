@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
+    <title>在学习中成长</title>
+    <link rel="icon" href="/image/myicon.png" type="image/x-icon"/>
+    <link rel='stylesheet' type='text/css' href='/lib/bootstrap-4.0.0/css/bootstrap.min.css'>
+    <script src='/lib/jquery-3.2.1.min.js'></script>
+    <script src='../local.js'></script>
+    <script src='/lib/common.js'></script>
+    <script src='/lib/vote_mgr.js'></script>
+    <script>
+        var article_id = "";
+        var article_type = "涨知识啦";
+        var is_vote = false;
+        $(function () {
+            article_show_check();
+        });
+    </script>
+</head>
+<body>
+<iframe id="head" name="head" src="/template/head_article.html" class="w-100" scrolling="no" frameborder="0"
+        onload="changeFrameHeight(); initPageData();"></iframe>
+<div id="content" class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="alert alert-primary" role="alert"><span id="current_title"></span> <span
+                    class="badge badge-danger">涨知识</span></div>
+            <div class="card text-center mt-2">
+                <div class="card-header">
+                    <ul class="nav nav-tabs card-header-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active text-danger" href="#">英语名字的构成</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <p class="card-text text-left">
+                        英文名字中的【First name】和【Last name】，哪个是名，哪个是姓？这一点常常会给我们国人带来一点困惑！
+                        直接举个例子：
+                        <code>Michael Jackson</code>，其中<code>Michael</code>是名也就是【First name】，而<code>Jackson</code>是姓也就是【Last
+                        name】。这与我们中国人是刚好相反的。
+
+                    </p>
+                </div>
+            </div>
+
+            <div class="card text-center mt-2">
+                <div class="card-header">
+                    <ul class="nav nav-tabs card-header-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active text-danger" href="#">中国人取英文名</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <p class="card-text text-left">
+                        既然英文名分为了First name与Last name，那我们在取英文名的时候是不是也都要取呢？
+                        <br>
+                        我们中国人一般取英文名的时候都是取的First Name，也就是名。我想你应该不会把姓也改成外国的吧。估计你爹能把你给抽死。
+                    </p>
+                </div>
+            </div>
+
+            <div class="card text-center mt-2">
+                <div class="card-header">
+                    <ul class="nav nav-tabs card-header-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active text-danger" href="#">不合适的英文名</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body text-left">
+                    在我们身边取了英文名的朋友当中，也许有一些并不是那么合适，来看看你和朋友们有没有中招的：
+                    <ul class="mt-2">
+                        <li>按照中文名字来取，如：金海龙 - Gold sea dragon，王冰 - Ice King等；</li>
+                        <li>不存在的英文名，如：Ghost，Bug，Why等。</li>
+                    </ul>
+                    英文单词并不等于英文名，所以千万不要随便找一个英文单词就以为可以用作英文名字了。
+                </div>
+            </div>
+
+            <div class="card mt-2 bg-primary text-white">
+                <div class="card-header">
+                    怎样取一个合适的英语名
+                </div>
+                <ul class="list-group list-group-flush text-primary">
+                    <li class="list-group-item text-danger">
+                        以下介绍2个免费的网站，可以帮助你判断取的英文名是否是在外国朋友中合适的英文名。
+                    </li>
+                    <li class="list-group-item">
+                        网站1：<a href="https://world-english.org/baby_names.htm">https://world-english.org/baby_names.htm</a>，这是一个检查英文名称是符可适的网站，点击打开网站后，点击下面红框中的内容继续操作（建议在电脑上操作）：
+                            <img src="../image/eng1.png" class="img-thumbnail d-block">
+                    </li>
+                    <li class="list-group-item">
+                        网站2：<a href="https://babynames.net/">https://babynames.net/</a>，这是一个外国人为孩子取名的网站，点击打开网站后，可以页面内容继续续操作（建议在电脑上操作）：
+                        <img src="../image/eng2.png" class="img-thumbnail d-block">
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</div>
+<iframe id="foot" src="/template/foot.html" class="w-100 mt-2" scrolling="no" frameborder="0"
+        style="height: 100px; display: block;"></iframe>
+</body>
+</html>
