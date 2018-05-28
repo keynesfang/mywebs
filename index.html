@@ -9,6 +9,30 @@
     <script src='/lib/jquery-3.2.1.min.js'></script>
     <script src='/function/articles/local.js'></script>
     <title>在学习中成长</title>
+    <style>
+        @media (max-width: 575.98px) {
+            .bgimg {
+                background: no-repeat;
+                background-size: 100% 100%;
+            }
+
+            .bgimg-news {
+                background: url(./image/news.png);
+            }
+
+            .bgimg-news2 {
+                background: url(./image/news2.png);
+            }
+
+            .bgimg-hot {
+                background: url(./image/hot.png);
+            }
+
+            .bgimg-knowledge {
+                background: url(./image/knowledge.png);
+            }
+        }
+    </style>
     <script>
         $(function () {
             $.post("./local_logic.php", {
@@ -66,6 +90,7 @@
         </div>
     </div>
 </div>
+<!--style="max-width: 500px; margin: 0 auto;"-->
 <div class="study_list">
     <div class="container">
         <div class="row">
@@ -76,7 +101,7 @@
                 </button>
             </div>
             <div class="col-md-12 content">
-                <div class="card bg-dark text-white">
+                <div class="card bg-dark text-white bgimg bgimg-news">
                     <div class="card-body">
                         <h5 class="card-title">英语的世界</h5>
                         <p class="card-text">从启蒙学到高级，从3岁到80岁。不管你身处那一个阶段，都可以点进去看看。</p>
@@ -86,46 +111,30 @@
                     </div>
                 </div>
             </div>
-            <!--<div class="col-12 content_type">-->
-                <!--<button type="button" class="btn btn-primary">-->
-                    <!--前沿科技-->
-                    <!--<span class="sr-only"></span>-->
-                <!--</button>-->
+            <!--<div class="col-md-12 content">-->
+            <!--<div class="card bg-dark text-white bgimg bgimg-news2">-->
+            <!--<div class="card-body">-->
+            <!--<h5 class="card-title">每日短新闻</h5>-->
+            <!--<p class="card-text">每天花一分钟，英语学了，新闻读了。一举两得，一箭双雕！</p>-->
+            <!--<div class="d-flex justify-content-end">-->
+            <!--<a href="function/english/index.php" class="btn btn-success">进入练习</a>-->
             <!--</div>-->
-            <!--<div class="col-md-6 content">-->
-                <!--<div class="card bg-dark text-white">-->
-                    <!--<div class="card-body">-->
-                        <!--<h5 class="card-title">Python学习</h5>-->
-                        <!--<p class="card-text">最容易上手的编程语言，大幅提升工作效率；不管你是什么职业，都可以点进去学学。</p>-->
-                        <!--<div class="d-flex justify-content-end">-->
-                            <!--<a href="#" class="btn btn-success disabled">敬请期待</a>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
             <!--</div>-->
-            <!--<div class="col-md-6 content">-->
-                <!--<div class="card bg-dark text-white">-->
-                    <!--<div class="card-body">-->
-                        <!--<h5 class="card-title">机器学习</h5>-->
-                        <!--<p class="card-text">如果你还不知道什么是【机器学习】，做了一名有追求的年青人，还不赶紧点进去了解了解。</p>-->
-                        <!--<div class="d-flex justify-content-end">-->
-                            <!--<a href="#" class="btn btn-success disabled">敬请期待</a>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
+            <!--</div>-->
             <!--</div>-->
             <div class="col-12 content_type">
                 <button type="button" class="btn btn-primary">
                     热门话题 <span class="badge badge-light"></span>
                     <span class="sr-only"></span>
                 </button>
-                <button type="button" class="btn btn-danger float-right" article_type="热门话题" onclick="show_article_list(this)">
+                <button type="button" class="btn btn-danger float-right" article_type="热门话题"
+                        onclick="show_article_list(this)">
                     更多热门 <span class="badge badge-light">...</span>
                     <span class="sr-only"></span>
                 </button>
             </div>
             <div class="col-md-12 content">
-                <div class="card bg-danger text-white">
+                <div class="card bg-danger text-white bgimg bgimg-hot">
                     <div class="card-body">
                         <h5 class="card-title" id="hot_title"></h5>
                         <p class="card-text" id="hot_des"></p>
@@ -140,13 +149,14 @@
                     涨知识啦 <span class="badge badge-light"></span>
                     <span class="sr-only"></span>
                 </button>
-                <button type="button" class="btn btn-dark float-right" article_type="涨知识啦" onclick="show_article_list(this)">
+                <button type="button" class="btn btn-dark float-right" article_type="涨知识啦"
+                        onclick="show_article_list(this)">
                     更多知识 <span class="badge badge-light">...</span>
                     <span class="sr-only"></span>
                 </button>
             </div>
             <div class="col-md-12 content">
-                <div class="card bg-dark text-white">
+                <div class="card bg-dark text-white bgimg bgimg-knowledge">
                     <div class="card-body">
                         <h5 class="card-title" id="knowledge_title"></h5>
                         <p class="card-text" id="knowledge_des"></p>
@@ -161,7 +171,8 @@
                     智游情境 <span class="badge badge-light"></span>
                     <span class="sr-only"></span>
                 </button>
-                <button type="button" class="btn btn-dark float-right" article_type="智游人生" onclick="show_article_list(this)">
+                <button type="button" class="btn btn-dark float-right" article_type="智游人生"
+                        onclick="show_article_list(this)">
                     更多情境 <span class="badge badge-light">...</span>
                     <span class="sr-only"></span>
                 </button>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
+    <link rel="icon" href="/image/myicon.png" type="image/x-icon"/>
+    <link rel='stylesheet' type='text/css' href='/index.css'>
+    <link rel='stylesheet' type='text/css' href='/lib/bootstrap-4.0.0/css/bootstrap.min.css'>
+    <script src='/lib/jquery-3.2.1.min.js'></script>
+    <script src='/lib/common.js'></script>
+    <title>在学习中成长</title>
+    <script>
+        $(function () {
+            var sql = "SELECT * FROM english_news WHERE mytranslate=0 order by news_date DESC";
+            $.post("../common_logic.php", {
+                type: "query_sql_get_data2",
+                sql: sql
+            }, function (data) {
+                var html = "";
+                var news_info = eval("(" + data + ")");
+                for (var item in news_info) {
+                    var id = news_info[item].id;
+                    var title = news_info[item].title;
+                    var news_date = news_info[item].news_date;
+                    html += "<li id='" + id + "' class='list-group-item'><span class='badge badge-primary badge-pill'>" + news_date + "</span> <a href='#'>" + title + "</a></li>";
+                }
+                $("#news_list").html(html);
+            });
+        });
+    </script>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <ul id="news_list" class="list-group">
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>
