@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
+    <link rel="icon" href="/image/myicon.png" type="image/x-icon"/>
+    <link rel='stylesheet' type='text/css' href='/index.css'>
+    <link rel='stylesheet' type='text/css' href='/lib/bootstrap-4.0.0/css/bootstrap.min.css'>
+    <script src='/lib/jquery-3.2.1.min.js'></script>
+    <script src='/lib/common.js'></script>
+    <title>在学习中成长</title>
+    <script>
+        var new_id = "";
+        var section_count = 0;
+        $(function () {
+            new_id = GetQueryString("id");
+            var sql = "SELECT * FROM english_news WHERE id='" + new_id + "'";
+            $.post("../common_logic.php", {
+                type: "query_sql_get_data2",
+                sql: sql
+            }, function (data) {
+                var news_info = eval("(" + data + ")");
+                news_info = news_info[0];
+                $("#title").html(news_info.title + " <span class='badge badge-secondary'>" + news_info.news_date + "</span>");
+                var chns = news_info.chn.split("|*|");
+                var engs = news_info.eng.split("|*|");
+                section_count = chns.length;
+                var html = "";
+                for (var idx in chns) {
+                    html += "<h5 class='card-title'>" + engs[idx] + "</h5>";
+                    html += "<p class='card-text text-danger'>" + chns[idx] + "</p>";
+                    html += "<textarea id='" + idx + "' rows='3' class='w-100'></textarea>";
+                }
+                html += "<div class='d-flex justify-content-end mt-3'><button class='btn btn-primary' onclick='update_news();'>提 交</button></div>";
+                $("#content").html(html);
+            });
+        });
+
+        function update_news() {
+            var news_text = "";
+            for (var i = 0; i < section_count; i++) {
+                if (i == section_count - 1) {
+                    news_text += $("#" + i).val();
+                } else {
+                    news_text += $("#" + i).val() + "|*|";
+                }
+            }
+
+            var condition = "id='" + new_id + "'";
+            var data_arr = {};
+            data_arr["chn"] = news_text;
+            data_arr["mytranslate"] = 1;
+
+            $.post("/function/common_logic.php", {
+                type: "modify_sql_get_data",
+                tableName: "english_news",
+                fieldArr: data_arr,
+                condition: condition
+            }, function () {
+                giveup();
+            });
+        }
+    </script>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h3 id="title"></h3>
+            <div class="card">
+                <div class="card-header">
+                    新闻编辑
+                </div>
+                <div id="content" class="card-body">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

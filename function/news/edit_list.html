@@ -22,7 +22,7 @@
                     var id = news_info[item].id;
                     var title = news_info[item].title;
                     var news_date = news_info[item].news_date;
-                    html += "<li id='" + id + "' class='list-group-item'><span class='badge badge-primary badge-pill'>" + news_date + "</span> <a href='#'>" + title + "</a></li>";
+                    html += "<li id='" + id + "' class='list-group-item'><span class='badge badge-primary badge-pill'>" + news_date + "</span> <a href='./edit_news.html?id=" + news_info[item].id + "'>" + title + "</a></li>";
                 }
                 $("#news_list").html(html);
             });
