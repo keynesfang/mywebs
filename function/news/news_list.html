@@ -9,9 +9,27 @@
     <script src='/lib/jquery-3.2.1.min.js'></script>
     <script src='/lib/common.js'></script>
     <title>在学习中成长</title>
+    <style>
+        .new_title {
+            position: absolute;
+            bottom: 0;
+            background-color: #000;
+            opacity: 0.5;
+        }
+
+        .news_bg_img {
+            height: 120px;
+        }
+
+        .news_bg_img {
+            background: no-repeat;
+            background-size: 100% 100%;
+            height: 120px;
+        }
+    </style>
     <script>
         $(function () {
-            var sql = "SELECT * FROM english_news WHERE mytranslate=0 order by news_date DESC";
+            var sql = "SELECT * FROM english_news WHERE mytranslate=1 order by news_date DESC";
             $.post("../common_logic.php", {
                 type: "query_sql_get_data2",
                 sql: sql
@@ -22,7 +40,7 @@
                     var id = news_info[item].id;
                     var title = news_info[item].title;
                     var news_date = news_info[item].news_date;
-                    html += "<li id='" + id + "' class='list-group-item'><span class='badge badge-primary badge-pill'>" + news_date + "</span> <a href='./edit_news.html?id=" + news_info[item].id + "'>" + title + "</a></li>";
+                    html += "<li id='" + id + "' class='list-group-item bg-secondary news_bg_img' style='padding: 0; background-image: url(" + news_info[item].picture_url + ")'><div class='m-2 badge badge-primary badge-pill'>" + news_date + "</div> <div class='new_title w-100'><a class='text-white' href='./edit_news.html?id=" + news_info[item].id + "'>" + title + "</a></div></li>";
                 }
                 $("#news_list").html(html);
             });
@@ -30,14 +48,21 @@
     </script>
 </head>
 <body>
+<nav class="navbar  navbar-dark bg-primary text-white mb-2" style="height: 50px;">
+    <a class="navbar-brand" href="#">
+        <img src="/image/head.jpg" width="35" height="35" class="d-inline-block align-top" alt="">
+        英文短新闻
+    </a>
+</nav>
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <a href="edit_list_modified.html" class="btn btn-success mb-2">转到已修改列表</a>
             <ul id="news_list" class="list-group">
             </ul>
         </div>
     </div>
 </div>
+<iframe id="foot" src="/template/foot.html" class="w-100 mt-2" scrolling="no" frameborder="0"
+        style="height: 100px; display: block;"></iframe>
 </body>
 </html>

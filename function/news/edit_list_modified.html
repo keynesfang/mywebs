@@ -11,7 +11,7 @@
     <title>在学习中成长</title>
     <script>
         $(function () {
-            var sql = "SELECT * FROM english_news WHERE mytranslate=0 order by news_date DESC";
+            var sql = "SELECT * FROM english_news WHERE mytranslate=1 order by news_date DESC";
             $.post("../common_logic.php", {
                 type: "query_sql_get_data2",
                 sql: sql
@@ -22,7 +22,7 @@
                     var id = news_info[item].id;
                     var title = news_info[item].title;
                     var news_date = news_info[item].news_date;
-                    html += "<li id='" + id + "' class='list-group-item'><span class='badge badge-primary badge-pill'>" + news_date + "</span> <a href='./edit_news.html?id=" + news_info[item].id + "'>" + title + "</a></li>";
+                    html += "<li id='" + id + "' class='list-group-item bg-secondary'><span class='badge badge-primary badge-pill'>" + news_date + "</span> <a class='text-white' href='./edit_news.html?id=" + news_info[item].id + "'>" + title + "</a></li>";
                 }
                 $("#news_list").html(html);
             });
@@ -33,7 +33,7 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <a href="edit_list_modified.html" class="btn btn-success mb-2">转到已修改列表</a>
+            <a href="edit_list.html" class="btn btn-warning mb-2">转到未修改列表</a>
             <ul id="news_list" class="list-group">
             </ul>
         </div>
