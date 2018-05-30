@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
+    <link rel="icon" href="/image/myicon.png" type="image/x-icon"/>
+    <link rel='stylesheet' type='text/css' href='/index.css'>
+    <link rel='stylesheet' type='text/css' href='/lib/bootstrap-4.0.0/css/bootstrap.min.css'>
+    <script src='/lib/jquery-3.2.1.min.js'></script>
+    <script src='/lib/common.js'></script>
+    <script src='/lib/english.js'></script>
+    <title>在学习中成长</title>
+    <style>
+        .news_content {
+            font-family: "Arial", "Times New Roman", "楷体_GB2312", 楷体 "," 华文楷体 "," 宋体 ";
+            font-size: 0.5rem;
+        }
+
+        #explain {
+            position: fixed;
+            bottom: 0;
+            padding: 10px;
+            background-color: #00b3ee;
+            color: #fff;
+            width: 100%;
+        }
+    </style>
+    <script>
+        var news_id = "";
+        var section_count = 0;
+        $(function () {
+            news_id = GetQueryString("news_id");
+            var sql = "SELECT * FROM english_news WHERE id='" + news_id + "'";
+            $.post("../common_logic.php", {
+                type: "query_sql_get_data2",
+                sql: sql
+            }, function (data) {
+                var news_info = eval("(" + data + ")");
+                news_info = news_info[0];
+                var chns = news_info.chn.split("|*|");
+                var engs = news_info.eng.split("|*|");
+                section_count = chns.length;
+                $("#news_title").html(news_info.title + " <img id='translate' src='/image/translate.png' style='width: 40px; height: 35px;'>");
+                var html = "";
+                for (var idx in chns) {
+                    var eng_word_wrap = get_query_sentence_from_normal(engs[idx]);
+                    html += "<p'>" + eng_word_wrap + "</p>";
+                    html += "<p class='card-text text-primary translate'>" + chns[idx] + "</p>";
+                }
+                $("#content").html(html);
+                $(".translate").hide();
+                $("#translate").click(function () {
+                    $(".translate").toggle(1000);
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+<div id="explain">asdf</div>
+
+<nav class="navbar  navbar-dark bg-primary text-white" style="height: 50px;">
+    <a class="navbar-brand" href="#">
+        <img src="/image/head.jpg" width="40" height="40" class="d-inline-block align-top" alt="">
+        英文短新闻
+        <div class="d-inline-block"><a href="news_list.html" class="btn btn-success">列表</a></div>
+    </a>
+</nav>
+
+<audio class="w-100" controls="controls" controlsList="nodownload"
+       src="http://xia2.kekenet.com/Sound/2018/05/yfznews180526_1112752Bre.mp3"></audio>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h5 id="news_title" class="text-primary m-0">Example heading</h5>
+            <div id="content" class="news_content">
+            </div>
+        </div>
+    </div>
+</div>
+
+<iframe id="foot" src="/template/foot.html" class="w-100 mt-2" scrolling="no" frameborder="0"
+        style="height: 100px; display: block;"></iframe>
+</body>
+</html>
