@@ -6,6 +6,7 @@
     <link rel="icon" href="/image/myicon.png" type="image/x-icon"/>
     <link rel='stylesheet' type='text/css' href='/index.css'>
     <link rel='stylesheet' type='text/css' href='/lib/bootstrap-4.0.0/css/bootstrap.min.css'>
+    <link rel='stylesheet' type='text/css' href='/lib/font-awesome-4.7.0/css/font-awesome.min.css'>
     <script src='/lib/jquery-3.2.1.min.js'></script>
     <script src='/lib/common.js'></script>
     <script src='/lib/english.js'></script>
@@ -20,7 +21,6 @@
             position: fixed;
             bottom: 0;
             padding: 10px;
-            background-color: #00b3ee;
             color: #fff;
             width: 100%;
         }
@@ -47,28 +47,56 @@
                     html += "<p'>" + eng_word_wrap + "</p>";
                     html += "<p class='card-text text-primary translate'>" + chns[idx] + "</p>";
                 }
+                $("#new_audio").attr("src", news_info.audio_url)
                 $("#content").html(html);
+                $("#explain").hide();
                 $(".translate").hide();
                 $("#translate").click(function () {
                     $(".translate").toggle(1000);
                 });
+                regist_word_translate(set_explain_word, query_word_callback);
             });
         });
+
+        function set_explain_word(word) {
+            $("#word_sound").attr("word", word);
+            $("#query_word").html(word);
+            $("#explain").show();
+        }
+
+        function query_word_callback(explain_info) {
+            var explains = "";
+            for (var i = 0; i < explain_info.explains.length; i++) {
+                explains += explain_info.explains[i] + "<br>";
+            }
+            $("#phonetic").html(explain_info.phonetic);
+            $("#word_explain").html(explains);
+        }
+
+        function explain_control() {
+            $("#explain").toggle();
+        }
     </script>
 </head>
 <body>
-<div id="explain">asdf</div>
+<audio id="play_sound"></audio>
+<div id="explain" style="z-index: 999;" class="bg-success">
+    <span style="position: absolute; top: 5px; right: 5px;" onclick="explain_control();"><i class="fa fa-close"></i> 关闭</span>
+    <i id="word_sound" word="" class="fa fa-bullhorn fa-2x" style="color: yellow;" onclick="play_voice();"></i>
+    <div id="query_word" class="d-inline-block">query word</div>
+    <div id="phonetic" class="ml-2 my-1"></div>
+    <div id="word_explain" class="ml-2"></div>
+</div>
 
 <nav class="navbar  navbar-dark bg-primary text-white" style="height: 50px;">
     <a class="navbar-brand" href="#">
-        <img src="/image/head.jpg" width="40" height="40" class="d-inline-block align-top" alt="">
-        英文短新闻
-        <div class="d-inline-block"><a href="news_list.html" class="btn btn-success">列表</a></div>
+        <!--<img src="/image/head.jpg" width="40" height="40" class="d-inline-block align-top" alt="">-->
+        每日英文短新闻
+        <!--<div class="d-inline-block"><a href="news_list.html" class="btn btn-success">列表</a></div>-->
     </a>
 </nav>
 
-<audio class="w-100" controls="controls" controlsList="nodownload"
-       src="http://xia2.kekenet.com/Sound/2018/05/yfznews180526_1112752Bre.mp3"></audio>
+<audio id="new_audio" class="w-100" controls="controls" controlsList="nodownload" src=""></audio>
 
 
 <div class="container">
