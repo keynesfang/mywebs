@@ -20,7 +20,6 @@
         #explain {
             position: fixed;
             bottom: 0;
-            padding: 10px;
             color: #fff;
             width: 100%;
         }
@@ -28,6 +27,7 @@
     <script>
         var news_id = "";
         var section_count = 0;
+        var append_mode = false; // 追加模式查词
         $(function () {
             news_id = GetQueryString("news_id");
             var sql = "SELECT * FROM english_news WHERE id='" + news_id + "'";
@@ -69,9 +69,13 @@
         });
 
         function set_explain_word(word) {
+            if (append_mode) {
+                word = $("#query_word").val() + " " + word;
+            }
             $("#word_sound").attr("word", word);
-            $("#query_word").html(word);
+            $("#query_word").val(word);
             $("#explain").show();
+            return word;
         }
 
         function query_word_callback(explain_info) {
@@ -83,19 +87,51 @@
             $("#word_explain").html(explains);
         }
 
+        function query() {
+            var word = $("#query_word").val();
+            query_word(word, query_word_callback);
+        }
+
         function explain_control() {
             $("#explain").toggle();
+            $("#query_word").val("");
+            append_mode_change();
+        }
+
+        function append_mode_change() {
+            var btn = $("#append_mode");
+            if (btn.hasClass("btn-danger")) {
+                btn.removeClass("btn-danger");
+                append_mode = false;
+            } else {
+                btn.addClass("btn-danger");
+                append_mode = true;
+            }
         }
     </script>
 </head>
 <body>
 <audio id="play_sound"></audio>
-<div id="explain" style="z-index: 999;" class="bg-success">
-    <span style="position: absolute; top: 5px; right: 5px;" onclick="explain_control();"><i class="fa fa-close"></i> 关闭</span>
-    <i id="word_sound" word="" class="fa fa-bullhorn fa-2x" style="color: yellow;" onclick="play_voice();"></i>
-    <div id="query_word" class="d-inline-block">query word</div>
-    <div id="phonetic" class="ml-2 my-1"></div>
-    <div id="word_explain" class="ml-2"></div>
+<div id="explain" style="z-index: 999;" class="bg-primary">
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <button id="append_mode" class="btn" type="button" onclick="append_mode_change();"><i
+                    class="fa fa-plus"></i></button>
+            <button id="word_sound" class="btn btn-warning" type="button" onclick="play_voice();"><i
+                    class="fa fa-volume-up"></i>
+            </button>
+            <button class="btn btn-info" type="button" onclick="query();">查</button>
+        </div>
+        <input id="query_word" type="text" class="form-control" placeholder="query word">
+        <div class="input-group-append">
+            <button class="btn btn-warning" type="button" onclick="explain_control();"><i class="fa fa-close"></i>
+            </button>
+        </div>
+    </div>
+    <div class="p-2" style="font-size: 14px;">
+        <div id="phonetic" class="font-weight-bold ml-2 mb-1 text-warning"></div>
+        <div id="word_explain" class="ml-2"></div>
+    </div>
 </div>
 
 <nav class="navbar  navbar-dark bg-primary text-white" style="height: 50px;">
@@ -108,10 +144,11 @@
 
 <div class="input-group mb-3">
     <div id="replay_div" class="input-group-prepend">
-        <span id="audio_replay" class="input-group-text"><i
+        <span id="audio_replay" class="input-group-text border-0"><i
                 class="fa fa-play-circle"></i> </span>
     </div>
-    <audio id="new_audio" class="form-control p-0" controls="controls" controlsList="nodownload" src=""></audio>
+    <audio id="new_audio" class="form-control p-0 border-0" controls="controls" controlsList="nodownload"
+           src=""></audio>
 </div>
 
 <!--<audio id="new_audio1" class="w-100" controls="controls" controlsList="nodownload" src=""></audio>-->
