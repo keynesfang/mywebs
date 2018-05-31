@@ -47,7 +47,8 @@
                     html += "<p'>" + eng_word_wrap + "</p>";
                     html += "<p class='card-text text-primary translate'>" + chns[idx] + "</p>";
                 }
-                $("#new_audio").attr("src", news_info.audio_url)
+                $("#new_audio").attr("src", news_info.audio_url);
+                $("#replay_div").css("height", $("#new_audio").outerHeight());
                 $("#content").html(html);
                 $("#explain").hide();
                 $(".translate").hide();
@@ -55,7 +56,7 @@
                     $(".translate").toggle(1000);
                 });
                 $("#audio_replay").click(function () {
-                    if($(this).hasClass("bg-danger text-white")) {
+                    if ($(this).hasClass("bg-danger text-white")) {
                         $(this).removeClass("bg-danger text-white");
                         $("#new_audio").removeAttr("loop");
                     } else {
@@ -106,8 +107,8 @@
 </nav>
 
 <div class="input-group mb-3">
-    <div class="input-group-prepend" style="height: 32px;">
-        <span id="audio_replay" class="input-group-text" id="basic-addon1"><i
+    <div id="replay_div" class="input-group-prepend">
+        <span id="audio_replay" class="input-group-text"><i
                 class="fa fa-play-circle"></i> </span>
     </div>
     <audio id="new_audio" class="form-control p-0" controls="controls" controlsList="nodownload" src=""></audio>
