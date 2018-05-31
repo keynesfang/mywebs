@@ -54,6 +54,15 @@
                 $("#translate").click(function () {
                     $(".translate").toggle(1000);
                 });
+                $("#audio_replay").click(function () {
+                    if($(this).hasClass("bg-danger text-white")) {
+                        $(this).removeClass("bg-danger text-white");
+                        $("#new_audio").removeAttr("loop");
+                    } else {
+                        $(this).addClass("bg-danger text-white");
+                        $("#new_audio").attr("loop", "loop");
+                    }
+                });
                 regist_word_translate(set_explain_word, query_word_callback);
             });
         });
@@ -96,7 +105,15 @@
     </a>
 </nav>
 
-<audio id="new_audio" class="w-100" controls="controls" controlsList="nodownload" src=""></audio>
+<div class="input-group mb-3">
+    <div class="input-group-prepend" style="height: 32px;">
+        <span id="audio_replay" class="input-group-text" id="basic-addon1"><i
+                class="fa fa-play-circle"></i> </span>
+    </div>
+    <audio id="new_audio" class="form-control p-0" controls="controls" controlsList="nodownload" src=""></audio>
+</div>
+
+<!--<audio id="new_audio1" class="w-100" controls="controls" controlsList="nodownload" src=""></audio>-->
 
 
 <div class="container">
