@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
+    <link rel="icon" href="/image/myicon.png" type="image/x-icon"/>
+    <link rel='stylesheet' type='text/css' href='word.css'>
+    <link rel='stylesheet' type='text/css' href='/lib/bootstrap-4.0.0/css/bootstrap.min.css'>
+    <link rel='stylesheet' type='text/css' href='/lib/font-awesome-4.7.0/css/font-awesome.min.css'>
+    <script src='/lib/jquery-3.2.1.min.js'></script>
+    <script src='../../lib/popper.min.js'></script>
+    <script src='/lib/bootstrap-4.0.0/js/bootstrap.min.js'></script>
+    <script src='/lib/common.js'></script>
+    <script src='/lib/english.js'></script>
+    <title>在学习中成长</title>
+    <style>
+    </style>
+    <script>
+        var link_types = {
+            "news": "/function/news/news_detail.html?news_id="
+        };
+        var my_new_word_arr = "";
+        $(function () {
+            page_update();
+        });
+
+        function page_update() {
+            my_new_word_arr = window.localStorage.getItem('my_new_word');
+            if (my_new_word_arr) {
+                my_new_word_arr = JSON.parse(my_new_word_arr);
+                var html = "";
+                var word_indx = 0;
+                $.each(my_new_word_arr, function (word, info) {
+                    info = JSON.stringify(info);
+                    word_indx += 1;
+                    var content_id = "collapse" + word_indx;
+                    html += "<div class='card border-0'>";
+                    html += "	<div class='card-header' id='" + word_indx + "'>";
+                    html += "		<h5 class='mb-0'>";
+                    html += "			<i onclick='play_voice(\"" + word + "\")' class='mr-2 fa fa-volume-up text-warning'></i>";
+                    html += "			<button onclick='page_word_query(\"" + content_id + "\",\"" + word + "\", " + info + ");' class='btn btn-link' data-toggle='collapse' data-target='#" + content_id + "' aria-controls='" + content_id + "'>";
+                    html += word;
+                    html += "			</button>";
+                    html += "		</h5>";
+                    html += "		<div class='close_btn' word='" + word + "'><i class='fa fa-close'></i></div>";
+                    html += "	</div>";
+                    html += "	<div id='" + content_id + "' class='collapse' aria-labelledby='" + word_indx + "' data-parent='#wrod_list'>";
+                    html += "	</div>";
+                    html += "</div>";
+                });
+                $("#word_count").html(word_indx);
+                $("#word_list").html(html);
+                $(".close_btn").click(function () {
+                    var word = $(this).attr("word");
+                    delete my_new_word_arr[word];
+                    window.localStorage.setItem('my_new_word', JSON.stringify(my_new_word_arr));
+                    page_update();
+                });
+            }
+        }
+
+        function page_word_query(content_id, word, info) {
+            var collapse_link = "";
+            if (info) {
+                collapse_link = link_types[info.type] + info.id;
+            }
+            $("#collapse_link").val(collapse_link);
+            $("#collapse_id").val(content_id);
+
+            query_word(word, query_word_callback);
+        }
+
+        function query_word_callback(explain_info) {
+            var collapse_id = $("#collapse_id").val();
+            var collapse_link = $("#collapse_link").val();
+            var explains = "";
+            for (var i = 0; i < explain_info.explains.length; i++) {
+                explains += explain_info.explains[i] + "<br>";
+            }
+            var html = "<div class='card-body bg-dark text-white'>";
+            if (explain_info.phonetic) {
+                html += "<span class='text-warning'>" + explain_info.phonetic + "</span><br>";
+            }
+            var go_original = "";
+            if (collapse_link) {
+                go_original = "<div class='mt-2 d-flex justify-content-end text-primary'><a href='" + collapse_link + "'>查看原文</a></div>";
+            }
+            html += "<div style='font-size: 14px;' class='mt-2'>" + explains + "</div>" + go_original + "</div>";
+            $("#" + collapse_id).html(html);
+        }
+    </script>
+</head>
+<body>
+<audio id="play_sound"></audio>
+<span id="word_sound"></span>
+<input type="hidden" id="collapse_id">
+<input type="hidden" id="collapse_link">
+<nav class="navbar  navbar-dark bg-primary text-white" style="height: 50px;">
+    <a class="navbar-brand" href="#">
+        我的英文生词表
+    </a>
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="mt-2 text-primary">当前共有<span id="word_count" class="text-danger"></span>个生词：</div>
+            <div id="word_list" class="my-2">
+            </div>
+            <!--<div id="words" class="my-2">-->
+            <!--&lt;!&ndash;缩略图模式暂不实现&ndash;&gt;-->
+            <!--<div class="word default_bg_img mb-2">-->
+            <!--<div class="w-100 h-100 word_panel p-2 text-white">-->
+            <!--sfd-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--</div>-->
+        </div>
+    </div>
+</div>
+<iframe id="foot" src="/template/foot.html" class="w-100 mt-2" scrolling="no" frameborder="0"
+        style="height: 100px; display: block;"></iframe>
+</body>
+</html>
