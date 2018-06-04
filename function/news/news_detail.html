@@ -146,14 +146,13 @@
             var word = $("#query_word").val();
             word = $.trim(word);
             if (word) {
+                $("#word_sound").attr("word", word);
                 query_word(word, query_word_callback);
             }
         }
 
         function explain_control() {
             $("#explain").toggle();
-            $("#query_word").val("");
-            append_mode_change();
         }
 
         function append_mode_change() {
@@ -172,7 +171,7 @@
             query_word = $.trim(query_word);
             if (!query_word) {
                 $("#phonetic").html("");
-                $("#word_explain").html("<div class='text-danger font-weight-bold' style='font-size: 20px;'>Please input a word first!</div>");
+                $("#word_explain").html("<div class='text-warning text-center font-weight-bold' style='font-size: 20px;'>Please input a word first!</div>");
                 return;
             }
             var info = {type: "news", id: news_id};
@@ -219,7 +218,7 @@
     <a class="navbar-brand" href="#">
         <!--<img src="/image/head.jpg" width="40" height="40" class="d-inline-block align-top" alt="">-->
         每日英文短新闻
-        <!--<div class="d-inline-block"><a href="news_list.html" class="btn btn-success">列表</a></div>-->
+        <div class="d-inline-block"><a href="news_list.html" class="btn btn-outline-warning">新闻列表</a></div>
     </a>
 </nav>
 

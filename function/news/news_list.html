@@ -20,13 +20,13 @@
         }
 
         .news_bg_img {
-            height: 120px;
+            height: 150px;
         }
 
         .news_bg_img {
             background: no-repeat;
             background-size: 100% 100%;
-            height: 120px;
+            height: 150px;
         }
     </style>
     <script>
@@ -42,7 +42,7 @@
                     var id = news_info[item].id;
                     var title = news_info[item].title;
                     var news_date = news_info[item].news_date;
-                    html += "<li id='" + id + "' class='list-group-item bg-secondary news_bg_img mb-1 news_btn' style='padding: 0; background-image: url(" + news_info[item].picture_url + ")'><div class='m-2 badge badge-primary badge-pill'>" + news_date + "</div> <div class='new_title w-100'>" + title + "</div></li>";
+                    html += "<div class='col-md-4'><div id='" + id + "' class='list-group-item bg-secondary news_bg_img mb-1 news_btn' style='padding: 0; background-image: url(" + news_info[item].picture_url + ")'><div class='m-2 badge badge-primary badge-pill'>" + news_date + "</div> <div class='new_title w-100'>" + title + "</div></div></div>";
                 }
                 $("#news_list").html(html);
 
@@ -57,17 +57,13 @@
 <body>
 <nav class="navbar  navbar-dark bg-primary text-white mb-2" style="height: 50px;">
     <a class="navbar-brand" href="#">
-        <img src="/image/head.jpg" width="40" height="40" class="d-inline-block align-top" alt="">
-        英文短新闻
-        <div class="d-inline-block"><a href="/index.html" class="btn btn-success">首页</a></div>
+        <!--<img src="/image/head.jpg" width="40" height="40" class="d-inline-block align-top" alt="">-->
+        英文短新闻列表
+        <div class="d-inline-block"><a href="/index.html" class="btn btn-outline-warning">首页</a></div>
     </a>
 </nav>
 <div class="container">
-    <div class="row">
-        <div class="col-12">
-            <ul id="news_list" class="list-group">
-            </ul>
-        </div>
+    <div id="news_list" class="row">
     </div>
 </div>
 <iframe id="foot" src="/template/foot.html" class="w-100 mt-2" scrolling="no" frameborder="0"

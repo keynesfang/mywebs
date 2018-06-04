@@ -7,54 +7,63 @@
     <link rel='stylesheet' type='text/css' href='index.css'>
     <link rel='stylesheet' type='text/css' href='lib/bootstrap-4.0.0/css/bootstrap.min.css'>
     <script src='/lib/jquery-3.2.1.min.js'></script>
+    <script src='../../lib/popper.min.js'></script>
+    <script src='/lib/bootstrap-4.0.0/js/bootstrap.min.js'></script>
     <script src='/function/articles/local.js'></script>
     <title>在学习中成长</title>
     <style>
-        @media (max-width: 575.98px) {
-            .bgimg {
-                background: no-repeat;
-                background-size: 100% 100%;
-            }
-
-            .bgimg-news {
-                background: url(./image/news.png);
-            }
-
-            .bgimg-news2 {
-                background: url(./image/news2.png);
-            }
-
-            .bgimg-hot {
-                background: url(./image/hot.png);
-            }
-
-            .bgimg-knowledge {
-                background: url(./image/knowledge.png);
-            }
+        .bgimg {
+            background: no-repeat;
+            background-size: 100% 100%;
         }
+
+        .bgimg-news {
+            background: url(./image/news.png);
+        }
+
+        .bgimg-news2 {
+            background: url(./image/news2.png);
+        }
+
+        .bgimg-hot {
+            background: url(./image/hot.png);
+        }
+
+        .bgimg-knowledge {
+            background: url(./image/knowledge.png);
+        }
+
+        .bg_panel {
+            background: rgba(2, 2, 2, 0.5);
+            border-radius: 5px;
+        }
+
+        /*@media (max-width: 575.98px) {*/
+        /**/
+        /*}*/
     </style>
     <script>
         $(function () {
-            $.post("./local_logic.php", {
-                type: "get_all_type_article"
-            }, function (data) {
-                var article_info = eval("(" + data + ")");
-                $("#hot_title").html(article_info.hot.title);
-                $("#hot_des").html(article_info.hot.descript);
-                $("#hot_entry").attr("article_id", article_info.hot.id);
-                $("#hot_entry").attr("article_link", article_info.hot.content);
-                $("#knowledge_title").html(article_info.knowledge.title);
-                $("#knowledge_des").html(article_info.knowledge.descript);
-                $("#knowledge_entry").attr("article_id", article_info.knowledge.id);
-                $("#knowledge_entry").attr("article_link", article_info.knowledge.content);
-                $("#game_title").html(article_info.game.title);
-                $("#game_des").html(article_info.game.descript);
-                $("#game_entry").attr("article_id", article_info.game.id);
-                $("#game_entry").attr("article_link", article_info.game.content);
-                $(".article_entry").click(function () {
-                    location.href = "/function/articles" + $(this).attr("article_link") + "?article_id=" + $(this).attr("article_id");
-                });
-            });
+//            $.post("./local_logic.php", {
+//                type: "get_all_type_article"
+//            }, function (data) {
+//                var article_info = eval("(" + data + ")");
+//                $("#hot_title").html(article_info.hot.title);
+//                $("#hot_des").html(article_info.hot.descript);
+//                $("#hot_entry").attr("article_id", article_info.hot.id);
+//                $("#hot_entry").attr("article_link", article_info.hot.content);
+//                $("#knowledge_title").html(article_info.knowledge.title);
+//                $("#knowledge_des").html(article_info.knowledge.descript);
+//                $("#knowledge_entry").attr("article_id", article_info.knowledge.id);
+//                $("#knowledge_entry").attr("article_link", article_info.knowledge.content);
+//                $("#game_title").html(article_info.game.title);
+//                $("#game_des").html(article_info.game.descript);
+//                $("#game_entry").attr("article_id", article_info.game.id);
+//                $("#game_entry").attr("article_link", article_info.game.content);
+//                $(".article_entry").click(function () {
+//                    location.href = "/function/articles" + $(this).attr("article_link") + "?article_id=" + $(this).attr("article_id");
+//                });
+//            });
         });
     </script>
 </head>
@@ -91,101 +100,79 @@
     </div>
 </div>
 <!--style="max-width: 500px; margin: 0 auto;"-->
-<div class="study_list">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 content_type">
-                <button type="button" class="btn btn-primary">
-                    英语学习 <span class="badge badge-light"></span>
-                    <span class="sr-only"></span>
-                </button>
-            </div>
-            <div class="col-md-12 content">
-                <div class="card bg-dark text-white bgimg bgimg-news">
-                    <div class="card-body">
-                        <h5 class="card-title">英语的世界</h5>
-                        <p class="card-text">从启蒙学到高级，从3岁到80岁。不管你身处那一个阶段，都可以点进去看看。</p>
-                        <div class="d-flex justify-content-end">
-                            <a href="function/english/index.php" class="btn btn-success">进入学习</a>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <ul class="nav nav-tabs mx-1" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="english-tab" data-toggle="tab" href="#english" role="tab"
+                       aria-controls="english"
+                       aria-selected="true">学英语</a>
+                </li>
+                <!--<li class="nav-item">-->
+                <!--<a class="nav-link" id="knowledge-tab" data-toggle="tab" href="#knowledge" role="tab"-->
+                <!--aria-controls="knowledge"-->
+                <!--aria-selected="false">涨知识</a>-->
+                <!--</li>-->
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="english" role="tabpanel" aria-labelledby="english-tab">
+                    <!--news start-->
+                    <div class="col-md-4 mt-2 content d-inline-block p-0">
+                        <div class="card text-white bgimg bgimg-news">
+                            <div class="w-100 h-100 bg_panel">
+                                <div class="card-body">
+                                    <h5 class="card-title">每日英语短新闻</h5>
+                                    <p class="card-text">每天花一分钟，英语学了，新闻读了。一举两得，一箭双雕！</p>
+                                    <div class="d-flex justify-content-end">
+                                        <a href="function/news/news_list.html" class="btn btn-success">进入练习</a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    <!--news end-->
                 </div>
-            </div>
-            <div class="col-md-12 content">
-                <div class="card bg-dark text-white bgimg bgimg-news2">
-                    <div class="card-body">
-                        <h5 class="card-title">每日短新闻</h5>
-                        <p class="card-text">每天花一分钟，英语学了，新闻读了。一举两得，一箭双雕！</p>
-                        <div class="d-flex justify-content-end">
-                            <a href="function/news/news_list.html" class="btn btn-success">进入练习</a>
+                <div class="tab-pane fade" id="knowledge" role="tabpanel" aria-labelledby="knowledge-tab">
+                    <!--hot start-->
+                    <div class="col-md-3 mt-2 content d-inline-block">
+                        <div class="card bg-danger text-white bgimg bgimg-hot">
+                            <div class="card-body">
+                                <h5 class="card-title" id="hot_title">当前热闹话题探讨</h5>
+                                <p class="card-text" id="hot_des"></p>
+                                <div class="d-flex justify-content-end">
+                                    <a href="#" id="hot_entry" class="btn btn-success article_entry">热门话题</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-12 content_type">
-                <button type="button" class="btn btn-primary">
-                    热门话题 <span class="badge badge-light"></span>
-                    <span class="sr-only"></span>
-                </button>
-                <button type="button" class="btn btn-danger float-right" article_type="热门话题"
-                        onclick="show_article_list(this)">
-                    更多热门 <span class="badge badge-light">...</span>
-                    <span class="sr-only"></span>
-                </button>
-            </div>
-            <div class="col-md-12 content">
-                <div class="card bg-danger text-white bgimg bgimg-hot">
-                    <div class="card-body">
-                        <h5 class="card-title" id="hot_title"></h5>
-                        <p class="card-text" id="hot_des"></p>
-                        <div class="d-flex justify-content-end">
-                            <a href="#" id="hot_entry" class="btn btn-success article_entry">参与话题</a>
+                    <!--hot end-->
+                    <!--knowledge start-->
+                    <div class="col-md-4 content d-inline-block">
+                        <div class="card bg-dark text-white bgimg bgimg-knowledge">
+                            <div class="card-body">
+                                <h5 class="card-title" id="knowledge_title"></h5>
+                                <p class="card-text" id="knowledge_des"></p>
+                                <div class="d-flex justify-content-end">
+                                    <a href="#" id="knowledge_entry" class="btn btn-success article_entry">日常知识</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-12 content_type">
-                <button type="button" class="btn btn-primary">
-                    涨知识啦 <span class="badge badge-light"></span>
-                    <span class="sr-only"></span>
-                </button>
-                <button type="button" class="btn btn-dark float-right" article_type="涨知识啦"
-                        onclick="show_article_list(this)">
-                    更多知识 <span class="badge badge-light">...</span>
-                    <span class="sr-only"></span>
-                </button>
-            </div>
-            <div class="col-md-12 content">
-                <div class="card bg-dark text-white bgimg bgimg-knowledge">
-                    <div class="card-body">
-                        <h5 class="card-title" id="knowledge_title"></h5>
-                        <p class="card-text" id="knowledge_des"></p>
-                        <div class="d-flex justify-content-end">
-                            <a href="#" id="knowledge_entry" class="btn btn-success article_entry">吸收知识</a>
+                    <!--knowledge end-->
+                    <!--game start-->
+                    <div class="col-md-4 content d-inline-block">
+                        <div class="card bg-dark text-white">
+                            <div class="card-body">
+                                <h5 class="card-title" id="game_title"></h5>
+                                <p class="card-text" id="game_des"></p>
+                                <div class="d-flex justify-content-end">
+                                    <a href="#" id="game_entry" class="btn btn-success article_entry">情景游戏</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-12 content_type">
-                <button type="button" class="btn btn-primary">
-                    智游情境 <span class="badge badge-light"></span>
-                    <span class="sr-only"></span>
-                </button>
-                <button type="button" class="btn btn-dark float-right" article_type="智游人生"
-                        onclick="show_article_list(this)">
-                    更多情境 <span class="badge badge-light">...</span>
-                    <span class="sr-only"></span>
-                </button>
-            </div>
-            <div class="col-md-12 content">
-                <div class="card bg-dark text-white">
-                    <div class="card-body">
-                        <h5 class="card-title" id="game_title"></h5>
-                        <p class="card-text" id="game_des"></p>
-                        <div class="d-flex justify-content-end">
-                            <a href="#" id="game_entry" class="btn btn-success article_entry">进入情景</a>
-                        </div>
-                    </div>
+                    <!--game start-->
                 </div>
             </div>
         </div>
