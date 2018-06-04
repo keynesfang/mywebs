@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
+    <link rel="icon" href="/image/myicon.png" type="image/x-icon"/>
+    <link rel='stylesheet' type='text/css' href='/lib/bootstrap-4.0.0/css/bootstrap.min.css'>
+    <link rel='stylesheet' type='text/css' href='/lib/font-awesome-4.7.0/css/font-awesome.min.css'>
+    <script src='/lib/jquery-3.2.1.min.js'></script>
+    <script src='../../lib/popper.min.js'></script>
+    <script src='/lib/bootstrap-4.0.0/js/bootstrap.min.js'></script>
+    <script src='/lib/common.js'></script>
+    <script src='/lib/english.js'></script>
+    <title>在学习中成长</title>
+    <style>
+        .bg_panel {
+            background: rgba(2, 2, 2, 0.5);
+            border-radius: 5px;
+        }
+
+        .bg_img {
+            background: no-repeat;
+            background-size: 100% 100%;
+            height: 150px;
+            line-height: 150px;
+            border-radius: 5px;
+        }
+    </style>
+    <script>
+        $(function () {
+            get_basic_word_types();
+        });
+
+        function get_basic_word_types() {
+            var sql = "SELECT e_classify, c_classify FROM eng_word WHERE word_type = 'basic' group by e_classify";
+            $.post("/function/common_logic.php", {
+                type: "query_sql_get_data",
+                sql: sql
+            }, function (data) {
+                var word_type_list = eval("(" + data + ")");
+                var html = "";
+                $.each(word_type_list, function (idx, itm) {
+                    html += "<div class='col-md-4 mt-2 p-2 d-inline-block'>";
+                    html += "<div class='bg_img' style='background-image: url(/eng_word_image/animal.png);'><div class='w-100 h-100 bg_panel text-white p-2 text-center'>" + itm.c_classify + itm.e_classify + "</div></div>";
+                    html += "</div>";
+                });
+                $("#word_type_list").html(html);
+            });
+        }
+    </script>
+</head>
+<body>
+<audio id="play_sound"></audio>
+<span id="word_sound"></span>
+<input type="hidden" id="collapse_id">
+<input type="hidden" id="collapse_link">
+<nav class="navbar  navbar-dark bg-primary text-white" style="height: 50px;">
+    <a class="navbar-brand" href="#">
+        基础英文词汇表
+    </a>
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="mt-2 text-primary">学会用最少的单词，表达最丰富的内容！</div>
+        </div>
+        <div id="word_type_list" class="col-12">
+
+        </div>
+    </div>
+</div>
+<iframe id="foot" src="/template/foot.html" class="w-100 mt-2" scrolling="no" frameborder="0"
+        style="height: 100px; display: block;"></iframe>
+</body>
+</html>
