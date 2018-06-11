@@ -7,20 +7,21 @@
     <link rel='stylesheet' type='text/css' href='/lib/bootstrap-4.0.0/css/bootstrap.min.css'>
     <link rel='stylesheet' type='text/css' href='/lib/stamp/stamp.css'>
     <script src='/lib/jquery-3.2.1.min.js'></script>
+    <script src='/lib/common.js'></script>
     <script src='/lib/stamp/stamp.js'></script>
     <title>在学习中成长</title>
     <style>
         body {
             margin: 0;
+            max-width: 540px;
         }
 
         #page {
             padding: 30px 10px 10px 10px;
-            height: 500px;
-            width: 300px;
             max-width: 540px;
             background: no-repeat;
             background-size: 100% 100%;
+            position: relative;
         }
 
         #title {
@@ -28,26 +29,37 @@
             font-weight: 900;
         }
 
-        #day {
-            margin-right: 20px;
+        .sub_title {
+            line-height: 140px;
+            display: inline-block;
+        }
+
+        #content {
+            font-family: '楷体';
+            font-size: 25px;
+            text-indent: 2em;
+        }
+
+        #canvas {
             float: right;
-            width: 100px;
-            border: 3px solid red;
-            transform: rotate(30deg);
-            text-align: center;
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
         }
     </style>
     <script>
         $(function () {
-            $("#page").zSign();
+            $("#page").css("height", document.documentElement.clientHeight);
+            createSeal('canvas', '我在学习中成长了1111天', getToday());
+            $("#canvas").css("width", "150px");
         });
     </script>
 </head>
 <body>
-<div id="page" style="background-image: url(/image/4.jpg);">
-    <div id="title" class="text-primary">英文阅读打卡</div>
-    <div id="day" class="text-danger">第 1 天</div>
-    <div class="text-primary">在昨日学习中，勇猛的阅读了1000个单词，偶遇生词29次。荣获“阅读小”能手称号！</div>
+<div id="page" class="w-100" style="background-image: url(/image/dakabg.jpg);">
+    <canvas id="canvas" width="250" height="250"></canvas>
+    <div id="title" class="text-primary"><div class="sub_title">我的</div> <img src="/image/daka.jpg" style="height:80px; width:80px;"> 记录</div>
+    <div id="content" class="text-primary px-2">恭喜你在昨日学习中，勇猛的阅读了 1000 个英文单词，遭遇生词阻击 29 次。现赐予你<span class="text-danger">“阅读小能手”</span>称号，以咨鼓励！</div>
 </div>
 </body>
 </html>
