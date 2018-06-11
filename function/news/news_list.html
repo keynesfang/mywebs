@@ -4,29 +4,29 @@
     <meta charset="UTF-8">
     <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
     <link rel="icon" href="/image/myicon.png" type="image/x-icon"/>
-    <link rel='stylesheet' type='text/css' href='/index.css'>
     <link rel='stylesheet' type='text/css' href='/lib/bootstrap-4.0.0/css/bootstrap.min.css'>
+    <link rel='stylesheet' type='text/css' href='/lib/font-awesome-4.7.0/css/font-awesome.min.css'>
+    <link rel='stylesheet' type='text/css' href='/common.css'>
     <script src='/lib/jquery-3.2.1.min.js'></script>
     <script src='/lib/common.js'></script>
     <title>在学习中成长</title>
     <style>
-        .new_title {
-            position: absolute;
-            bottom: 0;
-            padding-left: 5px;
-            background-color: #000;
-            color: #fff;
-            background: rgba(2, 2, 2, 0.5)
+        .news_item {
+            border-radius: 5px;
         }
 
-        .news_bg_img {
-            height: 150px;
+        .news_title {
+            color: silver;
         }
 
-        .news_bg_img {
-            background: no-repeat;
-            background-size: 100% 100%;
-            height: 150px;
+        .news_photo {
+            width: 56px;
+            height: 56px;
+        }
+
+        .news_summary {
+            float: right;
+            width: 190px;
         }
     </style>
     <script>
@@ -42,31 +42,35 @@
                     var id = news_info[item].id;
                     var title = news_info[item].title;
                     var news_date = news_info[item].news_date;
-                    html += "<div class='col-md-4'><div id='" + id + "' class='list-group-item bg-secondary news_bg_img mb-1 news_btn' style='padding: 0; background-image: url(" + news_info[item].picture_url + ")'><div class='m-2 badge badge-primary badge-pill'>" + news_date + "</div> <div class='new_title w-100'>" + title + "</div></div></div>";
+                    html += "<div id='" + id + "' class='news_item p-2 mx-2 mb-2 bg-white text-primary'>" +
+                            "<div class='news_title'>新闻日期：" + news_date + "</div>" +
+                            "<div class='my-1'>" +
+                            "<img class='news_photo' src='" + news_info[item].picture_url + "'>" +
+                            "<div class='news_summary'>" + title + "</div>" +
+                            "</div>" +
+                            "</div>";
                 }
                 $("#news_list").html(html);
+                $(".news_summary").css("width", $(".news_item").width() - 70);
 
-                $(".news_btn").click(function () {
+                $(".news_item").click(function () {
                     var news_id = $(this).attr("id");
-                    document.location = "./news_detail.html?news_id=" + news_id;
+                    document.location = "./news_detail2.html?news_id=" + news_id;
                 });
             });
         });
     </script>
 </head>
-<body>
-<nav class="navbar  navbar-dark bg-primary text-white mb-2" style="height: 50px;">
-    <a class="navbar-brand" href="#">
-        <!--<img src="/image/head.jpg" width="40" height="40" class="d-inline-block align-top" alt="">-->
-        英文短新闻列表
-        <div class="d-inline-block"><a href="/index.html" class="btn btn-outline-warning">首页</a></div>
-    </a>
-</nav>
-<div class="container">
-    <div id="news_list" class="row">
+<body class=" bg-primary text-white">
+<h5 class="m-0 p-2 d-flex justify-content-end bg-primary text-white">英语短新闻</h5>
+<hr class="mt-0">
+<div id="news_list">
+    <div id="loading" style="text-align: center;">
+        <div class="fa-3x">
+            <i class="fa fa-spinner fa-spin"></i>
+        </div>
+        <div class="mt-2">新闻内容加载中！</div>
     </div>
 </div>
-<iframe id="foot" src="/template/foot.html" class="w-100 mt-2" scrolling="no" frameborder="0"
-        style="height: 100px; display: block;"></iframe>
 </body>
 </html>

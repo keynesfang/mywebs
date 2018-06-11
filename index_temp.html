@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
+    <link rel="icon" href="./image/myicon.png" type="image/x-icon"/>
+    <link rel='stylesheet' type='text/css' href='index.css'>
+    <link rel='stylesheet' type='text/css' href='lib/bootstrap-4.0.0/css/bootstrap.min.css'>
+    <script src='/lib/jquery-3.2.1.min.js'></script>
+    <script src='../../lib/popper.min.js'></script>
+    <script src='/lib/bootstrap-4.0.0/js/bootstrap.min.js'></script>
+    <script src='/function/articles/local.js'></script>
+    <title>在学习中成长</title>
+    <style>
+        .bgimg {
+            background: no-repeat;
+            background-size: 100% 100%;
+        }
+
+        .bgimg-news {
+            background: url(./image/news.png);
+        }
+
+        .bgimg-news2 {
+            background: url(./image/news2.png);
+        }
+
+        .bgimg-hot {
+            background: url(./image/hot.png);
+        }
+
+        .bgimg-knowledge {
+            background: url(./image/knowledge.png);
+        }
+
+        .bg_panel {
+            background: rgba(2, 2, 2, 0.5);
+            border-radius: 5px;
+        }
+
+        /*@media (max-width: 575.98px) {*/
+        /**/
+        /*}*/
+    </style>
+    <script>
+        $(function () {
+//            $.post("./local_logic.php", {
+//                type: "get_all_type_article"
+//            }, function (data) {
+//                var article_info = eval("(" + data + ")");
+//                $("#hot_title").html(article_info.hot.title);
+//                $("#hot_des").html(article_info.hot.descript);
+//                $("#hot_entry").attr("article_id", article_info.hot.id);
+//                $("#hot_entry").attr("article_link", article_info.hot.content);
+//                $("#knowledge_title").html(article_info.knowledge.title);
+//                $("#knowledge_des").html(article_info.knowledge.descript);
+//                $("#knowledge_entry").attr("article_id", article_info.knowledge.id);
+//                $("#knowledge_entry").attr("article_link", article_info.knowledge.content);
+//                $("#game_title").html(article_info.game.title);
+//                $("#game_des").html(article_info.game.descript);
+//                $("#game_entry").attr("article_id", article_info.game.id);
+//                $("#game_entry").attr("article_link", article_info.game.content);
+//                $(".article_entry").click(function () {
+//                    location.href = "/function/articles" + $(this).attr("article_link") + "?article_id=" + $(this).attr("article_id");
+//                });
+//            });
+        });
+    </script>
+</head>
+<body>
+<div class="a b c d" style="z-index: 12;">
+    <div class="e f g h a i"></div>
+    <div class="j f k h a l m"></div>
+    <header class="n o p">
+        <div class="q r s t u d">
+            <h1 class="v w x y"><img src="image/head.jpg" style="width: 45px; float: left;"> <span
+                    class="v">在学习中成长</span></h1>
+        </div>
+    </header>
+    <div class="ar q s u t n as at">
+        <div class="container">
+            <div id="computer" class="row">
+                <div class="col-8 title">
+                    <div>一天不读书，无人看得出；一周不读书，开始会爆粗；一月不读书，智商输给猪。</div>
+                    <div class="title_add">英语、生活常识、前沿技术，科学与生活；在这里应有尽有，让我们在学习中不断的成长吧！</div>
+                    <div class="title_add">本站资源全部免费提供，部分资料来源于网络，如有侵权，请联系删除。</div>
+                </div>
+                <div class="col-4">
+                    <div class="bi">
+                        <img src="image/study.jpg" class="img-thumbnail">
+                    </div>
+                </div>
+            </div>
+            <div id="mobile" class="row">
+                <div class="col-12 title">
+                    <div>一天不读书，无人看得出；一周不读书，开始会爆粗；一月不读书，智商输给猪。</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--style="max-width: 500px; margin: 0 auto;"-->
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <ul class="nav nav-tabs mx-1" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="english-tab" data-toggle="tab" href="#english" role="tab"
+                       aria-controls="english"
+                       aria-selected="true">学英语</a>
+                </li>
+                <!--<li class="nav-item">-->
+                <!--<a class="nav-link" id="knowledge-tab" data-toggle="tab" href="#knowledge" role="tab"-->
+                <!--aria-controls="knowledge"-->
+                <!--aria-selected="false">涨知识</a>-->
+                <!--</li>-->
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="english" role="tabpanel" aria-labelledby="english-tab">
+                    <!--news start-->
+                    <div class="col-md-4 mt-2 content d-inline-block p-0">
+                        <div class="card text-white bgimg bgimg-news">
+                            <div class="w-100 h-100 bg_panel">
+                                <div class="card-body">
+                                    <h5 class="card-title">每日英语短新闻</h5>
+                                    <p class="card-text">每天花一分钟，英语学了，新闻读了。一举两得，一箭双雕！</p>
+                                    <div class="d-flex justify-content-end">
+                                        <a href="function/news/news_list.html" class="btn btn-success">进入练习</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--news end-->
+                </div>
+                <div class="tab-pane fade" id="knowledge" role="tabpanel" aria-labelledby="knowledge-tab">
+                    <!--hot start-->
+                    <div class="col-md-3 mt-2 content d-inline-block">
+                        <div class="card bg-danger text-white bgimg bgimg-hot">
+                            <div class="card-body">
+                                <h5 class="card-title" id="hot_title">当前热闹话题探讨</h5>
+                                <p class="card-text" id="hot_des"></p>
+                                <div class="d-flex justify-content-end">
+                                    <a href="#" id="hot_entry" class="btn btn-success article_entry">热门话题</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--hot end-->
+                    <!--knowledge start-->
+                    <div class="col-md-4 content d-inline-block">
+                        <div class="card bg-dark text-white bgimg bgimg-knowledge">
+                            <div class="card-body">
+                                <h5 class="card-title" id="knowledge_title"></h5>
+                                <p class="card-text" id="knowledge_des"></p>
+                                <div class="d-flex justify-content-end">
+                                    <a href="#" id="knowledge_entry" class="btn btn-success article_entry">日常知识</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--knowledge end-->
+                    <!--game start-->
+                    <div class="col-md-4 content d-inline-block">
+                        <div class="card bg-dark text-white">
+                            <div class="card-body">
+                                <h5 class="card-title" id="game_title"></h5>
+                                <p class="card-text" id="game_des"></p>
+                                <div class="d-flex justify-content-end">
+                                    <a href="#" id="game_entry" class="btn btn-success article_entry">情景游戏</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--game start-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <iframe id="foot" src="/template/foot.html" class="w-100" scrolling="no" frameborder="0"
+            style="height: 100px; display: block;"></iframe>
+</div>
+</body>
+</html>

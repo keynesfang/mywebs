@@ -21,7 +21,7 @@
             }, function (data) {
                 var news_info = eval("(" + data + ")");
                 news_info = news_info[0];
-                $("#title").html(news_info.title + " <span class='badge badge-secondary'>" + news_info.news_date + "</span>");
+                $("#title").html("<input id='news_title' class='w-100' value='" + news_info.title + "' > <span class='badge badge-secondary'>" + news_info.news_date + "</span>");
                 var chns = news_info.chn.split("|*|");
                 var engs = news_info.eng.split("|*|");
                 section_count = chns.length;
@@ -45,9 +45,11 @@
                     news_text += $("#" + i).val() + "|*|";
                 }
             }
+            var news_title = $("#news_title").val();
 
             var condition = "id='" + new_id + "'";
             var data_arr = {};
+            data_arr["title"] = news_title;
             data_arr["chn"] = news_text;
             data_arr["mytranslate"] = 1;
 

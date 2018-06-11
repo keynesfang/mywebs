@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
+    <link rel="icon" href="/image/myicon.png" type="image/x-icon"/>
+    <link rel='stylesheet' type='text/css' href='/index.css'>
+    <link rel='stylesheet' type='text/css' href='/lib/bootstrap-4.0.0/css/bootstrap.min.css'>
+    <link rel='stylesheet' type='text/css' href='/lib/font-awesome-4.7.0/css/font-awesome.min.css'>
+    <link rel='stylesheet' type='text/css' href='/common.css'>
+    <script src='/lib/jquery-3.2.1.min.js'></script>
+    <script src='../../lib/popper.min.js'></script>
+    <script src='/lib/bootstrap-4.0.0/js/bootstrap.min.js'></script>
+    <script src='/lib/common.js'></script>
+    <script src='/lib/english.js'></script>
+    <title>在学习中成长</title>
+    <style>
+        .news_content {
+            font-family: "Arial", "Times New Roman", "楷体_GB2312", 楷体 "," 华文楷体 "," 宋体 ";
+            font-size: 0.5rem;
+        }
+
+        #explain {
+            position: fixed;
+            bottom: 0;
+            color: #fff;
+            width: 100%;
+        }
+    </style>
+    <script>
+        var news_id = "";
+        var section_count = 0;
+        var append_mode = false; // 追加模式查词
+        var word_count = 0;
+        var new_word_count = 0;
+        var return_arr = null;
+        $(function () {
+            news_id = GetQueryString("news_id");
+            var sql = "SELECT * FROM english_news WHERE id='" + news_id + "'";
+            $.post("../common_logic.php", {
+                type: "query_sql_get_data2",
+                sql: sql
+            }, function (data) {
+                var news_info = eval("(" + data + ")");
+                news_info = news_info[0];
+                var chns = news_info.chn.split("|*|");
+                var engs = news_info.eng.split("|*|");
+                section_count = chns.length;
+                // 设置新闻标题
+                $("#news_title").html(news_info.title + " <img id='translate' src='/image/translate.png' style='width: 40px; height: 35px;'>");
+                // 生成新闻内容
+                var html = "";
+                for (var idx in chns) {
+                    // 得到封装好的英文单词句子
+                    var eng_word_wrap = get_query_sentence_from_normal(engs[idx]);
+                    html += "<p>" + eng_word_wrap + "</p>";
+                    html += "<p class='card-text text-primary translate'>" + chns[idx] + "</p>";
+                }
+                var word_arr = get_my_new_word_from_storage();
+                if (word_arr) {
+                    html = add_mark_in_current_page_new_word(html, word_arr);
+                }
+                $("#new_audio").attr("src", news_info.audio_url);
+                $("#replay_div").css("height", $("#new_audio").outerHeight());
+                $("#audio_speed").css("height", $("#new_audio").outerHeight());
+                $("#content").html(html);
+                $("#loading_content").hide();
+                $("#news_content").show();
+                $("#explain").hide();
+                $(".translate").hide();
+                // 切换解释面板显示状态
+                $("#translate").click(function () {
+                    $(".translate").toggle(1000);
+                });
+                // 切换循环播放状态
+                $("#audio_replay").click(function () {
+                    if ($(this).hasClass("bg-danger text-white")) {
+                        $(this).removeClass("bg-danger text-white");
+                        $("#new_audio").removeAttr("loop");
+                    } else {
+                        $(this).addClass("bg-danger text-white");
+                        $("#new_audio").attr("loop", "loop");
+                    }
+                });
+                // 注册单词点击翻译
+                regist_word_translate(set_explain_word, query_word_callback);
+                // 单词总数
+                word_count = $("query").length;
+                update_word_show();
+            });
+            // 调整播放速度
+            $(".audio_speed_item").click(function () {
+                $(".audio_speed_item").removeClass("bg-primary text-white");
+                $(this).addClass("bg-primary text-white");
+                var audio = $("#new_audio")[0];
+                audio.playbackRate = $(this).attr("speed");
+            });
+        });
+
+        // 更新新单词比例显示
+        function update_word_show() {
+            // 生词总数
+            new_word_count = $("query[class=text-danger]").length;
+            $("#total_word").html(word_count);
+            $("#new_word").html(new_word_count);
+            // 生词比例
+            $("#new_word_rate").html((new_word_count / word_count * 100).toFixed(2) + "%");
+        }
+
+        function get_my_new_word_from_storage() {
+            var my_new_word_arr = window.localStorage.getItem('my_new_word');
+            if (my_new_word_arr) {
+                return_arr = [];
+                my_new_word_arr = JSON.parse(my_new_word_arr);
+                $.each(my_new_word_arr, function (word, info) {
+                    return_arr.push(word);
+                });
+            }
+            return return_arr;
+        }
+
+        function set_explain_word(word) {
+            $("#loading").show();
+            $("#explain_detail").hide();
+            if (append_mode) {
+                word = $("#query_word").val() + " " + word;
+            }
+            var pos = get_array_item_index(return_arr, word, true);
+            // 设置加入词本按钮的可点属性
+            if (pos !== "") {
+                $('#btn_add_new_word').attr('disabled', "true");
+            } else {
+                $('#btn_add_new_word').removeAttr("disabled");
+            }
+            $("#word_sound").attr("word", word);
+            $("#query_word").val(word);
+            $("#explain").show();
+            return word;
+        }
+
+        function query_word_callback(explain_info) {
+            var explains = "";
+            for (var i = 0; i < explain_info.explains.length; i++) {
+                explains += explain_info.explains[i] + "<br>";
+            }
+            $("#phonetic").html(explain_info.phonetic + "<i class='ml-2 fa fa-volume-up fa-2x'></i>");
+            $("#word_explain").html(explains);
+            $("#loading").hide();
+            $("#explain_detail").show();
+        }
+
+        function query() {
+            var word = $("#query_word").val();
+            word = $.trim(word);
+            if (word) {
+                $("#word_sound").attr("word", word);
+                query_word(word, query_word_callback);
+            }
+        }
+
+        function explain_control() {
+            $("#explain").toggle();
+        }
+
+        function append_mode_change() {
+            var btn = $("#append_mode");
+            if (btn.hasClass("btn-danger")) {
+                btn.removeClass("btn-danger");
+                append_mode = false;
+            } else {
+                btn.addClass("btn-danger");
+                append_mode = true;
+            }
+        }
+
+        function add_the_new_word() {
+            var query_word = $("#query_word").val();
+            query_word = $.trim(query_word);
+            if (!query_word) {
+                $("#phonetic").html("");
+                $("#word_explain").html("<div class='text-warning text-center font-weight-bold' style='font-size: 20px;'>Please input a word first!</div>");
+                return;
+            }
+            var info = {type: "news", id: news_id};
+            add_new_word(query_word, info);
+            $('#btn_add_new_word').attr('disabled', "true");
+            var html = $("#content").html();
+            html = add_mark_in_current_page_new_word(html, [query_word]);
+            $("#content").html(html);
+            update_word_show();
+            regist_word_translate(set_explain_word, query_word_callback);
+        }
+    </script>
+</head>
+<body>
+<audio id="play_sound"></audio>
+<span id="word_sound"></span>
+<div id="explain" style="z-index: 999;" class="bg-primary">
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <button id="append_mode" class="btn" type="button" onclick="append_mode_change();"><i
+                    class="fa fa-plus"></i></button>
+        </div>
+        <input id="query_word" type="text" class="form-control" placeholder="query word">
+        <div class="input-group-append">
+            <button class="btn btn-primary" type="button" onclick="query();">查</button>
+            <button class="btn btn-warning" type="button" onclick="explain_control();"><i class="fa fa-close"></i>
+            </button>
+        </div>
+    </div>
+    <div id="loading" style="text-align: center; display: none;">
+        <div class="fa-3x">
+            <i class="fa fa-spinner fa-spin"></i>
+        </div>
+        <div class="mb-2">单词含义查询中！</div>
+    </div>
+    <div id="explain_detail" style="display: none;">
+        <div class="p-2" style="font-size: 14px;">
+            <div id="phonetic" class="font-weight-bold ml-2 mb-1 text-warning" onclick="play_voice();"></div>
+            <div id="word_explain" class="ml-2"></div>
+        </div>
+        <div class="btn-group w-100" role="group" aria-label="Basic example">
+            <button id="btn_add_new_word" type="button" class="btn btn-success w-50" onclick="add_the_new_word();"><i
+                    class="fa fa-plus"></i> 加入词本
+            </button>
+            <a href="/function/glossary/my_glossary.html" class="btn btn-primary w-50"><i class="fa fa-eye"></i>
+                查看词本</a>
+            <!--style="border-top: 1px #fff solid;"-->
+        </div>
+    </div>
+</div>
+
+<div class="input-group mb-3">
+    <div id="replay_div" class="input-group-prepend">
+        <span id="audio_replay" class="input-group-text border-0"><i
+                class="fa fa-play-circle"></i> </span>
+    </div>
+    <div id="audio_speed" class="input-group-append">
+        <button class="btn btn-primary dropdown-toggle border-0" type="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">速
+        </button>
+        <div class="dropdown-menu">
+            <a class="audio_speed_item dropdown-item" speed="0.6" href="#">缓慢</a>
+            <a class="audio_speed_item dropdown-item" speed="0.8" href="#">较慢</a>
+            <div role="separator" class="dropdown-divider"></div>
+            <a class="audio_speed_item dropdown-item bg-primary text-white" speed="1" href="#">正常</a>
+        </div>
+    </div>
+    <audio id="new_audio" class="form-control p-0 border-0" controls="controls" controlsList="nodownload"
+           src=""></audio>
+</div>
+
+<!--<audio id="new_audio1" class="w-100" controls="controls" controlsList="nodownload" src=""></audio>-->
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 text-primary" id="loading_content" style="text-align: center;">
+            <div class="fa-3x">
+                <i class="fa fa-spinner fa-spin"></i>
+            </div>
+            <div class="mb-2">新闻内容加载中！</div>
+        </div>
+        <div id="news_content" class="col-12" style="display: none;">
+            <h5 id="news_title" class="text-primary m-0">Example heading</h5>
+            <div style="font-size: 14px;" class="text-primary">单词：<span id="total_word" class="text-danger mr-2"></span>
+                生词：<span
+                        id="new_word" class="text-danger mr-2"></span> 占比：<span id="new_word_rate"
+                                                                                class="text-danger"></span></div>
+            <div id="content" class="news_content">
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
