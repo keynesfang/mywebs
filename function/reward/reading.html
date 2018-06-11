@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
+    <link rel="icon" href="/image/myicon.png" type="image/x-icon"/>
+    <link rel='stylesheet' type='text/css' href='/lib/bootstrap-4.0.0/css/bootstrap.min.css'>
+    <link rel='stylesheet' type='text/css' href='/lib/stamp/stamp.css'>
+    <script src='/lib/jquery-3.2.1.min.js'></script>
+    <script src='/lib/stamp/stamp.js'></script>
+    <title>在学习中成长</title>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        #page {
+            padding: 30px 10px 10px 10px;
+            height: 500px;
+            width: 300px;
+            max-width: 540px;
+            background: no-repeat;
+            background-size: 100% 100%;
+        }
+
+        #title {
+            font-size: 20px;
+            font-weight: 900;
+        }
+
+        #day {
+            margin-right: 20px;
+            float: right;
+            width: 100px;
+            border: 3px solid red;
+            transform: rotate(30deg);
+            text-align: center;
+        }
+    </style>
+    <script>
+        $(function () {
+            $("#page").zSign();
+        });
+    </script>
+</head>
+<body>
+<div id="page" style="background-image: url(/image/4.jpg);">
+    <div id="title" class="text-primary">英文阅读打卡</div>
+    <div id="day" class="text-danger">第 1 天</div>
+    <div class="text-primary">在昨日学习中，勇猛的阅读了1000个单词，偶遇生词29次。荣获“阅读小”能手称号！</div>
+</div>
+</body>
+</html>
