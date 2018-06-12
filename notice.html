@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
+    <link rel="icon" href="/image/myicon.png" type="image/x-icon"/>
+    <link rel='stylesheet' type='text/css' href='/lib/bootstrap-4.0.0/css/bootstrap.min.css'>
+    <link rel='stylesheet' type='text/css' href='/lib/font-awesome-4.7.0/css/font-awesome.min.css'>
+    <link rel='stylesheet' type='text/css' href='/common.css'>
+    <script src='/lib/jquery-3.2.1.min.js'></script>
+    <script src='/lib/common.js'></script>
+    <script src='/lib/stamp/stamp.js'></script>
+    <title>在学习中成长</title>
+    <style>
+        .title {
+            text-align: center;
+            font-size: 25px;
+        }
+
+        .section {
+            text-indent: 2em;
+            margin-top: 15px;
+        }
+
+        .author {
+            font-size: 12px;
+        }
+
+        #canvas {
+            float: right;
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+        }
+    </style>
+    <script>
+        $(function () {
+            $("#page").css("height", document.documentElement.clientHeight);
+            createSeal('canvas', '在学习中成长', "2018-6-6");
+            if (document.documentElement.clientHeight < 400) {
+                $("#canvas").css("width", "130px");
+            } else {
+                $("#canvas").css("width", "150px");
+            }
+        });
+    </script>
+</head>
+<body id="page" class=" bg-primary text-white" style="position: relative;">
+<h5 class="m-0 p-2 d-flex justify-content-end bg-primary text-white">公告</h5>
+<hr class="mt-0">
+<div id="notice" class="p-2">
+    <div class="title">
+        在学习中成长
+    </div>
+    <div class="section">
+        如有好的建议或意见，可通过以下方式给作者留言，以便改进，共同进步。
+    </div>
+    <div class="section">
+        本站资源全部免费提供，部分资料来源于网络，如有侵权，请联系删除。
+    </div>
+    <div class="author mt-4">
+        联系方式：<br>QQ - 3476626837<br>微信公众号 - I在学习中成长ing
+    </div>
+    <canvas id="canvas" width="250" height="250"></canvas>
+</div>
+</body>
+</html>
