@@ -30,7 +30,7 @@
         }
     </style>
     <script>
-        var per_page_news_cont = 5;
+        var per_page_news_cont = 10;
         var current_news_index = 0;
         var loading = false;
         var load_complete = false;
@@ -74,12 +74,13 @@
                 }
                 if (news_info.length < per_page_news_cont) {
                     load_complete = true;
+                    html = "<div class='bottom_line mt-2' style='text-align: center;'>这是我的底线<hr class='mt-1'></div>";
                 }
                 loading = false;
                 $(".loading_icon").remove();
-                if (news_info.length == 0) {
-                    return;
-                }
+//                if (news_info.length == 0) {
+//                    return;
+//                }
                 if (current_news_index < per_page_news_cont) {
                     $("#news_list").html(html);
                     // 注册滚动条事件
