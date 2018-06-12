@@ -5,11 +5,13 @@
     <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
     <link rel="icon" href="./image/myicon.png" type="image/x-icon"/>
     <link rel='stylesheet' type='text/css' href='lib/bootstrap-4.0.0/css/bootstrap.min.css'>
+    <link rel='stylesheet' type='text/css' href='/lib/font-awesome-4.7.0/css/font-awesome.min.css'>
     <link rel='stylesheet' type='text/css' href='/common.css'>
     <script src='/lib/jquery-3.2.1.min.js'></script>
     <script src='/lib/popper.min.js'></script>
     <script src='/lib/bootstrap-4.0.0/js/bootstrap.min.js'></script>
     <script src='/lib/common.js'></script>
+    <script src='/lib/english.js'></script>
     <title>在学习中成长</title>
     <style>
         body {
@@ -18,7 +20,7 @@
         }
 
         #show_date {
-            margin-left: 30px;
+            margin-left: 10px;
         }
 
         #header {
@@ -74,6 +76,12 @@
             width: 100%;
         }
 
+        #explain_bar {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
         #menu {
             height: 42px;
             margin: 0 auto;
@@ -82,21 +90,170 @@
             border-bottom-right-radius: 15px;
             border-bottom-left-radius: 15px;
         }
+
+        #explain {
+            margin: 0 auto;
+            max-width: 540px;
+            color: #fff;
+            width: 100%;
+        }
+
+        .level {
+            width: 32px;
+            height: 32px;
+        }
+
+        #level {
+            font-weight: bold;
+            font-size: 18px;
+        }
     </style>
     <script>
+        var explain = "";
+        var append_mode = false; // 追加模式查词
+        var source_type = ""; // 增加生词的来源类型
+        var source_id = ""; // 增加生词的来源标识
         $(function () {
+            explain = $("#explain");
             document.getElementById("sub_frame").height = document.documentElement.clientHeight - 180;
             $("#show_date").html(getToday());
             $(".menu_btn, .my_menu").click(function () {
+                explain.hide();
                 $("#sub_frame").attr("src", $(this).attr("link"));
             });
+            $(".bottom_menu_btn").click(function () {
+                $(".bottom_menu_btn").removeClass("btn-warning");
+                $(".bottom_menu_btn").addClass("btn-dark");
+                $(this).removeClass("btn-dark");
+                $(this).addClass("btn-warning");
+            });
         });
+
+        function append_mode_change() {
+            var btn = $("#append_mode");
+            if (btn.hasClass("btn-danger")) {
+                btn.removeClass("btn-danger");
+                append_mode = false;
+            } else {
+                btn.addClass("btn-danger");
+                append_mode = true;
+            }
+        }
+
+        function set_explain_word(word) {
+            $("#loading").show();
+            $("#explain_detail").hide();
+            if (append_mode) {
+                word = $("#query_word").val() + " " + word;
+            }
+            var new_word_arr = get_my_new_word_from_storage();
+            var pos = get_array_item_index(new_word_arr, word, true);
+            // 设置加入词本按钮的可点属性
+            if (pos !== "") {
+                $('#btn_add_new_word').attr('disabled', "true");
+            } else {
+                $('#btn_add_new_word').removeAttr("disabled");
+            }
+            $("#word_sound").attr("word", word);
+            $("#query_word").val(word);
+            explain.show();
+            return word;
+        }
+
+        function query() {
+            var word = $("#query_word").val();
+            word = $.trim(word);
+            if (word) {
+                $("#word_sound").attr("word", word);
+                query_word(word, query_word_callback);
+            }
+        }
+
+        function query_word_callback(explain_info) {
+            var explains = "";
+            for (var i = 0; i < explain_info.explains.length; i++) {
+                explains += explain_info.explains[i] + "<br>";
+            }
+            $("#phonetic").html(explain_info.phonetic + "<i class='ml-2 fa fa-volume-up fa-2x'></i>");
+            $("#word_explain").html(explains);
+            $("#loading").hide();
+            $("#explain_detail").show();
+        }
+
+        function add_the_new_word() {
+            var query_word = $("#query_word").val();
+            query_word = $.trim(query_word);
+            if (!query_word) {
+                $("#phonetic").html("");
+                $("#word_explain").html("<div class='text-warning text-center font-weight-bold' style='font-size: 20px;'>Please input a word first!</div>");
+                return;
+            }
+            var info = {type: source_type, id: source_id};
+            add_new_word(query_word, info);
+            $('#btn_add_new_word').attr('disabled', "true");
+            // var html = $("#content").html();
+            var english_content_div = $('#sub_frame').contents().find("#content");
+            var html = english_content_div.html();
+            html = add_mark_in_current_page_new_word(html, [query_word]);
+            english_content_div.html(html);
+            document.getElementById("sub_frame").contentWindow.update_word_show();
+        }
+
+        function get_my_new_word_from_storage() {
+            var return_arr = "";
+            var my_new_word_arr = window.localStorage.getItem('my_new_word');
+            if (my_new_word_arr) {
+                return_arr = [];
+                my_new_word_arr = JSON.parse(my_new_word_arr);
+                $.each(my_new_word_arr, function (word, info) {
+                    return_arr.push(word);
+                });
+            }
+            return return_arr;
+        }
+
+        function set_reward_reading(count, new_word_count) {
+            var reward_reading = window.localStorage.getItem('reward_reading');
+            if (reward_reading) {
+                reward_reading = JSON.parse(reward_reading);
+                if (reward_reading["date"] == getToday()) {
+                    reward_reading["count"] += count;
+                    reward_reading["new_word_count"] += new_word_count;
+                } else {
+                    reward_reading["date"] = getToday();
+                    reward_reading["count"] = count;
+                    reward_reading["new_word_count"] = new_word_count;
+                }
+            } else {
+                reward_reading = {"date": getToday(), "count": count, "new_word_count": new_word_count};
+            }
+            window.localStorage.setItem('reward_reading', JSON.stringify(reward_reading));
+        }
+
+        function set_continue_day_count() {
+            var continue_day_count = window.localStorage.getItem('continue_day_count');
+            if (continue_day_count) {
+                continue_day_count = JSON.parse(continue_day_count);
+                if (continue_day_count["date"] !== getToday()) {
+                    continue_day_count["date"] = getToday();
+                    continue_day_count["day_count"] += 1;
+                }
+            } else {
+                continue_day_count = {"date": getToday(), "day_count": 1};
+            }
+            window.localStorage.setItem('continue_day_count', JSON.stringify(continue_day_count));
+            return continue_day_count["day_count"];
+        }
+
+        function explain_control() {
+            explain.toggle();
+        }
     </script>
 </head>
 <body class="text-white">
 <div id="header">
     <div id="head_div">
-        <div>未登陆</div>
+        <div style="font-size: 12px;">未登陆</div>
         <div class="input-group d-inline-block">
             <div class="input-group-append">
                 <img id="head_img" class="head_img" src="image/boy.png">
@@ -105,27 +262,75 @@
                     <span class="sr-only">Toggle Dropdown</span>
                 </button>
                 <div class="dropdown-menu dropdown-menu-right" style="text-align: right;">
-                    <button class="my_menu dropdown-item" type="button" link="/function/glossary/my_glossary.html">这些年我不认识的单词</button>
+                    <button class="my_menu dropdown-item" type="button" link="/function/glossary/my_glossary2.html">
+                        这些年我不认识的单词
+                    </button>
                 </div>
             </div>
         </div>
+        <div><img class="level" src="/image/level.png"> <span id="level">0</span> 级</div>
     </div>
     <div id="show_date"></div>
     <div class="d-block"></div>
     <div id="title" class="mt-4">在学习中成长</div>
     <div id="sub_title">Grow In Learning</div>
     <div id="output_bar"></div>
-    <iframe id="sub_frame" src="./function/news/news_list.html" style="overflow: auto;"></iframe>
+    <iframe id="sub_frame" src="./function/news/news_list2.html" style="overflow: auto;"></iframe>
 </div>
 <div id="menu_bar">
     <div id="menu" class="bg-primary">
         <div class="btn-toolbar mb-3 d-flex justify-content-center h-100" role="toolbar">
             <div class="btn-group mr-2" role="group">
-                <button type="button" class="btn btn-warning menu_btn" link="/function/news/news_list.html">新闻</button>
-                <!--<button type="button" class="btn btn-dark menu_btn">战绩</button>-->
+                <button type="button" class="btn btn-warning menu_btn bottom_menu_btn"
+                        link="/function/news/news_list2.html">新闻
+                </button>
+                <button type="button" class="btn btn-dark menu_btn bottom_menu_btn"
+                        link="/function/reward/reading.html">战绩
+                </button>
             </div>
         </div>
     </div>
 </div>
+
+<div id="explain_bar">
+    <div id="explain" style="z-index: 999; display: none;" class="bg-primary">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <button id="append_mode" class="btn" type="button" onclick="append_mode_change();"><i
+                        class="fa fa-plus"></i></button>
+            </div>
+            <input id="query_word" type="text" class="form-control" placeholder="query word">
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="button" onclick="query();">查</button>
+                <button class="btn btn-warning" type="button" onclick="explain_control();"><i class="fa fa-close"></i>
+                </button>
+            </div>
+        </div>
+        <div id="loading" style="text-align: center; display: none;">
+            <div class="fa-3x">
+                <i class="fa fa-spinner fa-spin"></i>
+            </div>
+            <div class="pb-2">单词含义查询中！</div>
+        </div>
+        <div id="explain_detail" style="display: none;">
+            <div class="p-2" style="font-size: 14px;">
+                <div id="phonetic" class="font-weight-bold ml-2 mb-1 text-warning" onclick="play_voice();"></div>
+                <div id="word_explain" class="ml-2"></div>
+            </div>
+            <div class="btn-group w-100" role="group" aria-label="Basic example">
+                <button id="btn_add_new_word" type="button" class="btn btn-success w-50" onclick="add_the_new_word();">
+                    <i class="fa fa-plus"></i> 加入词本
+                </button>
+                <a href="#" class="btn btn-primary w-50 menu_btn" link="/function/glossary/my_glossary2.html"><i
+                        class="fa fa-eye"></i>
+                    查看词本</a>
+                <!--style="border-top: 1px #fff solid;"-->
+            </div>
+        </div>
+    </div>
+</div>
+
+<audio id="play_sound"></audio>
+<span id="word_sound"></span>
 </body>
 </html>

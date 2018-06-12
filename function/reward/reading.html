@@ -46,20 +46,88 @@
             bottom: 10px;
             right: 10px;
         }
+
+        #stamp_img {
+            height: 80px;
+            width: 80px;
+        }
+
+        @media (max-height: 400px) {
+            #title {
+                font-size: 15px;
+                height: 120px;
+            }
+
+            #content {
+                font-size: 20px;
+                text-indent: 2em;
+            }
+
+            #page {
+                padding: 10px;
+            }
+
+            #stamp_img {
+                height: 60px;
+                width: 60px;
+            }
+        }
     </style>
     <script>
+        var count = 0;
+        var new_word_count = 0;
+        var day_count = 0;
         $(function () {
+            day_count = top.set_continue_day_count();
+            get_reward_reading();
+            set_page_content();
             $("#page").css("height", document.documentElement.clientHeight);
-            createSeal('canvas', '我在学习中成长了1111天', getToday());
-            $("#canvas").css("width", "150px");
+            createSeal('canvas', '我在学习中成长了' + day_count + '天', getToday());
+            if (document.documentElement.clientHeight < 400) {
+                $("#canvas").css("width", "130px");
+            } else {
+                $("#canvas").css("width", "150px");
+            }
         });
+
+        function get_reward_reading() {
+            var reward_reading = window.localStorage.getItem('reward_reading');
+            if (reward_reading) {
+                reward_reading = JSON.parse(reward_reading);
+                if (reward_reading["date"] == getToday()) {
+                    count = reward_reading["count"];
+                    new_word_count = reward_reading["new_word_count"];
+                }
+            }
+        }
+
+        function set_page_content() {
+            var reading_title = "预备阅读者";
+            if (count > 0) {
+                reading_title = "阅读小能手";
+            }
+            if (count > 1000) {
+                reading_title = "阅读好模范";
+            }
+            if (count > 10000) {
+                reading_title = "阅读大魔王";
+            }
+            $("#count").html(count);
+            $("#new_word_count").html(new_word_count);
+            $("#reading_title").html(reading_title);
+        }
     </script>
 </head>
 <body>
 <div id="page" class="w-100" style="background-image: url(/image/dakabg.jpg);">
     <canvas id="canvas" width="250" height="250"></canvas>
-    <div id="title" class="text-primary"><div class="sub_title">我的</div> <img src="/image/daka.jpg" style="height:80px; width:80px;"> 记录</div>
-    <div id="content" class="text-primary px-2">恭喜你在昨日学习中，勇猛的阅读了 1000 个英文单词，遭遇生词阻击 29 次。现赐予你<span class="text-danger">“阅读小能手”</span>称号，以咨鼓励！</div>
+    <div id="title" class="text-primary">
+        <div class="sub_title">我的</div>
+        <img id="stamp_img" src="/image/daka.jpg"> 记录
+    </div>
+    <div id="content" class="text-primary px-2">恭喜你在今日学习中，勇猛的阅读了 <span id="count"></span> 个英文单词，遭遇生词阻击 <span
+            id="new_word_count"></span> 次。现赐予你<span class="text-danger">“<span id="reading_title"></span>”</span>称号，以咨鼓励！
+    </div>
 </div>
 </body>
 </html>

@@ -14,10 +14,16 @@
     <script src='/lib/english.js'></script>
     <title>在学习中成长</title>
     <style>
+        .null {
+            width: 100px;
+            height: 100px;
+            margin: 50px auto 10px;
+            color: #fff;
+        }
     </style>
     <script>
         var link_types = {
-            "news": "/function/news/news_detail.html?news_id="
+            "news": "/function/news/news_detail2.html?news_id="
         };
         var my_new_word_arr = "";
         $(function () {
@@ -26,16 +32,16 @@
 
         function page_update() {
             my_new_word_arr = window.localStorage.getItem('my_new_word');
+            var word_indx = 0;
             if (my_new_word_arr) {
                 my_new_word_arr = JSON.parse(my_new_word_arr);
                 var html = "";
-                var word_indx = 0;
                 $.each(my_new_word_arr, function (word, info) {
                     info = JSON.stringify(info);
                     word_indx += 1;
                     var content_id = "collapse" + word_indx;
                     html += "<div class='card border-0'>";
-                    html += "	<div class='card-header' id='" + word_indx + "'>";
+                    html += "	<div class='card-header py-0' id='" + word_indx + "'>";
                     html += "		<h5 class='mb-0'>";
                     html += "			<i onclick='play_voice(\"" + word + "\")' class='mr-2 fa fa-volume-up text-warning'></i>";
                     html += "			<button onclick='page_word_query(\"" + content_id + "\",\"" + word + "\", " + info + ");' class='btn btn-link' data-toggle='collapse' data-target='#" + content_id + "' aria-controls='" + content_id + "'>";
@@ -48,7 +54,6 @@
                     html += "	</div>";
                     html += "</div>";
                 });
-                $("#word_count").html(word_indx);
                 $("#word_list").html(html);
                 $(".close_btn").click(function () {
                     var word = $(this).attr("word");
@@ -57,6 +62,7 @@
                     page_update();
                 });
             }
+            $("#word_count").html(word_indx);
         }
 
         function page_word_query(content_id, word, info) {
@@ -90,22 +96,28 @@
         }
     </script>
 </head>
-<body>
+<body class="bg-primary text-white">
 <audio id="play_sound"></audio>
 <span id="word_sound"></span>
 <input type="hidden" id="collapse_id">
 <input type="hidden" id="collapse_link">
-<nav class="navbar  navbar-dark bg-primary text-white" style="height: 50px;">
-    <a class="navbar-brand" href="#">
-        我的英文生词表
-    </a>
-</nav>
+<!--<nav class="navbar  navbar-dark bg-primary text-white" style="height: 50px;">-->
+<!--<a class="navbar-brand" href="#">-->
+<!--我的英文生词表-->
+<!--</a>-->
+<!--</nav>-->
 
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <div class="mt-2 text-primary">当前共有<span id="word_count" class="text-danger"></span>个生词：</div>
+            <div class="my-2 d-flex justify-content-end">我的生词表，共 <span id="word_count" class="text-danger"></span> 个生词
+            </div>
+            <hr class="mt-0">
             <div id="word_list" class="my-2">
+                <div class="w-100" style="text-align: center;">
+                    <img class="null" src="/image/null.png">
+                    <div>空空如也！<br>是武功太高，还是学得太少？</div>
+                </div>
             </div>
             <!--<div id="words" class="my-2">-->
             <!--&lt;!&ndash;缩略图模式暂不实现&ndash;&gt;-->
@@ -118,7 +130,5 @@
         </div>
     </div>
 </div>
-<iframe id="foot" src="/template/foot.html" class="w-100 mt-2" scrolling="no" frameborder="0"
-        style="height: 100px; display: block;"></iframe>
 </body>
 </html>
