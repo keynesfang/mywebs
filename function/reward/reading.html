@@ -44,7 +44,7 @@
             float: right;
             position: absolute;
             bottom: 10px;
-            right: 10px;
+            right: 0;
         }
 
         #stamp_img {
@@ -52,7 +52,7 @@
             width: 80px;
         }
 
-        @media (max-height: 400px) {
+        @media (max-height: 500px) {
             #title {
                 font-size: 15px;
                 height: 120px;
@@ -128,6 +128,7 @@
     <div id="content" class="text-primary px-2">恭喜你在今日学习中，勇猛的阅读了 <span id="count"></span> 个英文单词，遭遇生词阻击 <span
             id="new_word_count"></span> 次。现赐予你<span class="text-danger">“<span id="reading_title"></span>”</span>称号，以咨鼓励！
     </div>
+    <img src="/image/qr.png" style="position: absolute; bottom: 40px; width: 100px; height: 100px;">
 </div>
 </body>
 </html>

@@ -24,6 +24,8 @@
         }
 
         #header {
+            position: relative;
+            width: 100%;
             max-width: 600px;
             height: 300px;
             background-image: url(image/header_bg_2.png);
@@ -115,8 +117,8 @@
         var source_id = ""; // 增加生词的来源标识
         $(function () {
             explain = $("#explain");
-            document.getElementById("sub_frame").height = document.documentElement.clientHeight - 180;
-            $("#show_date").html(getToday());
+            set_frame_height();
+            $(".show_date").html(getToday());
             $(".menu_btn, .my_menu").click(function () {
                 explain.hide();
                 $("#sub_frame").attr("src", $(this).attr("link"));
@@ -127,7 +129,20 @@
                 $(this).removeClass("btn-dark");
                 $(this).addClass("btn-warning");
             });
+            $("#header_switch").click(function () {
+                $("#show_header").toggle();
+                $("#show_header_simple").toggle();
+                set_frame_height();
+            });
         });
+
+        function set_frame_height() {
+            var sub_height = 180;
+            if ($('#show_header').is(':hidden')) { // 如果长头部被隐藏
+                sub_height = 124;
+            }
+            document.getElementById("sub_frame").height = document.documentElement.clientHeight - sub_height;
+        }
 
         function append_mode_change() {
             var btn = $("#append_mode");
@@ -252,30 +267,54 @@
 </head>
 <body class="text-white">
 <div id="header">
-    <div id="head_div">
-        <div style="font-size: 12px;">未登陆</div>
-        <div class="input-group d-inline-block">
-            <div class="input-group-append">
-                <img id="head_img" class="head_img" src="image/boy.png">
-                <button type="button" class="btn btn-outline-light dropdown-toggle dropdown-toggle-split"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="sr-only">Toggle Dropdown</span>
-                </button>
-                <div class="dropdown-menu dropdown-menu-right" style="text-align: right;">
-                    <button class="my_menu dropdown-item" type="button" link="/function/glossary/my_glossary2.html">
-                        这些年我不认识的单词
+    <div id="show_header">
+        <div id="head_div">
+            <div style="font-size: 12px;">未登陆</div>
+            <div class="input-group d-inline-block">
+                <div class="input-group-append">
+                    <img id="head_img" class="head_img" src="image/boy.png">
+                    <button type="button" class="btn btn-outline-light dropdown-toggle dropdown-toggle-split"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="sr-only">Toggle Dropdown</span>
                     </button>
+                    <div class="dropdown-menu dropdown-menu-right" style="text-align: right;">
+                        <button class="my_menu dropdown-item" type="button" link="/function/glossary/my_glossary2.html">
+                            这些年我不认识的单词
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div><img class="level" src="/image/level.png"> <span id="level">0</span> 级</div>
+        </div>
+        <div id="show_date" class="show_date"></div>
+        <div class="d-block"></div>
+        <div id="title" class="mt-4">在学习中成长</div>
+        <div id="sub_title">Grow In Learning</div>
+    </div>
+    <div id="show_header_simple" class="w-100" style="display: none;">
+        <div class="mt-2 ml-2 show_date"></div>
+        <h5 class="ml-4 mb-0">在学习中成长</h5>
+        <div id="login_status" style="position: absolute; right: 30px; top: 15px;">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text bg-secondary"><i class="fa fa-user text-warning"></i></span>
+                </div>
+                <div class="input-group-append">
+                    <button class="btn btn-outline-light dropdown-toggle" type="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false" style="font-size: 14px;">未登陆
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="my_menu dropdown-item" href="#" link="/function/glossary/my_glossary2.html">
+                            这些年我不认识的单词
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
-        <div><img class="level" src="/image/level.png"> <span id="level">0</span> 级</div>
     </div>
-    <div id="show_date"></div>
-    <div class="d-block"></div>
-    <div id="title" class="mt-4">在学习中成长</div>
-    <div id="sub_title">Grow In Learning</div>
+    <div id="header_switch" style="position: absolute; top: 0; right: 5px;"><i class="fa fa-external-link"></i></div>
     <div id="output_bar"></div>
-    <iframe id="sub_frame" src="/notice.html" style="overflow: auto;"></iframe>
+    <iframe id="sub_frame" src="/function/news/news_list2.html" style="overflow: auto;"></iframe>
 </div>
 <div id="menu_bar">
     <div id="menu" class="bg-primary">
