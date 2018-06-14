@@ -35,13 +35,19 @@
         var return_arr = null;
         $(function () {
             news_id = GetQueryString("news_id");
-            var sql = "SELECT * FROM english_news WHERE id='" + news_id + "'";
-            $.post("../common_logic.php", {
-                type: "query_sql_get_data2",
-                sql: sql
+            $.post("local_logic.php", {
+                type: "get_news_detail",
+                news_id: news_id
             }, function (data) {
                 var news_info = eval("(" + data + ")");
                 news_info = news_info[0];
+                var detail_author = news_info.detail_author;
+                if (detail_author) {
+                    $("#opt").append("<span class='ml-2 p-1 bg-dark text-light' style='border-radius: 5px;' onclick='toggle_explain();'>解文</span>");
+                    $("#author").html(news_info.detail_author);
+                    $("#wechat").html(news_info.detail_connect);
+                    $("#explain_content").html(news_info.detail_explain);
+                }
                 var chns = news_info.chn.split("|*|");
                 var engs = news_info.eng.split("|*|");
                 section_count = chns.length;
@@ -183,6 +189,10 @@
             update_word_show();
             regist_word_translate(set_explain_word, query_word_callback);
         }
+        
+        function toggle_explain() {
+            $("#detail_explain").toggle();
+        }
     </script>
 </head>
 <body>
@@ -248,11 +258,24 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
+            <div id="detail_explain" class="card" style="position: relative; display: none;">
+                <i style="position: absolute; top: 5px; right: 10px;" class="fa fa-close" onclick="toggle_explain();"></i>
+                <div class="text-success ml-2 my-2">解文者：<span class="text-dark" id="author"
+                                                         style="border-bottom: 1px solid #000;"></span></div>
+                <div class="text-success ml-2 ">微信号：<span class="text-dark" id="wechat"
+                                                         style="border-bottom: 1px solid #000;"></span></div>
+                <div class="card-body">
+                    <h5 class="card-title">解文内容如下</h5>
+                    <p id="explain_content" class="card-text"></p>
+                    <button class="btn btn-primary" onclick="toggle_explain();">关闭</button>
+                </div>
+            </div>
             <h5 id="news_title" class="text-primary m-0">Example heading</h5>
-            <div style="font-size: 14px;" class="text-primary">单词：<span id="total_word" class="text-danger mr-2"></span>
-                生词：<span
-                        id="new_word" class="text-danger mr-2"></span> 占比：<span id="new_word_rate"
-                                                                                class="text-danger"></span></div>
+            <div id="opt" style="font-size: 14px;" class="text-primary my-2">
+                单词：<span id="total_word" class="text-danger mr-2"></span>
+                生词：<span id="new_word" class="text-danger mr-2"></span>
+                占比：<span id="new_word_rate" class="text-danger"></span>
+            </div>
             <div id="content" class="news_content">
             </div>
         </div>

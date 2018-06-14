@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
+    <link rel="icon" href="/image/myicon.png" type="image/x-icon"/>
+    <link rel='stylesheet' type='text/css' href='../../lib/bootstrap-3.3.7/css/bootstrap.min.css'>
+    <link rel='stylesheet' type='text/css' href='../../lib/font-awesome-4.7.0/css/font-awesome.min.css'>
+    <link href="../../lib/bootstrap-wysiwyg/prettify.css" rel="stylesheet"/>
+    <link href="../../lib/bootstrap-wysiwyg/style.css" rel="stylesheet"/>
+    <script src='/lib/jquery-3.2.1.min.js'></script>
+    <script src='../../lib/popper.min.js'></script>
+    <script src='../../lib/bootstrap-3.3.7/js/bootstrap.min.js'></script>
+    <script src='/lib/common.js'></script>
+    <script src="../../lib/bootstrap-wysiwyg/jquery.hotkeys.js"></script>
+    <script src="../../lib/bootstrap-wysiwyg/prettify.js"></script>
+    <script src="../../lib/bootstrap-wysiwyg/bootstrap-wysiwyg.js"></script>
+    <title>在学习中成长</title>
+    <script>
+        var news_id = "";
+        var section_count = 0;
+        $(function () {
+            news_id = GetQueryString("id");
+            $.post("local_logic.php", {
+                type: "get_news_detail",
+                news_id: news_id
+            }, function (data) {
+                var news_info = eval("(" + data + ")");
+                news_info = news_info[0];
+                $("#title").html("<h5 class='w-100'>" + news_info.title + "<span class='badge badge-secondary'>" + news_info.news_date + "</span></h5>");
+                $('#editor').wysiwyg();
+            });
+        });
+
+        function explain_news() {
+            var author = $.trim($("#author").val());
+            var wechat = $.trim($("#wechat").val());
+            var content = $.trim($("#editor").html());
+            if (author == "" || wechat == "" || content == "") {
+                alert("作者，微信号和解文缺一不可！");
+                return false;
+            }
+
+            content = content.replace(/'/g, "’");
+            var condition = "id='" + news_id + "'";
+            var data_arr = {};
+            data_arr["detail_explain"] = content;
+            data_arr["detail_author"] = author;
+            data_arr["detail_connect"] = wechat;
+
+            $.post("local_logic.php", {
+                type: "add_explain_for_news",
+                fieldArr: data_arr,
+                condition: condition
+            }, function (data) {
+                if (data != "success") {
+                    console.log(data);
+                    alert("操作失败");
+                    return false;
+                }
+                document.location = "explain_list.html";
+            });
+        }
+    </script>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h3 id="title" class="text-primary"></h3>
+            <div style="margin: 10px;">
+                <span>解文者：</span><input style="width: 200px;" value="别叫我支书" id="author">
+            </div>
+            <div style="margin: 10px;">
+            <span>微信号：</span><input style="width: 200px;" id="wechat" value="yourowntutor">
+        </div>
+        <div class="card">
+            <div class="card-header">
+                新闻解文如下
+            </div>
+            <div id="content">
+                <div class="btn-toolbar event_btn_toolbar" data-role="editor-toolbar" data-target="#editor">
+                    <div class="btn-group">
+                        <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" title="Font Size"><i
+                                class="fa fa-text-height"></i>&nbsp;<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a data-edit="fontSize 5" class="fs-Five">Huge</a></li>
+                            <li><a data-edit="fontSize 3" class="fs-Three">Normal</a></li>
+                            <li><a data-edit="fontSize 1" class="fs-One">Small</a></li>
+                        </ul>
+                    </div>
+                    <div class="btn-group">
+                        <a class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                           title="Text Highlight Color"><i class="fa fa-paint-brush"></i>&nbsp;<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <p>&nbsp;&nbsp;&nbsp;Text Highlight Color:</p>
+                            <li><a data-edit="backColor #00FFFF">Blue</a></li>
+                            <li><a data-edit="backColor #00FF00">Green</a></li>
+                            <li><a data-edit="backColor #FF7F00">Orange</a></li>
+                            <li><a data-edit="backColor #FF0000">Red</a></li>
+                            <li><a data-edit="backColor #FFFF00">Yellow</a></li>
+                        </ul>
+                    </div>
+                    <div class="btn-group">
+                        <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" title="Font Color"><i
+                                class="fa fa-font"></i>&nbsp;<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <p>&nbsp;&nbsp;&nbsp;Font Color:</p>
+                            <li><a data-edit="foreColor #000000">Black</a></li>
+                            <li><a data-edit="foreColor #0000FF">Blue</a></li>
+                            <li><a data-edit="foreColor #30AD23">Green</a></li>
+                            <li><a data-edit="foreColor #FF7F00">Orange</a></li>
+                            <li><a data-edit="foreColor #FF0000">Red</a></li>
+                            <li><a data-edit="foreColor #FFFF00">Yellow</a></li>
+                        </ul>
+                    </div>
+                    <div class="btn-group">
+                        <a class="btn btn-default" data-edit="bold" title="Bold (Ctrl/Cmd+B)"><i
+                                class="fa fa-bold"></i></a>
+                        <a class="btn btn-default" data-edit="italic" title="Italic (Ctrl/Cmd+I)"><i
+                                class="fa fa-italic"></i></a>
+                        <a class="btn btn-default" data-edit="strikethrough" title="Strikethrough"><i
+                                class="fa fa-strikethrough"></i></a>
+                        <a class="btn btn-default" data-edit="underline" title="Underline (Ctrl/Cmd+U)"><i
+                                class="fa fa-underline"></i></a>
+                    </div>
+                    <div class="btn-group">
+                        <a class="btn btn-default" data-edit="insertunorderedlist" title="Bullet list"><i
+                                class="fa fa-list-ul"></i></a>
+                        <a class="btn btn-default" data-edit="insertorderedlist" title="Number list"><i
+                                class="fa fa-list-ol"></i></a>
+                        <a class="btn btn-default" data-edit="outdent" title="Reduce indent (Shift+Tab)"><i
+                                class="fa fa-outdent"></i></a>
+                        <a class="btn btn-default" data-edit="indent" title="Indent (Tab)"><i
+                                class="fa fa-indent"></i></a>
+                    </div>
+                    <div class="btn-group">
+                        <a class="btn btn-default" data-edit="justifyleft" title="Align Left (Ctrl/Cmd+L)"><i
+                                class="fa fa-align-left"></i></a>
+                        <a class="btn btn-default" data-edit="justifycenter" title="Center (Ctrl/Cmd+E)"><i
+                                class="fa fa-align-center"></i></a>
+                        <a class="btn btn-default" data-edit="justifyright" title="Align Right (Ctrl/Cmd+R)"><i
+                                class="fa fa-align-right"></i></a>
+                        <a class="btn btn-default" data-edit="justifyfull" title="Justify (Ctrl/Cmd+J)"><i
+                                class="fa fa-align-justify"></i></a>
+                    </div>
+                    <div class="btn-group">
+                        <a class="btn btn-default" data-edit="undo" title="Undo (Ctrl/Cmd+Z)"><i
+                                class="fa fa-undo"></i></a>
+                        <a class="btn btn-default" data-edit="redo" title="Redo (Ctrl/Cmd+Y)"><i
+                                class="fa fa-repeat"></i></a>
+                    </div>
+                </div>
+                <div id="editor" class="lead" style="overflow:scroll; min-height: 500px;"
+                     contenteditable="true"></div>
+                <button class="btn btn-primary" style="float: right; margin-bottom: 20px;" onclick="explain_news();">提交
+                </button>
+                <a class="btn btn-default" style="float: right; margin-right: 20px; margin-bottom: 20px;"
+                   href="explain_list.html">返回待解文列表</a>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>
