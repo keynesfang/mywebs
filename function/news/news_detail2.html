@@ -27,8 +27,8 @@
         var return_arr = null;
         var explain = top.$("#explain");
         $(function () {
-            var news_id = "";
-            news_id = GetQueryString("news_id");
+            top.set_height();
+            var news_id = GetQueryString("news_id");
             top.source_type = "news";
             top.source_id = news_id;
             var sql = "SELECT * FROM english_news WHERE id='" + news_id + "'";
@@ -38,6 +38,13 @@
             }, function (data) {
                 var news_info = eval("(" + data + ")");
                 news_info = news_info[0];
+                var detail_author = news_info.detail_author;
+                if (detail_author) {
+                    $("#opt").append("<span class='ml-2 p-1 bg-dark text-light' style='border-radius: 5px;' onclick='toggle_explain();'>解文</span>");
+                    $("#author").html(news_info.detail_author);
+                    $("#wechat").html(news_info.detail_connect);
+                    $("#explain_content").html(news_info.detail_explain);
+                }
                 var chns = news_info.chn.split("|*|");
                 var engs = news_info.eng.split("|*|");
                 section_count = chns.length;
@@ -108,10 +115,27 @@
                 regist_word_translate(top.set_explain_word, top.query_word_callback);
             }
         }
+
+        function toggle_explain() {
+            $("#detail_explain").toggle();
+        }
     </script>
 </head>
-<body>
-
+<body id="sub_body" style="position: relative;">
+<div id="detail_explain" class="card bg-primary text-white h-100" style="position: absolute; z-index: 999; display: none;">
+    <i style="position: absolute; top: 5px; right: 10px;" class="fa fa-close"
+       onclick="toggle_explain();"></i>
+    <div class="text-warning ml-2 my-2">
+        解文者：<span class="text-light" id="author" style="border-bottom: 1px solid #000;"></span>
+    </div>
+    <div class="text-warning ml-2 ">
+        微信号：<span class="text-light" id="wechat" style="border-bottom: 1px solid #000;"></span>
+    </div>
+    <div id="explain_body" class="card-body p-0 m-2 mt-3" style="overflow-y: auto;">
+        <div class="card-title text-warning d-flex justify-content-center">解文内容如下</div>
+        <div id="explain_content" class="text-light"></div>
+    </div>
+</div>
 <div class="input-group mb-3">
     <div id="replay_div" class="input-group-prepend">
         <span id="audio_replay" class="input-group-text border-0"><i
@@ -144,10 +168,11 @@
         </div>
         <div id="news_content" class="col-12" style="display: none;">
             <h5 id="news_title" class="text-primary m-0">Example heading</h5>
-            <div style="font-size: 14px;" class="text-primary">单词：<span id="total_word" class="text-danger mr-2"></span>
-                生词：<span
-                        id="new_word" class="text-danger mr-2"></span> 占比：<span id="new_word_rate"
-                                                                                class="text-danger"></span></div>
+            <div id="opt" style="font-size: 14px;" class="text-primary my-2">
+                单词：<span id="total_word" class="text-danger mr-2"></span>
+                生词：<span id="new_word" class="text-danger mr-2"></span>
+                占比：<span id="new_word_rate" class="text-danger"></span>
+            </div>
             <div id="content" class="news_content">
             </div>
         </div>

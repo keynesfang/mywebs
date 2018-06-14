@@ -116,6 +116,15 @@
         var source_type = ""; // 增加生词的来源类型
         var source_id = ""; // 增加生词的来源标识
         $(function () {
+            var type = GetQueryString("type");
+            var id = GetQueryString("id");
+            if (type) {
+                var url = "";
+                if (type == "news") {
+                    url = "/function/news/news_detail2.html?news_id=" + id;
+                }
+                $("#sub_frame").attr("src", url);
+            }
             explain = $("#explain");
             set_frame_height();
             $(".show_date").html(getToday());
@@ -133,6 +142,7 @@
                 $("#show_header").toggle();
                 $("#show_header_simple").toggle();
                 set_frame_height();
+                set_height();
             });
         });
 
@@ -263,6 +273,11 @@
         function explain_control() {
             explain.toggle();
         }
+
+        function set_height() {
+            var sub_body = $('#sub_frame').contents().find("#sub_body");
+            sub_body.css("height", $("#sub_frame").height());
+        }
     </script>
 </head>
 <body class="text-white">
@@ -292,8 +307,8 @@
         <div id="sub_title">Grow In Learning</div>
     </div>
     <div id="show_header_simple" class="w-100" style="display: none;">
-        <div class="mt-2 ml-2 show_date"></div>
-        <h5 class="ml-4 mb-0">在学习中成长</h5>
+        <div class="show_date" style="margin-left: 10px;"></div>
+        <h5 class="mt-2 ml-4 mb-0">在学习中成长</h5>
         <div id="login_status" style="position: absolute; right: 30px; top: 15px;">
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
