@@ -36,7 +36,7 @@
 
         #head_div {
             float: right;
-            margin: 10px 20px 0 0;
+            margin: 10px 15px 0 0;
         }
 
         .head_img {
@@ -149,7 +149,7 @@
         function set_frame_height() {
             var sub_height = 180;
             if ($('#show_header').is(':hidden')) { // 如果长头部被隐藏
-                sub_height = 124;
+                sub_height = 132;
             }
             document.getElementById("sub_frame").height = document.documentElement.clientHeight - sub_height;
         }
@@ -308,7 +308,7 @@
     </div>
     <div id="show_header_simple" class="w-100" style="display: none;">
         <div class="show_date" style="margin-left: 10px; position: relative;"></div>
-        <h5 class="mt-2 ml-4 mb-0">在学习中成长</h5>
+        <h5 class="mt-3 ml-4 mb-0">在学习中成长</h5>
         <div id="login_status" style="position: absolute; right: 10px; top: 15px;">
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -338,6 +338,9 @@
     <div id="menu" class="bg-primary">
         <div class="btn-toolbar mb-3 d-flex justify-content-center h-100" role="toolbar">
             <div class="btn-group mr-2" role="group">
+                <button type="button" class="btn btn-dark menu_btn bottom_menu_btn"
+                        link="/function/pronunciation/introduce.html">发音
+                </button>
                 <button type="button" class="btn btn-warning menu_btn bottom_menu_btn"
                         link="/function/news/news_list2.html">新闻
                 </button>

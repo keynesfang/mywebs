@@ -102,15 +102,30 @@
         }
 
         function set_page_content() {
-            var reading_title = "预备阅读者";
+            var reading_title = "还未阅读";
             if (count > 0) {
-                reading_title = "阅读小能手";
+                reading_title = "阅读新手";
             }
             if (count > 1000) {
-                reading_title = "阅读好模范";
+                reading_title = "阅读老手";
             }
-            if (count > 10000) {
-                reading_title = "阅读大魔王";
+            if (count > 2000) {
+                reading_title = "阅读能手";
+            }
+            if (count > 3000) {
+                reading_title = "阅读高手";
+            }
+            if (count > 4000) {
+                reading_title = "阅读达人";
+            }
+            if (count > 5000) {
+                reading_title = "阅读超人";
+            }
+            if (count > 6000) {
+                reading_title = "阅读王者";
+            }
+            if (count > 7000) {
+                reading_title = "阅读皇者";
             }
             $("#count").html(count);
             $("#new_word_count").html(new_word_count);

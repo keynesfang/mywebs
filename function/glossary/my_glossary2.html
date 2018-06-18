@@ -22,6 +22,12 @@
         }
     </style>
     <script>
+        var query_html = "<div id='loading' style='text-align: center;'>" +
+                "<div class='fa-3x'>" +
+                "<i class='fa fa-spinner fa-spin'></i>" +
+                "</div>" +
+                "<div class='pb-2'>单词含义查询中！</div>" +
+                "</div>";
         var link_types = {
             "news": "/function/news/news_detail2.html?news_id="
         };
@@ -35,37 +41,37 @@
             var word_indx = 0;
             if (my_new_word_arr) {
                 my_new_word_arr = JSON.parse(my_new_word_arr);
-                var html = "";
+                var new_word_list_html = "";
                 $.each(my_new_word_arr, function (word, info) {
                     info = JSON.stringify(info);
                     word_indx += 1;
                     var content_id = "collapse" + word_indx;
-                    html += "<div class='card border-0'>";
-                    html += "	<div class='card-header py-0' id='" + word_indx + "'>";
-                    html += "		<h5 class='mb-0'>";
-                    html += "			<i onclick='play_voice(\"" + word + "\")' class='mr-2 fa fa-volume-up text-warning'></i>";
-                    html += "			<button onclick='page_word_query(\"" + content_id + "\",\"" + word + "\", " + info + ");' class='btn btn-link' data-toggle='collapse' data-target='#" + content_id + "' aria-controls='" + content_id + "'>";
-                    html += word;
-                    html += "			</button>";
-                    html += "		</h5>";
-                    html += "		<div class='close_btn' word='" + word + "'><i class='fa fa-close text-dark'></i></div>";
-                    html += "	</div>";
-                    html += "	<div id='" + content_id + "' class='collapse' aria-labelledby='" + word_indx + "' data-parent='#wrod_list'>";
-                    html += "	</div>";
-                    html += "</div>";
+                    new_word_list_html += "<div class='mt-2' style='border-bottom: 1px solid #fff; position: relative;'>";
+                    new_word_list_html += "<i word='" + word + "' class='fa fa-close text-warning close_btn'> <span style='font-size: 12px;'>移除</span></i> <span class='ml-2'>" + word + " </span>";
+                    new_word_list_html += "<i  onclick='play_voice(\"" + word + "\")' class='mr-4 fa fa-volume-up text-warning volume_btn'></i>";
+                    new_word_list_html += "<i onclick='page_word_query(\"" + content_id + "\",\"" + word + "\", " + info + ");'  class='mr-2 fa fa-chevron-circle-down text-white detail_btn'></i>";
+                    new_word_list_html += "</div>";
+                    new_word_list_html += "<div id='" + content_id + "' class='bg-dark text-white p-2 word_explain'></div>";
                 });
-                $("#word_list").html(html);
-                $(".close_btn").click(function () {
-                    var word = $(this).attr("word");
-                    delete my_new_word_arr[word];
-                    window.localStorage.setItem('my_new_word', JSON.stringify(my_new_word_arr));
-                    page_update();
-                });
+                if(new_word_list_html) {
+                    $("#new_word_list").html(new_word_list_html);
+                    $(".word_explain").hide();$(".close_btn").click(function () {
+                        var word = $(this).attr("word");
+                        delete my_new_word_arr[word];
+                        window.localStorage.setItem('my_new_word', JSON.stringify(my_new_word_arr));
+                        page_update();
+                    });
+                }
+
+
             }
             $("#word_count").html(word_indx);
         }
 
         function page_word_query(content_id, word, info) {
+            $(".word_explain").hide();
+            $("#" + content_id).html(query_html);
+            $("#" + content_id).show();
             var collapse_link = "";
             if (info) {
                 collapse_link = link_types[info.type] + info.id;
@@ -101,11 +107,6 @@
 <span id="word_sound"></span>
 <input type="hidden" id="collapse_id">
 <input type="hidden" id="collapse_link">
-<!--<nav class="navbar  navbar-dark bg-primary text-white" style="height: 50px;">-->
-<!--<a class="navbar-brand" href="#">-->
-<!--我的英文生词表-->
-<!--</a>-->
-<!--</nav>-->
 
 <div class="container">
     <div class="row">
@@ -113,20 +114,12 @@
             <div class="my-2 d-flex justify-content-end">我的生词表，共 <span id="word_count" class="text-danger"></span> 个生词
             </div>
             <hr class="mt-0">
-            <div id="word_list" class="my-2">
+            <div id="new_word_list" class="my-2">
                 <div class="w-100" style="text-align: center;">
                     <img class="null" src="/image/null.png">
                     <div>空空如也！<br>是武功太高，还是学得太少？</div>
                 </div>
             </div>
-            <!--<div id="words" class="my-2">-->
-            <!--&lt;!&ndash;缩略图模式暂不实现&ndash;&gt;-->
-            <!--<div class="word default_bg_img mb-2">-->
-            <!--<div class="w-100 h-100 word_panel p-2 text-white">-->
-            <!--sfd-->
-            <!--</div>-->
-            <!--</div>-->
-            <!--</div>-->
         </div>
     </div>
 </div>

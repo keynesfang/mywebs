@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
+    <link rel="icon" href="/image/myicon.png" type="image/x-icon"/>
+    <link rel='stylesheet' type='text/css' href='/lib/bootstrap-4.0.0/css/bootstrap.min.css'>
+    <link rel='stylesheet' type='text/css' href='/lib/font-awesome-4.7.0/css/font-awesome.min.css'>
+    <link rel='stylesheet' type='text/css' href='/common.css'>
+    <script src='/lib/jquery-3.2.1.min.js'></script>
+    <script src='/lib/common.js'></script>
+    <script src='/lib/stamp/stamp.js'></script>
+    <title>在学习中成长</title>
+    <style>
+        #menu {
+            position: fixed;
+            top: 45px;
+            border: 2px solid #fff;
+            z-index: 999;
+        }
+    </style>
+    <script>
+        window.onresize = function () {
+            set_sub_frame_height();
+        };
+        $(function () {
+            top.set_height();
+            set_sub_frame_height();
+        });
+        function set_sub_frame_height() {
+            $("#phonics_content").css("height", $("#sub_body").height() - 43);
+        }
+    </script>
+</head>
+<body id="sub_body" class=" bg-primary text-white" style="position: relative;">
+<h5 class="m-0 p-2 d-flex justify-content-end bg-primary text-white" onclick="$('#menu').toggle(200);"><span
+        style="font-size: 16px;">菜单</span> <i class="ml-2 fa fa-align-justify"></i></h5>
+<h5 class="m-0 p-2 d-flex justify-content-end bg-primary text-warning" style="position: fixed; top: 0; left: 5px;">
+    国际音标</h5>
+<hr class="my-0">
+<div id="menu" class="w-100 bg-success p-2" style="display: none;">
+    <span class="menu_btn pl-3 text-warning" link="basic.html">初识国际音标</span>
+    <span class="pl-3 text-white">未完待续</span>
+</div>
+<iframe id="phonics_content" class="w-100 border-0" src="basic.html"></iframe>
+</body>
+</html>
