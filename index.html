@@ -35,8 +35,9 @@
         }
 
         #head_div {
-            float: right;
-            margin: 10px 15px 0 0;
+            position: absolute;
+            top: 5px;
+            right: 10px;
         }
 
         .head_img {
@@ -47,29 +48,34 @@
         #title {
             text-align: center;
             font-size: 30px;
+            position: absolute;
+            top: 20px;
+            left: 20px;
         }
 
         #sub_title {
             text-align: center;
             font-size: 13px;
+            position: absolute;
+            top: 85px;
+            left: 80px;
         }
 
         #output_bar {
-            width: 92%;
+            width: 96%;
             border: 5px solid #000;
             border-radius: 5px;
-            position: relative;
-            top: 20px;
-            left: 4%;
+            position: absolute;
+            top: 110px;
+            left: 2%;
         }
 
         #sub_frame {
-            max-width: 540px;
             border: 0;
-            width: 90%;
-            position: relative;
-            top: 15px;
-            left: 5%;
+            width: 94%;
+            position: absolute;
+            top: 113px;
+            left: 3%;
         }
 
         #menu_bar {
@@ -87,27 +93,28 @@
         #menu {
             height: 42px;
             margin: 0 auto;
-            max-width: 540px;
-            width: 90%;
+            width: 94%;
             border-bottom-right-radius: 15px;
             border-bottom-left-radius: 15px;
         }
 
         #explain {
             margin: 0 auto;
-            max-width: 540px;
             color: #fff;
+            max-width: 600px;
             width: 100%;
         }
 
-        .level {
-            width: 32px;
-            height: 32px;
+        #level_div {
+            position: absolute;
+            top: 75px;
+            right: 10px;
+            width: 58px;
         }
 
-        #level {
-            font-weight: bold;
-            font-size: 18px;
+        .level {
+            width: 24px;
+            height: 24px;
         }
     </style>
     <script>
@@ -127,6 +134,9 @@
             }
             explain = $("#explain");
             set_frame_height();
+            var sub_frame_width = $("#sub_frame").width();
+            $("#menu").css("width", sub_frame_width);
+
             $(".show_date").html(getToday());
             $(".menu_btn, .my_menu").click(function () {
                 explain.hide();
@@ -147,11 +157,15 @@
         });
 
         function set_frame_height() {
-            var sub_height = 180;
+            var sub_height = 156;
+            var output_bar_top = 110;
             if ($('#show_header').is(':hidden')) { // 如果长头部被隐藏
-                sub_height = 132;
+                sub_height = 126;
+                output_bar_top = 80;
             }
             document.getElementById("sub_frame").height = document.documentElement.clientHeight - sub_height;
+            $("#output_bar").css("top", output_bar_top);
+            $("#sub_frame").css("top", output_bar_top + 3);
         }
 
         function append_mode_change() {
@@ -282,6 +296,7 @@
 </head>
 <body class="text-white">
 <div id="header">
+    <div id="show_date" class="show_date"></div>
     <div id="show_header">
         <div id="head_div">
             <div style="font-size: 12px;">未登陆</div>
@@ -299,20 +314,19 @@
                     </div>
                 </div>
             </div>
-            <div><img class="level" src="/image/level.png"> <span id="level">0</span> 级</div>
+            <div id="level_div"><img class="level" src="/image/level.png"></div>
         </div>
-        <div id="show_date" class="show_date"></div>
         <div class="d-block"></div>
         <div id="title" class="mt-4">在学习中成长</div>
         <div id="sub_title">Grow In Learning</div>
     </div>
     <div id="show_header_simple" class="w-100" style="display: none;">
-        <div class="show_date" style="margin-left: 10px; position: relative;"></div>
         <h5 class="mt-3 ml-4 mb-0">在学习中成长</h5>
         <div id="login_status" style="position: absolute; right: 10px; top: 15px;">
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    <span class="input-group-text bg-secondary border-0 bg-transparent"><i class="fa fa-user text-warning"></i></span>
+                    <span class="input-group-text bg-transparent"><i
+                            class="fa fa-user text-warning"></i></span>
                 </div>
                 <div class="input-group-append">
                     <button class="btn btn-outline-light dropdown-toggle" type="button" data-toggle="dropdown"
@@ -327,7 +341,9 @@
             </div>
         </div>
     </div>
-    <div id="header_switch" style="position: absolute; top: 0; left: 100px; border: 1px solid #fff; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px;" class="bg-danger px-2">
+    <div id="header_switch"
+         style="position: absolute; top: 0; left: 100px; border: 1px solid #fff; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px;"
+         class="bg-danger px-2">
         <i class="fa fa-chevron-circle-up"></i>
         <i class="fa fa-chevron-circle-down"></i>
     </div>
