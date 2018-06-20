@@ -26,6 +26,16 @@
         $(function () {
             top.set_height();
             set_sub_frame_height();
+            $(".menu_btn").click(function () {
+                var link = $(this).attr("link");
+                if (link) {
+                    $(".menu_btn").removeClass("text-warning");
+                    $(this).removeClass("text-white");
+                    $(this).addClass("text-warning");
+                    $("#phonics_content").attr("src", link);
+                }
+                $('#menu').toggle(200);
+            });
         });
         function set_sub_frame_height() {
             $("#phonics_content").css("height", $("#sub_body").height() - 43);
@@ -40,7 +50,8 @@
 <hr class="my-0">
 <div id="menu" class="w-100 bg-success p-2" style="display: none;">
     <span class="menu_btn text-warning" link="phoneme.html">什么是音素</span>
-    <span class="pl-3 text-white">未完待续</span>
+    <span class="menu_btn pl-3 text-white" link="vowel_consonant.html">元音与辅音</span>
+    <span class="pl-3 text-white">未完待续...</span>
 </div>
 <iframe id="phonics_content" class="w-100 border-0" src="phoneme.html"></iframe>
 </body>

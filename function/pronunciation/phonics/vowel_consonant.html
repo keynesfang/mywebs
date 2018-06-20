@@ -25,7 +25,7 @@
     <script>
         $(function () {
             $("#page").css("height", document.documentElement.clientHeight);
-            show_video("show_video", 22, "/function/english/video/resources/", false, "show_video");
+            show_video("show_video", 27, "/function/english/video/resources/", false, "show_video");
             $("#show_video").append("<section class='mt-2'>之前提过，一个字母可能发音多个不同的音素，而视频中的发音是其中发音最频繁的一种。大家先记住，后面还有其它的规则说明。</section>");
             $(".play_sound").click(function () {
                 var word = $(this).html();
@@ -37,11 +37,11 @@
 <body id="page" class=" bg-primary text-white" style="position: relative;">
 <div id="notice" class="p-2">
     <div class="title text-warning d-flex justify-content-end">
-        字母音 与 音素音
+        元音 与 辅音
     </div>
     <div class="content my-2">
-        <section>字母音 就是读单个字母时发出来的音，如点击 <kbd class="play_sound">C</kbd> <kbd class="play_sound">A</kbd> <kbd class="play_sound">T</kbd> 听到的音就是字母音。</section>
-        <section>当字母组合成单词时，听到的读音会和字母音不一样，这时每个字母的读音就叫做 音素音。如点击 <kbd class="play_sound">cat</kbd> 听到的读音。</section>
+        <section>通常来说，元音字母发的音叫 元音；辅音字母发的音叫 辅音。但字母 <kbd>Y</kbd> 虽然是辅音，但它也有可能发元音，被称为第6元音。</section>
+        <section>通常一个辅音字母只会发一个音（辅音），而一个元音字母根据字母组合可以发多个不同的音（元音），如果两个元音字母组合在一起还会发双元音。</section>
     </div>
     <div class="title text-warning">
         学习 音素音
