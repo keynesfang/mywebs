@@ -25,8 +25,10 @@
     <script>
         $(function () {
             $("#page").css("height", document.documentElement.clientHeight);
-            show_video("show_video", 27, "/function/english/video/resources/", false, "show_video");
-            $("#show_video").append("<section class='mt-2'>之前提过，一个字母可能发音多个不同的音素，而视频中的发音是其中发音最频繁的一种。大家先记住，后面还有其它的规则说明。</section>");
+            show_video("show_video", 27, "/function/english/video/resources/", true, "show_video");
+            show_video("show_video2", 29, "/function/english/video/resources/", true, "show_video");
+            $("#show_video").append("<section class='mt-2'>上面这个视频介绍了元音字母与辅音字母。</section>");
+            $("#show_video2").append("<section class='mt-2'>上面这个视频介绍了辅音字母 <kbd class='play_sound'>Y</kbd> 发元音字母 <kbd class='play_sound'>I</kbd> 的音。</section>");
             $(".play_sound").click(function () {
                 var word = $(this).html();
                 play_voice(word);
@@ -40,13 +42,18 @@
         元音 与 辅音
     </div>
     <div class="content my-2">
-        <section>通常来说，元音字母发的音叫 元音；辅音字母发的音叫 辅音。但字母 <kbd>Y</kbd> 虽然是辅音，但它也有可能发元音，被称为第6元音。</section>
-        <section>通常一个辅音字母只会发一个音（辅音），而一个元音字母根据字母组合可以发多个不同的音（元音），如果两个元音字母组合在一起还会发双元音。</section>
+        <section>通常来说，元音字母发的音叫[元音]；辅音字母发的音叫[辅音]。但字母 <kbd class="play_sound">Y</kbd> 虽然是辅音字母，但它也有可能发元音，被称为第6元音；</section>
+        <section>当发辅音时，感觉总会被舌头，牙齿或嘴唇的位置所阻挡，不如元音那么流畅；当发元音时，声音可以很流畅无阻碍的从嘴里发出；元音字母在某些情况下也有可能保持沉没，也就是不发音；每个单词中至少会有一个元音；</section>
+        <section>看到这里，大家要注意一点，在自然拼读法里（phonics）中，不要去想元音、辅音有哪些，具体是什么，这是国际音标（IPA）做的事。你只要了解概念，专注于字母就好。这也是自然拼读法的优势所在。</section>
     </div>
     <div class="title text-warning">
-        学习 音素音
+        元音字母与辅音字母
     </div>
     <div id="show_video" class="content my-2"></div>
+    <div class="title text-warning d-flex justify-content-end">
+        [ Y ]发元音字母[ I ]的音
+    </div>
+    <div id="show_video2" class="content my-2"></div>
 </div>
 <audio id="play_sound"></audio>
 </body>

@@ -26,7 +26,7 @@
         $(function () {
             $("#page").css("height", document.documentElement.clientHeight);
             show_video("show_video", 22, "/function/english/video/resources/", false, "show_video");
-            $("#show_video").append("<section class='mt-2'>之前提过，一个字母可能发音多个不同的音素，而视频中的发音是其中发音最频繁的一种。大家先记住，后面还有其它的规则说明。</section>");
+            $("#show_video").append("<section class='mt-2'>之前提过，一个元音字母可能发音多个不同的音素，而视频中的发音是其中发音的一种。大家先记住，后面还有其它的规则说明。</section>");
             $(".play_sound").click(function () {
                 var word = $(this).html();
                 play_voice(word);
@@ -40,8 +40,9 @@
         字母音 与 音素音
     </div>
     <div class="content my-2">
-        <section>字母音 就是读单个字母时发出来的音，如点击 <kbd class="play_sound">C</kbd> <kbd class="play_sound">A</kbd> <kbd class="play_sound">T</kbd> 听到的音就是字母音。</section>
-        <section>当字母组合成单词时，听到的读音会和字母音不一样，这时每个字母的读音就叫做 音素音。如点击 <kbd class="play_sound">cat</kbd> 听到的读音。</section>
+        <section>[字母音]就是读单个字母时发出来的音，如点击 <kbd class="play_sound">C</kbd> <kbd class="play_sound">A</kbd> <kbd class="play_sound">T</kbd> 听到的音就是字母音。</section>
+        <section>当字母组合成单词时，听到的读音会和字母音不一样，这时每个字母的读音就叫做[音素音]。如点击 <kbd class="play_sound">cat</kbd> 听到的读音。</section>
+        <section>每个辅音字母，基本上就对应了1个发音。也就是一个辅音的[字母音]对应了一个[音素音]；而每个元音字母对应了多个发音；</section>
     </div>
     <div class="title text-warning">
         学习 音素音
