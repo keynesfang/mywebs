@@ -25,10 +25,10 @@
     <script>
         $(function () {
             $("#page").css("height", document.documentElement.clientHeight);
-            show_video("show_video", 27, "/function/english/video/resources/", false, "show_video");
-            show_video("show_video2", 29, "/function/english/video/resources/", false, "show_video");
-            $("#show_video").append("<section class='mt-2'>上面这个视频介绍了元音字母与辅音字母。</section>");
-            $("#show_video2").append("<section class='mt-2'>上面这个视频介绍了辅音字母 <kbd class='play_sound'>Y</kbd> 发元音字母 <kbd class='play_sound'>I</kbd> 的音。</section>");
+            show_video("show_video", 28, "/function/english/video/resources/", false, "show_video");
+            show_video("show_video2", 30, "/function/english/video/resources/", false, "show_video");
+            $("#show_video").append("<section class='mt-2'>视频中对 <kbd class='play_sound'>A</kbd> <kbd class='play_sound'>E</kbd> <kbd class='play_sound'>I</kbd> <kbd class='play_sound'>O</kbd> <kbd class='play_sound'>U</kbd> 这5个元音字母的长短发音各进行了举例说明。</section>");
+            $("#show_video2").append("<section class='mt-2'>视频介绍了长元音的发音情况，以及元音字母 <kbd class='play_sound'>E</kbd> 不发音的情形。</section>");
             $(".play_sound").click(function () {
                 var word = $(this).html();
                 play_voice(word);
@@ -39,19 +39,19 @@
 <body id="page" class=" bg-primary text-white" style="position: relative;">
 <div id="notice" class="p-2">
     <div class="title text-warning d-flex justify-content-end">
-        元音 与 辅音
+        长元音 与 短元音
     </div>
     <div class="content my-2">
-        <section>通常来说，元音字母发的音叫[元音]；辅音字母发的音叫[辅音]。但字母 <kbd class="play_sound">Y</kbd> 虽然是辅音字母，但它也有可能发元音，被称为第6元音；</section>
-        <section>当发辅音时，感觉总会被舌头，牙齿或嘴唇的位置所阻挡，不如元音那么流畅；当发元音时，声音可以很流畅无阻碍的从嘴里发出；元音字母在某些情况下也有可能保持沉没，也就是不发音；每个单词中至少会有一个元音；</section>
-        <section>看到这里，大家要注意一点，在自然拼读法里（phonics）中，不要去想元音、辅音有哪些，具体是什么，这是国际音标（IPA）做的事。你只要了解概念，专注于字母就好。这也是自然拼读法的优势所在。</section>
+        <section>当元音字母在一个单词中的发音[音素音]与该字母的[字母音]相同时，这个音就叫作长元音。如 <kbd class="play_sound">ape</kbd> <kbd class="play_sound">gate</kbd>；</section>
+        <section>当元音字母在一个单词中的发音[音素音]与该字母的[字母音]不同时，这个音就叫作短元音。如 <kbd class="play_sound">apple</kbd> <kbd class="play_sound">sack</kbd>；</section>
+        <section>概念还是比容易理解的，如果还不清楚，请看下面的视频来巩固一下。</section>
     </div>
     <div class="title text-warning">
-        元音字母与辅音字母
+        元音分长短
     </div>
     <div id="show_video" class="content my-2"></div>
     <div class="title text-warning d-flex justify-content-end">
-        [ Y ]发元音字母[ I ]的音
+        长元音及不发音
     </div>
     <div id="show_video2" class="content my-2"></div>
 </div>
