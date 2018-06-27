@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
+    <link rel="icon" href="/image/myicon.png" type="image/x-icon"/>
+    <link rel='stylesheet' type='text/css' href='word.css'>
+    <link rel='stylesheet' type='text/css' href='/lib/bootstrap-4.0.0/css/bootstrap.min.css'>
+    <link rel='stylesheet' type='text/css' href='/lib/font-awesome-4.7.0/css/font-awesome.min.css'>
+    <script src='/lib/jquery-3.2.1.min.js'></script>
+    <script src='../../lib/popper.min.js'></script>
+    <script src='/lib/bootstrap-4.0.0/js/bootstrap.min.js'></script>
+    <script src='/lib/common.js'></script>
+    <script src='/lib/english.js'></script>
+    <title>在学习中成长</title>
+    <style>
+    </style>
+    <script>
+        var query_html = "<div id='loading' style='text-align: center;'>" +
+                "<div class='fa-3x'>" +
+                "<i class='fa fa-spinner fa-spin'></i>" +
+                "</div>" +
+                "<div class='pb-2'>单词含义查询中！</div>" +
+                "</div>";
+        var link_types = {
+            "news": "/function/news/news_detail2.html?news_id="
+        };
+        var my_new_word_arr = "";
+        $(function () {
+            page_update();
+        });
+
+        function page_update() {
+            $.post("local_logic.php", {
+                type: "get_basic_word"
+            }, function (data) {
+                my_new_word_arr = eval("(" + data + ")");
+                var word_indx = 0;
+                if (my_new_word_arr) {
+                    var new_word_list_html = "";
+                    $.each(my_new_word_arr, function (idx, info) {
+                        var word = info.word;
+                        word_indx += 1;
+                        var content_id = "collapse" + word_indx;
+                        new_word_list_html += "<div class='mt-2' style='border-bottom: 1px solid #fff; position: relative;'>";
+                        new_word_list_html += "<span class='ml-2'>" + word + " </span>";
+                        new_word_list_html += "<i  onclick='play_voice(\"" + word + "\")' class='mr-4 fa fa-volume-up text-warning volume_btn'></i>";
+                        new_word_list_html += "<i onclick='page_word_query(\"" + content_id + "\",\"" + word + "\");'  class='mr-2 fa fa-chevron-circle-down text-white detail_btn'></i>";
+                        new_word_list_html += "</div>";
+                        new_word_list_html += "<div id='" + content_id + "' class='bg-dark text-white p-2 word_explain'></div>";
+                    });
+                    if (new_word_list_html) {
+                        $("#new_word_list").html(new_word_list_html);
+                        $(".word_explain").hide();
+                    }
+                }
+                $("#word_count").html(word_indx);
+            });
+        }
+
+        function page_word_query(content_id, word) {
+            $(".word_explain").hide();
+            $("#" + content_id).html(query_html);
+            $("#" + content_id).show();
+            $("#collapse_id").val(content_id);
+
+            query_word(word, query_word_callback);
+        }
+
+        function query_word_callback(explain_info) {
+            var collapse_id = $("#collapse_id").val();
+            var explains = "";
+            for (var i = 0; i < explain_info.explains.length; i++) {
+                explains += explain_info.explains[i] + "<br>";
+            }
+            var html = "<div class='card-body bg-dark text-white p-0'>";
+            if (explain_info.phonetic) {
+                html += "<span class='text-warning'>" + explain_info.phonetic + "</span><br>";
+            }
+            html += "<div style='font-size: 14px;' class='mt-2'>" + explains + "</div></div>";
+            $("#" + collapse_id).html(html);
+        }
+    </script>
+</head>
+<body class="bg-primary text-white">
+<audio id="play_sound"></audio>
+<span id="word_sound"></span>
+<input type="hidden" id="collapse_id">
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="my-2 d-flex justify-content-end">552个基础词汇、70%的日常表达
+            </div>
+            <hr class="my-0">
+            <div id="new_word_list" class="my-2 pl-5">
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -36,7 +36,7 @@
 
         #head_div {
             position: absolute;
-            top: 5px;
+            top: 30px;
             right: 10px;
         }
 
@@ -105,11 +105,10 @@
             width: 100%;
         }
 
-        #level_div {
+        .level_div {
             position: absolute;
-            top: 75px;
+            top: 0;
             right: 10px;
-            width: 58px;
         }
 
         .level {
@@ -297,6 +296,8 @@
 <body class="text-white">
 <div id="header">
     <div id="show_date" class="show_date"></div>
+    <div link="/notice.html" class="level_div menu_btn"><img class="level" src="/image/announcement.png"></div>
+    <div link="/function/reward/reading.html" class="level_div menu_btn" style="margin-right: 30px;"><img class="level" src="/image/level.png"></div>
     <div id="show_header">
         <div id="head_div">
             <div style="font-size: 12px;">未登陆</div>
@@ -314,7 +315,6 @@
                     </div>
                 </div>
             </div>
-            <div id="level_div"><img class="level" src="/image/level.png"></div>
         </div>
         <div class="d-block"></div>
         <div id="title" class="mt-4">在学习中成长</div>
@@ -322,7 +322,7 @@
     </div>
     <div id="show_header_simple" class="w-100" style="display: none;">
         <h5 class="mt-3 ml-4 mb-0">在学习中成长</h5>
-        <div id="login_status" style="position: absolute; right: 10px; top: 15px;">
+        <div id="login_status" style="position: absolute; right: 10px; top: 35px;">
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text bg-transparent"><i
@@ -361,10 +361,7 @@
                         link="/function/news/news_list2.html">新闻
                 </button>
                 <button type="button" class="btn btn-dark menu_btn bottom_menu_btn"
-                        link="/function/reward/reading.html">战绩
-                </button>
-                <button type="button" class="btn btn-dark menu_btn bottom_menu_btn"
-                        link="/notice.html">公告
+                        link="/function/glossary/basic_glossary.html">词汇
                 </button>
             </div>
         </div>
