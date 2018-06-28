@@ -14,6 +14,24 @@
     <script src='/lib/english.js'></script>
     <title>在学习中成长</title>
     <style>
+        #word_type {
+            text-align: center;
+            position: absolute;
+            top: 50px;
+            left: 0;
+            width: 50px;
+            background-color: #00aa00;
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+
+        .word_type {
+            height: 30px;
+            line-height: 30px;
+            font-size: 14px;
+            font-weight: bold;
+            border-bottom: 1px solid #fff;
+        }
     </style>
     <script>
         var query_html = "<div id='loading' style='text-align: center;'>" +
@@ -27,12 +45,17 @@
         };
         var my_new_word_arr = "";
         $(function () {
-            page_update();
+            page_update("Animal");
+            $(".word_type").click(function () {
+                var word_type = $(this).attr("word_type");
+                page_update(word_type);
+            });
         });
 
-        function page_update() {
+        function page_update(word_type) {
             $.post("local_logic.php", {
-                type: "get_basic_word"
+                type: "get_basic_word",
+                word_type: word_type
             }, function (data) {
                 my_new_word_arr = eval("(" + data + ")");
                 var word_indx = 0;
@@ -93,6 +116,32 @@
             <div class="my-2 d-flex justify-content-end">552个基础词汇、70%的日常表达
             </div>
             <hr class="my-0">
+            <div id="word_type">
+                <div class="word_type" word_type="Transportation">交通</div>
+                <div class="word_type" word_type="People">人物</div>
+                <div class="word_type" word_type="Animal">动物</div>
+                <div class="word_type" word_type="Location">地点</div>
+                <div class="word_type" word_type="Nature">自然</div>
+                <div class="word_type" word_type="Days of the week">星期</div>
+                <div class="word_type" word_type="Seasons">季节</div>
+                <div class="word_type" word_type="Home">家里</div>
+                <div class="word_type" word_type="Job">工作</div>
+                <div class="word_type" word_type="Numbers">数字</div>
+                <div class="word_type" word_type="Math/Measurements">数学</div>
+                <div class="word_type" word_type="Directions">方向</div>
+                <div class="word_type" word_type="Time">时期</div>
+                <div class="word_type" word_type="Months">月份</div>
+                <div class="word_type" word_type="Materials">材料</div>
+                <div class="word_type" word_type="Electronics">电子</div>
+                <div class="word_type" word_type="Society">社会</div>
+                <div class="word_type" word_type="Art">艺术</div>
+                <div class="word_type" word_type="Clothing">衣服</div>
+                <div class="word_type" word_type="Color">颜色</div>
+                <div class="word_type" word_type="Food">食物</div>
+                <div class="word_type" word_type="Beverages">饮料</div>
+                <div class="word_type" word_type="Verbs">动词</div>
+                <div class="word_type" word_type="Other Nouns">其它</div>
+            </div>
             <div id="new_word_list" class="my-2 pl-5">
             </div>
         </div>
