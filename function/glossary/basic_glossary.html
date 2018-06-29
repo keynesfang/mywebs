@@ -14,34 +14,40 @@
     <script src='/lib/english.js'></script>
     <title>在学习中成长</title>
     <style>
+        #word_type {
+            margin: 8px 0 0 0;
+        }
     </style>
     <script>
-        var word_type = {
-            "Transportation": "交通",
-            "People": "人物",
-            "Animal": "动物",
-            "Location": "地点",
-            "Nature": "自然",
-            "Days of the week": "星期",
-            "Seasons": "季节",
-            "Home": "家里",
-            "Job": "工作",
-            "Numbers": "数字",
-            "Math/Measurements": "数学",
-            "Directions": "方向",
-            "Time": "时期",
-            "Months": "月份",
-            "Materials": "材料",
-            "Electronics": "电子",
-            "Society": "社会",
-            "Art": "艺术",
-            "Clothing": "衣服",
-            "Color": "颜色",
-            "Food": "食物",
-            "Beverages": "饮料",
-            "Verbs": "动词",
-            "Other Nouns": "其它"
-        };
+        var corlor_list = ["#1ABC9C", "#2ECC71", "#3498DB", "#9B59B6", "#34495E", "#E67E22", "#E74C3C", "#95A5A6", "#F1C40F",
+                            "#16A085", "#27AE60", "#2980B9", "#8E44AD", "#2C3E50", "#F39C12", "#D35400", "#C0392B", "#BDC3C7", "#7F8C8D"];
+        var word_type = [
+            {eng_type: "ex", chn_type: "背单词的奥义"},
+            {eng_type: "Transportation", chn_type: "交通"},
+            {eng_type: "People", chn_type: "人物"},
+            {eng_type: "Animal", chn_type: "动物"},
+            {eng_type: "Location", chn_type: "地点"},
+            {eng_type: "Nature", chn_type: "自然"},
+            {eng_type: "Days of the week", chn_type: "星期"},
+            {eng_type: "Seasons", chn_type: "季节"},
+            {eng_type: "Home", chn_type: "家里"},
+            {eng_type: "Job", chn_type: "工作"},
+            {eng_type: "Numbers", chn_type: "数字"},
+            {eng_type: "Math/Measurements", chn_type: "数学"},
+            {eng_type: "Directions", chn_type: "方向"},
+            {eng_type: "Time", chn_type: "时期"},
+            {eng_type: "Months", chn_type: "月份"},
+            {eng_type: "Materials", chn_type: "材料"},
+            {eng_type: "Electronics", chn_type: "电子"},
+            {eng_type: "Society", chn_type: "社会"},
+            {eng_type: "Art", chn_type: "艺术"},
+            {eng_type: "Clothing", chn_type: "衣服"},
+            {eng_type: "Color", chn_type: "颜色"},
+            {eng_type: "Food", chn_type: "食物"},
+            {eng_type: "Beverages", chn_type: "饮料"},
+            {eng_type: "Verbs", chn_type: "动词"},
+            {eng_type: "Other Nouns", chn_type: "其它"}
+        ];
         var query_html = "<div id='loading' style='text-align: center;'>" +
                 "<div class='fa-3x'>" +
                 "<i class='fa fa-spinner fa-spin'></i>" +
@@ -52,13 +58,48 @@
             "news": "/function/news/news_detail2.html?news_id="
         };
         var my_new_word_arr = "";
+
         $(function () {
-            page_update("Animal");
+            // page_update("Animal");
+            metro_menu(7, 4, true);
             $(".word_type").click(function () {
                 var word_type = $(this).attr("word_type");
                 page_update(word_type);
             });
         });
+
+        function metro_menu(row_num, col_num, is_merge) {
+            var frame_height = parseInt(top.$("#sub_frame").height());
+            var frame_width = parseInt(top.$("#sub_frame").width());
+            var block_height = parseInt((frame_height - 20 - (row_num) * 2 - 40) / row_num); // 20为上下留白， row*2为左右间距，40为上面菜单高度
+            var block_width = parseInt((frame_width - 30 - (col_num) * 2) / col_num);
+            var total_count = word_type.length;
+            var merge_count = row_num * col_num - total_count;
+            alert(merge_count);
+            var index = 0;
+            var html = "<table>";
+            $.each(word_type, function (idx, info) {
+                var eng_type = info.eng_type;
+                var chn_type = info.chn_type;
+                if ((index % col_num) === 0) {
+                    if (html != "<table>") {
+                        html += "</tr>";
+                    }
+                    html += "<tr>";
+                }
+                var merge_col = "";
+                var temp_width = block_width;
+                if (index == 0) {
+                    merge_col = "colspan='2'";
+                    temp_width = block_width * 2 + 2;
+                    index++;
+                }
+                html += "<td " + merge_col + " style='margin: 1px; text-align: center; line-height:" + block_height + "px; display: inline-block; width:" + temp_width + "px; height:" + block_height + "px; background-color: #00aa00;'>" + chn_type + "</td>";
+                index++;
+            });
+            html += "</table>";
+            $("#word_type").html(html);
+        }
 
         function page_update(word_type) {
             $.post("local_logic.php", {
@@ -121,10 +162,11 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <div class="my-2 d-flex justify-content-end">552个基础词汇、70%的日常表达
+            <div class="my-2 d-flex justify-content-end px-2">552个基础词汇、70%的日常表达
             </div>
             <hr class="my-0">
-            <div id="word_type"></div>
+            <div id="word_type" style="box-sizing: border-box;">
+            </div>
             <div id="new_word_list" class="my-2 pl-5">
             </div>
         </div>
