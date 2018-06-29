@@ -7,6 +7,7 @@
     <link rel='stylesheet' type='text/css' href='word.css'>
     <link rel='stylesheet' type='text/css' href='/lib/bootstrap-4.0.0/css/bootstrap.min.css'>
     <link rel='stylesheet' type='text/css' href='/lib/font-awesome-4.7.0/css/font-awesome.min.css'>
+    <link rel='stylesheet' type='text/css' href='/common.css'>
     <script src='/lib/jquery-3.2.1.min.js'></script>
     <script src='../../lib/popper.min.js'></script>
     <script src='/lib/bootstrap-4.0.0/js/bootstrap.min.js'></script>
@@ -20,9 +21,9 @@
     </style>
     <script>
         var corlor_list = ["#1ABC9C", "#2ECC71", "#3498DB", "#9B59B6", "#34495E", "#E67E22", "#E74C3C", "#95A5A6", "#F1C40F",
-                            "#16A085", "#27AE60", "#2980B9", "#8E44AD", "#2C3E50", "#F39C12", "#D35400", "#C0392B", "#BDC3C7", "#7F8C8D"];
+            "#16A085", "#27AE60", "#2980B9", "#8E44AD", "#2C3E50", "#F39C12", "#D35400", "#C0392B", "#BDC3C7", "#7F8C8D"];
         var word_type = [
-            {eng_type: "ex", chn_type: "背单词的奥义"},
+            {eng_type: "recite_method", chn_type: "背单词的奥义"},
             {eng_type: "Transportation", chn_type: "交通"},
             {eng_type: "People", chn_type: "人物"},
             {eng_type: "Animal", chn_type: "动物"},
@@ -60,45 +61,73 @@
         var my_new_word_arr = "";
 
         $(function () {
-            // page_update("Animal");
             metro_menu(7, 4, true);
-            $(".word_type").click(function () {
-                var word_type = $(this).attr("word_type");
-                page_update(word_type);
-            });
         });
 
         function metro_menu(row_num, col_num, is_merge) {
             var frame_height = parseInt(top.$("#sub_frame").height());
             var frame_width = parseInt(top.$("#sub_frame").width());
-            var block_height = parseInt((frame_height - 20 - (row_num) * 2 - 40) / row_num); // 20为上下留白， row*2为左右间距，40为上面菜单高度
-            var block_width = parseInt((frame_width - 30 - (col_num) * 2) / col_num);
+            var block_height = parseInt((frame_height - 20 - (row_num) * 4 - 40) / row_num); // 20为上下留白， row*2为左右间距，40为上面菜单高度
+            var block_width = parseInt((frame_width - 30 - (col_num) * 4) / col_num);
             var total_count = word_type.length;
             var merge_count = row_num * col_num - total_count;
-            alert(merge_count);
+            var mid_row_num = parseInt(row_num / 2);
             var index = 0;
-            var html = "<table>";
+            var cur_row_num = 1;
+            var cur_col_num = 1;
+            var html = "<table style='margin: 0 auto;'>";
             $.each(word_type, function (idx, info) {
                 var eng_type = info.eng_type;
                 var chn_type = info.chn_type;
                 if ((index % col_num) === 0) {
-                    if (html != "<table>") {
+                    if (index != 0) {
                         html += "</tr>";
                     }
                     html += "<tr>";
+                    cur_col_num = 1;
+                    cur_row_num++;
                 }
-                var merge_col = "";
+                var merge_cell = "";
                 var temp_width = block_width;
-                if (index == 0) {
-                    merge_col = "colspan='2'";
+                var temp_height = block_height;
+                if (index == 0 && merge_count > 0 && is_merge) {
+                    merge_cell = "colspan='2'";
                     temp_width = block_width * 2 + 2;
                     index++;
+                    merge_count--;
                 }
-                html += "<td " + merge_col + " style='margin: 1px; text-align: center; line-height:" + block_height + "px; display: inline-block; width:" + temp_width + "px; height:" + block_height + "px; background-color: #00aa00;'>" + chn_type + "</td>";
+                if (cur_row_num == 4 && cur_col_num == 3 && is_merge) {
+                    merge_cell = "rowspan='2'";
+                    temp_height = block_height * 2 + 2;
+                    merge_count--;
+                }
+                if (cur_row_num == 5 && cur_col_num == 4 && is_merge) {
+                    index++;
+                    html += "</tr>";
+                    html += "<tr>";
+                }
+                if (index == total_count && merge_count > 0 && is_merge) {
+                    merge_cell = "colspan='2'";
+                    temp_width = block_width * 2 + 2;
+                    index++;
+                    merge_count--;
+                }
+                var bg_color = corlor_list[get_random_index_from_arr(corlor_list)];
+                html += "<td class='word_type_menu' word_type='" + eng_type + "' " + merge_cell + " style='border:2px solid #007bff; text-align: center; line-height:" + temp_height + "px; width:" + temp_width + "px; height:" + temp_height + "px; background-color: " + bg_color + ";'>" + chn_type + "</td>";
                 index++;
+                cur_col_num++;
             });
             html += "</table>";
             $("#word_type").html(html);
+            $(".word_type_menu").click(function () {
+                var word_type = $(this).attr("word_type");
+                if (word_type == "recite_method") {
+                    $("#new_word_list").html($("#recite_method").html());
+                } else {
+                    page_update(word_type);
+                }
+                word_page_toggle();
+            });
         }
 
         function page_update(word_type) {
@@ -128,6 +157,11 @@
                 }
                 $("#word_count").html(word_indx);
             });
+        }
+
+        function word_page_toggle() {
+            $("#word_type").toggle(1000);
+            $("#new_word_list_div").toggle(1000);
         }
 
         function page_word_query(content_id, word) {
@@ -162,13 +196,38 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <div class="my-2 d-flex justify-content-end px-2">552个基础词汇、70%的日常表达
+            <div class="my-2 d-flex justify-content-end px-2">基础词汇轻松背
             </div>
             <hr class="my-0">
-            <div id="word_type" style="box-sizing: border-box;">
+            <div id="word_type" style="box-sizing: border-box; text-align: center;"></div>
+            <div id="new_word_list_div" class="my-2" style="display: none;">
+                <div class="text-warning" onclick="word_page_toggle();"><i class="fa fa-backward"></i> 返回</div>
+                <div id="new_word_list"></div>
+                <div class="text-warning mt-2" style="text-align: right;" onclick="word_page_toggle();">返回 <i
+                        class="fa fa-forward"></i></div>
             </div>
-            <div id="new_word_list" class="my-2 pl-5">
-            </div>
+        </div>
+    </div>
+</div>
+
+<div id="recite_method" style="display: none;">
+    <div class="mt-2">
+        背词奥义：
+        <div class="mt-2" style="text-indent: 2em;">
+            背单词的目的主要是为了“听得懂”，“能表达”。这几点与单词量的大小有一定关系，但切忌不要盲目的死记单词。
+        </div>
+        <div class="mt-2" style="text-indent: 2em;">
+            生活中常能遇见，单词量大，但不能开口，单词量不大，但却能流利表达的人。
+        </div>
+        <div class="mt-2" style="text-indent: 2em;">
+            所以，本站推荐的单词记忆途径是：先记住少量的基础词汇，融汇贯通后，形成自己的表达体系（这个会后续推出），再通过日常的听力和阅读来扩展自己的单词库。
+            这样可以达到事半功倍的效果。
+        </div>
+        <div class="mt-2" style="text-indent: 2em;">
+            本站精选了552个日常高频单词，通过记忆这不到1%的单词，却能够完成日常70%的表达，大家赶快背起来吧。相信其中肯定有许多是你已经认识的了。
+        </div>
+        <div class="mt-2" style="text-align: right;">
+            ---- keynes
         </div>
     </div>
 </div>
