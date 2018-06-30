@@ -139,6 +139,8 @@
             $(".show_date").html(getToday());
             $(".menu_btn, .my_menu").click(function () {
                 explain.hide();
+                $(".bottom_menu_btn").removeClass("btn-warning");
+                $(".bottom_menu_btn").addClass("btn-dark");
                 $("#sub_frame").attr("src", $(this).attr("link"));
             });
             $(".bottom_menu_btn").click(function () {
