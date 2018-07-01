@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
+    <link rel="icon" href="/image/myicon.png" type="image/x-icon"/>
+    <link rel='stylesheet' type='text/css' href='/lib/bootstrap-4.0.0/css/bootstrap.min.css'>
+    <link rel='stylesheet' type='text/css' href='/lib/font-awesome-4.7.0/css/font-awesome.min.css'>
+    <link rel='stylesheet' type='text/css' href='/common.css'>
+    <script src='/lib/jquery-3.2.1.min.js'></script>
+    <script src='../../lib/popper.min.js'></script>
+    <script src='/lib/bootstrap-4.0.0/js/bootstrap.min.js'></script>
+    <script src='/lib/common.js'></script>
+    <script src='/lib/english.js'></script>
+    <title>在学习中成长</title>
+    <style>
+        .main_menu {
+            display: inline-block;
+            width: 50px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+    </style>
+    <script>
+        var vbers = [
+            {ico: "fa-caret-left", bgc: "#007bff", bgc2: "#106bef"},
+            {tlt: "动作动词", sub: "Action Verbs"},
+            {tlt: "助动词", sub: "Auxiliary  / Helping Verb"},
+            {tlt: "状态动词", sub: "Stative Verbs"},
+            {tlt: "情态动词", sub: "Modal Verbs"},
+            {tlt: "动词短语", sub: "Phrasal Verbs"},
+            {tlt: "动词的时态", sub: "Verb Tenses"},
+            {tlt: "不规则动词", sub: "Irregular Verbs"},
+            {tlt: "动名词和不定式", sub: "Gerunds and Infinitives"},
+            {tlt: "动词被动式", sub: "Passive Voice"}
+        ];
+
+        var tense = [
+            {ico: "fa-caret-left", bgc: "#34495E", bgc2: "#2C3E50"},
+            {tlt: "一般现在时", sub: "Present Simple"},
+            {tlt: "现在进行时", sub: "Present Continuous"},
+            {tlt: "一般过去时", sub: "Past Simple"},
+            {tlt: "过去进行时", sub: "Past Continuous"},
+            {tlt: "一般将来时", sub: "Future Simple"},
+            {tlt: "将来进行时", sub: "Future Continuous"},
+            {tlt: "现在完成时", sub: "Present Perfect Simple"},
+            {tlt: "现在完成进行时", sub: "Present Perfect Continuous"},
+            {tlt: "过去完成时", sub: "Past Perfect Simple"},
+            {tlt: "过去完成进行时", sub: "Past Perfect Past Perfect"},
+            {tlt: "将来完成时", sub: "Future Perfect Simple"},
+            {tlt: "将来完成进行时", sub: "Future Perfect Continuous"}
+        ];
+
+        var sub_menu = {
+            "tense": tense,
+            "vbers": vbers
+        };
+
+        $(function () {
+            show_detail("vbers");
+        });
+
+        function show_detail(menu) {
+            var bg_color = $("#" + menu).css("background-color");
+            $(".menu_caret").css("color", bg_color);
+            $("#" + menu + " .menu_caret").css("color", "#fff");
+            $("body").css("background-color", bg_color);
+            make_sub_menu(menu);
+        }
+
+        function make_sub_menu(menu_name) {
+            var menu = sub_menu[menu_name];
+            var len = menu.length;
+            var html = "<div class='list-group' style='overflow-y: auto;'>";
+            for (var i = 1; i < len; i++) {
+                var bgc = menu[0].bgc;
+                if (i % 2 == 0) {
+                    bgc = menu[0].bgc2;
+                }
+                html += "<a href='#' class='list-group-item list-group-item-action flex-column align-items-start border-white text-white sub_menu_btn' index='" + i + "' menu_name='" + menu_name + "' style='background-color: " + bgc + ";'>";
+                html += "<div class='d-flex w-100 justify-content-between'>";
+                html += "<h5 class='mb-1'>" + menu[i].tlt + "</h5>";
+                html += "<small><i class='fa " + menu[0].ico + "'></i></small>";
+                html += "</div>";
+                html += "<small class='text-warning'>" + menu[i].sub + "</small>";
+                html += "</a>";
+            }
+            html += "</div>";
+            $("#sub").html(html);
+            $(".sub_menu_btn").click(function () {
+                var index = $(this).attr("index");
+                var menu_name = $(this).attr("menu_name");
+                var tlt = sub_menu[menu_name][index].tlt;
+                $(".cur_menu").html(tlt);
+                get_menu_content_from_db(menu_name, index);
+                page_toggle();
+            });
+        }
+
+        function get_menu_content_from_db(ty, idx) {
+            $.post("local_logic.php", {
+                type: "get_content_for_grammar",
+                ty: ty,
+                idx: idx
+            }, function (data) {
+                var info = eval("(" + data + ")");
+                if (info.length > 0) {
+                    $("#contend_detail").html(info[0]["content"]);
+                } else {
+                    $("#contend_detail").html("页面作成中。。。");
+                }
+            });
+        }
+
+        function page_toggle() {
+            $("#sub").toggle(1000);
+            $("#content").toggle(1000);
+        }
+    </script>
+</head>
+<body class="text-white" style="background-color: #007bff;">
+<audio id="play_sound"></audio>
+<span id="word_sound"></span>
+<input type="hidden" id="collapse_id">
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="my-2 d-flex justify-content-end px-2">学语法就是用来表达的
+            </div>
+            <hr class="my-0">
+            <div id="menu" style="box-sizing: border-box; position: relative;">
+                <div id="main"
+                     style="position: absolute; top: 10px; left: 0; height: 30px; text-align: center;"
+                     class="w-100 px-3">
+                    <div class="main_menu" id="vbers" style="background-color: #007bff;"
+                         onclick="show_detail('vbers');">动词
+                        <i class="fa fa-caret-down d-block menu_caret"></i></div>
+                    <div class="main_menu" id="tense" style="background-color: #34495E;"
+                         onclick="show_detail('tense');">时态
+                        <i class="fa fa-caret-down d-block menu_caret"></i></div>
+                </div>
+                <div id="sub" style="position: absolute; top: 60px; left: 0;" class="w-100 mb-4">
+                </div>
+                <div id="content" style="position: absolute; top: 60px; left: 0; display: none;" class="w-100 mb-4">
+                    <div class="text-warning" onclick="page_toggle();"><i class="fa fa-backward"></i> 返回 <span
+                            style="float: right;"><i class="fa fa-file"></i> <span
+                            class="cur_menu"></span></span></div>
+                    <div id="contend_detail" class="my-3"></div>
+                    <div class="text-warning mt-2" style="text-align: right;" onclick="page_toggle();">返回 <i
+                            class="fa fa-forward"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
