@@ -26,8 +26,9 @@
         }
     </style>
     <script>
+        var explain = top.$("#explain");
         var vbers = [
-            {ico: "fa-caret-left", bgc: "#007bff", bgc2: "#106bef"},
+            {ico: "fa-caret-left", bgc: "#E67E22", bgc2: "#D35400"},
             {tlt: "动作动词", sub: "Action Verbs"},
             {tlt: "助动词", sub: "Auxiliary  / Helping Verb"},
             {tlt: "状态动词", sub: "Stative Verbs"},
@@ -110,6 +111,7 @@
                 var info = eval("(" + data + ")");
                 if (info.length > 0) {
                     $("#contend_detail").html(info[0]["content"]);
+                    regist_word_translate(top.set_explain_word, top.query_word_callback);
                 } else {
                     $("#contend_detail").html("页面作成中。。。");
                 }
@@ -137,7 +139,7 @@
                 <div id="main"
                      style="position: absolute; top: 10px; left: 0; height: 30px; text-align: center;"
                      class="w-100 px-3">
-                    <div class="main_menu" id="vbers" style="background-color: #007bff;"
+                    <div class="main_menu" id="vbers" style="background-color: #E67E22;"
                          onclick="show_detail('vbers');">动词
                         <i class="fa fa-caret-down d-block menu_caret"></i></div>
                     <div class="main_menu" id="tense" style="background-color: #34495E;"

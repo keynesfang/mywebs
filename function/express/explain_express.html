@@ -15,6 +15,7 @@
     <script src="../../lib/bootstrap-wysiwyg/jquery.hotkeys.js"></script>
     <script src="../../lib/bootstrap-wysiwyg/prettify.js"></script>
     <script src="../../lib/bootstrap-wysiwyg/bootstrap-wysiwyg.js"></script>
+    <script src="../../lib/english.js"></script>
     <title>在学习中成长</title>
     <script>
         var news_id = "";
@@ -78,6 +79,14 @@
                 type: "add_content_for_grammar",
                 fieldArr: data_arr,
                 condition: condition
+            });
+        }
+        
+        function add_eng_query() {
+            var editor = $("#editor");
+            $.each(editor.children(), function (idx, div) {
+                div.innerHTML = get_query_sentence_from_normal(div.innerHTML);
+                console.log(div.innerHTML);
             });
         }
     </script>
@@ -168,6 +177,9 @@
                                     class="fa fa-undo"></i></a>
                             <a class="btn btn-default" data-edit="redo" title="Redo (Ctrl/Cmd+Y)"><i
                                     class="fa fa-repeat"></i></a>
+                        </div>
+                        <div class="btn-group">
+                            <button class="btn btn-default" onclick="add_eng_query();">Eng</button>
                         </div>
                     </div>
                     <div id="editor" class="lead" style="overflow:scroll; min-height: 500px;"
