@@ -66,6 +66,8 @@
         });
 
         function show_detail(menu) {
+            $("#sub").show(1000);
+            $("#content").hide(1000);
             var bg_color = $("#" + menu).css("background-color");
             $(".menu_caret").css("color", bg_color);
             $("#" + menu + " .menu_caret").css("color", "#fff");

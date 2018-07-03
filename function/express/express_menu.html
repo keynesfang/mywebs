@@ -26,22 +26,33 @@
         $(function () {
             top.set_height();
             set_sub_frame_height();
+            $(".menu_btn").click(function () {
+                var link = $(this).attr("link");
+                if (link) {
+                    $(".menu_btn").removeClass("text-warning");
+                    $(this).removeClass("text-white");
+                    $(this).addClass("text-warning");
+                    $("#express_content").attr("src", link);
+                }
+                $('#menu').toggle(200);
+            });
         });
         function set_sub_frame_height() {
-            $("#phonics_content").css("height", $("#sub_body").height() - 43);
+            $("#express_content").css("height", $("#sub_body").height() - 43);
         }
     </script>
 </head>
 <body id="sub_body" class=" bg-primary text-white" style="position: relative;">
 <h5 class="m-0 p-2 d-flex justify-content-end bg-primary text-white" onclick="$('#menu').toggle(200);"><span
         style="font-size: 16px;">菜单</span> <i class="ml-2 fa fa-align-justify"></i></h5>
-<h5 class="m-0 p-2 d-flex justify-content-end bg-primary text-warning" style="position: fixed; top: 0; left: 5px; font-size:16px;">
-    国际音标</h5>
+<h5 class="m-0 p-2 d-flex justify-content-end bg-primary text-warning"
+    style="position: fixed; top: 0; left: 5px; font-size: 16px;">
+    语法总纲</h5>
 <hr class="my-0">
 <div id="menu" class="w-100 bg-success p-2" style="display: none;">
     <span class="menu_btn pl-3 text-warning" link="basic.html">初识国际音标</span>
     <span class="pl-3 text-white">未完待续</span>
 </div>
-<iframe id="phonics_content" class="w-100 border-0" src="basic.html"></iframe>
+<iframe id="express_content" class="w-100 border-0" src="basic.html"></iframe>
 </body>
 </html>
