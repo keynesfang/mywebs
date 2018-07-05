@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
+    <link rel="icon" href="/image/myicon.png" type="image/x-icon"/>
+    <link rel='stylesheet' type='text/css' href='/lib/bootstrap-4.0.0/css/bootstrap.min.css'>
+    <link rel='stylesheet' type='text/css' href='/lib/video-js/css/video-js.min.css'>
+    <link rel='stylesheet' type='text/css' href='/lib/font-awesome-4.7.0/css/font-awesome.min.css'>
+    <link rel='stylesheet' type='text/css' href='/common.css'>
+    <script src='/lib/jquery-3.2.1.min.js'></script>
+    <script src='/lib/video-js/js/video.min.js'></script>
+    <script src='/lib/video_js_setting.js'></script>
+    <script src='/lib/common.js'></script>
+    <script src='/lib/english.js'></script>
+    <title>在学习中成长</title>
+    <style>
+        .title {
+            border-bottom: 1px solid #fff;
+        }
+
+        .content {
+            text-indent: 2em;
+        }
+
+        section {
+            margin-top: 10px;
+        }
+
+        rt {
+            color: greenyellow;
+        }
+        .section_title {
+
+        }
+        .explain {
+            font-size: 14px;
+            color: greenyellow;
+        }
+    </style>
+    <script>
+        $(function () {
+            $("#page").css("height", document.documentElement.clientHeight);
+        });
+    </script>
+</head>
+<body id="page" class=" bg-primary text-white" style="position: relative;">
+<div id="notice" class="p-2">
+    <div class="title text-warning d-flex justify-content-end">
+        句子的基本成分
+    </div>
+    <div class="content my-2">
+        <section>
+            在纲要第三点提到了“要从最简单的句子入手，然后不断扩充句子的成分”来学习语法，本文就来介绍一下什么是最简单的句子。
+        </section>
+    </div>
+    <div>
+        <section>
+            <div class="section_title text-warning">1. 主语 + 谓语（主谓结构）</div>
+            <ruby>I<rt>主语</rt></ruby> <ruby>escape<rt>谓语</rt></ruby>. <span class="explain">我逃脱了。</span>
+            <div>这应该是最简单的基本结构了，就两个单词，一个主语，一个谓语。</div>
+        </section>
+        <section>
+            <div class="section_title text-warning">2. 主语 + 谓语 + 宾语（主谓宾结构）</div>
+            <ruby>I<rt>主语</rt></ruby> <ruby> eat<rt>谓语</rt></ruby> <ruby>an apple<rt>宾语</rt></ruby>. <span class="explain">我吃一个苹果。</span>
+        </section>
+        <section>
+            <div class="section_title text-warning">3. 主语 + 谓语 + 间接宾语 + 直接宾语（主谓双宾语结构）</div>
+            <ruby>I<rt>主语</rt></ruby> <ruby> buy<rt>谓语</rt></ruby> <ruby>you<rt>间宾</rt></ruby> <ruby>a book<rt>直宾</rt></ruby>. <span class="explain">我给你买了本书。</span>
+            <div>一般来说指人为间接宾语，物品名词为直接宾语。以此例来说，“买”的是“书”，是动词的直接作用对象，所以书是“直接宾语”。而“你（you）”是“书”的接收者，与动词“买”没有直接关系，所以为间接宾语。</div>
+        </section>
+        <section>
+            <div class="section_title text-warning">3. 主语 + 谓语 + 宾语 + 宾语补足语（主谓宾宾补结构）</div>
+            <ruby>I<rt>主语</rt></ruby> <ruby> named<rt>谓语</rt></ruby> <ruby>the dog<rt>宾语</rt></ruby> <ruby>Candy<rt>宾补</rt></ruby>. <span class="explain">我给条狗取名叫坎迪。</span>
+            <div>在谓语动词之后接了宾语，但句义依旧不完整，需要再加另外的成分补充说明宾语的意义，这个成分就是宾语补足语。</div>
+        </section>
+        <section>
+            <div class="section_title text-warning">2. 主语 + 系动词 + 表语（主系表结构）</div>
+            <ruby>He<rt>主语</rt></ruby> <ruby> looks<rt>谓语</rt></ruby> <ruby>handsome<rt>表语</rt></ruby>. <span class="explain">他看起来真帅。</span>
+            <div>把主语和表语联系起来的动词，叫系动词（Linking Verb）。它虽然本身有词义，但不能单独用作谓语，其后必须跟表语，构成系表结构说明主语的状况、性质、特征等情况。
+                系动词最常见的是be，还有“五感”feel、look、sound、smell、taste和其它动词如become、grow...等。
+            </div>
+        </section>
+    </div>
+</div>
+<audio id="play_sound"></audio>
+</body>
+</html>
