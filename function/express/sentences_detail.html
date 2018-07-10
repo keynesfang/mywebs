@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
+    <link rel="icon" href="/image/myicon.png" type="image/x-icon"/>
+    <link rel='stylesheet' type='text/css' href='/lib/bootstrap-4.0.0/css/bootstrap.min.css'>
+    <link rel='stylesheet' type='text/css' href='/lib/video-js/css/video-js.min.css'>
+    <link rel='stylesheet' type='text/css' href='/lib/font-awesome-4.7.0/css/font-awesome.min.css'>
+    <link rel='stylesheet' type='text/css' href='/common.css'>
+    <script src='/lib/jquery-3.2.1.min.js'></script>
+    <script src='/lib/video-js/js/video.min.js'></script>
+    <script src='/lib/video_js_setting.js'></script>
+    <script src='/lib/common.js'></script>
+    <script src='/lib/english.js'></script>
+    <script src='/function/word_meaning/action.js'></script>
+    <script src='/function/word_meaning/english.js'></script>
+    <title>在学习中成长</title>
+    <style>
+        .title {
+            border-bottom: 1px solid #fff;
+            margin-top: 20px;
+        }
+
+        .content {
+            text-indent: 2em;
+        }
+
+        .eg {
+            border-radius: 5px;
+        }
+
+        rt {
+            color: greenyellow;
+        }
+
+        section {
+            margin-top: 10px;
+        }
+    </style>
+    <script>
+        $(function () {
+            $("#page").css("height", document.documentElement.clientHeight);
+            regist_click("key", for_something_show);
+            adjust_show_meaning_pos();
+        });
+
+        function adjust_show_meaning_pos() {
+            var show_meaning = $("#show_meaning");
+            var sub_frame_height = top.$("#sub_frame").height();
+            var cur_height = show_meaning.height();
+            show_meaning.css("top", (sub_frame_height - cur_height)/2);
+        }
+    </script>
+</head>
+<body id="page" class=" bg-primary text-white" style="position: relative;">
+<span id="for_something_show"></span>
+<div id="notice" class="p-2">
+    <div class="title text-warning mt-0 d-flex justify-content-end">
+        句子成分详解
+    </div>
+    <div class="content my-2">
+        <section>
+            上一节讲了句子成分可分为以下内容：
+            <ul style="text-indent: 0; font-size: 14px;" class="text-warning mt-2">
+                <li>主语、谓语、宾语、定语、状语、补足语、表语、同位语。</li>
+            </ul>
+        </section>
+        <section>
+            本篇内容就在针对每一个句子成分进行详解。
+        </section>
+    </div>
+    <div>
+        <div class="title text-warning">
+            主语
+        </div>
+        <section class="content">
+            主语是指我们要表达的句子的主角，整个句子都是围绕主语来写的。如主语做了什么，主语是什么状态（情况）等。
+            所以主语往往是人或者物体，而在英语词类中，人或者物体都是名词或者代词，可以笼统的说，主语是由名词或者代词担任。
+        </section>
+        <section>
+            <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div><ruby>I<rt>主语</rt></ruby> eat an apple. <span class="explain">我吃一个苹果。</span></div>
+        </section>
+
+        <div class="title text-warning d-flex justify-content-end">
+            谓语
+        </div>
+        <section class="content">
+            谓语要表达的是主语的动作、状态或者行为。由于表达的是动作，所以，我们一般说谓语的位置由动词担任。一个句子只有一个谓语，但有可能出现多个动词，也就是说，谓语都是动词，但是动词不一定都是谓语。
+        </section>
+        <section>
+            <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>I <ruby>eat<rt>谓语</rt></ruby> an apple. <span class="explain">我吃一个苹果。</span></div>
+        </section>
+    </div>
+</div>
+<audio id="play_sound"></audio>
+</body>
+</html>
