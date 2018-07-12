@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
+    <link rel="icon" href="/image/myicon.png" type="image/x-icon"/>
+    <link rel='stylesheet' type='text/css' href='/lib/bootstrap-4.0.0/css/bootstrap.min.css'>
+    <link rel='stylesheet' type='text/css' href='/lib/video-js/css/video-js.min.css'>
+    <link rel='stylesheet' type='text/css' href='/lib/font-awesome-4.7.0/css/font-awesome.min.css'>
+    <link rel='stylesheet' type='text/css' href='/common.css'>
+    <link rel='stylesheet' type='text/css' href='./local_css.css'>
+    <script src='/lib/jquery-3.2.1.min.js'></script>
+    <script src='/lib/video-js/js/video.min.js'></script>
+    <script src='/lib/video_js_setting.js'></script>
+    <script src='/lib/common.js'></script>
+    <script src='/lib/english.js'></script>
+    <script src='/function/word_meaning/action.js'></script>
+    <script src='/function/word_meaning/english.js'></script>
+    <title>在学习中成长</title>
+    <style>
+        .title {
+            border-bottom: 1px solid #fff;
+            margin-top: 20px;
+        }
+
+        .content {
+            text-indent: 2em;
+        }
+
+        .eg {
+            border-radius: 5px;
+        }
+
+        rt {
+            color: greenyellow;
+        }
+
+        section {
+            margin-top: 10px;
+        }
+
+        .key {
+            color: greenyellow;
+            font-weight: bold;
+            border-bottom: 1px solid #fff;
+        }
+    </style>
+    <script>
+        $(function () {
+            $("#page").css("height", document.documentElement.clientHeight);
+            regist_click("key", for_something_show);
+            adjust_show_meaning_pos();
+        });
+
+        function adjust_show_meaning_pos() {
+            var show_meaning = $("#show_meaning");
+            var sub_frame_height = top.$("#sub_frame").height();
+            var cur_height = show_meaning.height();
+            show_meaning.css("top", (sub_frame_height - cur_height)/2);
+        }
+    </script>
+</head>
+<body id="page" class=" bg-primary text-white" style="position: relative;">
+<span id="for_something_show"></span>
+<div id="notice" class="p-2">
+    <div class="title text-warning mt-0 d-flex justify-content-end">
+        主格宾格所有格
+    </div>
+    <div class="content my-2">
+        <section>
+            在开始前，先通过一个小问题来测试下你对本篇内容的了解程度：
+        </section>
+        <section>
+            你知道【I、me、my、mine】之间的用法和区别吗？
+        </section>
+        <section>
+            如果你的答案是否定的，那么下别的内容将帮你解惑。
+        </section>
+    </div>
+    <div>
+        <div class="title text-warning">
+            人称代词的主格与宾格
+        </div>
+        <section class="content">
+            英语中的<span class="key">人称代词</span>是有格的，分为主格和宾格。
+            之前讲句子成分时，提到了主语与宾语。那么在使用<span class="key">人称代词</span>担任主语和宾语时，分别需要使用主格和宾格。
+        </section>
+        <section>
+            英语中人称代词如下图所示：
+            <img src="./img/personal_pronoun.png" class="w-100">
+        </section>
+        <section>
+            <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div><ruby>I<rt>主格</rt></ruby> love <ruby>you<rt>宾格</rt></ruby>. <span class="explain">我爱你(你们)。</span></div>
+        </section>
+        <section>
+            <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div><ruby>He<rt>主格</rt></ruby> love <ruby>you<rt>宾格</rt></ruby>. <span class="explain">他爱你(你们)。注意：一般现在时中第三人称单数后动词结尾加<key2>s</key2>或<key2>es</key2>。</span></div>
+        </section>
+        <section>
+            <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div><ruby>I<rt>主格</rt></ruby> love <ruby>him/her/it<rt>宾格</rt></ruby>. <span class="explain">他爱他/她/它。</span></div>
+        </section>
+        <section>
+            <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div><ruby>You<rt>主格</rt></ruby> love <ruby>us<rt>宾格</rt></ruby>. <span class="explain">你爱我们。</span></div>
+        </section>
+        <section>
+            <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div><ruby>We<rt>主格</rt></ruby> love <ruby>them<rt>宾格</rt></ruby>. <span class="explain">我们爱他们。</span></div>
+        </section>
+
+        <div class="title text-warning">
+            物主代词的名词性与形容词性
+        </div>
+        <section class="content">
+            英语中的<span class="key">物主代词</span>分为了名词性物主代词和形容词性物主代词。
+            从名字就能看出来，一个代替名词的位置（用作主语或宾语），一个代替形容词的位置（用来修饰名词）。
+        </section>
+        <section>
+            英语中物主代词如下图所示：
+            <img src="./img/possecive_pronoun.png" class="w-100">
+        </section>
+        <section>
+            <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>That's not <ruby>my<rt>形容词性</rt></ruby> book. <ruby>Mine<rt>名词性</rt></ruby> is in the water. <span class="explain">这不是我的书，我的书在水里。</span></div>
+        </section>
+        <section>
+            <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div><ruby>You<rt>主格</rt></ruby> shut <ruby>your<rt>形容词性</rt></ruby> mouth. This is <ruby>my<rt>形容词性</rt></ruby> lover! He is <ruby>mine<rt>名词性</rt></ruby>! <span class="explain">这不是我的书，我的书在水里。</span></div>
+        </section>
+
+        <div class="title text-warning d-flex justify-content-end">
+            总结
+        </div>
+        <section class="content">
+            看完后是不是能解惑本篇开头的问题了呢！还是那句老话，在看这些语法时，不要光看文字，最好是结合例句一起理解，会起到事半功倍的效果。
+        </section>
+    </div>
+</div>
+<audio id="play_sound"></audio>
+</body>
+</html>
