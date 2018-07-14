@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
+    <link rel="icon" href="/image/myicon.png" type="image/x-icon"/>
+    <link rel='stylesheet' type='text/css' href='/lib/bootstrap-4.0.0/css/bootstrap.min.css'>
+    <link rel='stylesheet' type='text/css' href='/lib/video-js/css/video-js.min.css'>
+    <link rel='stylesheet' type='text/css' href='/lib/font-awesome-4.7.0/css/font-awesome.min.css'>
+    <link rel='stylesheet' type='text/css' href='/common.css'>
+    <link rel='stylesheet' type='text/css' href='./local_css.css'>
+    <script src='/lib/jquery-3.2.1.min.js'></script>
+    <script src='/lib/video-js/js/video.min.js'></script>
+    <script src='/lib/video_js_setting.js'></script>
+    <script src='/lib/common.js'></script>
+    <script src='/lib/english.js'></script>
+    <script src='/function/word_meaning/action.js'></script>
+    <script src='/function/word_meaning/english.js'></script>
+    <title>在学习中成长</title>
+    <style>
+        .title {
+            border-bottom: 1px solid #fff;
+            margin-top: 20px;
+        }
+
+        .content {
+            text-indent: 2em;
+        }
+
+        .eg {
+            border-radius: 5px;
+        }
+
+        rt {
+            color: greenyellow;
+        }
+
+        section {
+            margin-top: 10px;
+        }
+
+        .key {
+            color: greenyellow;
+            font-weight: bold;
+            border-bottom: 1px solid #fff;
+        }
+    </style>
+    <script>
+        $(function () {
+            $("#page").css("height", document.documentElement.clientHeight);
+            regist_click("key", for_something_show);
+            adjust_show_meaning_pos();
+        });
+
+        function adjust_show_meaning_pos() {
+            var show_meaning = $("#show_meaning");
+            var sub_frame_height = top.$("#sub_frame").height();
+            var cur_height = show_meaning.height();
+            show_meaning.css("top", (sub_frame_height - cur_height)/2);
+        }
+    </script>
+</head>
+<body id="page" class=" bg-primary text-white" style="position: relative;">
+<span id="for_something_show"></span>
+<div id="notice" class="p-2">
+    <div class="title text-warning mt-0 d-flex justify-content-end">
+        动词的时态
+    </div>
+    <div class="content my-2">
+        <section>
+            说起学习英语中的时态，有些人会觉得比较困难。为了降低学习难度，先把【动词的时态】分成两部分 -- 【动作发生的时间 + 动作进行的状态】。
+        </section>
+        <section>
+            下面，先用中文的思维来阐述时间与状态的概念，然后在套用到英语的学习上来。记住，中国人与外国人在语法上的表达顺序虽然不同，但逻辑思维是相同的。
+        </section>
+    </div>
+    <div>
+        <div class="title text-warning">
+            动作发生的时间
+        </div>
+        <section class="content">
+            从动作发生的时间看，在说话或表达时，可以总结为4种情况：“以前我做过什么”、“现在（最近）我在做什么”、“将来我准备做什么”、“当时我本来是打算做什么”。
+        </section>
+        <section class="content">
+            上面4个情况分别对应了时态中的 - “过去”、“现在”、“将来”、“过去将来”。
+        </section>
+
+        <div class="title text-warning d-flex justify-content-end">
+            动作进行的状态
+        </div>
+        <section class="content">
+            从动作进行的状态看，在说话或表达时，也可以总结为4种情况：“一贯的作法（状态）”、“动作正在进行中”、“动作已经完成，事情了结”、“当前动作已经完成，但事情还要继续”。
+        </section>
+        <section class="content">
+            上面4个情况分别对应了了时态中的 - “一般”、“进行”、“完成”、“完成进行”。
+        </section>
+
+        <div class="title text-warning">
+            动词的时态
+        </div>
+        <section class="content">
+            本篇的重点【时态】其实就是动词【时间 + 状态】的组合。上述4种时间与4种状态可以任意两两组合形成一种时态。也就是说英文中共有16种时态。如下图：
+            <img src="./img/tense.png" style="min-height: 100px;" class="w-100">
+        </section>
+        <section class="content">
+            上图中，红框部分的时态是日常使用频率最高的，绿框是基本不使用的，剩下的用得也相对较少。大家可以根据自己的精力来把握要掌握的程度。
+        </section>
+        <section class="content">
+            学习时态时，有两个重点，第一，不同时态的应用场景；第二，谓语动词根据时态的变化方式，如下图：
+            <img src="./img/tense_verb.png" style="min-height: 100px;" class="w-100">
+        </section>
+        <section class="content">
+            接下来，就针对每一种时态进行详细说明。
+        </section>
+
+        <div class="title text-warning d-flex justify-content-end">
+            一般现在时
+        </div>
+        <section>
+            应用场景：
+            <ul style="text-indent: 0; font-size: 14px;" class="text-warning mt-2">
+                <li>1. 表示经常发生或习惯性动作；</li>
+                <li>2. 表示一般性状态，主语的爱好或职业等；</li>
+                <li>3. 表示普遍存在的真理与客观事实、格言、谚语、警句等；</li>
+                <li>4. 戏剧、电影、新闻中的说明性文字；</li>
+            </ul>
+        </section>
+    </div>
+</div>
+<audio id="play_sound"></audio>
+</body>
+</html>
