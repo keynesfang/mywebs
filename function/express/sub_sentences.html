@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
+    <link rel="icon" href="/image/myicon.png" type="image/x-icon"/>
+    <link rel='stylesheet' type='text/css' href='/lib/bootstrap-4.0.0/css/bootstrap.min.css'>
+    <link rel='stylesheet' type='text/css' href='/lib/video-js/css/video-js.min.css'>
+    <link rel='stylesheet' type='text/css' href='/lib/font-awesome-4.7.0/css/font-awesome.min.css'>
+    <link rel='stylesheet' type='text/css' href='/common.css'>
+    <script src='/lib/jquery-3.2.1.min.js'></script>
+    <script src='/lib/video-js/js/video.min.js'></script>
+    <script src='/lib/video_js_setting.js'></script>
+    <script src='/lib/common.js'></script>
+    <script src='/lib/english.js'></script>
+    <script src='/function/word_meaning/action.js'></script>
+    <script src='/function/word_meaning/english.js'></script>
+    <title>在学习中成长</title>
+    <style>
+        .title {
+            border-bottom: 1px solid #fff;
+            margin-top: 20px;
+        }
+
+        .content {
+            text-indent: 2em;
+        }
+
+        section {
+            margin-top: 10px;
+        }
+
+        .eg {
+            border-radius: 5px;
+        }
+
+        rt {
+            color: greenyellow;
+        }
+        .explain {
+            font-size: 14px;
+            color: greenyellow;
+        }
+
+        .key {
+            color: greenyellow;
+            font-weight: bold;
+            border-bottom: 1px solid #fff;
+        }
+    </style>
+    <script>
+        $(function () {
+            $("#page").css("height", document.documentElement.clientHeight);
+            regist_click("key", for_something_show);
+            adjust_show_meaning_pos();
+        });
+
+        function adjust_show_meaning_pos() {
+            var show_meaning = $("#show_meaning");
+            var sub_frame_height = top.$("#sub_frame").height();
+            var cur_height = show_meaning.height();
+            show_meaning.css("top", (sub_frame_height - cur_height)/2);
+        }
+    </script>
+</head>
+<body id="page" class=" bg-primary text-white" style="position: relative;">
+<span id="for_something_show"></span>
+<div id="notice" class="p-2">
+    <div class="title text-warning mt-0 d-flex justify-content-end">
+        从句入门
+    </div>
+    <div class="content my-2">
+        <section>
+            提到从句，可能有的人会觉得比较复杂。那我们就把复杂的事情简单说。还记得之前提到过的主、谓、宾、定、状、补等【句子成分】吗？
+            比如，名词可以做主语和宾语，谓语一般由动词担当。而从句就是用句子作为句中的主语或宾语，也就是用一个句子来作为另一个句子的成分。
+        </section>
+        <section>
+            注意：不是所有句子成分都可以用句子来替换，如谓语，补语等。所以从句主要有以下几句：
+            <ul style="text-indent: 0; font-size: 14px;" class="text-warning mt-2">
+                <li>有主语从句、宾语从句、状语从句、定于从句、表语从句、同位语从句</li>
+            </ul>
+        </section>
+        <section>
+            从句这也句子，也符合以前说的5种句子基本结构。接下来，就一一来看各种从句。
+        </section>
+    </div>
+    <div>
+        <div class="title text-warning">
+            主语从句
+        </div>
+        <section>
+            <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div><ruby>What you think<rt>主语从名表主语</rt></ruby> <ruby>is<rt>系动词</rt></ruby> <ruby>not true<rt>表语</rt></ruby>. <span class="explain">你想的不对。</span></div>
+            整个句子是主系表结构，主语从句是主谓宾结构，you是主语，think是谓语，what是宾语。
+        </section>
+        <div class="title text-warning d-flex justify-content-end">
+            主语 + 谓语 + 宾语
+        </div>
+        <section>
+            <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div><ruby>I<rt>主语</rt></ruby> <ruby> eat<rt>谓语</rt></ruby> <ruby>an apple<rt>宾语</rt></ruby>. <span class="explain">我吃一个苹果。</span></div>
+            <div class="content">这个句型比上面多了一个宾语，表示主语对某个事物做了某个动作。这个宾语实际上就是谓语（动词）的接受者。所以，这里的动词必须是<span class="key" >及物动词</span>。</div>
+        </section>
+        <div class="title text-warning">
+            主语 + 谓语 + 间接宾语 + 直接宾语
+        </div>
+        <section>
+            <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div><ruby>I<rt>主语</rt></ruby> <ruby> buy<rt>谓语</rt></ruby> <ruby>you<rt>间宾</rt></ruby> <ruby>a book<rt>直宾</rt></ruby>. <span class="explain">我给你买了本书。</span></div>
+            <div class="content">这个句型相比上面，把宾语分成了直接宾语与间接宾语，表示谓语（动词）影响了两个事物，一个是直接影响的，一个是间接影响的。
+                以此例来说，“买”的是“书”，是动词的直接作用对象，所以书是“直接宾语”。而“你（you）”是“书”的接收者，与动词“买”没有直接关系，所以为间接宾语。</div>
+        </section>
+        <div class="title text-warning d-flex justify-content-end">
+            主语 + 谓语 + 宾语 + 宾语补足语
+        </div>
+        <section>
+            <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div><ruby>I<rt>主语</rt></ruby> <ruby> named<rt>谓语</rt></ruby> <ruby>the dog<rt>宾语</rt></ruby> <ruby>Candy<rt>宾补</rt></ruby>. <span class="explain">我给条狗取名叫坎迪。</span></div>
+            <div class="content">这个句型相比主谓宾句型，多了一个宾语补足语，说明在主谓宾的情况下，句义还不完整，需要再加另外的成分补充说明宾语的意义，这个成分就是宾语补足语。</div>
+        </section>
+        <div class="title text-warning">
+            主语 + 系动词 + 表语
+        </div>
+        <section>
+            <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div><ruby>He<rt>主语</rt></ruby> <ruby> looks<rt>系动词</rt></ruby> <ruby>handsome<rt>表语</rt></ruby>. <span class="explain">他看起来真帅。</span></div>
+            <div class="content">前面【主语 + 谓语（动词）】的句型表达了主语做了什么动作及对其他事物的影响，而【主语 + 系动词】构成系表结构则用来表示主语的身份、类别、特征、状态等情况。把主语和表语联系起来的动词，叫<span class="key" >系动词</span>。</div>
+        </section>
+        <div class="title text-warning d-flex justify-content-end">
+            总结
+        </div>
+        <section>
+            <div class="content">以上介绍了英语中最基本的5种句型结构。在后面的内容中，我们将基于这些结构对英语句子的构成进一步进行剖析。俗话说“读书百遍，其意自现。”如果你是初学者，或记忆力不是很好，可以没事时来多看几遍，也许每次都会有新的收获。</div>
+        </section>
+        <div class="title text-warning">
+            读后小问答
+        </div>
+        <section>
+            <div class="content">读完上述内容后，请尝试回答以下问题：</div>
+            <div class="content">1. 什么是【及物动词】与【不及物动词】？它们的差别在什么地方？</div>
+            <div class="content">2. 【主谓宾结构】与【主系表结构】有主要区别是什么？</div>
+            <div class="content">3. 什么是【直接宾语】与【间接宾语】？它们之间有什么联系？</div>
+            <div class="content">如果你还不能马上回答以上问题，也许你可以再读一遍，从文章中再找找答案。</div>
+        </section>
+    </div>
+</div>
+<audio id="play_sound"></audio>
+</body>
+</html>
