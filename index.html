@@ -36,13 +36,13 @@
 
         #head_div {
             position: absolute;
-            top: 30px;
+            top: 50px;
             right: 10px;
         }
 
         .head_img {
-            width: 55px;
-            height: 55px;
+            width: 50px;
+            height: 50px;
         }
 
         #title {
@@ -114,6 +114,11 @@
         .level {
             width: 24px;
             height: 24px;
+        }
+
+        .menu_name {
+            font-size: 12px;
+            color: #ffc107;
         }
     </style>
     <script>
@@ -298,16 +303,17 @@
 <body class="text-white">
 <div id="header">
     <div id="show_date" class="show_date"></div>
-    <div link="/notice.html" class="level_div menu_btn"><img class="level" src="/image/announcement.png"></div>
-    <div link="/function/reward/reading.html" class="level_div menu_btn" style="margin-right: 30px;"><img class="level" src="/image/level.png"></div>
-    <div link="/share.html" class="level_div menu_btn" style="margin-right: 62px;"><img class="level" src="/image/service.png"></div>
+    <div link="/notice.html" class="level_div menu_btn"><img class="level" src="/image/announcement.png"><div class="menu_name">秘诀</div></div>
+    <div link="/function/reward/reading.html" class="level_div menu_btn" style="margin-right: 41px;"><img class="level" src="/image/level.png"><div class="menu_name">战绩</div></div>
+    <div link="/share.html" class="level_div menu_btn" style="margin-right: 82px;"><img class="level" src="/image/service.png"><div class="menu_name">作者</div></div>
     <div id="show_header">
         <div id="head_div">
-            <div style="font-size: 12px;">未登陆</div>
+            <!--<div style="font-size: 12px;">未登陆</div>-->
             <div class="input-group d-inline-block">
                 <div class="input-group-append">
-                    <img id="head_img" class="head_img" src="image/boy.png">
-                    <button type="button" class="btn btn-outline-light dropdown-toggle dropdown-toggle-split"
+                    <button class="btn btn-outline-secondary text-white border-warning" style="border-bottom-left-radius: 5px; border-top-left-radius: 5px;" type="button">未</button>
+                    <img id="head_img" class="head_img border-light" src="image/boy.png">
+                    <button type="button" class="btn btn-outline-warning dropdown-toggle dropdown-toggle-split"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="sr-only">Toggle Dropdown</span>
                     </button>
@@ -325,8 +331,8 @@
     </div>
     <div id="show_header_simple" class="w-100" style="display: none;">
         <h5 class="mt-3 ml-4 mb-0">在学习中成长</h5>
-        <div id="login_status" style="position: absolute; right: 10px; top: 35px;">
-            <div class="input-group mb-3">
+        <div id="login_status" style="position: absolute; right: 10px; top: 44px;">
+            <div class="input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text bg-transparent"><i
                             class="fa fa-user text-warning"></i></span>
@@ -351,8 +357,8 @@
         <i class="fa fa-chevron-circle-down"></i>
     </div>
     <div id="output_bar"></div>
-    <iframe id="sub_frame" src="/function/express/express_menu.html" style="overflow: auto;"></iframe>
-    <!--<iframe id="sub_frame" src="/function/news/news_list2.html" style="overflow: auto;"></iframe>-->
+    <!--<iframe id="sub_frame" src="/function/express/sentences.html" style="overflow: auto;"></iframe>-->
+    <iframe id="sub_frame" src="/function/news/news_list2.html" style="overflow: auto;"></iframe>
 </div>
 <div id="menu_bar">
     <div id="menu" class="bg-primary">
