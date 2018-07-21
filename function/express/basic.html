@@ -8,6 +8,8 @@
     <link rel='stylesheet' type='text/css' href='/lib/video-js/css/video-js.min.css'>
     <link rel='stylesheet' type='text/css' href='/lib/font-awesome-4.7.0/css/font-awesome.min.css'>
     <link rel='stylesheet' type='text/css' href='/common.css'>
+    <link rel='stylesheet' type='text/css' href='./local_css.css'>
+    <script src='./local_common.js'></script>
     <script src='/lib/jquery-3.2.1.min.js'></script>
     <script src='/lib/video-js/js/video.min.js'></script>
     <script src='/lib/video_js_setting.js'></script>
@@ -15,16 +17,13 @@
     <script src='/lib/english.js'></script>
     <title>在学习中成长</title>
     <style>
-        .title {
-            border-bottom: 1px solid #fff;
-        }
-
         .content {
             text-indent: 2em;
         }
     </style>
     <script>
         $(function () {
+            init_title();
             $("#page").css("height", document.documentElement.clientHeight);
         });
     </script>
@@ -32,9 +31,9 @@
 <body id="page" class=" bg-primary text-white" style="position: relative;">
 <div id="notice" class="p-2">
     <div class="title text-warning d-flex justify-content-end">
-        学英语为什么要学语法
+        学英语为什么要学语法？
     </div>
-    <div class="content my-2">
+    <div class="content my-2 content_status">
         <section>
             逻辑思维，让我们可以说正确的话；而英语语法可以让我们正确的说话。听起来有点绕，但仔细想想，你会发现语法的本质其实就是把单词组合起来的一套规则，让别人明白你想表达什么。
         </section>
@@ -46,7 +45,7 @@
     <div class="title text-warning">
         英语语法难学吗？
     </div>
-    <div class="content my-2">
+    <div class="content my-2 content_status">
         <section>
             这貌似是一个仁者见仁，智者见智的问题。如果你有天赋，如果你有方法，如果你有毅力那你都有可能学好语法。如果你三者都没有，那也不用怕，因为你还有我。如果想学好语法，请接着往下看：
         </section>

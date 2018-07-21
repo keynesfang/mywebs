@@ -8,6 +8,8 @@
     <link rel='stylesheet' type='text/css' href='/lib/video-js/css/video-js.min.css'>
     <link rel='stylesheet' type='text/css' href='/lib/font-awesome-4.7.0/css/font-awesome.min.css'>
     <link rel='stylesheet' type='text/css' href='/common.css'>
+    <link rel='stylesheet' type='text/css' href='./local_css.css'>
+    <script src='./local_common.js'></script>
     <script src='/lib/jquery-3.2.1.min.js'></script>
     <script src='/lib/video-js/js/video.min.js'></script>
     <script src='/lib/video_js_setting.js'></script>
@@ -17,11 +19,6 @@
     <script src='/function/word_meaning/english.js'></script>
     <title>在学习中成长</title>
     <style>
-        .title {
-            border-bottom: 1px solid #fff;
-            margin-top: 20px;
-        }
-
         .content {
             text-indent: 2em;
         }
@@ -41,15 +38,10 @@
             font-size: 14px;
             color: greenyellow;
         }
-
-        .key {
-            color: greenyellow;
-            font-weight: bold;
-            border-bottom: 1px solid #fff;
-        }
     </style>
     <script>
         $(function () {
+            init_title();
             $("#page").css("height", document.documentElement.clientHeight);
             regist_click("key", for_something_show);
             adjust_show_meaning_pos();
@@ -69,7 +61,7 @@
     <div class="title text-warning mt-0 d-flex justify-content-end">
         从句入门
     </div>
-    <div class="content my-2">
+    <div class="content my-2 content_status">
         <section>
             提到从句，可能有的人会觉得比较复杂。那我们就把复杂的事情简单说。还记得之前提到过的主、谓、宾、定、状、补等【句子成分】吗？
             比如，名词可以做主语和宾语，谓语一般由动词担当。而从句就是用句子作为句中的主语或宾语，也就是用一个句子来作为另一个句子的成分。
@@ -88,71 +80,83 @@
         <div class="title text-warning">
             主语从句
         </div>
-        <section>
-            <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div><ruby>What you think<rt>主语从名做主语</rt></ruby> <ruby>is<rt>系动词</rt></ruby> <ruby>not true<rt>表语</rt></ruby>. <span class="explain">你想的不对。</span></div>
-        </section>
-        <section class="content">
-            整个句子是主系表结构，主语从句是主谓宾结构，you是主语，think是谓语，what是宾语。
-        </section>
+        <div class="content_status">
+            <section>
+                <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div><ruby>What you think<rt>主语从名做主语</rt></ruby> <ruby>is<rt>系动词</rt></ruby> <ruby>not true<rt>表语</rt></ruby>. <span class="explain">你想的不对。</span></div>
+            </section>
+            <section class="content">
+                整个句子是主系表结构，主语从句是主谓宾结构，you是主语，think是谓语，what是宾语。
+            </section>
+        </div>
 
         <div class="title text-warning d-flex justify-content-end">
             宾语从句
         </div>
-        <section>
-            <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div><ruby>They<rt>主语</rt></ruby> <ruby>said<rt>谓语</rt></ruby> <ruby>that<rt>引导词</rt></ruby> <ruby>you have pushed my car into that lake<rt>宾语从名做宾语</rt></ruby>. <span class="explain">他们说你把我的车推到那个湖里了。</span></div>
-        </section>
-        <section class="content">
-            注意：为了区别主句从句，往往在引导从句的时候前面加一个引导词。宾语从句一般使用【that】引导。
-        </section>
-        <section class="content">
-            整个句子是主谓宾结构，宾语从句是主谓宾宾补结构，you为主语，have pushed为谓语动词表现在完成时，my car是宾语从句中的宾语, into that lake是补语。
-        </section>
+        <div class="content_status">
+            <section>
+                <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div><ruby>They<rt>主语</rt></ruby> <ruby>said<rt>谓语</rt></ruby> <ruby>that<rt>引导词</rt></ruby> <ruby>you have pushed my car into that lake<rt>宾语从名做宾语</rt></ruby>. <span class="explain">他们说你把我的车推到那个湖里了。</span></div>
+            </section>
+            <section class="content">
+                注意：为了区别主句从句，往往在引导从句的时候前面加一个引导词。宾语从句一般使用【that】引导。
+            </section>
+            <section class="content">
+                整个句子是主谓宾结构，宾语从句是主谓宾宾补结构，you为主语，have pushed为谓语动词表现在完成时，my car是宾语从句中的宾语, into that lake是补语。
+            </section>
+        </div>
 
         <div class="title text-warning">
             定语从句
         </div>
-        <section>
-            <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>She comes from Qingdao, <ruby>which<rt>引导词</rt></ruby> <ruby>is my hometown<rt>定语从名做定语</rt></ruby>. <span class="explain">她来自青岛，我的家乡。</span></div>
-        </section>
-        <section class="content">
-            定语是用来修饰名词的，它修饰的名词叫做先行词，定语从句的引导词叫做关系词，先行词在定语从句中充当的成分，由关系词替代。
-        </section>
-        <section class="content">
-            整个句子是主谓宾结构，从句是主系表结构，定语修饰Qingdao，所以先行词是Qingdao, 关系词是which，在从句中，which替代先行词在从句中充当主语，从句的主语就是青岛，系动词is, 表语my hometown.
-        </section>
+        <div class="content_status">
+            <section>
+                <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>She comes from Qingdao, <ruby>which<rt>引导词</rt></ruby> <ruby>is my hometown<rt>定语从名做定语</rt></ruby>. <span class="explain">她来自青岛，我的家乡。</span></div>
+            </section>
+            <section class="content">
+                定语是用来修饰名词的，它修饰的名词叫做先行词，定语从句的引导词叫做关系词，先行词在定语从句中充当的成分，由关系词替代。
+            </section>
+            <section class="content">
+                整个句子是主谓宾结构，从句是主系表结构，定语修饰Qingdao，所以先行词是Qingdao, 关系词是which，在从句中，which替代先行词在从句中充当主语，从句的主语就是青岛，系动词is, 表语my hometown.
+            </section>
+        </div>
 
-        <div class="title text-warning">
+        <div class="title text-warning d-flex justify-content-end">
             状语从句
         </div>
-        <section>
-            <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>He was in the shower <ruby>when<rt>引导词</rt></ruby> <ruby>the door bell rang<rt>状语从名做状语</rt></ruby>. <span class="explain">他在洗澡时门铃响了。</span></div>
-        </section>
-        <section class="content">
-            状语从句有很多很多种，时间、地点、原因、条件、目的、结果、让步、方式和比较，这些每种都可以写成从句，上面是一个时间状语的例子。
-        </section>
-        <section class="content">
-            整个句子是主系表结构，从句是主谓结构，when 是时间引导词，the door bell是主语，rang是谓语。
-        </section>
+        <div class="content_status">
+            <section>
+                <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>He was in the shower <ruby>when<rt>引导词</rt></ruby> <ruby>the door bell rang<rt>状语从名做状语</rt></ruby>. <span class="explain">他在洗澡时门铃响了。</span></div>
+            </section>
+            <section class="content">
+                状语从句有很多很多种，时间、地点、原因、条件、目的、结果、让步、方式和比较，这些每种都可以写成从句，上面是一个时间状语的例子。
+            </section>
+            <section class="content">
+                整个句子是主系表结构，从句是主谓结构，when 是时间引导词，the door bell是主语，rang是谓语。
+            </section>
+        </div>
 
         <div class="title text-warning">
             表语从句
         </div>
-        <section>
-            <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>The question is <ruby>that<rt>引导词</rt></ruby> <ruby>we have no money<rt>表语从名做表语</rt></ruby>. <span class="explain">问题是我们没钱。</span></div>
-        </section>
-        <section class="content">
-            整个句子是主系表结构，从句是主谓宾结构，主语we, 谓语have, 宾语no money.
-        </section>
+        <div class="content_status">
+            <section>
+                <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>The question is <ruby>that<rt>引导词</rt></ruby> <ruby>we have no money<rt>表语从名做表语</rt></ruby>. <span class="explain">问题是我们没钱。</span></div>
+            </section>
+            <section class="content">
+                整个句子是主系表结构，从句是主谓宾结构，主语we, 谓语have, 宾语no money.
+            </section>
+        </div>
 
-        <div class="title text-warning">
+        <div class="title text-warning d-flex justify-content-end">
             同位语从句
         </div>
-        <section>
-            <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>The fact <ruby>that<rt>引导词</rt></ruby> <ruby>we have to go before the girl come out<rt>同位语从名做同位语</rt></ruby> is really sad. <span class="explain">我们只能在那个女孩出来之前离开的这个事实很令人悲伤。</span></div>
-        </section>
-        <section class="content">
-            整个句子是主系表结构，从句是主谓结构，主语是we，谓语是have to go, before the girl come out是状语。
-        </section>
+        <div class="content_status">
+            <section>
+                <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>The fact <ruby>that<rt>引导词</rt></ruby> <ruby>we have to go before the girl come out<rt>同位语从名做同位语</rt></ruby> is really sad. <span class="explain">我们只能在那个女孩出来之前离开的这个事实很令人悲伤。</span></div>
+            </section>
+            <section class="content">
+                整个句子是主系表结构，从句是主谓结构，主语是we，谓语是have to go, before the girl come out是状语。
+            </section>
+        </div>
 
     </div>
 </div>

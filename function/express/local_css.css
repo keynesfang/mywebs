@@ -7,3 +7,14 @@ key2 {
     color: greenyellow;
 }
 
+.title {
+    padding: 5px 10px;
+    background-color: #000;
+    border-radius: 5px;
+    border: 1px solid #fff;
+    margin-bottom: 5px;
+}
+
+.content_status {
+    margin-bottom: 20px;
+}

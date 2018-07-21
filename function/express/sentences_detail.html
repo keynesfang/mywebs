@@ -8,6 +8,8 @@
     <link rel='stylesheet' type='text/css' href='/lib/video-js/css/video-js.min.css'>
     <link rel='stylesheet' type='text/css' href='/lib/font-awesome-4.7.0/css/font-awesome.min.css'>
     <link rel='stylesheet' type='text/css' href='/common.css'>
+    <link rel='stylesheet' type='text/css' href='./local_css.css'>
+    <script src='./local_common.js'></script>
     <script src='/lib/jquery-3.2.1.min.js'></script>
     <script src='/lib/video-js/js/video.min.js'></script>
     <script src='/lib/video_js_setting.js'></script>
@@ -17,11 +19,6 @@
     <script src='/function/word_meaning/english.js'></script>
     <title>在学习中成长</title>
     <style>
-        .title {
-            border-bottom: 1px solid #fff;
-            margin-top: 20px;
-        }
-
         .content {
             text-indent: 2em;
         }
@@ -40,6 +37,7 @@
     </style>
     <script>
         $(function () {
+            init_title();
             $("#page").css("height", document.documentElement.clientHeight);
             regist_click("key", for_something_show);
             adjust_show_meaning_pos();
@@ -59,7 +57,7 @@
     <div class="title text-warning mt-0 d-flex justify-content-end">
         句子成分详解
     </div>
-    <div class="content my-2">
+    <div class="content my-2 content_status">
         <section>
             上一节讲了句子成分可分为以下内容：
             <ul style="text-indent: 0; font-size: 14px;" class="text-warning mt-2">
@@ -74,101 +72,119 @@
         <div class="title text-warning">
             主语
         </div>
-        <section class="content">
-            主语是指我们要表达的句子的主角，整个句子都是围绕主语来写的。如主语做了什么，主语是什么状态（情况）等。
-            所以主语往往是人或者物体，而在英语词类中，人或者物体都是名词或者代词，可以笼统的说，主语是由名词或者代词担任。
-        </section>
-        <section>
-            <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div><ruby>I<rt>主语</rt></ruby> eat an apple. <span class="explain">我吃一个苹果。</span></div>
-        </section>
+        <div class="content_status">
+            <section class="content">
+                主语是指我们要表达的句子的主角，整个句子都是围绕主语来写的。如主语做了什么，主语是什么状态（情况）等。
+                所以主语往往是人或者物体，而在英语词类中，人或者物体都是名词或者代词，可以笼统的说，主语是由名词或者代词担任。
+            </section>
+            <section>
+                <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div><ruby>I<rt>主语</rt></ruby> eat an apple. <span class="explain">我吃一个苹果。</span></div>
+            </section>
+        </div>
 
         <div class="title text-warning d-flex justify-content-end">
             谓语
         </div>
-        <section class="content">
-            谓语要表达的是主语的动作、状态或者行为。由于表达的是动作，所以，我们一般说谓语的位置由动词担任。一个句子只有一个谓语，但有可能出现多个动词，也就是说，谓语都是动词，但是动词不一定都是谓语。
-        </section>
-        <section>
-            <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>I <ruby>eat<rt>谓语</rt></ruby> an apple. <span class="explain">我吃一个苹果。</span></div>
-        </section>
+        <div class="content_status">
+            <section class="content">
+                谓语要表达的是主语的动作、状态或者行为。由于表达的是动作，所以，我们一般说谓语的位置由动词担任。一个句子只有一个谓语，但有可能出现多个动词，也就是说，谓语都是动词，但是动词不一定都是谓语。
+            </section>
+            <section>
+                <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>I <ruby>eat<rt>谓语</rt></ruby> an apple. <span class="explain">我吃一个苹果。</span></div>
+            </section>
+        </div>
 
         <div class="title text-warning">
             宾语
         </div>
-        <section class="content">
-            宾语是谓语的承受者，换句话说是主语动作的承受者。这个承受者可能是人可能是物，所以一般来说，宾语也是由代词和名词担任。
-        </section>
-        <section>
-            <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>I eat an <ruby>apple<rt>宾语</rt></ruby>. <span class="explain">我吃一个苹果。</span></div>
-        </section>
+        <div class="content_status">
+            <section class="content">
+                宾语是谓语的承受者，换句话说是主语动作的承受者。这个承受者可能是人可能是物，所以一般来说，宾语也是由代词和名词担任。
+            </section>
+            <section>
+                <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>I eat an <ruby>apple<rt>宾语</rt></ruby>. <span class="explain">我吃一个苹果。</span></div>
+            </section>
+        </div>
 
         <div class="title text-warning d-flex justify-content-end">
             定语
         </div>
-        <section class="content">
-            定语是用来起修饰作用的，可以看到在基本句式结构中见不到定语，状语等，因为它们存在与否不会对句子的整体结构产生破坏性的影响。
-            定语一般是用来修饰主语和宾语的，这些用来修饰主语或者宾语(名词或者代词)的词一般是由形容词担任，所以说定语一般是形容词。
-        </section>
-        <section>
-            <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>I eat a <ruby>big<rt>定语</rt></ruby> apple. <span class="explain">我吃一个苹果。</span></div>
-        </section>
+        <div class="content_status">
+            <section class="content">
+                定语是用来起修饰作用的，可以看到在基本句式结构中见不到定语，状语等，因为它们存在与否不会对句子的整体结构产生破坏性的影响。
+                定语一般是用来修饰主语和宾语的，这些用来修饰主语或者宾语(名词或者代词)的词一般是由形容词担任，所以说定语一般是形容词。
+            </section>
+            <section>
+                <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>I eat a <ruby>big<rt>定语</rt></ruby> apple. <span class="explain">我吃一个苹果。</span></div>
+            </section>
+        </div>
 
         <div class="title text-warning">
             状语
         </div>
-        <section class="content">
-            状语和定语相同，也是一个起修饰作用的语法成份，状语一般是用来形容谓语的状态。一般来说，状语是由副词担任。
-        </section>
-        <section>
-            <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>I <ruby>quickly<rt>状语</rt></ruby> dropped the club in hands. <span class="explain">我迅速丢掉了手中的棒子。</span></div>
-        </section>
+        <div class="content_status">
+            <section class="content">
+                状语和定语相同，也是一个起修饰作用的语法成份，状语一般是用来形容谓语的状态。一般来说，状语是由副词担任。
+            </section>
+            <section>
+                <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>I <ruby>quickly<rt>状语</rt></ruby> dropped the club in hands. <span class="explain">我迅速丢掉了手中的棒子。</span></div>
+            </section>
+        </div>
 
         <div class="title text-warning d-flex justify-content-end">
             表语
         </div>
-        <section class="content">
-            表语的位置和宾语基本一致，但是跟宾语有根本上的区别。宾语是指主语动作的承受者，是另外的人或物；但表语是表达主语的状态样貌工作等状态的成份。
-        </section>
-        <section>
-            <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>He looks <ruby>handsome<rt>表语</rt></ruby>. <span class="explain">他看起来真帅。</span></div>
-        </section>
+        <div class="content_status">
+            <section class="content">
+                表语的位置和宾语基本一致，但是跟宾语有根本上的区别。宾语是指主语动作的承受者，是另外的人或物；但表语是表达主语的状态样貌工作等状态的成份。
+            </section>
+            <section>
+                <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>He looks <ruby>handsome<rt>表语</rt></ruby>. <span class="explain">他看起来真帅。</span></div>
+            </section>
+        </div>
 
         <div class="title text-warning">
             同位语
         </div>
-        <section class="content">
-            同位语用来对名词进行解释说明，与其修饰的名词地位相同。同位语可以是词，可以是短语，可以是句子，一般紧跟在它修饰的名词之后。
-        </section>
-        <section>
-            <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>Mr. Smith, <ruby>our English teacher<rt>同位语</rt></ruby>, is very kind to us. <span class="explain">我们的英语老师史密斯先生对我们非常友善。</span></div>
-        </section>
-        <section class="content">
-            从句子中我们可以看出【Mr. Smith】与【our English teacher】都是指同一个人，所以它们在句子中有相同的地位（同位语），后者是前者的进一步说明。
-        </section>
+        <div class="content_status">
+            <section class="content">
+                同位语用来对名词进行解释说明，与其修饰的名词地位相同。同位语可以是词，可以是短语，可以是句子，一般紧跟在它修饰的名词之后。
+            </section>
+            <section>
+                <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>Mr. Smith, <ruby>our English teacher<rt>同位语</rt></ruby>, is very kind to us. <span class="explain">我们的英语老师史密斯先生对我们非常友善。</span></div>
+            </section>
+            <section class="content">
+                从句子中我们可以看出【Mr. Smith】与【our English teacher】都是指同一个人，所以它们在句子中有相同的地位（同位语），后者是前者的进一步说明。
+            </section>
+        </div>
 
         <div class="title text-warning d-flex justify-content-end">
             补语
         </div>
-        <section class="content">
-            一般来说如果构成主语或宾语的词语意思不够完整，需要加入另外的成份对主语或者宾语进行补充说明，这个成份就是补语。
-            这与同位语的功能有些相似，但记住同位语的地位与修饰的名词相同，而补语内容上的补充说明。
-        </section>
-        <section>
-            <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>I find the book <ruby>hard to understand<rt>补语</rt></ruby>. <span class="explain">我发现这本书很难理解。</span></div>
-        </section>
-        <section class="content">
-            【I find the book】是一个基本的主谓宾结构，而【hard to understand】是对【book】的补充说明 -- 书很难理解。
-        </section>
+        <div class="content_status">
+            <section class="content">
+                一般来说如果构成主语或宾语的词语意思不够完整，需要加入另外的成份对主语或者宾语进行补充说明，这个成份就是补语。
+                这与同位语的功能有些相似，但记住同位语的地位与修饰的名词相同，而补语内容上的补充说明。
+            </section>
+            <section>
+                <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>I find the book <ruby>hard to understand<rt>补语</rt></ruby>. <span class="explain">我发现这本书很难理解。</span></div>
+            </section>
+            <section class="content">
+                【I find the book】是一个基本的主谓宾结构，而【hard to understand】是对【book】的补充说明 -- 书很难理解。
+            </section>
+        </div>
 
         <div class="title text-warning">
             总结
         </div>
-        <section class="content">
-            本篇比较详细的介绍了句子成分及它们的用法。大家不用去死记硬背，多看句子多分析，忘记了再来翻一翻就行了。硬背的东西容易忘，用熟的技能会一直跟随你。
-        </section>
-        <section class="content">
-            除了定语等本身外，还有定语从句，同位语从句等更复杂的结构，这个在以后会逐步介绍，基础打好了，学起来会越来越简单。
-        </section>
+        <div class="content_status">
+            <section class="content">
+                本篇比较详细的介绍了句子成分及它们的用法。大家不用去死记硬背，多看句子多分析，忘记了再来翻一翻就行了。硬背的东西容易忘，用熟的技能会一直跟随你。
+            </section>
+            <section class="content">
+                除了定语等本身外，还有定语从句，同位语从句等更复杂的结构，这个在以后会逐步介绍，基础打好了，学起来会越来越简单。
+            </section>
+        </div>
     </div>
 </div>
 <audio id="play_sound"></audio>

@@ -9,6 +9,7 @@
     <link rel='stylesheet' type='text/css' href='/lib/font-awesome-4.7.0/css/font-awesome.min.css'>
     <link rel='stylesheet' type='text/css' href='/common.css'>
     <link rel='stylesheet' type='text/css' href='./local_css.css'>
+    <script src='./local_common.js'></script>
     <script src='/lib/jquery-3.2.1.min.js'></script>
     <script src='/lib/video-js/js/video.min.js'></script>
     <script src='/lib/video_js_setting.js'></script>
@@ -18,11 +19,6 @@
     <script src='/function/word_meaning/english.js'></script>
     <title>在学习中成长</title>
     <style>
-        .title {
-            border-bottom: 1px solid #fff;
-            margin-top: 20px;
-        }
-
         .content {
             text-indent: 2em;
         }
@@ -47,6 +43,7 @@
     </style>
     <script>
         $(function () {
+            init_title();
             $("#page").css("height", document.documentElement.clientHeight);
             regist_click("key", for_something_show);
             adjust_show_meaning_pos();
@@ -64,9 +61,9 @@
 <span id="for_something_show"></span>
 <div id="notice" class="p-2">
     <div class="title text-warning mt-0 d-flex justify-content-end">
-        动词的时态
+        初识动词的时态
     </div>
-    <div class="content my-2">
+    <div class="content my-2 content_status">
         <section>
             说起学习英语中的时态，有些人会觉得比较困难。为了降低学习难度，先把【动词的时态】分成两部分 -- 【动作发生的时间 + 动作进行的状态】。
         </section>
@@ -78,349 +75,375 @@
         <div class="title text-warning">
             动作发生的时间
         </div>
-        <section class="content">
-            从动作发生的时间看，在说话或表达时，可以总结为4种情况：“以前我做过什么”、“现在（最近）我在做什么”、“将来我准备做什么”、“当时我本来是打算做什么”。
-        </section>
-        <section class="content">
-            上面4个情况分别对应了时态中的 - “过去”、“现在”、“将来”、“过去将来”。
-        </section>
+        <div class="content_status">
+            <section class="content">
+                从动作发生的时间看，在说话或表达时，可以总结为4种情况：“以前我做过什么”、“现在（最近）我在做什么”、“将来我准备做什么”、“当时我本来是打算做什么”。
+            </section>
+            <section class="content">
+                上面4个情况分别对应了时态中的 - “过去”、“现在”、“将来”、“过去将来”。
+            </section>
+        </div>
 
         <div class="title text-warning d-flex justify-content-end">
             动作进行的状态
         </div>
-        <section class="content">
-            从动作进行的状态看，在说话或表达时，也可以总结为4种情况：“一贯的作法（状态）”、“动作正在进行中”、“动作已经完成，事情了结”、“当前动作已经完成，但事情还要继续”。
-        </section>
-        <section class="content">
-            上面4个情况分别对应了了时态中的 - “一般”、“进行”、“完成”、“完成进行”。
-        </section>
+        <div class="content_status">
+            <section class="content">
+                从动作进行的状态看，在说话或表达时，也可以总结为4种情况：“一贯的作法（状态）”、“动作正在进行中”、“动作已经完成，事情了结”、“当前动作已经完成，但事情还要继续”。
+            </section>
+            <section class="content">
+                上面4个情况分别对应了了时态中的 - “一般”、“进行”、“完成”、“完成进行”。
+            </section>
+        </div>
 
         <div class="title text-warning">
-            动词的时态
+            再说动词的时态
         </div>
-        <section class="content">
-            本篇的重点【时态】其实就是动词【时间 + 状态】的组合。上述4种时间与4种状态可以任意两两组合形成一种时态。也就是说英文中共有16种时态。如下图：
-            <img src="./img/tense.png" style="min-height: 100px;" class="w-100">
-        </section>
-        <section class="content">
-            上图中，红框部分的时态是日常使用频率最高的，绿框是基本不使用的，剩下的用得也相对较少。大家可以根据自己的精力来把握要掌握的程度。
-        </section>
-        <section class="content">
-            学习时态时，有两个重点，第一，不同时态的应用场景；第二，谓语动词根据时态的变化方式，如下图：
-            <img src="./img/tense_verb.png" style="min-height: 100px;" class="w-100">
-        </section>
-        <section class="content">
-            接下来，就针对每一种时态进行详细说明。
-        </section>
+        <div class="content_status">
+            <section class="content">
+                本篇的重点【时态】其实就是动词【时间 + 状态】的组合。上述4种时间与4种状态可以任意两两组合形成一种时态。也就是说英文中共有16种时态。如下图：
+                <img src="./img/tense.png" style="min-height: 100px;" class="w-100">
+            </section>
+            <section class="content">
+                上图中，红框部分的时态是日常使用频率最高的，绿框是基本不使用的，剩下的用得也相对较少。大家可以根据自己的精力来把握要掌握的程度。
+            </section>
+            <section class="content">
+                学习时态时，有两个重点，第一，不同时态的应用场景；第二，谓语动词根据时态的变化方式，如下图：
+                <img src="./img/tense_verb.png" style="min-height: 100px;" class="w-100">
+            </section>
+            <section class="content">
+                接下来，就针对每一种时态进行详细说明。
+            </section>
+        </div>
 
         <div class="title text-warning d-flex justify-content-end">
             一般现在时
         </div>
+        <div class="content_status">
+            <section>
+                应用场景：
+                <ul style="text-indent: 0; font-size: 14px;" class="text-warning mt-2">
+                    <li>1. 表示经常发生或习惯性动作；</li>
+                    <li>2. 表示一般性状态，主语的爱好或职业等；</li>
+                    <li>3. 表示普遍存在的真理与客观事实、格言、谚语、警句等；</li>
+                    <li>4. 戏剧、电影、新闻中的说明性文字；</li>
+                    <li>5. 传达过去不确定时间发出的信息。仅限tell,say,learn,hear,write等几个动词。</li>
+                </ul>
+            </section>
+            <section>
+                语法构成：
+                <ul style="text-indent: 0; font-size: 14px;" class="text-warning mt-2">
+                    <li>肯定式：主语 + 动词原形（第三人称动词原形要 + s/es）；</li>
+                    <li>否定式：主语 + do/does not + 动词原形；</li>
+                    <li>疑问式：Do/Does + 主语 + 动词原形；</li>
+                    <li>疑问否定式：Do/Does + 主语 + not + 动词原形；</li>
+                </ul>
+            </section>
+            <section>
+                例句参考：
+            </section>
+            <section>
+                <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>He <ruby>lives<rt>动词原形</rt></ruby> in a small town. <span class="explain">他住在一个小镇上。</span></div>
+            </section>
+            <section>
+                <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>Tom <ruby>likes<rt>动词原形</rt></ruby> <ruby>swimming<rt>动名词做宾语</rt></ruby>. <span class="explain">汤母喜欢游泳。</span></div>
+            </section>
+            <section>
+                <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>I <ruby>hear<rt>动词原形</rt></ruby> you're moving. <span class="explain">我听说你要搬家了（传达过去不确定时间发出的信息）。</span></div>
+            </section>
+        </div>
+    </div>
+
+    <div class="title text-warning">
+        一般过去时
+    </div>
+    <div class="content_status">
         <section>
             应用场景：
             <ul style="text-indent: 0; font-size: 14px;" class="text-warning mt-2">
-                <li>1. 表示经常发生或习惯性动作；</li>
-                <li>2. 表示一般性状态，主语的爱好或职业等；</li>
-                <li>3. 表示普遍存在的真理与客观事实、格言、谚语、警句等；</li>
-                <li>4. 戏剧、电影、新闻中的说明性文字；</li>
-                <li>5. 传达过去不确定时间发出的信息。仅限tell,say,learn,hear,write等几个动词。</li>
+                <li>1. 表示过去某个时间发生的动作或存在的状态；</li>
+                <li>2. 表示过去经常或反复发生的动作；</li>
             </ul>
         </section>
         <section>
             语法构成：
             <ul style="text-indent: 0; font-size: 14px;" class="text-warning mt-2">
-                <li>肯定式：主语 + 动词原形（第三人称动词原形要 + s/es）；</li>
-                <li>否定式：主语 + do/does not + 动词原形；</li>
-                <li>疑问式：Do/Does + 主语 + 动词原形；</li>
-                <li>疑问否定式：Do/Does + 主语 + not + 动词原形；</li>
+                <li>肯定式：主语 + 动词过去式；</li>
+                <li>否定式：主语 + did not + 动词原形；</li>
+                <li>疑问式：Did + 主语 + 动词原形；</li>
+                <li>疑问否定式：Did + 主语 + not + 动词原形；</li>
             </ul>
         </section>
         <section>
             例句参考：
         </section>
         <section>
-            <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>He <ruby>lives<rt>动词原形</rt></ruby> in a small town. <span class="explain">他住在一个小镇上。</span></div>
+            <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>I <ruby>was<rt>am的过去式</rt></ruby> a doctor. <span class="explain">我以前当过医生。</span></div>
         </section>
         <section>
-            <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>Tom <ruby>likes<rt>动词原形</rt></ruby> <ruby>swimming<rt>动名词做宾语</rt></ruby>. <span class="explain">汤母喜欢游泳。</span></div>
-        </section>
-        <section>
-            <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>I <ruby>hear<rt>动词原形</rt></ruby> you're moving. <span class="explain">我听说你要搬家了（传达过去不确定时间发出的信息）。</span></div>
+            <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>We often<ruby>played<rt>动词过去式</rt></ruby> together when we <ruby>were<rt>are的过去式</rt></ruby> children. <span class="explain">我们小时候经常一起玩。</span></div>
         </section>
     </div>
-
-    <div class="title text-warning">
-        一般过去时
-    </div>
-    <section>
-        应用场景：
-        <ul style="text-indent: 0; font-size: 14px;" class="text-warning mt-2">
-            <li>1. 表示过去某个时间发生的动作或存在的状态；</li>
-            <li>2. 表示过去经常或反复发生的动作；</li>
-        </ul>
-    </section>
-    <section>
-        语法构成：
-        <ul style="text-indent: 0; font-size: 14px;" class="text-warning mt-2">
-            <li>肯定式：主语 + 动词过去式；</li>
-            <li>否定式：主语 + did not + 动词原形；</li>
-            <li>疑问式：Did + 主语 + 动词原形；</li>
-            <li>疑问否定式：Did + 主语 + not + 动词原形；</li>
-        </ul>
-    </section>
-    <section>
-        例句参考：
-    </section>
-    <section>
-        <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>I <ruby>was<rt>am的过去式</rt></ruby> a doctor. <span class="explain">我以前当过医生。</span></div>
-    </section>
-    <section>
-        <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>We often<ruby>played<rt>动词过去式</rt></ruby> together when we <ruby>were<rt>are的过去式</rt></ruby> children. <span class="explain">我们小时候经常一起玩。</span></div>
-    </section>
 
     <div class="title text-warning d-flex justify-content-end">
         一般将来式
     </div>
-    <section>
-        应用场景：
-        <ul style="text-indent: 0; font-size: 14px;" class="text-warning mt-2">
-            <li>1. 表示将来发生的动作或存在的状态；</li>
-            <li>2. 表示一种倾向或固有性会发生的动作；</li>
-        </ul>
-    </section>
-    <section>
-        语法构成：
-        <ul style="text-indent: 0; font-size: 14px;" class="text-warning mt-2">
-            <li>肯定式：主语 + shall/will + 动词原形；</li>
-            <li>否定式：主语 + shall/will not + 动词原形；</li>
-            <li>疑问式：Shall/Will + 主语 + 动词原形；</li>
-            <li>疑问否定式：Shall/Will + 主语 + not + 动词原形；</li>
-        </ul>
-    </section>
-    <section>
-        例句参考：
-    </section>
-    <section>
-        <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>I <ruby>will<rt>表将来</rt></ruby> see a film tonight. <span class="explain">今天晚上我要看电影。</span></div>
-    </section>
-    <section>
-        <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div><ruby>Will<rt>表将来</rt></ruby> I see you again next yea? <span class="explain">明年还能见到你吗？</span></div>
-    </section>
-    <section>
-        <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>A chair <ruby>will<rt>表固有性</rt></ruby> not stand on two legs. <span class="explain">两条腿的椅子是立不起的。</span></div>
-    </section>
+    <div class="content_status">
+        <section>
+            应用场景：
+            <ul style="text-indent: 0; font-size: 14px;" class="text-warning mt-2">
+                <li>1. 表示将来发生的动作或存在的状态；</li>
+                <li>2. 表示一种倾向或固有性会发生的动作；</li>
+            </ul>
+        </section>
+        <section>
+            语法构成：
+            <ul style="text-indent: 0; font-size: 14px;" class="text-warning mt-2">
+                <li>肯定式：主语 + shall/will + 动词原形；</li>
+                <li>否定式：主语 + shall/will not + 动词原形；</li>
+                <li>疑问式：Shall/Will + 主语 + 动词原形；</li>
+                <li>疑问否定式：Shall/Will + 主语 + not + 动词原形；</li>
+            </ul>
+        </section>
+        <section>
+            例句参考：
+        </section>
+        <section>
+            <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>I <ruby>will<rt>表将来</rt></ruby> see a film tonight. <span class="explain">今天晚上我要看电影。</span></div>
+        </section>
+        <section>
+            <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div><ruby>Will<rt>表将来</rt></ruby> I see you again next yea? <span class="explain">明年还能见到你吗？</span></div>
+        </section>
+        <section>
+            <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>A chair <ruby>will<rt>表固有性</rt></ruby> not stand on two legs. <span class="explain">两条腿的椅子是立不起的。</span></div>
+        </section>
+    </div>
 
     <div class="title text-warning">
         现在进行时
     </div>
-    <section>
-        应用场景：
-        <ul style="text-indent: 0; font-size: 14px;" class="text-warning mt-2">
-            <li>1. 表示此时此刻正在进行或发生的动作；</li>
-            <li>2. 表示现阶段进正进行（说话时不一定在进行）的动作；</li>
-            <li>3. 表示一种渐变的过程；</li>
-            <li>4. 表示知觉与情感等动词不能用于现在进行时，如：see,hear,smell,taste,notice,feel,find,forget,know,like,love,think,understand,want,wish等。个人猜估计是see,hear等词是一种长期的能力或状态，用一般现在式表达准确。</li>
-        </ul>
-    </section>
-    <section>
-        语法构成：
-        <ul style="text-indent: 0; font-size: 14px;" class="text-warning mt-2">
-            <li>肯定式：主语 + am/is/are 动词现在分词；</li>
-            <li>否定式：主语 + am/is/are not + 动词现在分词；</li>
-            <li>疑问式：Am/Is/Are + 主语 + 动词现在分词；</li>
-            <li>疑问否定式：Am/Is/Are + 主语 + not + 动词现在分词；</li>
-        </ul>
-    </section>
-    <section>
-        例句参考：
-    </section>
-    <section>
-        <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>Kate <ruby>is learning<rt>is+现在分词表正在进行</rt></ruby> English. <span class="explain">凯特正在学英语。</span></div>
-    </section>
-    <section>
-        <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>We <ruby>are working<rt>are+现在分词表正在进行</rt></ruby> on a farm these days. <span class="explain">这些天我们在农场干活。</span></div>
-    </section>
-    <section>
-        <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>The days <ruby>are getting<rt>are+现在分词表正在进行</rt></ruby> shorter and shorter in winter. <span class="explain">冬季白天变得越来越短了。</span></div>
-    </section>
+    <div class="content_status">
+        <section>
+            应用场景：
+            <ul style="text-indent: 0; font-size: 14px;" class="text-warning mt-2">
+                <li>1. 表示此时此刻正在进行或发生的动作；</li>
+                <li>2. 表示现阶段进正进行（说话时不一定在进行）的动作；</li>
+                <li>3. 表示一种渐变的过程；</li>
+                <li>4. 表示知觉与情感等动词不能用于现在进行时，如：see,hear,smell,taste,notice,feel,find,forget,know,like,love,think,understand,want,wish等。个人猜估计是see,hear等词是一种长期的能力或状态，用一般现在式表达准确。</li>
+            </ul>
+        </section>
+        <section>
+            语法构成：
+            <ul style="text-indent: 0; font-size: 14px;" class="text-warning mt-2">
+                <li>肯定式：主语 + am/is/are 动词现在分词；</li>
+                <li>否定式：主语 + am/is/are not + 动词现在分词；</li>
+                <li>疑问式：Am/Is/Are + 主语 + 动词现在分词；</li>
+                <li>疑问否定式：Am/Is/Are + 主语 + not + 动词现在分词；</li>
+            </ul>
+        </section>
+        <section>
+            例句参考：
+        </section>
+        <section>
+            <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>Kate <ruby>is learning<rt>is+现在分词表正在进行</rt></ruby> English. <span class="explain">凯特正在学英语。</span></div>
+        </section>
+        <section>
+            <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>We <ruby>are working<rt>are+现在分词表正在进行</rt></ruby> on a farm these days. <span class="explain">这些天我们在农场干活。</span></div>
+        </section>
+        <section>
+            <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>The days <ruby>are getting<rt>are+现在分词表正在进行</rt></ruby> shorter and shorter in winter. <span class="explain">冬季白天变得越来越短了。</span></div>
+        </section>
+    </div>
 
     <div class="title text-warning d-flex justify-content-end">
         过去进行时
     </div>
-    <section>
-        应用场景：
-        <ul style="text-indent: 0; font-size: 14px;" class="text-warning mt-2">
-            <li>1. 表示过去某时某刻正在进行或发生的动作；</li>
-            <li>2. 表示有事发生的背景；</li>
-        </ul>
-    </section>
-    <section>
-        语法构成：
-        <ul style="text-indent: 0; font-size: 14px;" class="text-warning mt-2">
-            <li>肯定式：主语 + was/were 动词现在分词；</li>
-            <li>否定式：主语 + was/were not + 动词现在分词；</li>
-            <li>疑问式：Was/Were + 主语 + 动词现在分词；</li>
-            <li>疑问否定式：Was/Were + 主语 + not + 动词现在分词；</li>
-        </ul>
-    </section>
-    <section>
-        例句参考：
-    </section>
-    <section>
-        <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>I <ruby>was watching<rt>was+现在分词表过去进行</rt></ruby> TV at nine last night. <span class="explain">昨晚9点我在看电视。</span></div>
-    </section>
-    <section>
-        <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>It <ruby>was getting<rt>was+现在分词表过去进行</rt></ruby> dark. <span class="explain">天渐渐暗下来了。</span></div>
-    </section>
+    <div class="content_status">
+        <section>
+            应用场景：
+            <ul style="text-indent: 0; font-size: 14px;" class="text-warning mt-2">
+                <li>1. 表示过去某时某刻正在进行或发生的动作；</li>
+                <li>2. 表示有事发生的背景；</li>
+            </ul>
+        </section>
+        <section>
+            语法构成：
+            <ul style="text-indent: 0; font-size: 14px;" class="text-warning mt-2">
+                <li>肯定式：主语 + was/were 动词现在分词；</li>
+                <li>否定式：主语 + was/were not + 动词现在分词；</li>
+                <li>疑问式：Was/Were + 主语 + 动词现在分词；</li>
+                <li>疑问否定式：Was/Were + 主语 + not + 动词现在分词；</li>
+            </ul>
+        </section>
+        <section>
+            例句参考：
+        </section>
+        <section>
+            <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>I <ruby>was watching<rt>was+现在分词表过去进行</rt></ruby> TV at nine last night. <span class="explain">昨晚9点我在看电视。</span></div>
+        </section>
+        <section>
+            <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>It <ruby>was getting<rt>was+现在分词表过去进行</rt></ruby> dark. <span class="explain">天渐渐暗下来了。</span></div>
+        </section>
+    </div>
 
     <div class="title text-warning">
         将来进行时
     </div>
-    <section>
-        应用场景：
-        <ul style="text-indent: 0; font-size: 14px;" class="text-warning mt-2">
-            <li>1. 表示将来某时某刻正在进行或发生的动作；</li>
-        </ul>
-    </section>
-    <section>
-        语法构成：
-        <ul style="text-indent: 0; font-size: 14px;" class="text-warning mt-2">
-            <li>肯定式：主语 + shall/will + be 动词现在分词；</li>
-            <li>否定式：主语 + shall/will not + be + 动词现在分词；</li>
-            <li>疑问式：Shall/Will + 主语 + be + 动词现在分词；</li>
-            <li>疑问否定式：Shall/Will + 主语 + not + be + 动词现在分词；</li>
-        </ul>
-    </section>
-    <section>
-        例句参考：
-    </section>
-    <section>
-        <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>What <ruby>will you be doing<rt>表将来进行时</rt></ruby> this time tomorrow? <span class="explain">明天这个时候你要做什么？</span></div>
-    </section>
-    <section>
-        <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>He <ruby>will be meeting<rt>was+现在分词表过去进行</rt></ruby> us at the station. <span class="explain">他会在车站接我们的。</span></div>
-    </section>
+    <div class="content_status">
+        <section>
+            应用场景：
+            <ul style="text-indent: 0; font-size: 14px;" class="text-warning mt-2">
+                <li>1. 表示将来某时某刻正在进行或发生的动作；</li>
+            </ul>
+        </section>
+        <section>
+            语法构成：
+            <ul style="text-indent: 0; font-size: 14px;" class="text-warning mt-2">
+                <li>肯定式：主语 + shall/will + be 动词现在分词；</li>
+                <li>否定式：主语 + shall/will not + be + 动词现在分词；</li>
+                <li>疑问式：Shall/Will + 主语 + be + 动词现在分词；</li>
+                <li>疑问否定式：Shall/Will + 主语 + not + be + 动词现在分词；</li>
+            </ul>
+        </section>
+        <section>
+            例句参考：
+        </section>
+        <section>
+            <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>What <ruby>will you be doing<rt>表将来进行时</rt></ruby> this time tomorrow? <span class="explain">明天这个时候你要做什么？</span></div>
+        </section>
+        <section>
+            <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>He <ruby>will be meeting<rt>was+现在分词表过去进行</rt></ruby> us at the station. <span class="explain">他会在车站接我们的。</span></div>
+        </section>
+    </div>
 
     <div class="title text-warning d-flex justify-content-end">
         现在完成时
     </div>
-    <section>
-        应用场景：
-        <ul style="text-indent: 0; font-size: 14px;" class="text-warning mt-2">
-            <li>1. 表示到现在为止已经完成或刚刚完成的动作；</li>
-            <li>2. 表示从过去持续到现在的动作或状态；</li>
-            <li>3. 表示从过去开始到目前为止反复发生的动作或多次出现的状；</li>
-        </ul>
-    </section>
-    <section>
-        语法构成：
-        <ul style="text-indent: 0; font-size: 14px;" class="text-warning mt-2">
-            <li>肯定式：主语 + have/has 动词过去分词；</li>
-            <li>否定式：主语 + have/has not + 动词过去分词；</li>
-            <li>疑问式：Have/Has + 主语 + 动词过去分词；</li>
-            <li>疑问否定式：Have/Has + 主语 + not + 动词过去分词；</li>
-        </ul>
-    </section>
-    <section>
-        例句参考：
-    </section>
-    <section>
-        <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>Someone <ruby>has broken<rt>has+过去分词表完成</rt></ruby> the window. <span class="explain">有人把窗户打破了。</span></div>
-    </section>
-    <section>
-        <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>He <ruby>has been<rt>has+过去分词表完成</rt></ruby> in China since 1989. <span class="explain">自1989起，他就在中国了。</span></div>
-    </section>
+    <div class="content_status">
+        <section>
+            应用场景：
+            <ul style="text-indent: 0; font-size: 14px;" class="text-warning mt-2">
+                <li>1. 表示到现在为止已经完成或刚刚完成的动作；</li>
+                <li>2. 表示从过去持续到现在的动作或状态；</li>
+                <li>3. 表示从过去开始到目前为止反复发生的动作或多次出现的状；</li>
+            </ul>
+        </section>
+        <section>
+            语法构成：
+            <ul style="text-indent: 0; font-size: 14px;" class="text-warning mt-2">
+                <li>肯定式：主语 + have/has 动词过去分词；</li>
+                <li>否定式：主语 + have/has not + 动词过去分词；</li>
+                <li>疑问式：Have/Has + 主语 + 动词过去分词；</li>
+                <li>疑问否定式：Have/Has + 主语 + not + 动词过去分词；</li>
+            </ul>
+        </section>
+        <section>
+            例句参考：
+        </section>
+        <section>
+            <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>Someone <ruby>has broken<rt>has+过去分词表完成</rt></ruby> the window. <span class="explain">有人把窗户打破了。</span></div>
+        </section>
+        <section>
+            <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>He <ruby>has been<rt>has+过去分词表完成</rt></ruby> in China since 1989. <span class="explain">自1989起，他就在中国了。</span></div>
+        </section>
+    </div>
 
-    <div class="title text-warning d-flex justify-content-end">
+    <div class="title text-warning">
         过去完成时
     </div>
-    <section>
-        应用场景：
-        <ul style="text-indent: 0; font-size: 14px;" class="text-warning mt-2">
-            <li>1. 表示过去某个时间已经完成的动作；</li>
-            <li>2. 表示从过去持续到过去另一时间的动作或状态；</li>
-            <li>3. 表示从过去未曾实现的希望，打算，意图；</li>
-        </ul>
-    </section>
-    <section>
-        语法构成：
-        <ul style="text-indent: 0; font-size: 14px;" class="text-warning mt-2">
-            <li>肯定式：主语 + had 动词过去分词；</li>
-            <li>否定式：主语 + had not + 动词过去分词；</li>
-            <li>疑问式：Had + 主语 + 动词过去分词；</li>
-            <li>疑问否定式：Had + 主语 + not + 动词过去分词；</li>
-        </ul>
-    </section>
-    <section>
-        例句参考：
-    </section>
-    <section>
-        <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>I <ruby>had finished<rt>had+过去分词表过去完成</rt></ruby> my homework before supper. <span class="explain">我在晚饭前把作业完成了。</span></div>
-    </section>
-    <section>
-        <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>I <ruby>had hoped<rt>had+过去分词表过去完成</rt></ruby> to write something, but there was no time. <span class="explain">我本想写点什么，只是没时间。</span></div>
-    </section>
+    <div class="content_status">
+        <section>
+            应用场景：
+            <ul style="text-indent: 0; font-size: 14px;" class="text-warning mt-2">
+                <li>1. 表示过去某个时间已经完成的动作；</li>
+                <li>2. 表示从过去持续到过去另一时间的动作或状态；</li>
+                <li>3. 表示从过去未曾实现的希望，打算，意图；</li>
+            </ul>
+        </section>
+        <section>
+            语法构成：
+            <ul style="text-indent: 0; font-size: 14px;" class="text-warning mt-2">
+                <li>肯定式：主语 + had 动词过去分词；</li>
+                <li>否定式：主语 + had not + 动词过去分词；</li>
+                <li>疑问式：Had + 主语 + 动词过去分词；</li>
+                <li>疑问否定式：Had + 主语 + not + 动词过去分词；</li>
+            </ul>
+        </section>
+        <section>
+            例句参考：
+        </section>
+        <section>
+            <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>I <ruby>had finished<rt>had+过去分词表过去完成</rt></ruby> my homework before supper. <span class="explain">我在晚饭前把作业完成了。</span></div>
+        </section>
+        <section>
+            <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>I <ruby>had hoped<rt>had+过去分词表过去完成</rt></ruby> to write something, but there was no time. <span class="explain">我本想写点什么，只是没时间。</span></div>
+        </section>
+    </div>
 
     <div class="title text-warning d-flex justify-content-end">
         一般过去将来时
     </div>
-    <section>
-        应用场景：
-        <ul style="text-indent: 0; font-size: 14px;" class="text-warning mt-2">
-            <li>1. 表示从过去某时间来看将来要发生的动作或存在的状态，常用于宾语从句；</li>
-        </ul>
-    </section>
-    <section>
-        语法构成：
-        <ul style="text-indent: 0; font-size: 14px;" class="text-warning mt-2">
-            <li>肯定式：主语 + should/would 动词原形；</li>
-            <li>否定式：主语 + should/would + 动词原形；</li>
-            <li>疑问式：Should/Would + 主语 + 动词原形；</li>
-            <li>疑问否定式：Should/Would + 主语 + not + 动词原形；</li>
-        </ul>
-    </section>
-    <section>
-        例句参考：
-    </section>
-    <section>
-        <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>I didn't know when he <ruby>would go<rt>过去将来时</rt></ruby>. <span class="explain">我不知道他什么时候走。</span></div>
-    </section>
-    <section>
-        <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>You knew I <ruby>would come<rt>过去将来时</rt></ruby>. <span class="explain">你知道我会来的。</span></div>
-    </section>
+    <div class="content_status">
+        <section>
+            应用场景：
+            <ul style="text-indent: 0; font-size: 14px;" class="text-warning mt-2">
+                <li>1. 表示从过去某时间来看将来要发生的动作或存在的状态，常用于宾语从句；</li>
+            </ul>
+        </section>
+        <section>
+            语法构成：
+            <ul style="text-indent: 0; font-size: 14px;" class="text-warning mt-2">
+                <li>肯定式：主语 + should/would 动词原形；</li>
+                <li>否定式：主语 + should/would + 动词原形；</li>
+                <li>疑问式：Should/Would + 主语 + 动词原形；</li>
+                <li>疑问否定式：Should/Would + 主语 + not + 动词原形；</li>
+            </ul>
+        </section>
+        <section>
+            例句参考：
+        </section>
+        <section>
+            <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>I didn't know when he <ruby>would go<rt>过去将来时</rt></ruby>. <span class="explain">我不知道他什么时候走。</span></div>
+        </section>
+        <section>
+            <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>You knew I <ruby>would come<rt>过去将来时</rt></ruby>. <span class="explain">你知道我会来的。</span></div>
+        </section>
+    </div>
 
-    <div class="title text-warning d-flex justify-content-end">
+    <div class="title text-warning">
         现在完成进行时
     </div>
-    <section>
-        应用场景：
-        <ul style="text-indent: 0; font-size: 14px;" class="text-warning mt-2">
-            <li>1. 表示过去一直持续到现在的动作；</li>
-            <li>2. 表示不久前刚结束的动作；</li>
-            <li>3. 表示到说话时为止的一段时间一再重复的动作；</li>
-        </ul>
-    </section>
-    <section>
-        语法构成：
-        <ul style="text-indent: 0; font-size: 14px;" class="text-warning mt-2">
-            <li>肯定式：主语 + have/has + been 动词现在分词；</li>
-            <li>否定式：主语 + have/has not + been + 动词现在分词；</li>
-            <li>疑问式：Have/Has + 主语 + been + 动词现在分词；</li>
-            <li>疑问否定式：Have/Has + 主语 + not + been + 动词现在分词；</li>
-        </ul>
-    </section>
-    <section>
-        例句参考：
-    </section>
-    <section>
-        <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>It <ruby>has been raining<rt>表现在完成进行时</rt></ruby> for three days. <span class="explain">已经下了3天的雨了。</span></div>
-    </section>
-    <section>
-        <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>You look so tired; what<ruby>have you been doing<rt>表现在完成进行时</rt></ruby>? <span class="explain">你看起来很累，都做什么了？</span></div>
-    </section>
-    <section>
-        <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>You <ruby>have been saying<rt>表现在完成进行时</rt></ruby> that for five years. <span class="explain">这话你都说了5年了。</span></div>
-    </section>
+    <div class="content_status">
+        <section>
+            应用场景：
+            <ul style="text-indent: 0; font-size: 14px;" class="text-warning mt-2">
+                <li>1. 表示过去一直持续到现在的动作；</li>
+                <li>2. 表示不久前刚结束的动作；</li>
+                <li>3. 表示到说话时为止的一段时间一再重复的动作；</li>
+            </ul>
+        </section>
+        <section>
+            语法构成：
+            <ul style="text-indent: 0; font-size: 14px;" class="text-warning mt-2">
+                <li>肯定式：主语 + have/has + been 动词现在分词；</li>
+                <li>否定式：主语 + have/has not + been + 动词现在分词；</li>
+                <li>疑问式：Have/Has + 主语 + been + 动词现在分词；</li>
+                <li>疑问否定式：Have/Has + 主语 + not + been + 动词现在分词；</li>
+            </ul>
+        </section>
+        <section>
+            例句参考：
+        </section>
+        <section>
+            <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>It <ruby>has been raining<rt>表现在完成进行时</rt></ruby> for three days. <span class="explain">已经下了3天的雨了。</span></div>
+        </section>
+        <section>
+            <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>You look so tired; what<ruby>have you been doing<rt>表现在完成进行时</rt></ruby>? <span class="explain">你看起来很累，都做什么了？</span></div>
+        </section>
+        <section>
+            <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>You <ruby>have been saying<rt>表现在完成进行时</rt></ruby> that for five years. <span class="explain">这话你都说了5年了。</span></div>
+        </section>
+    </div>
 </div>
 </div>
 <audio id="play_sound"></audio>
