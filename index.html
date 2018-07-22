@@ -120,6 +120,18 @@
             font-size: 12px;
             color: #ffc107;
         }
+
+        #page_loading {
+            position: absolute;
+            top: 200px;
+            width: 200px;
+            text-align: center;
+            background:rgba(2,2,2,0.6);
+            padding: 20px;
+            border-radius: 10px;
+            z-index: 999;
+            font-size: 6px;
+        }
     </style>
     <script>
         var explain = "";
@@ -139,14 +151,17 @@
             explain = $("#explain");
             set_frame_height();
             var sub_frame_width = $("#sub_frame").width();
+            $("#page_loading").css("left", (sub_frame_width-200)/2);
             $("#menu").css("width", sub_frame_width);
 
             $(".show_date").html(getToday());
             $(".menu_btn, .my_menu").click(function () {
+                $("#page_loading").show();
                 explain.hide();
                 $(".bottom_menu_btn").removeClass("btn-warning");
                 $(".bottom_menu_btn").addClass("btn-dark");
                 $("#sub_frame").attr("src", $(this).attr("link"));
+                $("#page_loading").hide();
             });
             $(".bottom_menu_btn").click(function () {
                 $(".bottom_menu_btn").removeClass("btn-warning");
@@ -302,6 +317,11 @@
 </head>
 <body class="text-white">
 <div id="header">
+    <div id="page_loading" style="display: none;">
+        <div class="fa-3x">
+            <i class="fa fa-spinner fa-spin"></i><div class="pb-2">页面加载中...</div>
+        </div>
+    </div>
     <div id="show_date" class="show_date"></div>
     <div link="/notice.html" class="level_div menu_btn"><img class="level" src="/image/announcement.png"><div class="menu_name">秘诀</div></div>
     <div link="/function/reward/reading.html" class="level_div menu_btn" style="margin-right: 41px;"><img class="level" src="/image/level.png"><div class="menu_name">战绩</div></div>
