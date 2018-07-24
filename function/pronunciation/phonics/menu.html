@@ -14,7 +14,8 @@
     <style>
         #menu {
             position: fixed;
-            top: 45px;
+            top: 35px;
+            right: 5px;
             border: 2px solid #fff;
             z-index: 999;
         }
@@ -48,11 +49,11 @@
 <h5 class="m-0 p-2 d-flex justify-content-end bg-primary text-warning" style="position: fixed; top: 0; left: 5px; font-size:16px;">
     自然拼读法</h5>
 <hr class="my-0">
-<div id="menu" class="w-100 bg-success p-2" style="display: none;">
-    <span class="menu_btn text-warning" link="phoneme.html">什么是音素</span>
-    <span class="menu_btn pl-3 text-white" link="vowel_consonant.html">元音与辅音</span>
-    <span class="menu_btn pl-3 text-white" link="long_short_vowel.html">长元音与短元音</span>
-    <span class="pl-3 text-white">未完待续...</span>
+<div id="menu" class="bg-success p-2" style="text-align: right; display: none;">
+    <div class="menu_btn text-warning px-2" link="phoneme.html">什么是音素</div>
+    <div class="menu_btn px-2 text-white" link="vowel_consonant.html">元音与辅音</div>
+    <div class="menu_btn px-2 text-white" link="long_short_vowel.html">长元音与短元音</div>
+    <div class="pl-3 text-white">未完待续...</div>
 </div>
 <iframe id="phonics_content" class="w-100 border-0" src="phoneme.html"></iframe>
 </body>
