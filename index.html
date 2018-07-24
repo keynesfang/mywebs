@@ -58,7 +58,15 @@
             font-size: 13px;
             position: absolute;
             top: 85px;
-            left: 80px;
+            left: 150px;
+        }
+
+        #sub_title2 {
+            text-align: center;
+            font-size: 13px;
+            position: absolute;
+            top: 55px;
+            left: 150px;
         }
 
         #output_bar {
@@ -107,8 +115,8 @@
 
         .level_div {
             position: absolute;
-            top: 0;
-            right: 10px;
+            top: 3px;
+            right: 5px;
         }
 
         .level {
@@ -171,6 +179,7 @@
             });
             $("#header_switch").click(function () {
                 $("#show_header").toggle();
+                // $(".menu_name").toggle();
                 $("#show_header_simple").toggle();
                 set_frame_height();
                 set_height();
@@ -326,49 +335,51 @@
     <div link="/notice.html" class="level_div menu_btn"><img class="level" src="/image/announcement.png"><div class="menu_name">秘诀</div></div>
     <div link="/function/reward/reading.html" class="level_div menu_btn" style="margin-right: 41px;"><img class="level" src="/image/level.png"><div class="menu_name">战绩</div></div>
     <div link="/share.html" class="level_div menu_btn" style="margin-right: 82px;"><img class="level" src="/image/service.png"><div class="menu_name">作者</div></div>
+    <div link="/function/glossary/my_glossary2.html" class="level_div menu_btn" style="margin-right: 123px;"><img class="level" src="/image/word.png"><div class="menu_name">生词</div></div>
     <div id="show_header">
-        <div id="head_div">
-            <!--<div style="font-size: 12px;">未登陆</div>-->
-            <div class="input-group d-inline-block">
-                <div class="input-group-append">
-                    <button class="btn btn-outline-secondary text-white border-warning" style="border-bottom-left-radius: 5px; border-top-left-radius: 5px;" type="button">未</button>
-                    <img id="head_img" class="head_img border-light" src="image/boy.png">
-                    <button type="button" class="btn btn-outline-warning dropdown-toggle dropdown-toggle-split"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="sr-only">Toggle Dropdown</span>
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-right" style="text-align: right;">
-                        <button class="my_menu dropdown-item" type="button" link="/function/glossary/my_glossary2.html">
-                            这些年我不认识的单词
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <!--<div id="head_div">-->
+            <!--&lt;!&ndash;<div style="font-size: 12px;">未登陆</div>&ndash;&gt;-->
+            <!--<div class="input-group d-inline-block">-->
+                <!--<div class="input-group-append">-->
+                    <!--<button class="btn btn-outline-secondary text-white border-warning" style="border-bottom-left-radius: 5px; border-top-left-radius: 5px;" type="button">未</button>-->
+                    <!--<span class="border-warning"><img id="head_img" class="head_img" src="image/boy.png"></span>-->
+                    <!--<button type="button" class="btn btn-outline-warning dropdown-toggle dropdown-toggle-split"-->
+                            <!--data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+                        <!--<span class="sr-only">Toggle Dropdown</span>-->
+                    <!--</button>-->
+                    <!--<div class="dropdown-menu dropdown-menu-right" style="text-align: right;">-->
+                        <!--<button class="my_menu dropdown-item" type="button" link="/function/glossary/my_glossary2.html">-->
+                            <!--这些年我不认识的单词-->
+                        <!--</button>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
         <div class="d-block"></div>
         <div id="title" class="mt-4">在学习中成长</div>
-        <div id="sub_title">Grow In Learning</div>
+        <div id="sub_title">Growth In Learning</div>
     </div>
     <div id="show_header_simple" class="w-100" style="display: none;">
         <h5 class="mt-3 ml-4 mb-0">在学习中成长</h5>
-        <div id="login_status" style="position: absolute; right: 10px; top: 44px;">
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text bg-transparent"><i
-                            class="fa fa-user text-warning"></i></span>
-                </div>
-                <div class="input-group-append">
-                    <button class="btn btn-outline-light dropdown-toggle" type="button" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false" style="font-size: 14px;">未登陆
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-right">
-                        <a class="my_menu dropdown-item" href="#" link="/function/glossary/my_glossary2.html">
-                            这些年我不认识的单词
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div  id="sub_title2">Growth In Learning</div>
+        <!--<div id="login_status" style="position: absolute; right: 10px; top: 35px;">-->
+            <!--<div class="input-group">-->
+                <!--<div class="input-group-prepend">-->
+                    <!--<span class="input-group-text bg-transparent"><i-->
+                            <!--class="fa fa-user text-warning"></i></span>-->
+                <!--</div>-->
+                <!--<div class="input-group-append">-->
+                    <!--<button class="btn btn-outline-light dropdown-toggle" type="button" data-toggle="dropdown"-->
+                            <!--aria-haspopup="true" aria-expanded="false" style="font-size: 14px;">未登陆-->
+                    <!--</button>-->
+                    <!--<div class="dropdown-menu dropdown-menu-right">-->
+                        <!--<a class="my_menu dropdown-item" href="#" link="/function/glossary/my_glossary2.html">-->
+                            <!--这些年我不认识的单词-->
+                        <!--</a>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
     </div>
     <div id="header_switch"
          style="position: absolute; top: 0; left: 100px; border: 1px solid #fff; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px;"

@@ -34,12 +34,6 @@
         section {
             margin-top: 10px;
         }
-
-        .key {
-            color: greenyellow;
-            font-weight: bold;
-            border-bottom: 1px solid #fff;
-        }
     </style>
     <script>
         $(function () {
@@ -47,6 +41,13 @@
             $("#page").css("height", document.documentElement.clientHeight);
             regist_click("key", for_something_show);
             adjust_show_meaning_pos();
+            $(".show_video").click(function () {
+               var id = $(this).attr("id");
+               var div_id = "show_video_" + id;
+                if($("#"+div_id).html() == "") {
+                    show_video(div_id, 2, "/function/english/video/resources/", true, id);
+                }
+            });
         });
 
         function adjust_show_meaning_pos() {
@@ -316,7 +317,7 @@
         </section>
     </div>
 
-    <div class="title text-warning d-flex justify-content-end">
+    <div id="1" class="title text-warning d-flex justify-content-end show_video">
         现在完成时
     </div>
     <div class="content_status">
@@ -346,6 +347,10 @@
         <section>
             <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div>He <ruby>has been<rt>has+过去分词表完成</rt></ruby> in China since 1989. <span class="explain">自1989起，他就在中国了。</span></div>
         </section>
+        <section>
+            视频学习：
+        </section>
+        <div id="show_video_1" class="mt-2 w-100"></div>
     </div>
 
     <div class="title text-warning">
