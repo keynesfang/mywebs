@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
+    <link rel="icon" href="/image/myicon.png" type="image/x-icon"/>
+    <link rel='stylesheet' type='text/css' href='/lib/bootstrap-4.0.0/css/bootstrap.min.css'>
+    <link rel='stylesheet' type='text/css' href='/lib/video-js/css/video-js.min.css'>
+    <link rel='stylesheet' type='text/css' href='/lib/font-awesome-4.7.0/css/font-awesome.min.css'>
+    <link rel='stylesheet' type='text/css' href='/common.css'>
+    <script src='/lib/jquery-3.2.1.min.js'></script>
+    <script src='/lib/video-js/js/video.min.js'></script>
+    <script src='/lib/video_js_setting.js'></script>
+    <script src='/lib/common.js'></script>
+    <script src='/lib/english.js'></script>
+    <title>在学习中成长</title>
+    <style>
+        .title {
+            border-bottom: 1px solid #fff;
+        }
+        .content {
+            text-indent: 2em;
+        }
+        .image_block {
+            border-radius: 5px;
+            width: 330px;
+            margin: 0 auto;
+        }
+        .text_block {
+            text-indent: 0;
+            text-align: center;
+            font-size: 20px;
+        }
+    </style>
+    <script>
+        $(function () {
+            $("#page").css("height", document.documentElement.clientHeight);
+            $(".play_sound").click(function () {
+                var word = $(this).html();
+                play_voice(word);
+            });
+        });
+    </script>
+</head>
+<body id="page" class=" bg-primary text-white" style="position: relative;">
+<div id="notice" class="p-2">
+    <div class="title text-warning d-flex justify-content-end">
+        常用发音规则
+    </div>
+    <div class="content my-2">
+        <section>本篇内容介绍几个高频的字母组合发音规则。记住这里还是与音标无关，只要一个单词中的字母符合这个规则，基本上就认为是发这个音。</section>
+    </div>
+    <div class="title text-warning">
+        发音规则 1：
+    </div>
+    <div id="show_video" class="content my-2">
+        <section>
+            当一个单词中只有一个元音字母，且这个元音字母不在单词的末尾，那这个元音字母通常发短元音。例：
+        </section>
+        <div class="example">
+            <div class="bg-secondary p-2 image_block mt-2">
+                <div class="d-flex justify-content-center"><img src="/function/english/image/ant.jpg"></div>
+                <div class="text_block"><span class="play_sound">ant</span></div>
+            </div>
+            <div class="bg-secondary p-2 image_block mt-2">
+                <div class="d-flex justify-content-center"><img src="/function/english/image/sun.jpg"></div>
+                <div class="text_block"><span class="play_sound">sun</span></div>
+            </div>
+            <div class="bg-secondary p-2 image_block mt-2">
+                <div class="d-flex justify-content-center"><img src="/function/english/image/pin.jpg"></div>
+                <div class="text_block"><span class="play_sound">pin</span></div>
+            </div>
+            <div class="bg-secondary p-2 image_block mt-2">
+                <div class="d-flex justify-content-center"><img src="/function/english/image/net.jpg"></div>
+                <div class="text_block"><span class="play_sound">net</span></div>
+            </div>
+        </div>
+    </div>
+    <div class="title text-warning d-flex justify-content-end">
+        发音规则 2：
+    </div>
+    <div class="content my-2">
+        <section>
+            当一个单词中只有一个元音字母，且这个元音字母是单词最后一个字母，那这个元音字母通常发长元音。
+        </section>
+        <div class="example">
+            <div class="bg-secondary p-2 image_block mt-2">
+                <div class="d-flex justify-content-center"><img src="/function/english/image/she.jpg"></div>
+                <div class="text_block"><span class="play_sound">she</span></div>
+            </div>
+            <div class="bg-secondary p-2 image_block mt-2">
+                <div class="d-flex justify-content-center"><img src="/function/english/image/he.jpg"></div>
+                <div class="text_block"><span class="play_sound">he</span></div>
+            </div>
+            <div class="bg-secondary p-2 image_block mt-2">
+                <div class="d-flex justify-content-center"><img src="/function/english/image/no.jpg"></div>
+                <div class="text_block"><span class="play_sound">no</span></div>
+            </div>
+            <div class="bg-secondary p-2 image_block mt-2">
+                <div class="d-flex justify-content-center"><img src="/function/english/image/go.jpg"></div>
+                <div class="text_block"><span class="play_sound">go</span></div>
+            </div>
+        </div>
+    </div>
+    <div class="title text-warning">
+        发音规则 3：
+    </div>
+    <div class="content my-2">
+        <section>
+            当一个单词中有两个元音字母，且最后一个字母以元音 E 结尾时：结尾的元音 E 不发音；另一个元音发长元音。
+        </section>
+        <div class="example">
+            <div class="bg-secondary p-2 image_block mt-2">
+                <div class="d-flex justify-content-center"><img src="/function/english/image/wade.jpg"></div>
+                <div class="text_block"><span class="play_sound">wade</span></div>
+            </div>
+            <div class="bg-secondary p-2 image_block mt-2">
+                <div class="d-flex justify-content-center"><img src="/function/english/image/side.jpg"></div>
+                <div class="text_block"><span class="play_sound">side</span></div>
+            </div>
+            <div class="bg-secondary p-2 image_block mt-2">
+                <div class="d-flex justify-content-center"><img src="/function/english/image/gate.jpg"></div>
+                <div class="text_block"><span class="play_sound">gate</span></div>
+            </div>
+            <div class="bg-secondary p-2 image_block mt-2">
+                <div class="d-flex justify-content-center"><img src="/function/english/image/hole.jpg"></div>
+                <div class="text_block"><span class="play_sound">hole</span></div>
+            </div>
+        </div>
+    </div>
+    <div class="title text-warning d-flex justify-content-end">
+        发音规则 4：
+    </div>
+    <div class="content my-2">
+        <section>
+            当一个单词中有两个元音字母，且两个元音字母紧挨在一起时：前一个元音字母发长元音；后一个元音字母不发音。
+        </section>
+        <div class="example">
+            <div class="bg-secondary p-2 image_block mt-2">
+                <div class="d-flex justify-content-center"><img src="/function/english/image/rain.jpg"></div>
+                <div class="text_block"><span class="play_sound">rain</span></div>
+            </div>
+            <div class="bg-secondary p-2 image_block mt-2">
+                <div class="d-flex justify-content-center"><img src="/function/english/image/tie.jpg"></div>
+                <div class="text_block"><span class="play_sound">tie</span></div>
+            </div>
+            <div class="bg-secondary p-2 image_block mt-2">
+                <div class="d-flex justify-content-center"><img src="/function/english/image/seal.jpg"></div>
+                <div class="text_block"><span class="play_sound">seal</span></div>
+            </div>
+            <div class="bg-secondary p-2 image_block mt-2">
+                <div class="d-flex justify-content-center"><img src="/function/english/image/cheat.jpg"></div>
+                <div class="text_block"><span class="play_sound">cheat</span></div>
+            </div>
+        </div>
+    </div>
+    <div class="title text-warning">
+        发音规则 5：
+    </div>
+    <div class="content my-2">
+        <section>
+            当一个单词中的元音后接双辅音（两个相同字母的辅音）时：元音字母发短元音。
+        </section>
+        <div class="example">
+            <div class="bg-secondary p-2 image_block mt-2">
+                <div class="d-flex justify-content-center"><img src="/function/english/image/dinner.jpg"></div>
+                <div class="text_block"><span class="play_sound">dinner</span></div>
+            </div>
+            <div class="bg-secondary p-2 image_block mt-2">
+                <div class="d-flex justify-content-center"><img src="/function/english/image/simmer.jpg"></div>
+                <div class="text_block"><span class="play_sound">simmer</span></div>
+            </div>
+            <div class="bg-secondary p-2 image_block mt-2">
+                <div class="d-flex justify-content-center"><img src="/function/english/image/summer.jpg"></div>
+                <div class="text_block"><span class="play_sound">summer</span></div>
+            </div>
+            <div class="bg-secondary p-2 image_block mt-2">
+                <div class="d-flex justify-content-center"><img src="/function/english/image/pull.jpg"></div>
+                <div class="text_block"><span class="play_sound">pull</span></div>
+            </div>
+        </div>
+    </div>
+    <div class="title text-warning d-flex justify-content-end">
+        发音规则 6：
+    </div>
+    <div class="content my-2">
+        <section>
+            当一个单词中的有双元音（两个相同字母的元音）时：双元音发长元音；如果双元音字母是 O 时，则不遵循该规则。
+        </section>
+        <div class="example">
+            <div class="bg-secondary p-2 image_block mt-2">
+                <div class="d-flex justify-content-center"><img src="/function/english/image/peek.jpg"></div>
+                <div class="text_block"><span class="play_sound">peek</span></div>
+            </div>
+            <div class="bg-secondary p-2 image_block mt-2">
+                <div class="d-flex justify-content-center"><img src="/function/english/image/greet.jpg"></div>
+                <div class="text_block"><span class="play_sound">greet</span></div>
+            </div>
+            <div class="bg-secondary p-2 image_block mt-2">
+                <div class="d-flex justify-content-center"><img src="/function/english/image/vacuum.jpg"></div>
+                <div class="text_block"><span class="play_sound">vacuum</span></div>
+            </div>
+        </div>
+    </div>
+    <div class="title text-warning">
+        发音规则 7：
+    </div>
+    <div class="content my-2">
+        <section>
+            当双元音（两个相同字母的元音）字母为 O 时：此时没有什么规则， O 双元音根据单词不同可以发出不同的音。
+        </section>
+        <div class="example">
+            <div class="bg-secondary p-2 image_block mt-2">
+                <div class="d-flex justify-content-center"><img src="/function/english/image/pool.jpg"></div>
+                <div class="text_block"><span class="play_sound">pool</span></div>
+            </div>
+            <div class="bg-secondary p-2 image_block mt-2">
+                <div class="d-flex justify-content-center"><img src="/function/english/image/fool.jpg"></div>
+                <div class="text_block"><span class="play_sound">fool</span></div>
+            </div>
+            <div class="bg-secondary p-2 image_block mt-2">
+                <div class="d-flex justify-content-center"><img src="/function/english/image/tool.jpg"></div>
+                <div class="text_block"><span class="play_sound">tool</span></div>
+            </div>
+            <div class="bg-secondary p-2 image_block mt-2">
+                <div class="d-flex justify-content-center"><img src="/function/english/image/book.jpg"></div>
+                <div class="text_block"><span class="play_sound">book</span></div>
+            </div>
+            <div class="bg-secondary p-2 image_block mt-2">
+                <div class="d-flex justify-content-center"><img src="/function/english/image/door.jpg"></div>
+                <div class="text_block"><span class="play_sound">door</span></div>
+            </div>
+        </div>
+    </div>
+    <div class="title text-warning d-flex justify-content-end">
+        总结：
+    </div>
+    <div class="content my-2">
+        <section>
+            关于发音规则，上述7条是使用频率与准确率相对比较高的。其它还有很多，本站不再说明了，有兴趣的可以自己在网上搜索相关内容。
+        </section>
+        <section class="mt-2">
+            为什么关于phonics我就写到这里结束了呢？首先，它总结的规则比较多，光是背规则就需要光大量时间，而且还有一个准确率的问题；
+            其次，phonics就是帮助大家在英语入门时，熟悉英语的发音的一套规则，如果花大量时间与学习，反而倒末本置了；
+            最后，当英语具备一定基础后，发音还是要回归到国际音标（IPA）上面来，这个才是王道，而且以后遇到新单词，通过音标也容易记忆。
+        </section>
+        <section class="mt-2">
+            以上仅为个人观点，大家还是依据个人天赋，按照适合自己的方法来学习即可。
+        </section>
+    </div>
+</div>
+<audio id="play_sound"></audio>
+</body>
+</html>
