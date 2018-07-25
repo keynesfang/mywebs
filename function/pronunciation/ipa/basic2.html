@@ -27,7 +27,7 @@
         $(function () {
             $("#page").css("height", document.documentElement.clientHeight);
             show_video("show_video", 5, "/function/english/video/resources/", true, "show_video");
-            $("#show_video").append("<section class='mt-2'>视频中介绍了26个英文字母，以及它们所对应音标的发音方法。这是所有单词的发音基础，需要大家多练习并记忆。</section>");
+            $("#show_video").append("<section class='mt-2'>视频中介绍了26个英文字母，以及它们所对应的44个音标的发音方法。这是所有单词的发音基础，需要大家多练习并记忆。</section>");
             $(".play_sound").click(function () {
                 var word = $(this).html();
                 play_voice(word);
@@ -41,9 +41,9 @@
         什么是国际音标（IPA）
     </div>
     <div class="content my-2">
-        <section>26个英文字母分为了5个元音字母（ <kbd class="play_sound">A</kbd> <kbd class="play_sound">E</kbd> <kbd class="play_sound">I</kbd> <kbd class="play_sound">O</kbd> <kbd class="play_sound">U</kbd>）及21个辅音字母，它们一共对应了48个发音。这48个发音又分为了
+        <section>26个英文字母分为了5个元音字母（ <kbd class="play_sound">A</kbd> <kbd class="play_sound">E</kbd> <kbd class="play_sound">I</kbd> <kbd class="play_sound">O</kbd> <kbd class="play_sound">U</kbd>）及21个辅音字母，它们一共对应了44个发音。这44个发音又分为了
             <span class="text-warning">元音</span>，<span class="text-warning">双元音</span>，<span
-                    class="text-warning">辅音</span> 3种类型。
+                    class="text-warning">辅音</span> 3种类型：
         </section>
         <!--<section>-->
         <!--元音（12个）-->
@@ -54,18 +54,7 @@
         <section>通常来说，元音字母发元音，辅音字母发辅音，两个元音字母组合发双元音。但也有例外，如：辅音字母 <kbd class="play_sound">Y</kbd> 就可以发元音。</section>
     </div>
     <div class="title text-warning">
-        学习目标
-    </div>
-    <div class="content my-2">
-        上面提到了音标可以分为<span class="text-warning">元音</span>，<span class="text-warning">双元音</span>，
-        <span class="text-warning">辅音</span> 等3种类型。其实还可以更为细分，如，辅音还可以细分为清辅音，浊辅音等等，本文中就不在深究了。
-        毕竟我们不搞学术，只讲实用就行。
-    </div>
-    <div class="content my-2">
-        我们的目标是希望通过后面的讲解，大家都能掌握每个音标的发音。然后可以<span class="text-warning">通过每个单词的音标来读出和记忆单词</span>。大家带着这个目标来学习，总结好规律，希望能有事半功倍的效果。
-    </div>
-    <div class="title text-warning d-flex justify-content-end">
-        国际音标视频教学
+        国际音标发声教学
     </div>
     <div id="show_video" class="content my-2"></div>
 </div>
