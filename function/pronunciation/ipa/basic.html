@@ -22,17 +22,43 @@
         .content {
             text-indent: 2em;
         }
+
+        .sound_mark {
+            width: 50px;
+            height: 50px;
+        }
     </style>
     <script>
         $(function () {
             $("#page").css("height", document.documentElement.clientHeight);
-            show_video("show_video", 5, "/function/english/video/resources/", true, "show_video");
-            $("#show_video").append("<section class='mt-2'>视频中介绍了26个英文字母，以及它们所对应音标的发音方法。这是所有单词的发音基础，需要大家多练习并记忆。</section>");
+            show_sound_mark();
             $(".play_sound").click(function () {
                 var word = $(this).html();
                 play_voice(word);
             });
         });
+        
+        function show_sound_mark() {
+            $.post("local_logic.php", {
+                type: "get_sound_mark"
+            }, function (data) {
+                var sound_mark_arr = eval("(" + data + ")");
+                var sound_mark_arr_html = "";
+                $.each(sound_mark_arr, function (idx, info) {
+                    if(info.kind == "元音") {
+                        sound_mark_arr_html += "<button type='button' class='btn btn-info text-light m-1 sound_mark' audio_url='" + info.audio_url + "'>" + info.name + "</button>";
+                    } else {
+                        sound_mark_arr_html += "<button type='button' class='btn btn-success text-light m-1 sound_mark' audio_url='" + info.audio_url + "'>" + info.name + "</button>";
+                    }
+                });
+                $("#sound_mark").html(sound_mark_arr_html);
+                $(".sound_mark").click(function () {
+                    var audio_url = "./audio/" + $(this).attr("audio_url");
+                    $("#play_sound").attr("src", audio_url);
+                    $("#play_sound")[0].play();
+                });
+            });
+        }
     </script>
 </head>
 <body id="page" class=" bg-primary text-white" style="position: relative;">
@@ -45,13 +71,6 @@
             <span class="text-warning">元音</span>，<span class="text-warning">双元音</span>，<span
                     class="text-warning">辅音</span> 3种类型。
         </section>
-        <!--<section>-->
-        <!--元音（12个）-->
-        <!--<div style="text-indent: 0;"><kbd>i:</kbd> <kbd>ɪ</kbd> <kbd>ɔ:</kbd> <kbd>ɒ</kbd> <kbd>u:</kbd> <kbd>ʊ</kbd> <kbd>ɜ:</kbd> <kbd>ә</kbd> <kbd>ɑ:</kbd> <kbd>Λ</kbd> <kbd>e</kbd> <kbd>æ</kbd></div>-->
-        <!--</section>-->
-        <!--<section>双元音</section>-->
-        <!--<section>辅音</section>-->
-        <section>通常来说，元音字母发元音，辅音字母发辅音，两个元音字母组合发双元音。但也有例外，如：辅音字母 <kbd class="play_sound">Y</kbd> 就可以发元音。</section>
     </div>
     <div class="title text-warning">
         学习目标
@@ -65,9 +84,20 @@
         我们的目标是希望通过后面的讲解，大家都能掌握每个音标的发音。然后可以<span class="text-warning">通过每个单词的音标来读出和记忆单词</span>。大家带着这个目标来学习，总结好规律，希望能有事半功倍的效果。
     </div>
     <div class="title text-warning d-flex justify-content-end">
-        国际音标视频教学
+        音标一览表(单击发音)
     </div>
-    <div id="show_video" class="content my-2"></div>
+    <div id="sound_mark" class="my-2" style="text-align: center;"></div>
+    <div class="title text-warning">
+        音标发音规律
+    </div>
+    <div class="content my-2">
+        在学习音标的时候，有以下一些简单的规律，供大家参考：
+        <ul style="font-size: 14px;" class="text-warning mt-2">
+            <li>元音字母发元音，辅音字母发辅音，两个元音字母组合发双元音；</li>
+            <li>辅音字母 Y 也可以发元音，被称为第6元音字母；</li>
+            <li>辅音字母一般只发一个音，元音字母根据单词不同有多种发音可能。</li>
+        </ul>
+    </div>
 </div>
 <audio id="play_sound"></audio>
 </body>
