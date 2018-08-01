@@ -154,6 +154,18 @@
                 if (type == "news") {
                     url = "/function/news/news_detail2.html?news_id=" + id;
                 }
+                if (type == "introduce") {
+                    url = "/notice.html";
+                }
+                if (type == "pronunciation") {
+                    url = "/function/pronunciation/introduce.html";
+                }
+                if (type == "glossary") {
+                    url = "/function/glossary/basic_glossary.html";
+                }
+                if (type == "express") {
+                    url = "/function/express/express_menu.html";
+                }
                 $("#sub_frame").attr("src", url);
             }
             explain = $("#explain");
