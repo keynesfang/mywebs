@@ -22,9 +22,7 @@
         }
 
         .my_block {
-            line-height: 30px;
-            border-bottom-left-radius: 5px;
-            border-bottom-right-radius: 5px;
+            line-height: 25px;
         }
     </style>
     <script>
@@ -33,43 +31,63 @@
             $(".title").click(function () {
                 $(this).next().next().toggle(100);
             });
-           $(".link_btn").click(function () {
-              document.location.href = $(this).attr("link");
-           });
+            $(".link_btn").click(function () {
+                document.location.href = $(this).attr("link");
+            });
         });
     </script>
 </head>
 <body class="bg-primary">
+<div id='title' class='mb-1 p-2 d-flex justify-content-end text-white'
+     style='position:relative; box-shadow: 0 2px 50px #000; z-index: 998;'>发音方法介绍
+</div>
 <div class="p-2">
-    <h5 style="text-align: right;" class="text-white">发音方法介绍</h5>
-    <hr>
-    <div class=" text-white p-2 my_block">
+    <div class="text-white px-2 my_block" style="font-size: 14px;">
         现在主流学习发音的途径有两个：1是“自然拼读法”，2是“国际音标”。接下来分别介绍在英语发音学习过程中的“自然拼读法”与“国际音标”是什么。
     </div>
-    <h5 class="text-warning mt-4 title">自然拼读法简介 <span class="badge badge-success">Phonics</span> <i class="fa fa-caret-down"></i></h5>
-    <hr>
-    <div class="text-white p-2 content_status">
-        “自然拼读法”的核心是掌握<span class="text-warning">字母或字母组合的发音规律</span>。它的学习原理是：<br>
-        <ul style="text-indent: 0;">
-            <li>把26个英文字母分成[元音]与[辅音]，基本上单词都是<span class="text-warning">元音 + 辅音</span>的方式来发音的，与我们汉语中的字发音是<span class="text-warning">声母 + 韵母</span>类似；</li>
-            <li>总结出每个字母及字母间组合的常见发音规律；</li>
-            <li>记住这些发音规则后，就能在脱离音标的情况下<span class="text-warning">根据字母组合发出单词的音</span>及<span class="text-warning">根据听到的音写出对音的字母组合</span>。
-        </ul>
-        <div class="bg-dark text-white d-flex justify-content-end p-1">自然拼读法优势：</div>
-        <div class="my_block mt-2">常见的简单单词很容易通过自然拼读法来发音并记忆；</div>
-        <div class="my_block">对于初学者来说，要同时学习<span class="text-warning">字母</span>与<span class="text-warning">音标</span>难度会比较大，自然拼读法可以使学习者暂时抛开音标的学习，专注于字母，学习更容易上手。</div>
-        <div class="bg-dark text-white d-flex justify-content-end p-1 my-2">自然拼读法缺点：</div>
-        <div class="my_block">自然拼读法总结出的发音规则比较多，要全部记忆比较困难，而且覆盖率并不能达到100%。也就是说根据规则发出来的音有可能是不准确的，最终还是需要音标来检验。</div>
-    </div>
-    <div class="d-flex justify-content-end"><button link="/function/pronunciation/phonics/menu.html" class="btn btn-outline-warning my-2 link_btn">进入学习</button></div>
-    <h5 class="text-warning mt-4 title">国际音标简介 <span class="badge badge-success">IPA</span> <i class="fa fa-caret-down"></i></h5>
-    <hr>
-    <div class="text-white mb-4 p-2 my_block content_status">
-        IPA全称为：International Phonetic Alphabet。在英语中，每个字母可能对应了多种发音。但每一种发音都对应了IPA中的一个特有的符号，也就是说，你看到一个单词的音标后，就能准确的知道这个词的发音是什么。<br>
-        虽然自然拼读法可以在一定程度上提高英语学习的效率，但还是不能代替IPA在英语学习中的地位与作用。
-    </div>
-    <div class="d-flex justify-content-end"><button class="btn btn-outline-warning my-2 link_btn" link="/function/pronunciation/ipa/menu.html" >进入学习</button></div>
+    <!--<h5 class="text-warning mt-4 title">自然拼读法简介 <span class="badge badge-success">Phonics</span> <i class="fa fa-caret-down"></i></h5>-->
+    <!--<hr>-->
+    <!--<div class="text-white p-2 content_status">-->
+    <!--“自然拼读法”的核心是掌握<span class="text-warning">字母或字母组合的发音规律</span>。它的学习原理是：<br>-->
+    <!--<ul style="text-indent: 0;">-->
+    <!--<li>把26个英文字母分成[元音]与[辅音]，基本上单词都是<span class="text-warning">元音 + 辅音</span>的方式来发音的，与我们汉语中的字发音是<span class="text-warning">声母 + 韵母</span>类似；</li>-->
+    <!--<li>总结出每个字母及字母间组合的常见发音规律；</li>-->
+    <!--<li>记住这些发音规则后，就能在脱离音标的情况下<span class="text-warning">根据字母组合发出单词的音</span>及<span class="text-warning">根据听到的音写出对音的字母组合</span>。-->
+    <!--</ul>-->
+    <!--<div class="bg-dark text-white d-flex justify-content-end p-1">自然拼读法优势：</div>-->
+    <!--<div class="my_block mt-2">常见的简单单词很容易通过自然拼读法来发音并记忆；</div>-->
+    <!--<div class="my_block">对于初学者来说，要同时学习<span class="text-warning">字母</span>与<span class="text-warning">音标</span>难度会比较大，自然拼读法可以使学习者暂时抛开音标的学习，专注于字母，学习更容易上手。</div>-->
+    <!--<div class="bg-dark text-white d-flex justify-content-end p-1 my-2">自然拼读法缺点：</div>-->
+    <!--<div class="my_block">自然拼读法总结出的发音规则比较多，要全部记忆比较困难，而且覆盖率并不能达到100%。也就是说根据规则发出来的音有可能是不准确的，最终还是需要音标来检验。</div>-->
+    <!--</div>-->
+    <!--<div class="d-flex justify-content-end"><button class="btn btn-outline-warning my-2 link_btn">进入学习</button></div>-->
+    <!--<h5 class="text-warning mt-4 title">国际音标简介 <span class="badge badge-success">IPA</span> <i class="fa fa-caret-down"></i></h5>-->
+    <!--<hr>-->
+    <!--<div class="text-white mb-4 p-2 my_block content_status">-->
+    <!--IPA全称为：International Phonetic Alphabet。在英语中，每个字母可能对应了多种发音。但每一种发音都对应了IPA中的一个特有的符号，也就是说，你看到一个单词的音标后，就能准确的知道这个词的发音是什么。<br>-->
+    <!--虽然自然拼读法可以在一定程度上提高英语学习的效率，但还是不能代替IPA在英语学习中的地位与作用。-->
+    <!--</div>-->
+    <!--<div class="d-flex justify-content-end"><button class="btn btn-outline-warning my-2 link_btn" >进入学习</button></div>-->
 </div>
-
+<div class=" bg-info p-2">
+    <div class="list-group">
+        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1 text-info">自然拼读法简介</h5>
+                <small class="link_btn text-primary" link="/function/pronunciation/phonics/menu.html">进入学习</small>
+            </div>
+            <p class="mb-1">自然拼读法的学习原理是总结26个英文字母及字母间的发音规律，通过记忆这些规律后，再没掌握音标的前提下，也能看单词发读音或听读音写单词。</p>
+            <small class="text-muted">它的缺点在于，规则多，记全难；覆盖率也不能达到100%，所以偶尔也会出错。</small>
+        </a>
+        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1 text-info">国际音标简介</h5>
+                <small class="link_btn text-primary" link="/function/pronunciation/ipa/menu.html">进入学习</small>
+            </div>
+            <p class="mb-1">国际音标定义了48个音标，每个字母或单词的发音都由1个或多个音标组成的。自然拼读方不能确定的读音，可以参考国际音标来判断。</p>
+            <small class="text-muted">自然拼读法可以在一定程度上提高英语学习的效率，但还是不能代替IPA在英语学习中的地位与作用。</small>
+        </a>
+    </div>
+</div>
 </body>
 </html>
