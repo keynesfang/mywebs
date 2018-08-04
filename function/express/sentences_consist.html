@@ -9,8 +9,8 @@
     <link rel='stylesheet' type='text/css' href='/lib/font-awesome-4.7.0/css/font-awesome.min.css'>
     <link rel='stylesheet' type='text/css' href='/common.css'>
     <link rel='stylesheet' type='text/css' href='./local_css.css'>
-    <script src='./local_common.js'></script>
     <script src='/lib/jquery-3.2.1.min.js'></script>
+    <script src='./local_common.js'></script>
     <script src='/lib/video-js/js/video.min.js'></script>
     <script src='/lib/video_js_setting.js'></script>
     <script src='/lib/common.js'></script>
@@ -18,91 +18,57 @@
     <script src='/function/word_meaning/action.js'></script>
     <script src='/function/word_meaning/english.js'></script>
     <title>在学习中成长</title>
-    <style>
-        .content {
-            text-indent: 2em;
-        }
-
-        section {
-            margin-top: 10px;
-        }
-    </style>
-    <script>
-        $(function () {
-            init_title();
-            $("#page").css("height", document.documentElement.clientHeight);
-            regist_click("key", for_something_show);
-            adjust_show_meaning_pos();
-        });
-
-        function adjust_show_meaning_pos() {
-            var show_meaning = $("#show_meaning");
-            var sub_frame_height = top.$("#sub_frame").height();
-            var cur_height = show_meaning.height();
-            show_meaning.css("top", (sub_frame_height - cur_height)/2);
-        }
-    </script>
 </head>
 <body id="page" class=" bg-primary text-white" style="position: relative;">
-<span id="for_something_show"></span>
-<div id="notice" class="p-2">
-    <div class="title text-warning mt-0 d-flex justify-content-end">
-        句子成分与单词类别概要
-    </div>
-    <div class="content my-2 content_status">
-        <section>
-            上一节讲了句子的基本结构。其中涉及到了主语、谓语、宾语、动词、系动词等的组合情况。
-        </section>
-        <section>
-            先等等，在上句话中出现了一个问题 -- 宾语与动词不是一类东西。宾语属于句子成分，而动词是单词的类别，所以它们不能并列放在一起说，这样容易让人混淆。
-        </section>
-        <section>
-            那么到底什么是句子成分与单词类别，请接着往下看。
-        </section>
-    </div>
-    <div>
-        <div class="title text-warning">
-            句子成分
+<div class=" bg-primary p-2">
+    <div class="list-group">
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between item_content">
+                <h5 class="mb-1 text-info">句子成分与单词类别概要</h5>
+                <small class="display_btn"><i class="fa fa-caret-down fa-2x"></i></small>
+            </div>
+            <div>
+                <p class="mb-1">上一节讲了句子的基本结构。其中涉及到了主语、谓语、宾语、动词、系动词等的组合情况。</p>
+                <p class="mb-1">先等等，在上句话中出现了一个问题 -- 宾语与动词不是一类东西。宾语属于句子成分，而动词是单词的类别，所以它们不能并列放在一起说，这样容易让人混淆。</p>
+                <p class="mb-1">那么到底什么是句子成分与单词类别，请接着往下看。</p>
+            </div>
         </div>
-        <div class="content_status">
-            <section class="content">
-                前一篇文章，讲述了构成最基本的句子的成分 -- 主语、谓语、宾语等。但要表达更复杂的意思时，就需要用到其它句子成分。在英语中构成句子的语法成份有以下几种：
-                <ul style="text-indent: 0; font-size: 14px;" class="text-warning mt-2">
-                    <li>主语、谓语、宾语、定语、状语、补足语、表语、同位语。</li>
-                </ul>
-            </section>
-            <section class="content">
-                不同的句子成分有不同的作用，当这些句子成分按规则组合在一起，就可以表达出丰富的意思。
-            </section>
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between item_content">
+                <h5 class="mb-1 text-info">句子成分</h5>
+                <small class="display_btn"><i class="fa fa-caret-down fa-2x"></i></small>
+            </div>
+            <div style="display: none;">
+                <p class="mb-1">前一篇文章，讲述了构成最基本的句子的成分 -- 主语、谓语、宾语等。但要表达更复杂的意思时，就需要用到其它句子成分。在英语中构成句子的语法成份有以下几种：</p>
+                <div class="eg bg-dark p-2 my-2"><div class="mt-1"></div><span class="explain">主语、谓语、宾语、定语、状语、补足语、表语、同位语</span></div>
+                <p class="mb-1">不同的句子成分有不同的作用，当这些句子成分按规则组合在一起，就可以表达出丰富的意思。</p>
+            </div>
         </div>
-        <div class="title text-warning d-flex justify-content-end">
-            单词类别
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between item_content">
+                <h5 class="mb-1 text-info">单词类别</h5>
+                <small class="display_btn"><i class="fa fa-caret-down fa-2x"></i></small>
+            </div>
+            <div style="display: none;">
+                <p class="mb-1">上面提到的各种句子成分，其实也是由不同的单词组成的，而单词有着自己的类别属性。不同类别的单词，所能成为的句子成分也是不一样的。总的来说，英语单词有以下几种类别：</p>
+                <div class="eg bg-dark p-2 my-2"><div class="mt-1"></div><span class="explain">动词、名词、形容词、副词、冠词、介词、数词、代词、连词、感叹词</span></div>
+                <p class="mb-1">单词本身只有名词，动词等属性; 只有把单词放到句子中，才成了句子成分，如主语等。</p>
+            </div>
         </div>
-        <div class="content_status">
-            <section class="content">
-                上面提到的各种句子成分，其实也是由不同的单词组成的，而单词有着自己的类别属性。不同类别的单词，所能成为的句子成分也是不一样的。总的来说，英语单词有以下几种类别：
-                <ul style="text-indent: 0; font-size: 14px;" class="text-warning mt-2">
-                    <li>动词、名词、形容词、副词、冠词、介词、数词、代词、连词、感叹词。</li>
-                </ul>
-            </section>
-            <section class="content">
-                单词本身只有名词，动词等属性; 只有把单词放到句子中，才成了句子成分，如主语等。
-            </section>
-        </div>
-        <div class="title text-warning mt-2">
-            总结
-        </div>
-        <div class="content_status">
-            <section class="content">
-                本文只是简单介绍了句子成分与单词类别大致区别 -- 一个单词在句子中，是作为一个句子成分存在的，如名词做主语；但如果只是看单词本身，那么单词就只有名词，动词等属性。
-                在这里大家有一个印象即可，在后续内容中，还会以实际句子为例，详细对它们进行说明。
-            </section>
-            <section class="content">
-                还记得本站对语法的定义吗？-- 教你如何正确的说话。看了这篇内容后，也可以说语法就是教你如何把合适形态的单词，放到合适的句子成分中去的规则。
-            </section>
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between item_content">
+                <h5 class="mb-1 text-info">句子成分与单词类别总结</h5>
+                <small class="display_btn"><i class="fa fa-caret-down fa-2x"></i></small>
+            </div>
+            <div style="display: none;">
+                <p class="mb-1">本文只是简单介绍了句子成分与单词类别大致区别 -- 一个单词在句子中，是作为一个句子成分存在的，如名词做主语；但如果只是看单词本身，那么单词就只有名词，动词等属性。
+                    在这里大家有一个印象即可，在后续内容中，还会以实际句子为例，详细对它们进行说明。</p>
+                <p class="mb-1">还记得本站对语法的定义吗？-- 教你如何正确的说话。看了这篇内容后，也可以说语法就是教你如何把合适形态的单词，放到合适的句子成分中去的规则。</p>
+            </div>
         </div>
     </div>
 </div>
+<span id="for_something_show"></span>
 <audio id="play_sound"></audio>
 </body>
 </html>

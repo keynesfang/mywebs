@@ -4,6 +4,8 @@ $(function () {
     $(".item_content").click(function () {
         $(this).next().toggle(100);
     });
+    regist_click("key", for_something_show);
+    adjust_show_meaning_pos();
 });
 
 function init_title() {

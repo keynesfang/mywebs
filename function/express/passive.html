@@ -9,8 +9,8 @@
     <link rel='stylesheet' type='text/css' href='/lib/font-awesome-4.7.0/css/font-awesome.min.css'>
     <link rel='stylesheet' type='text/css' href='/common.css'>
     <link rel='stylesheet' type='text/css' href='./local_css.css'>
-    <script src='./local_common.js'></script>
     <script src='/lib/jquery-3.2.1.min.js'></script>
+    <script src='./local_common.js'></script>
     <script src='/lib/video-js/js/video.min.js'></script>
     <script src='/lib/video_js_setting.js'></script>
     <script src='/lib/common.js'></script>
@@ -18,205 +18,103 @@
     <script src='/function/word_meaning/action.js'></script>
     <script src='/function/word_meaning/english.js'></script>
     <title>在学习中成长</title>
-    <style>
-        .content {
-            text-indent: 2em;
-        }
-
-        section {
-            margin-top: 10px;
-        }
-
-        .eg {
-            border-radius: 5px;
-        }
-
-        rt {
-            color: greenyellow;
-        }
-        .explain {
-            font-size: 14px;
-            color: greenyellow;
-        }
-
-        .key {
-            color: greenyellow;
-            font-weight: bold;
-            border-bottom: 1px solid #fff;
-        }
-    </style>
-    <script>
-        $(function () {
-            init_title();
-            $("#page").css("height", document.documentElement.clientHeight);
-            regist_click("key", for_something_show);
-            adjust_show_meaning_pos();
-        });
-
-        function adjust_show_meaning_pos() {
-            var show_meaning = $("#show_meaning");
-            var sub_frame_height = top.$("#sub_frame").height();
-            var cur_height = show_meaning.height();
-            show_meaning.css("top", (sub_frame_height - cur_height)/2);
-        }
-    </script>
 </head>
 <body id="page" class=" bg-primary text-white" style="position: relative;">
-<span id="for_something_show"></span>
-<div id="notice" class="p-2">
-    <div class="title text-warning mt-0 d-flex justify-content-end">
-        被动语态
-    </div>
-    <div class="content my-2 content_status">
-        <section>
-            被动语态简单地说就是中文种常见的“被”字句，但是同时态一样，英文中需要通过变化谓语动词来反映句子的主被动情况。
-        </section>
-    </div>
-    <div>
-        <div class="title text-warning">
-            不同时态下的被动
+<div class=" bg-primary p-2">
+    <div class="list-group">
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between item_content">
+                <h5 class="mb-1 text-info">被动语态</h5>
+                <small class="display_btn"><i class="fa fa-caret-down fa-2x"></i></small>
+            </div>
+            <div>
+                <p class="mb-1">被动语态简单地说就是中文种常见的“被”字句，但是同时态一样，英文中需要通过变化谓语动词来反映句子的主被动情况。</p>
+            </div>
         </div>
-        <div class="content_status">
-            <section class="content">
-                不同时态下被动语态的动词变化是不一样的，如果想掌握被动语态，需要掌握好不同时态下的谓语动词变化方式，如下图所示：
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between item_content">
+                <h5 class="mb-1 text-info">不同时态下的被动</h5>
+                <small class="display_btn"><i class="fa fa-caret-down fa-2x"></i></small>
+            </div>
+            <div style="display: none;">
+                <p class="mb-1">不同时态下被动语态的动词变化是不一样的，如果想掌握被动语态，需要掌握好不同时态下的谓语动词变化方式，如下图所示：</p>
                 <img src="img/passive.png" style="min-height: 100px;" class="w-100">
-            </section>
-            <section class="content">
-                上面的图，看着可能不太容易懂。没关系，我们会在后面通过例句讲解，然后再回过头来对照表中内容就能明白了。
-                首先要了解的是：被动语态的最基本特征就是be动词+动词的过去分词形式，与不同时态拼接搭配就可以产生16种不同时态的被动语态。
-                从语法结构上来说被动语态同时态一样有16种，但是呢，实际运用起来进行时态与完成进行时态下的被动语态的运用环境极其稀少。
-            </section>
+                <p class="mb-1">上面的图，看着可能不太容易懂。没关系，我们会在后面通过例句讲解，然后再回过头来对照表中内容就能明白了。</p>
+                <p class="mb-1">首先要了解的是：被动语态的最基本特征就是be动词+动词的过去分词形式，与不同时态拼接搭配就可以产生16种不同时态的被动语态。</p>
+                <p class="mb-1">从语法结构上来说被动语态同时态一样有16种，但是呢，实际运用起来进行时态与完成进行时态下的被动语态的运用环境极其稀少。</p>
+            </div>
         </div>
-        <div class="title text-warning d-flex justify-content-end">
-            一般时态下的被动语态
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between item_content">
+                <h5 class="mb-1 text-info">一般时态下的被动语态</h5>
+                <small class="display_btn"><i class="fa fa-caret-down fa-2x"></i></small>
+            </div>
+            <div style="display: none;">
+                <small class="text-primary">一般现在时的被动语态</small>
+                <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div><ruby>The window<rt>主语</rt></ruby> <ruby>is<rt>be动词</rt></ruby> <ruby>broken<rt>动词过去分词</rt></ruby>. <span class="explain">窗户被打破了。</span></div>
+                <small class="text-primary">一般过去时的被动语态</small>
+                <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div><ruby>The window<rt>主语</rt></ruby> <ruby>was<rt>be动词</rt></ruby> <ruby>broken<rt>动词过去分词</rt></ruby> ten days ago. <span class="explain">窗户十天前被打破了。</span></div>
+                <small class="text-primary">一般将来时的被动语态</small>
+                <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div><ruby>The window<rt>主语</rt></ruby> <ruby>will be<rt>be动词</rt></ruby> <ruby>broken<rt>动词过去分词</rt></ruby> ten days ago. <span class="explain">窗户将会被打破。</span></div>
+                <small class="text-primary">过去将来时的被动语态</small>
+                <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div><ruby>The window<rt>主语</rt></ruby> <ruby>would be<rt>be动词</rt></ruby> <ruby>broken<rt>动词过去分词</rt></ruby> ten days ago. <span class="explain">窗户将会被打破。</span></div>
+            </div>
         </div>
-        <div class="content_status">
-            <section>
-                <div class="eg bg-dark p-2 mb-1">
-                    一般现在时的被动语态：
-                    <div class="mt-1"></div><ruby>The window<rt>主语</rt></ruby> <ruby>is<rt>be动词</rt></ruby> <ruby>broken<rt>动词过去分词</rt></ruby>. <span class="explain">窗户被打破了。</span>
-                </div>
-            </section>
-            <section>
-                <div class="eg bg-dark p-2 mb-1">
-                    一般过去时的被动语态：
-                    <div class="mt-1"></div><ruby>The window<rt>主语</rt></ruby> <ruby>was<rt>be动词</rt></ruby> <ruby>broken<rt>动词过去分词</rt></ruby> ten days ago. <span class="explain">窗户十天前被打破了。</span>
-                </div>
-            </section>
-            <section>
-                <div class="eg bg-dark p-2 mb-1">
-                    一般将来时的被动语态：
-                    <div class="mt-1"></div><ruby>The window<rt>主语</rt></ruby> <ruby>will be<rt>be动词</rt></ruby> <ruby>broken<rt>动词过去分词</rt></ruby> ten days ago. <span class="explain">窗户将会被打破。</span>
-                </div>
-            </section>
-            <section>
-                <div class="eg bg-dark p-2 mb-1">
-                    过去将来时的被动语态：
-                    <div class="mt-1"></div><ruby>The window<rt>主语</rt></ruby> <ruby>would be<rt>be动词</rt></ruby> <ruby>broken<rt>动词过去分词</rt></ruby> ten days ago. <span class="explain">窗户将会被打破。</span>
-                </div>
-            </section>
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between item_content">
+                <h5 class="mb-1 text-info">进行时态下的被动语态</h5>
+                <small class="display_btn"><i class="fa fa-caret-down fa-2x"></i></small>
+            </div>
+            <div style="display: none;">
+                <p class="mb-1">注意：进行时态下很少使用被动语态。为什么？看了以下例句你自然就知道了。在某些情况下，甚至语义都是错误的。这里只是在语法上供大家参考。</p>
+                <small class="text-primary">现在进行时的被动语态</small>
+                <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div><ruby>The window<rt>主语</rt></ruby> <ruby>is being<rt>be动词</rt></ruby> <ruby>broken<rt>动词过去分词</rt></ruby>. <span class="explain">窗户正在被打破。</span></div>
+                <small class="text-muted d-block">此处需注意，is是为了表示时态的助动词，being是被动语态的助动词，真正的动词是broken。</small>
+                <small class="text-primary">过去进行时的被动语态</small>
+                <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div><ruby>The window<rt>主语</rt></ruby> <ruby>was being<rt>be动词</rt></ruby> <ruby>broken<rt>动词过去分词</rt></ruby> ten days ago. <span class="explain">窗户当时正在被打破。</span></div>
+                <small class="text-primary">将来进行时的被动语态</small>
+                <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div><ruby>The window<rt>主语</rt></ruby> <ruby>will be being<rt>be动词</rt></ruby> <ruby>broken<rt>动词过去分词</rt></ruby> ten days ago. <span class="explain">窗户将正在被打破。</span></div>
+                <small class="text-muted d-block">大家可以看到这句话的中文是没有意义的，对于英语中也是，很少有什么环境会用到将来进行时的被动语态。</small>
+                <small class="text-primary">过去将来进行时的被动语态</small>
+                <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div><ruby>The window<rt>主语</rt></ruby> <ruby>would be being<rt>be动词</rt></ruby> <ruby>broken<rt>动词过去分词</rt></ruby> ten days ago. <span class="explain">窗户将正在被打破。</span></div>
+            </div>
         </div>
-        <div class="title text-warning">
-            进行时态下的被动语态
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between item_content">
+                <h5 class="mb-1 text-info">完成时态下的被动语态</h5>
+                <small class="display_btn"><i class="fa fa-caret-down fa-2x"></i></small>
+            </div>
+            <div style="display: none;">
+                <small class="text-primary">现在完成时的被动语态</small>
+                <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div><ruby>The window<rt>主语</rt></ruby> <ruby>has been<rt>be动词</rt></ruby> <ruby>broken<rt>动词过去分词</rt></ruby>. <span class="explain">窗户已经被打破了。</span></div>
+                <small class="text-primary">过去完成时的被动语态</small>
+                <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div><ruby>The window<rt>主语</rt></ruby> <ruby>had been<rt>be动词</rt></ruby> <ruby>broken<rt>动词过去分词</rt></ruby> ten days ago. <span class="explain">窗户已经被打破了。</span></div>
+                <small class="text-primary">将来完成时的被动语态</small>
+                <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div><ruby>The window<rt>主语</rt></ruby> <ruby>will have been<rt>be动词</rt></ruby> <ruby>broken<rt>动词过去分词</rt></ruby> ten days ago. <span class="explain">窗户将会被打破。</span></div>
+                <small class="text-primary">过去将来完成时的被动语态</small>
+                <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div><ruby>The window<rt>主语</rt></ruby> <ruby>would have been<rt>be动词</rt></ruby> <ruby>broken<rt>动词过去分词</rt></ruby> ten days ago. <span class="explain">窗户将会被打破。</span></div>
+            </div>
         </div>
-        <div class="content_status">
-            <section class="content">
-                注意：进行时态下很少使用被动语态。为什么？看了以下例句你自然就知道了。在某些情况下，甚至语义都是错误的。这里只是在语法上供大家参考。
-            </section>
-            <section>
-                <div class="eg bg-dark p-2 mb-1">
-                    现在进行时的被动语态：
-                    <div class="mt-1"></div><ruby>The window<rt>主语</rt></ruby> <ruby>is being<rt>be动词</rt></ruby> <ruby>broken<rt>动词过去分词</rt></ruby>. <span class="explain">窗户正在被打破。</span>
-                </div>
-            </section>
-            <section class="content">
-                此处需注意，is是为了表示时态的助动词，being是被动语态的助动词，真正的动词是broken.
-            </section>
-            <section>
-                <div class="eg bg-dark p-2 mb-1">
-                    过去进行时的被动语态：
-                    <div class="mt-1"></div><ruby>The window<rt>主语</rt></ruby> <ruby>was being<rt>be动词</rt></ruby> <ruby>broken<rt>动词过去分词</rt></ruby> ten days ago. <span class="explain">窗户当时正在被打破。</span>
-                </div>
-            </section>
-            <section>
-                <div class="eg bg-dark p-2 mb-1">
-                    将来进行时的被动语态：
-                    <div class="mt-1"></div><ruby>The window<rt>主语</rt></ruby> <ruby>will be being<rt>be动词</rt></ruby> <ruby>broken<rt>动词过去分词</rt></ruby> ten days ago. <span class="explain">窗户将正在被打破。</span>
-                </div>
-                <section class="content">
-                    大家可以看到这句话的中文是没有意义的，对于英语中也是，很少有什么环境会用到将来进行时的被动语态。
-                </section>
-            </section>
-            <section>
-                <div class="eg bg-dark p-2 mb-1">
-                    过去将来时的被动语态：
-                    <div class="mt-1"></div><ruby>The window<rt>主语</rt></ruby> <ruby>would be being<rt>be动词</rt></ruby> <ruby>broken<rt>动词过去分词</rt></ruby> ten days ago. <span class="explain">窗户将正在被打破。</span>
-                </div>
-            </section>
-        </div>
-        <div class="title text-warning">
-            完成时态下的被动语态
-        </div>
-        <div class="content_status">
-            <section>
-                <div class="eg bg-dark p-2 mb-1">
-                    现在完成时的被动语态：
-                    <div class="mt-1"></div><ruby>The window<rt>主语</rt></ruby> <ruby>has been<rt>be动词</rt></ruby> <ruby>broken<rt>动词过去分词</rt></ruby>. <span class="explain">窗户已经被打破了。</span>
-                </div>
-            </section>
-            <section>
-                <div class="eg bg-dark p-2 mb-1">
-                    过去完成时的被动语态：
-                    <div class="mt-1"></div><ruby>The window<rt>主语</rt></ruby> <ruby>had been<rt>be动词</rt></ruby> <ruby>broken<rt>动词过去分词</rt></ruby> ten days ago. <span class="explain">窗户已经被打破了。</span>
-                </div>
-            </section>
-            <section>
-                <div class="eg bg-dark p-2 mb-1">
-                    将来完成时的被动语态：
-                    <div class="mt-1"></div><ruby>The window<rt>主语</rt></ruby> <ruby>will have been<rt>be动词</rt></ruby> <ruby>broken<rt>动词过去分词</rt></ruby> ten days ago. <span class="explain">窗户将会被打破。</span>
-                </div>
-            </section>
-            <section>
-                <div class="eg bg-dark p-2 mb-1">
-                    过去将来完成时的被动语态：
-                    <div class="mt-1"></div><ruby>The window<rt>主语</rt></ruby> <ruby>would have been<rt>be动词</rt></ruby> <ruby>broken<rt>动词过去分词</rt></ruby> ten days ago. <span class="explain">窗户将会被打破。</span>
-                </div>
-            </section>
-        </div>
-        <div class="title text-warning">
-            完成进行时的被动语态
-        </div>
-        <div class="content_status">
-            <section class="content">
-                同进行时态的被动语态一样，几乎不会使用。在某些情况下，甚至语义都是错误的。这里只是在语法上供大家参考。
-            </section>
-            <section>
-                <div class="eg bg-dark p-2 mb-1">
-                    现在完成进行时的被动语态：
-                    <div class="mt-1"></div><ruby>The window<rt>主语</rt></ruby> <ruby>has been being<rt>be动词</rt></ruby> <ruby>broken<rt>动词过去分词</rt></ruby>. <span class="explain">窗户将会一直被打破。</span>
-                </div>
-            </section>
-            <section>
-                <div class="eg bg-dark p-2 mb-1">
-                    过去完成进行时的被动语态：
-                    <div class="mt-1"></div><ruby>The window<rt>主语</rt></ruby> <ruby>had been being<rt>be动词</rt></ruby> <ruby>broken<rt>动词过去分词</rt></ruby> ten days ago. <span class="explain">窗户将会一直被打破。</span>
-                </div>
-            </section>
-            <section>
-                <div class="eg bg-dark p-2 mb-1">
-                    将来完成进行时的被动语态：
-                    <div class="mt-1"></div><ruby>The window<rt>主语</rt></ruby> <ruby>will have been being<rt>be动词</rt></ruby> <ruby>broken<rt>动词过去分词</rt></ruby> ten days ago. <span class="explain">窗户将会被一直打破。</span>
-                </div>
-            </section>
-            <section>
-                <div class="eg bg-dark p-2 mb-1">
-                    过去将来完成时的被动语态：
-                    <div class="mt-1"></div><ruby>The window<rt>主语</rt></ruby> <ruby>would have been being<rt>be动词</rt></ruby> <ruby>broken<rt>动词过去分词</rt></ruby> ten days ago. <span class="explain">窗户将会被一直打破。</span>
-                </div>
-            </section>
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between item_content">
+                <h5 class="mb-1 text-info">完成进行时的被动语态</h5>
+                <small class="display_btn"><i class="fa fa-caret-down fa-2x"></i></small>
+            </div>
+            <div style="display: none;">
+                <p class="mb-1">同进行时态的被动语态一样，几乎不会使用。在某些情况下，甚至语义都是错误的。这里只是在语法上供大家参考。</p>
+                <small class="text-primary">现在完成进行时的被动语态</small>
+                <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div><ruby>The window<rt>主语</rt></ruby> <ruby>has been being<rt>be动词</rt></ruby> <ruby>broken<rt>动词过去分词</rt></ruby>. <span class="explain">窗户将会一直被打破。</span></div>
+                <small class="text-primary">过去完成进行时的被动语态</small>
+                <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div><ruby>The window<rt>主语</rt></ruby> <ruby>had been being<rt>be动词</rt></ruby> <ruby>broken<rt>动词过去分词</rt></ruby> ten days ago. <span class="explain">窗户将会一直被打破。</span></div>
+                <small class="text-primary">将来完成进行时的被动语态</small>
+                <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div><ruby>The window<rt>主语</rt></ruby> <ruby>will have been being<rt>be动词</rt></ruby> <ruby>broken<rt>动词过去分词</rt></ruby> ten days ago. <span class="explain">窗户将会被一直打破。</span></div>
+                <small class="text-primary">过去将来完成时的被动语态</small>
+                <div class="eg bg-dark p-2 mb-1"><div class="mt-1"></div><ruby>The window<rt>主语</rt></ruby> <ruby>would have been being<rt>be动词</rt></ruby> <ruby>broken<rt>动词过去分词</rt></ruby> ten days ago. <span class="explain">窗户将会被一直打破。</span></div>
+            </div>
         </div>
     </div>
 </div>
+<span id="for_something_show"></span>
 <audio id="play_sound"></audio>
 </body>
 </html>
