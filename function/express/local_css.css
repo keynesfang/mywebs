@@ -1,3 +1,8 @@
+.key {
+    color: blue;
+    border-bottom: 1px solid blue;
+}
+
 key2 {
     color: yellow;
 }
@@ -5,6 +10,12 @@ key2 {
 .explain {
     font-size: 14px;
     color: greenyellow;
+}
+
+.eg {
+    border-radius: 5px;
+    color: #fff;
+    margin-top: 15px;
 }
 
 .title {
@@ -17,4 +28,8 @@ key2 {
 
 .content_status {
     margin-bottom: 20px;
+}
+
+p {
+    text-indent: 2em;
 }

@@ -9,59 +9,48 @@
     <link rel='stylesheet' type='text/css' href='/lib/font-awesome-4.7.0/css/font-awesome.min.css'>
     <link rel='stylesheet' type='text/css' href='/common.css'>
     <link rel='stylesheet' type='text/css' href='./local_css.css'>
-    <script src='./local_common.js'></script>
     <script src='/lib/jquery-3.2.1.min.js'></script>
+    <script src='./local_common.js'></script>
     <script src='/lib/video-js/js/video.min.js'></script>
     <script src='/lib/video_js_setting.js'></script>
     <script src='/lib/common.js'></script>
     <script src='/lib/english.js'></script>
     <title>在学习中成长</title>
-    <style>
-        .content {
-            text-indent: 2em;
-        }
-    </style>
     <script>
-        $(function () {
-            init_title();
-            $("#page").css("height", document.documentElement.clientHeight);
-        });
+        var list_content = {
+            "学英语为什么要学语法": {
+
+            }
+        };
     </script>
 </head>
 <body id="page" class=" bg-primary text-white" style="position: relative;">
-<div id="notice" class="p-2">
-    <div class="title text-warning d-flex justify-content-end">
-        学英语为什么要学语法？
-    </div>
-    <div class="content my-2 content_status">
-        <section>
-            逻辑思维，让我们可以说正确的话；而英语语法可以让我们正确的说话。听起来有点绕，但仔细想想，你会发现语法的本质其实就是把单词组合起来的一套规则，让别人明白你想表达什么。
-        </section>
-        <section>
-            就像我们小时候学习汉语一样，在没学习语法的时候照样交流得很流畅，那同理英语语法是不是不学也能学好英语呢？前提是你要有充分的语言环境，完全沉浸式的英语环境可以让你在不学语法的前提下学会英语交流。但有时候你会听到，外国人来考我国的英语6级也不一样能得高分，也许就是他的语法没学好。
-        </section>
-        <section>国内应该很少有人能达到沉浸式的学习环境，因此学习语法还是很有必要的。</section>
-    </div>
-    <div class="title text-warning">
-        英语语法难学吗？
-    </div>
-    <div class="content my-2 content_status">
-        <section>
-            这貌似是一个仁者见仁，智者见智的问题。如果你有天赋，如果你有方法，如果你有毅力那你都有可能学好语法。如果你三者都没有，那也不用怕，因为你还有我。如果想学好语法，请接着往下看：
-        </section>
-        <section class="mt-2">
-            第一，初学语法要掌握好一个度。就像你说的每句汉语，听到的每句汉语，可能其中有相当一部分从严格的语法上讲都不是完全正确的，但大家却可以正常交流。其实英语也一样，当初学英语语法时不要试图把所有听到的，看到的都用用法去套。
-            如果这样做，也许你会很快失去对英语的学习兴趣。
-        </section>
-        <section class="mt-2">
-            第二，要意识到表达一个观点，不是用的单词越多说明你的英语越好；相反，要学会用最少的单词来表达出准确的想法。
-        </section>
-        <section class="mt-2">
-            第三，语法的作用就是<span class="text-warning">把单词有序排列起来形成有意义句子</span>的一套规则。在学习这套规则时，要从最简单的句子入手，然后不断扩充句子的成分，逐步掌握复杂的语法表达方式。不要想一口吃成胖子，那样会消化不良的。
-        </section>
-        <section class="mt-2">
-            第四，记好以上三点，点击右上角菜单，这就开启英语语法的学习之旅吧。
-        </section>
+<div class=" bg-primary p-2">
+    <div class="list-group">
+        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between item_content">
+                <h5 class="mb-1 text-info">学英语为什么要学语法</h5>
+                <small class="display_btn"><i class="fa fa-caret-down fa-2x"></i></small>
+            </div>
+            <div>
+                <p class="mb-1">逻辑思维，让我们可以说正确的话；而英语语法可以让我们正确的说话。听起来有点绕，但仔细想想，你会发现语法的本质其实就是把单词组合起来的一套规则，让别人明白你想表达什么。</p>
+                <p class="mb-1">就像我们小时候学习汉语一样，在没学习语法的时候照样交流得很流畅，那同理英语语法是不是不学也能学好英语呢？前提是你要有充分的语言环境，完全沉浸式的英语环境可以让你在不学语法的前提下学会英语交流。但有时候你会听到，外国人来考我国的英语6级也不一样能得高分，也许就是他的语法没学好。</p>
+                <p class="mb-1">国内应该很少有人能达到沉浸式的学习环境，因此学习语法还是很有必要的。</p>
+            </div>
+        </a>
+        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between item_content">
+                <h5 class="mb-1 text-info">英语语法难学吗</h5>
+                <small class="display_btn"><i class="fa fa-caret-down fa-2x"></i></small>
+            </div>
+            <div style="display: none;">
+                <p class="mb-1">这貌似是一个仁者见仁，智者见智的问题。如果你有天赋，如果你有方法，如果你有毅力那你都有可能学好语法。如果你三者都没有，那也不用怕，因为你还有我。如果想学好语法，请接着往下看。</p>
+                <p class="mb-1">第一，初学语法要掌握好一个度。就像你说的每句汉语，听到的每句汉语，可能其中有相当一部分从严格的语法上讲都不是完全正确的，但大家却可以正常交流。其实英语也一样，当初学英语语法时不要试图把所有听到的，看到的都用用法去套。如果这样做，也许你会很快失去对英语的学习兴趣。</p>
+                <p class="mb-1">第二，要意识到表达一个观点，不是用的单词越多说明你的英语越好；相反，要学会用最少的单词来表达出准确的想法。</p>
+                <p class="mb-1">第三，语法的作用就是<span class="text-primary">把单词有序排列起来形成有意义句子</span>的一套规则。在学习这套规则时，要从最简单的句子入手，然后不断扩充句子的成分，逐步掌握复杂的语法表达方式。不要想一口吃成胖子，那样会消化不良的。</p>
+                <p class="mb-1">第四，记好以上三点，点击右上角菜单，这就开启英语语法的学习之旅吧。</p>
+            </div>
+        </a>
     </div>
 </div>
 <audio id="play_sound"></audio>
