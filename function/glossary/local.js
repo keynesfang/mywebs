@@ -135,7 +135,6 @@ function load_word(word_type, direction) {
         } else {
             $("#word_list_package").append(new_word_list_html);
         }
-        $(document).scrollTop(1);
         parent.$("#word_show_count").text($(".word_package").length);
         current_bottom_word_index = parseInt(current_bottom_word_index) + my_new_word_arr.length;
         regist_word_event();
