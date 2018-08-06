@@ -3,6 +3,40 @@ var per_page_word_cont = 20; // 每次获取的单词数量
 var localStorage_bookmark = 0;
 var localStorage_word = "";
 var is_first_load = true;
+var current_top_word_index = 0; // 顶部word的编号
+var current_bottom_word_index = 0; // 底部word的编号
+var down_load_complete = false; // 记录他们下滑动时单词是否全部加载完成，向上滑动不用这么判断，只看current_top_word_index是否为0即可。
+var explain_panel = null; // 用来记录当前解释面板
+var total_word_count = 0;
+var page_word_type = "";
+
+$(function () {
+    total_word_count = GetQueryString("total_word_count");
+    page_word_type = GetQueryString("page_word_type");
+    console.log(total_word_count);
+    console.log(page_word_type);
+    init_load();
+    // 读取本地存储书签
+    var bookmark = window.localStorage.getItem(page_word_type + '_bookmark');
+    (bookmark) ? localStorage_bookmark = bookmark : localStorage_bookmark = 0;
+    current_top_word_index = current_bottom_word_index = localStorage_bookmark;
+    // 读取本地存储单词
+    localStorage_word = window.localStorage.getItem(page_word_type + "_word");
+    (localStorage_word) ? localStorage_word = JSON.parse(localStorage_word) : localStorage_word = {};
+    parent.$("#subtitle").html("单词：<span id='word_show_count'>20</span>/" + total_word_count);
+    // 注册滚动条事件
+    regScrollbar(page_word_type);
+    load_word(page_word_type);
+});
+
+function init_load() {
+    $("#word_list_package").html("");
+    explain_panel = null;
+    down_load_complete = false;
+    current_top_word_index = current_bottom_word_index = localStorage_bookmark;
+    parent.$("#subtitle").html("单词：<span id='word_show_count'>20</span>/" + total_word_count);
+    is_first_load = true;
+}
 
 function set_pop_color(self) {
     $(".search_pop_btn").removeClass("bg-dark");
