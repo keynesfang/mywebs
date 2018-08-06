@@ -45,6 +45,7 @@
             down_load_complete = false;
             current_top_word_index = current_bottom_word_index = localStorage_bookmark;
             parent.$("#subtitle").html("单词：<span id='word_show_count'>20</span>/4607");
+            is_first_load = true;
         }
     </script>
 </head>
@@ -62,12 +63,12 @@
     <div style='position: fixed; top: 20px; right: 12px;' class='text-primary'><i class='fa fa-caret-up fa-2x'></i>
     </div>
     <table class='w-100'>
-        <tr style='border: 1px solid #fff;' class='bg-dark'>
-            <td onclick="init_load(); load_word('cet4');"><i style='padding: 5px 10px;' class='fa fa-filter'></i>按字母顺序显示单词
+        <tr style='border: 1px solid #fff;' class='search_pop_btn bg-dark' onclick="set_pop_color(this); init_load(); load_word('cet4');">
+            <td><i style='padding: 5px 10px;' class='fa fa-filter'></i>按字母顺序显示单词
             </td>
         </tr>
-        <tr style='border: 1px solid #fff;' class='bg-primary'>
-            <td onclick="load_heart_word('cet4');"><i style='padding: 5px 10px;' class='fa fa-filter'></i>只显示已收藏单词
+        <tr style='border: 1px solid #fff;' class='search_pop_btn bg-primary' onclick="set_pop_color(this); load_heart_word('cet4');">
+            <td><i style='padding: 5px 10px;' class='fa fa-filter'></i>只显示已收藏单词
             </td>
         </tr>
         <tr style='border: 1px solid #fff;' class='bg-primary'>

@@ -4,6 +4,14 @@ var localStorage_bookmark = 0;
 var localStorage_word = "";
 var is_first_load = true;
 
+function set_pop_color(self) {
+    $(".search_pop_btn").removeClass("bg-dark");
+    $(".search_pop_btn").addClass("bg-primary");
+    $(self).removeClass("bg-primary");
+    $(self).addClass("bg-dark");
+    $('#search_pop_menu').fadeToggle(200);
+}
+
 function regist_word_event() {
     $(".word_package").off("click");
     $(".word_sound").off("click");
@@ -25,8 +33,8 @@ function regist_word_event() {
         $(this).removeClass("text-light");
         $(this).addClass("text-warning");
         var bookmark = $(this).attr("word_type") + "_bookmark";
-        var bookmark_index = parseInt($(this).attr("index")) - 1;
-        window.localStorage.setItem(bookmark, bookmark_index);
+        localStorage_bookmark = parseInt($(this).attr("index")) - 1;
+        window.localStorage.setItem(bookmark, localStorage_bookmark);
         return false;
     });
     $(".word_heart").click(function () {
