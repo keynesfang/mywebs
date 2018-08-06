@@ -57,7 +57,7 @@ function search_word() {
     explain_panel = $("#search_word");
     $(".search_word").show(100);
     var word = $("#current_search_word").val();
-    if($.trim(word) == "") {
+    if ($.trim(word) == "") {
         explain_panel.text("请输入要查询的单词！")
     } else {
         var loading_html = "<div class='fa-3x'><i class='fa fa-spinner fa-spin'></i></div><div class='pb-2'>单词含义查询中！</div>";
@@ -86,6 +86,23 @@ function show_word_explain(explain_info) {
     explain_html += "<div id='word_explain' class='ml-2'>" + explains + "</div>";
     explain_html += "</div>";
     explain_panel.html(explain_html);
+}
+
+function load_heart_word(word_type) {
+    var heart_word_list_html = "";
+    var word_count = 0;
+    $.each(localStorage_word, function (word, word_index) {
+        heart_word_list_html += "<div id='" + word_index + "' class='word_package bg-dark'>";
+        heart_word_list_html += "<div class='word_sound bg-primary'><i class='fa fa-volume-up text-warning'></i></div>";
+        heart_word_list_html += "<span class='word_content px-2'>" + word + "</span>";
+        heart_word_list_html += "<div class='word_heart bg-secondary text-danger' word_type='" + word_type + "' word='" + word + "' index='" + word_index + "'><i class='fa fa-heart'></i></div>";
+        heart_word_list_html += "</div>";
+        heart_word_list_html += "<div class='word_explain_panel bg-secondary' style='text-align:center; display: none;'></div>";
+        word_count++;
+    });
+    $("#word_list_package").html(heart_word_list_html);
+    parent.$("#subtitle").html("已收藏单词：" + word_count);
+    regist_word_event();
 }
 
 function load_word(word_type, direction) {

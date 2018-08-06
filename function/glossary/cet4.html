@@ -25,6 +25,7 @@
         var explain_panel = null; // 用来记录当前解释面板
         var total_word_count = 4607;
         $(function () {
+            init_load();
             // 读取本地存储书签
             var bookmark = window.localStorage.getItem('cet4_bookmark');
             (bookmark) ? localStorage_bookmark = bookmark : localStorage_bookmark = 0;
@@ -37,14 +38,47 @@
             regScrollbar("cet4");
             load_word("cet4");
         });
+
+        function init_load() {
+            $("#word_list_package").html("");
+            explain_panel = null;
+            down_load_complete = false;
+            current_top_word_index = current_bottom_word_index = localStorage_bookmark;
+            parent.$("#subtitle").html("单词：<span id='word_show_count'>20</span>/4607");
+        }
     </script>
 </head>
 <body class="bg-primary text-white">
 <div id="word_filter" class="bg-warning p-2 w-100">
-    <input id="current_search_word" type="text" placeholder="单词查询" class="bg-warning px-2" style="width: 80%; border: 0;"><i style="width: 20%; text-align: right;" class="fa fa-search text-dark px-2" onclick="search_word();"></i>
+    <input id="current_search_word" type="text" placeholder="单词查询" class="bg-warning px-2"
+           style="width: 80%; border: 0; display: inline-block;">
+    <i class="fa fa-search text-dark px-2 filter_word_btn" onclick="search_word();" style="top: 10px; right: 40px;"></i>
+    <i onclick="$('#search_pop_menu').fadeToggle(200);" class="fa fa-filter px-2 text-primary filter_word_btn" style="top: 10px; right: 5px;"></i>
 </div>
+
+<div id='search_pop_menu'
+     style='position: fixed; top: 40px; right: 5px; padding: 10px; z-index: 9999; border-radius: 5px; min-width: 230px; display: none;'
+     class='bg-primary'>
+    <div style='position: fixed; top: 20px; right: 12px;' class='text-primary'><i class='fa fa-caret-up fa-2x'></i>
+    </div>
+    <table class='w-100'>
+        <tr style='border: 1px solid #fff;' class='bg-dark'>
+            <td onclick="init_load(); load_word('cet4');"><i style='padding: 5px 10px;' class='fa fa-filter'></i>按字母顺序显示单词
+            </td>
+        </tr>
+        <tr style='border: 1px solid #fff;' class='bg-primary'>
+            <td onclick="load_heart_word('cet4');"><i style='padding: 5px 10px;' class='fa fa-filter'></i>只显示已收藏单词
+            </td>
+        </tr>
+        <tr style='border: 1px solid #fff;' class='bg-primary'>
+            <td onclick="$('#search_pop_menu').fadeToggle(200);"><i style='padding: 5px 10px;' class='fa fa-close'></i>关闭单词过滤弹出框</td>
+        </tr>
+    </table>
+</div>
+
 <i id="search_caret_up" class="search_word fa fa-caret-up fa-2x text-info" style="display: none;"></i>
-<i id="search_close" onclick="search_word_close();" class="search_word fa fa-close text-light" style="display: none;"></i>
+<i id="search_close" onclick="search_word_close();" class="search_word fa fa-close text-light"
+   style="display: none;"></i>
 <div id="search_word" class="search_word w-100 bg-info p-2" style="display: none; text-align: center;">
 </div>
 <div id="word_list_package">
