@@ -29,6 +29,8 @@
                 news_info = news_info[0];
                 $("#title").html("<h5 class='w-100'>" + news_info.title + "<span class='badge badge-secondary'>" + news_info.news_date + "</span></h5>");
                 $('#editor').wysiwyg();
+                document.oncontextmenu=new Function("event.returnValue=true");
+                document.onselectstart=new Function("event.returnValue=true");
             });
         });
 
