@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name=”Keywords” Content=英语听力,英语单词,英语语法″>
+    <meta name=”Description” Content=在学习中成长的目标是为大众免费提供英语的各类学习资源,包含听力,单词,语法等。所有资源也仅限用于学习。”>
     <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
     <link rel="icon" href="./image/myicon.png" type="image/x-icon"/>
     <link rel='stylesheet' type='text/css' href='lib/bootstrap-4.0.0/css/bootstrap.min.css'>
@@ -178,22 +180,24 @@
                 $(this).removeClass("btn-dark");
                 $(this).addClass("btn-warning");
             });
-            $("#header_switch").click(function () {
-                $("#show_header").toggle();
-                // $(".menu_name").toggle();
-                $("#show_header_simple").toggle();
-                set_frame_height();
-                set_height();
-            });
+//            $("#header_switch").click(function () {
+//                $("#show_header").toggle();
+//                // $(".menu_name").toggle();
+//                $("#show_header_simple").toggle();
+//                set_frame_height();
+//                set_height();
+//            });
         });
 
         function set_frame_height() {
-            var sub_height = 156;
-            var output_bar_top = 110;
-            if ($('#show_header').is(':hidden')) { // 如果长头部被隐藏
-                sub_height = 126;
-                output_bar_top = 80;
-            }
+//            var sub_height = 156;
+//            var output_bar_top = 110;
+//            if ($('#show_header').is(':hidden')) { // 如果长头部被隐藏
+//                sub_height = 126;
+//                output_bar_top = 80;
+//            }
+            var sub_height = 126;
+            var output_bar_top = 80;
             document.getElementById("sub_frame").height = document.documentElement.clientHeight - sub_height;
             $("#output_bar").css("top", output_bar_top);
             $("#sub_frame").css("top", output_bar_top + 3);
@@ -337,60 +341,24 @@
     <div link="/function/reward/reading.html" class="level_div menu_btn" style="margin-right: 41px;"><img class="level" src="/image/level.png"><div class="menu_name">战绩</div></div>
     <div link="/share.html" class="level_div menu_btn" style="margin-right: 82px;"><img class="level" src="/image/service.png"><div class="menu_name">作者</div></div>
     <div link="/function/glossary/my_glossary2.html" class="level_div menu_btn" style="margin-right: 123px;"><img class="level" src="/image/word.png"><div class="menu_name">生词</div></div>
-    <div id="show_header">
-        <!--<div id="head_div">-->
-            <!--&lt;!&ndash;<div style="font-size: 12px;">未登陆</div>&ndash;&gt;-->
-            <!--<div class="input-group d-inline-block">-->
-                <!--<div class="input-group-append">-->
-                    <!--<button class="btn btn-outline-secondary text-white border-warning" style="border-bottom-left-radius: 5px; border-top-left-radius: 5px;" type="button">未</button>-->
-                    <!--<span class="border-warning"><img id="head_img" class="head_img" src="image/boy.png"></span>-->
-                    <!--<button type="button" class="btn btn-outline-warning dropdown-toggle dropdown-toggle-split"-->
-                            <!--data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-                        <!--<span class="sr-only">Toggle Dropdown</span>-->
-                    <!--</button>-->
-                    <!--<div class="dropdown-menu dropdown-menu-right" style="text-align: right;">-->
-                        <!--<button class="my_menu dropdown-item" type="button" link="/function/glossary/my_glossary2.html">-->
-                            <!--这些年我不认识的单词-->
-                        <!--</button>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-        <div class="d-block"></div>
-        <div id="title" class="mt-4">在学习中成长</div>
-        <div id="sub_title">Growth In Learning</div>
-    </div>
-    <div id="show_header_simple" class="w-100" style="display: none;">
+    <!--<div id="show_header">-->
+        <!--<div class="d-block"></div>-->
+        <!--<div id="title" class="mt-4">在学习中成长</div>-->
+        <!--<div id="sub_title">Growth In Learning</div>-->
+    <!--</div>-->
+    <div id="show_header_simple" class="w-100">
         <h5 class="mt-3 ml-4 mb-0">在学习中成长</h5>
         <div  id="sub_title2">Growth In Learning</div>
-        <!--<div id="login_status" style="position: absolute; right: 10px; top: 35px;">-->
-            <!--<div class="input-group">-->
-                <!--<div class="input-group-prepend">-->
-                    <!--<span class="input-group-text bg-transparent"><i-->
-                            <!--class="fa fa-user text-warning"></i></span>-->
-                <!--</div>-->
-                <!--<div class="input-group-append">-->
-                    <!--<button class="btn btn-outline-light dropdown-toggle" type="button" data-toggle="dropdown"-->
-                            <!--aria-haspopup="true" aria-expanded="false" style="font-size: 14px;">未登陆-->
-                    <!--</button>-->
-                    <!--<div class="dropdown-menu dropdown-menu-right">-->
-                        <!--<a class="my_menu dropdown-item" href="#" link="/function/glossary/my_glossary2.html">-->
-                            <!--这些年我不认识的单词-->
-                        <!--</a>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
     </div>
-    <div id="header_switch"
-         style="position: absolute; top: 0; left: 100px; border: 1px solid #fff; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px;"
-         class="bg-danger px-2">
-        <i class="fa fa-chevron-circle-up"></i>
-        <i class="fa fa-chevron-circle-down"></i>
-    </div>
+    <!--<div id="header_switch"-->
+         <!--style="position: absolute; top: 0; left: 100px; border: 1px solid #fff; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px;"-->
+         <!--class="bg-danger px-2">-->
+        <!--<i class="fa fa-chevron-circle-up"></i>-->
+        <!--<i class="fa fa-chevron-circle-down"></i>-->
+    <!--</div>-->
     <div id="output_bar"></div>
-    <iframe id="sub_frame" src="/function/glossary/menu.html"></iframe>
-    <!--<iframe id="sub_frame" src="/function/news/news_list2.html"></iframe>-->
+    <!--<iframe id="sub_frame" src="/function/glossary/menu.html"></iframe>-->
+    <iframe id="sub_frame" src="/function/news/news_list2.html"></iframe>
 </div>
 <div id="menu_bar">
     <div id="menu" class="bg-primary">
