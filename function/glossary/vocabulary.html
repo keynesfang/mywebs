@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
+    <link rel="icon" href="/image/myicon.png" type="image/x-icon"/>
+    <link rel='stylesheet' type='text/css' href='word.css'>
+    <link rel='stylesheet' type='text/css' href='/lib/bootstrap-4.0.0/css/bootstrap.min.css'>
+    <link rel='stylesheet' type='text/css' href='/lib/font-awesome-4.7.0/css/font-awesome.min.css'>
+    <link rel='stylesheet' type='text/css' href='/common.css'>
+    <link rel='stylesheet' type='text/css' href='local.css'>
+    <script src='/lib/jquery-3.2.1.min.js'></script>
+    <script src='../../lib/popper.min.js'></script>
+    <script src='/lib/bootstrap-4.0.0/js/bootstrap.min.js'></script>
+    <script src='/lib/common.js'></script>
+    <script src='/lib/english.js'></script>
+    <script src='local.js'></script>
+    <title>在学习中成长</title>
+</head>
+
+<body class="bg-primary text-white">
+<div id="word_filter" class="bg-warning p-2 w-100">
+    <input id="current_search_word" type="text" placeholder="单词查询" class="bg-warning px-2"
+           style="width: 80%; border: 0; display: inline-block;">
+    <i class="fa fa-search text-dark px-2 filter_word_btn" onclick="search_word();" style="top: 10px; right: 40px;"></i>
+    <i onclick="$('#search_pop_menu').fadeToggle(200);" class="fa fa-filter px-2 text-primary filter_word_btn" style="top: 10px; right: 5px;"></i>
+</div>
+
+<div id='search_pop_menu'
+     style='position: fixed; top: 40px; right: 5px; padding: 10px; z-index: 9999; border-radius: 5px; min-width: 230px; display: none;'
+     class='bg-primary'>
+    <div style='position: fixed; top: 20px; right: 12px;' class='text-primary'><i class='fa fa-caret-up fa-2x'></i>
+    </div>
+    <table class='w-100'>
+        <tr style='border: 1px solid #fff;' class='search_pop_btn bg-dark' onclick="set_pop_color(this); init_load(); load_word(page_word_type);">
+            <td><i style='padding: 5px 10px;' class='fa fa-filter'></i>按字母顺序显示单词
+            </td>
+        </tr>
+        <tr style='border: 1px solid #fff;' class='search_pop_btn bg-primary' onclick="set_pop_color(this); load_heart_word(page_word_type);">
+            <td><i style='padding: 5px 10px;' class='fa fa-filter'></i>只显示已收藏单词
+            </td>
+        </tr>
+        <tr style='border: 1px solid #fff;' class='bg-primary'>
+            <td onclick="$('#search_pop_menu').fadeToggle(200);"><i style='padding: 5px 10px;' class='fa fa-close'></i>关闭单词过滤弹出框</td>
+        </tr>
+    </table>
+</div>
+
+<i id="search_caret_up" class="search_word fa fa-caret-up fa-2x text-info" style="display: none;"></i>
+<i id="search_close" onclick="search_word_close();" class="search_word fa fa-close text-light"
+   style="display: none;"></i>
+<div id="search_word" class="search_word w-100 bg-info p-2" style="display: none; text-align: center;">
+</div>
+<div id="word_list_package">
+</div>
+<audio id="play_sound"></audio>
+</body>
+</html>

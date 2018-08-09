@@ -86,3 +86,10 @@ input[type=text]:focus {
     top: 55px;
     z-index: 999;
 }
+
+.filter_word_btn {
+    position: absolute;
+    font-size: 22px;
+    text-align: right;
+    display: inline-block;
+}

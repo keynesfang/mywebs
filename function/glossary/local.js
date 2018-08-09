@@ -3,6 +3,48 @@ var per_page_word_cont = 20; // 每次获取的单词数量
 var localStorage_bookmark = 0;
 var localStorage_word = "";
 var is_first_load = true;
+var current_top_word_index = 0; // 顶部word的编号
+var current_bottom_word_index = 0; // 底部word的编号
+var down_load_complete = false; // 记录他们下滑动时单词是否全部加载完成，向上滑动不用这么判断，只看current_top_word_index是否为0即可。
+var explain_panel = null; // 用来记录当前解释面板
+var total_word_count = 0;
+var page_word_type = "";
+
+$(function () {
+    total_word_count = GetQueryString("total_word_count");
+    page_word_type = GetQueryString("page_word_type");
+    console.log(total_word_count);
+    console.log(page_word_type);
+    init_load();
+    // 读取本地存储书签
+    var bookmark = window.localStorage.getItem(page_word_type + '_bookmark');
+    (bookmark) ? localStorage_bookmark = bookmark : localStorage_bookmark = 0;
+    current_top_word_index = current_bottom_word_index = localStorage_bookmark;
+    // 读取本地存储单词
+    localStorage_word = window.localStorage.getItem(page_word_type + "_word");
+    (localStorage_word) ? localStorage_word = JSON.parse(localStorage_word) : localStorage_word = {};
+    parent.$("#subtitle").html("单词：<span id='word_show_count'>20</span>/" + total_word_count);
+    // 注册滚动条事件
+    regScrollbar(page_word_type);
+    load_word(page_word_type);
+});
+
+function init_load() {
+    $("#word_list_package").html("");
+    explain_panel = null;
+    down_load_complete = false;
+    current_top_word_index = current_bottom_word_index = localStorage_bookmark;
+    parent.$("#subtitle").html("单词：<span id='word_show_count'>20</span>/" + total_word_count);
+    is_first_load = true;
+}
+
+function set_pop_color(self) {
+    $(".search_pop_btn").removeClass("bg-dark");
+    $(".search_pop_btn").addClass("bg-primary");
+    $(self).removeClass("bg-primary");
+    $(self).addClass("bg-dark");
+    $('#search_pop_menu').fadeToggle(200);
+}
 
 function regist_word_event() {
     $(".word_package").off("click");
@@ -25,8 +67,8 @@ function regist_word_event() {
         $(this).removeClass("text-light");
         $(this).addClass("text-warning");
         var bookmark = $(this).attr("word_type") + "_bookmark";
-        var bookmark_index = parseInt($(this).attr("index")) - 1;
-        window.localStorage.setItem(bookmark, bookmark_index);
+        localStorage_bookmark = parseInt($(this).attr("index")) - 1;
+        window.localStorage.setItem(bookmark, localStorage_bookmark);
         return false;
     });
     $(".word_heart").click(function () {
@@ -57,7 +99,7 @@ function search_word() {
     explain_panel = $("#search_word");
     $(".search_word").show(100);
     var word = $("#current_search_word").val();
-    if($.trim(word) == "") {
+    if ($.trim(word) == "") {
         explain_panel.text("请输入要查询的单词！")
     } else {
         var loading_html = "<div class='fa-3x'><i class='fa fa-spinner fa-spin'></i></div><div class='pb-2'>单词含义查询中！</div>";
@@ -86,6 +128,23 @@ function show_word_explain(explain_info) {
     explain_html += "<div id='word_explain' class='ml-2'>" + explains + "</div>";
     explain_html += "</div>";
     explain_panel.html(explain_html);
+}
+
+function load_heart_word(word_type) {
+    var heart_word_list_html = "";
+    var word_count = 0;
+    $.each(localStorage_word, function (word, word_index) {
+        heart_word_list_html += "<div id='" + word_index + "' class='word_package bg-dark'>";
+        heart_word_list_html += "<div class='word_sound bg-primary'><i class='fa fa-volume-up text-warning'></i></div>";
+        heart_word_list_html += "<span class='word_content px-2'>" + word + "</span>";
+        heart_word_list_html += "<div class='word_heart bg-secondary text-danger' word_type='" + word_type + "' word='" + word + "' index='" + word_index + "'><i class='fa fa-heart'></i></div>";
+        heart_word_list_html += "</div>";
+        heart_word_list_html += "<div class='word_explain_panel bg-secondary' style='text-align:center; display: none;'></div>";
+        word_count++;
+    });
+    $("#word_list_package").html(heart_word_list_html);
+    parent.$("#subtitle").html("已收藏单词：" + word_count);
+    regist_word_event();
 }
 
 function load_word(word_type, direction) {
@@ -135,7 +194,6 @@ function load_word(word_type, direction) {
         } else {
             $("#word_list_package").append(new_word_list_html);
         }
-        $(document).scrollTop(1);
         parent.$("#word_show_count").text($(".word_package").length);
         current_bottom_word_index = parseInt(current_bottom_word_index) + my_new_word_arr.length;
         regist_word_event();
