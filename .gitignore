@@ -19,7 +19,6 @@ fx/
 pylib/
 wamplangues/
 wampthemes/
-favicon.ico
 test_sockets.php
 testmysql.php
 function/pronunciation/ipa/audio
