@@ -37,22 +37,6 @@
             border-bottom-left-radius: 15px;
         }
 
-        #title {
-            text-align: center;
-            font-size: 30px;
-            position: absolute;
-            top: 20px;
-            left: 20px;
-        }
-
-        #sub_title {
-            text-align: center;
-            font-size: 13px;
-            position: absolute;
-            top: 85px;
-            left: 150px;
-        }
-
         #sub_title2 {
             text-align: center;
             font-size: 13px;
@@ -86,7 +70,7 @@
 
         #explain_bar {
             position: fixed;
-            bottom: 0;
+            top: 55px;
             width: 100%;
         }
 
@@ -103,6 +87,10 @@
             color: #fff;
             max-width: 600px;
             width: 100%;
+            z-index: 999;
+            display: none;
+            position: relative;
+            border-radius: 5px;
         }
 
         .level_div {
@@ -131,6 +119,16 @@
             border-radius: 10px;
             z-index: 999;
             font-size: 6px;
+        }
+
+        .input_add_mode {
+            background-color: #dc3545;
+            color: #fff;
+        }
+
+        .input_normal_mode {
+            background-color: #fff;
+            color: #000;
         }
     </style>
     <script>
@@ -204,15 +202,28 @@
             $("#sub_frame").css("top", output_bar_top + 3);
         }
 
-        function append_mode_change() {
-            var btn = $("#append_mode");
-            if (btn.hasClass("btn-danger")) {
-                btn.removeClass("btn-danger");
+        function append_mode_change(self) {
+            var input = $("#query_word");
+            if (input.hasClass("input_add_mode")) {
+                $(self).removeClass("bg-danger");
+                $(self).removeClass("text-light");
+                input.removeClass("input_add_mode");
+                input.addClass("input_normal_mode");
                 append_mode = false;
             } else {
-                btn.addClass("btn-danger");
+                $(self).addClass("bg-danger");
+                $(self).addClass("text-light");
+                input.addClass("input_add_mode");
+                input.removeClass("input_normal_mode");
                 append_mode = true;
             }
+            return false;
+        }
+        
+        function clear_word_input() {
+            $("#query_word").val("");
+            $("#phonetic").html("");
+            $("#word_explain").html("");
         }
 
         function set_explain_word(word) {
@@ -241,6 +252,9 @@
             if (word) {
                 $("#word_sound").attr("word", word);
                 query_word(word, query_word_callback);
+            } else {
+                $("#phonetic").html("");
+                $("#word_explain").html("<div class='text-warning text-center font-weight-bold' style='font-size: 20px;'>Please input a word first!</div>");
             }
         }
 
@@ -249,7 +263,7 @@
             for (var i = 0; i < explain_info.explains.length; i++) {
                 explains += explain_info.explains[i] + "<br>";
             }
-            $("#phonetic").html(explain_info.phonetic + "<i class='ml-2 fa fa-volume-up fa-2x'></i>");
+            $("#phonetic").html(explain_info.phonetic + "<i class='ml-2 fa fa-volume-up' style='font-size: 20px;'></i>");
             $("#word_explain").html(explains);
             $("#loading").hide();
             $("#explain_detail").show();
@@ -342,6 +356,7 @@
     <div link="/function/reward/reading.html" class="level_div menu_btn" style="margin-right: 41px;"><img class="level" src="/image/level.png"><div class="menu_name">战绩</div></div>
     <div link="/share.html" class="level_div menu_btn" style="margin-right: 82px;"><img class="level" src="/image/service.png"><div class="menu_name">作者</div></div>
     <div link="/function/glossary/my_glossary2.html" class="level_div menu_btn" style="margin-right: 123px;"><img class="level" src="/image/word.png"><div class="menu_name">生词</div></div>
+    <div class="level_div" style="margin-right: 163px;" onclick="explain_control();"><img class="level" src="/image/query.png"><div class="menu_name">查词</div></div>
     <!--<div id="show_header">-->
         <!--<div class="d-block"></div>-->
         <!--<div id="title" class="mt-4">在学习中成长</div>-->
@@ -383,38 +398,38 @@
 </div>
 
 <div id="explain_bar">
-    <div id="explain" style="z-index: 999; display: none;" class="bg-primary">
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <button id="append_mode" class="btn" type="button" onclick="append_mode_change();"><i
-                        class="fa fa-plus"></i></button>
-            </div>
-            <input id="query_word" type="text" class="form-control" placeholder="query word">
-            <div class="input-group-append">
-                <button class="btn btn-primary" type="button" onclick="query();">查</button>
-                <button class="btn btn-warning" type="button" onclick="explain_control();"><i class="fa fa-close"></i>
-                </button>
-            </div>
-        </div>
+    <div id="explain" class="bg-dark">
+        <i class="fa fa-caret-up fa-2x text-dark" style="position: absolute; top: -21px; right: 170px;"></i>
         <div id="loading" style="text-align: center; display: none;">
             <div class="fa-3x">
                 <i class="fa fa-spinner fa-spin"></i>
             </div>
             <div class="pb-2">单词含义查询中！</div>
         </div>
-        <div id="explain_detail" style="display: none;">
+        <div id="explain_detail">
             <div class="p-2" style="font-size: 14px;">
-                <div id="phonetic" class="font-weight-bold ml-2 mb-1 text-warning" onclick="play_voice();"></div>
-                <div id="word_explain" class="ml-2"></div>
+                <div id="phonetic" class="ml-3 mb-1 text-warning" onclick="play_voice();"></div>
+                <div id="word_explain" class="ml-3"></div>
             </div>
-            <div class="btn-group w-100" role="group" aria-label="Basic example">
-                <button id="btn_add_new_word" type="button" class="btn btn-success w-50" onclick="add_the_new_word();">
-                    <i class="fa fa-plus"></i> 加入词本
+        </div>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <button type="button" class="btn btn-lg btn-dark dropdown-toggle dropdown-toggle-split btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="sr-only">Toggle Dropdown</span>
                 </button>
-                <a href="#" class="btn btn-primary w-50 menu_btn" link="/function/glossary/my_glossary2.html"><i
-                        class="fa fa-eye"></i>
-                    查看词本</a>
-                <!--style="border-top: 1px #fff solid;"-->
+                <div class="dropdown-menu">
+                    <button class="dropdown-item" onclick="append_mode_change(this);"><i class="fa fa-plus"></i> 词组模式</button>
+                    <div class="dropdown-divider"></div>
+                    <button class="dropdown-item" onclick="add_the_new_word();"><i class="fa fa-plus"></i> 加入词本</button>
+                    <div class="dropdown-divider"></div>
+                    <button class="dropdown-item" onclick="clear_word_input();"><i class="fa fa-minus"></i> 清空输入</button>
+                </div>
+            </div>
+            <input id="query_word" type="text" class="form-control px-2" placeholder="请输入查询单词" style="border: 1px solid #28a745;">
+            <div class="input-group-append">
+                <button class="btn btn-dark btn-sm" type="button" onclick="query();">查</button>
+                <button class="btn btn-warning btn-sm" type="button" onclick="explain_control();"><i class="fa fa-close"></i>
+                </button>
             </div>
         </div>
     </div>

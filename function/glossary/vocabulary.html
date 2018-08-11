@@ -19,17 +19,23 @@
 </head>
 
 <body class="bg-primary text-white">
-<div id="word_filter" class="bg-warning p-2 w-100">
-    <input id="current_search_word" type="text" placeholder="单词查询" class="bg-warning px-2"
-           style="width: 80%; border: 0; display: inline-block;">
-    <i class="fa fa-search text-dark px-2 filter_word_btn" onclick="search_word();" style="top: 10px; right: 40px;"></i>
-    <i onclick="$('#search_pop_menu').fadeToggle(200);" class="fa fa-filter px-2 text-primary filter_word_btn" style="top: 10px; right: 5px;"></i>
+<!--<div id="word_filter" class="bg-warning p-2 w-100">-->
+    <!--<input id="current_search_word" type="text" placeholder="单词查询" class="bg-warning px-2"-->
+           <!--style="width: 80%; border: 0; display: inline-block;">-->
+    <!--<i class="fa fa-search text-dark px-2 filter_word_btn" onclick="search_word();" style="top: 10px; right: 40px;"></i>-->
+    <!--<i onclick="$('#search_pop_menu').fadeToggle(200);" class="fa fa-filter px-2 text-primary filter_word_btn" style="top: 10px; right: 5px;"></i>-->
+<!--</div>-->
+<div id="header_switch"
+     style="position: fixed; top: 0; right: 105px; border: 1px solid #fff; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px; z-index: 999;"
+     class="bg-danger px-2" onclick="$('#search_pop_menu').fadeToggle(200);" >
+    <i class="fa fa-chevron-circle-up"></i>
+    <i class="fa fa-chevron-circle-down"></i>
 </div>
 
 <div id='search_pop_menu'
-     style='position: fixed; top: 40px; right: 5px; padding: 10px; z-index: 9999; border-radius: 5px; min-width: 230px; display: none;'
+     style='position: fixed; top: 40px; right: 18px; padding: 10px; z-index: 9999; border-radius: 5px; min-width: 230px; display: none;'
      class='bg-primary'>
-    <div style='position: fixed; top: 20px; right: 12px;' class='text-primary'><i class='fa fa-caret-up fa-2x'></i>
+    <div style='position: fixed; top: 20px; right: 122px;' class='text-primary'><i class='fa fa-caret-up fa-2x'></i>
     </div>
     <table class='w-100'>
         <tr style='border: 1px solid #fff;' class='search_pop_btn bg-dark' onclick="set_pop_color(this); init_load(); load_word(page_word_type);">
@@ -51,7 +57,7 @@
    style="display: none;"></i>
 <div id="search_word" class="search_word w-100 bg-info p-2" style="display: none; text-align: center;">
 </div>
-<div id="word_list_package">
+<div id="word_list_package" class="bg-dark h-100">
 </div>
 <audio id="play_sound"></audio>
 </body>

@@ -142,6 +142,9 @@ function load_heart_word(word_type) {
         heart_word_list_html += "<div class='word_explain_panel bg-secondary' style='text-align:center; display: none;'></div>";
         word_count++;
     });
+    if(!heart_word_list_html) {
+        heart_word_list_html = "<div style='text-align: center' class='w-100 py-5'>你还没有收藏单词！</div>";
+    }
     $("#word_list_package").html(heart_word_list_html);
     parent.$("#subtitle").html("已收藏单词：" + word_count);
     regist_word_event();
