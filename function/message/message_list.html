@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
+    <link rel="icon" href="/image/myicon.png" type="image/x-icon"/>
+    <link rel='stylesheet' type='text/css' href='/lib/bootstrap-4.0.0/css/bootstrap.min.css'>
+    <link rel='stylesheet' type='text/css' href='/lib/font-awesome-4.7.0/css/font-awesome.min.css'>
+    <link rel='stylesheet' type='text/css' href='/common.css'>
+    <script src='/lib/jquery-3.2.1.min.js'></script>
+    <script src='/lib/common.js'></script>
+    <title>在学习中成长</title>
+    <style>
+        #message_content {
+            position: fixed;
+            top: 43px;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+            display: none;
+        }
+        #leave_content {
+            font-size:14px;
+            height: 200px;
+            border: none;
+        }
+        .news_item {
+            border-radius: 5px;
+        }
+
+        .show_title {
+            color: silver;
+            font-size: 12px;
+        }
+
+        .news_summary {
+            font-size: 14px;
+        }
+    </style>
+    <script>
+        var per_page_news_cont = 10;
+        var current_news_index = 0;
+        var loading = false;
+        var load_complete = false;
+        $(function () {
+            load_message();
+            var content_height = parent.$("#sub_frame").height() -50;
+            $("#message_list").css("height", content_height);
+            $("#message_content").css("height", 300);
+        });
+
+        function regScrollbar() {
+            $(document).scroll(function () {
+                var scrollBottom = $(document).height() - $(document).scrollTop() - $(window).height();
+                if (!load_complete) { // 未全部加载完时
+                    if (scrollBottom < 10 && !loading) { // 滚动条到了该加载的时候，且没有显示加载图标的时候
+                        loading = true; // 加载中，显示加载图标
+                        var html = "<div class='loading_icon' style='text-align: center;'><i class='fa fa-spinner fa-spin'></i></div>";
+                        $("#message_list").append(html);
+                        load_message();
+                    }
+                }
+            });
+        }
+        // 加载新闻列表，同时删除加载图标
+        function load_message() {
+            var sql = "SELECT * FROM eng_message order by id DESC LIMIT " + current_news_index + ", " + per_page_news_cont;
+            $.post("../common_logic.php", {
+                type: "query_sql_get_data2",
+                sql: sql
+            }, function (data) {
+                var html = "";
+                var message_info = eval("(" + data + ")");
+                for (var item in message_info) {
+                    var id = message_info[item].id;
+                    var leavemessage = message_info[item].leavemessage;
+                    var leavedate = message_info[item].leavedate;
+                    html += "<div id='" + id + "' class='news_item p-2 mx-2 mb-2 bg-white text-primary'>" +
+                            "<div class='show_title'>留言日期：" + leavedate + "</div>" +
+                            "<div class='my-1'>" +
+                            "<div class='news_summary'>" + leavemessage + "</div>" +
+                            "</div>" +
+                            "</div>";
+                }
+                if (message_info.length < per_page_news_cont) {
+                    load_complete = true;
+                    html += "<div class='bottom_line mt-2' style='text-align: center;'>这是我的底线<hr class='mt-1'></div>";
+                }
+                loading = false;
+                $(".loading_icon").remove();
+                if (current_news_index < per_page_news_cont) {
+                    $("#message_list").html(html);
+                    // 注册滚动条事件
+                    regScrollbar();
+                } else {
+                    $("#message_list").append(html);
+                }
+                $(".news_summary").css("width", $(".message_list").width() - 70);
+                current_news_index += message_info.length;
+            });
+        }
+        
+        function leave_message() {
+            var leave_content_ctrl =  $("#leave_content");
+            var leave_content = leave_content_ctrl.val();
+            if($.trim(leave_content) == "") {
+                leave_content_ctrl.css("border", "2px solid red");
+                return;
+            }
+            leave_content_ctrl.css("border", "none");
+            var data_arr = {};
+            data_arr["leavedate"] = getToday();
+            data_arr["leavemessage"] = leave_content;
+            $.post("local_logic.php", {
+                type: "add_message_to_database",
+                fields_value_array: data_arr
+            }, function () {
+                $("#message_content").slideToggle(200);
+                current_news_index = 0;
+                load_message();
+            });
+        }
+    </script>
+</head>
+<body class="bg-primary text-white">
+<div id='title' class='mb-1 p-2 d-flex text-white' style='position:relative; box-shadow: 0 2px 50px #000; z-index: 998;'>留言不要超过200字！<span id='subtitle' style='font-size: 10px;' class='text-warning pt-1'></span></div>
+<div id='leave_message' onclick="$('#message_content').slideToggle(200);" style='position: fixed; top: 6px; right: 5px; border: 1px inset #fff; padding: 0 10px; border-radius: 5px; z-index: 999;' class='bg-dark'>我要留言</div>
+<div id="message_content" class="bg-info w-100 p-2 mb-2">
+    <div class="mb-1">请输入留言：</div>
+    <div class="mb-1">
+        <textarea id="leave_content" class="w-100 p-2" placeholder="请输入你宝贵的建议与意见！如果是对大家学习有利的，都将得到采纳！"></textarea>
+    </div>
+    <div>
+        <button class="btn btn-warning w-100" onclick="leave_message();">发表留言</button>
+    </div>
+</div>
+<div id="message_list" class="mt-2" style="overflow-y: auto;">
+    <div id="loading" style="text-align: center;">
+        <div class="fa-3x">
+            <i class="fa fa-spinner fa-spin"></i>
+        </div>
+        <div class="mt-2">留言内容加载中！</div>
+    </div>
+</div>
+</body>
+</html>
