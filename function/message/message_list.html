@@ -49,8 +49,8 @@
         });
 
         function regScrollbar() {
-            $(document).scroll(function () {
-                var scrollBottom = $(document).height() - $(document).scrollTop() - $(window).height();
+            $("#message_list").scroll(function () {
+                var scrollBottom = $(document).height() - $("#message_list").scrollTop() - $("#message_list").height();
                 if (!load_complete) { // 未全部加载完时
                     if (scrollBottom < 10 && !loading) { // 滚动条到了该加载的时候，且没有显示加载图标的时候
                         loading = true; // 加载中，显示加载图标
@@ -116,6 +116,8 @@
             }, function () {
                 $("#message_content").slideToggle(200);
                 current_news_index = 0;
+                loading = false;
+                load_complete = false;
                 load_message();
             });
         }
