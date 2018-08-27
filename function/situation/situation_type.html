@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
+    <link rel="icon" href="/image/myicon.png" type="image/x-icon"/>
+    <link rel='stylesheet' type='text/css' href='/lib/bootstrap-4.0.0/css/bootstrap.min.css'>
+    <link rel='stylesheet' type='text/css' href='/lib/font-awesome-4.7.0/css/font-awesome.min.css'>
+    <link rel='stylesheet' type='text/css' href='/common.css'>
+    <script src='/lib/jquery-3.2.1.min.js'></script>
+    <script src='/lib/common.js'></script>
+    <script src='/lib/english.js'></script>
+    <script src='relationship.js'></script>
+    <title>在学习中成长</title>
+    <style>
+        .type_item {
+            border-radius: 5px;
+            position: relative;
+        }
+
+        .item_extent {
+            position: absolute;
+            right: 10px;
+        }
+
+        .item_img {
+            width: 66px;
+            height: 45px;
+        }
+
+        .item_title {
+            position: absolute;
+            left: 90px;
+            top: 15px;
+        }
+
+        .sub_item_list {
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+
+        .sub_item {
+            border: 1px solid #fff;
+            height: 30px;
+        }
+
+        #pop_dialog {
+            position: fixed;
+            top: 60px;
+            width: 92%;
+            left: 4%;
+            border-radius: 5px;
+        }
+
+        #detail_title {
+            border-bottom: 2px solid #007bff;
+        }
+
+        .detail_item {
+            border-radius: 5px;
+            font-weight: bold;
+        }
+    </style>
+    <script>
+        var situation_info = {
+            "日常生活用语": {
+                img: "live.png",
+                sub_items: ["早上起床"]
+            },
+            "流行观光用语": {
+                img: "travel.png",
+                sub_items: ["机场", "出租车", "酒店", "餐厅", "购物"]
+            }
+        };
+        $(function () {
+            var pop_dialog_height = parent.$("#sub_frame").height() - 80;
+            $("#pop_dialog").css("height", pop_dialog_height);
+            $("#detail_list").css("height", pop_dialog_height - 60);
+            init_situation_info();
+        });
+
+        function init_situation_info() {
+            var html = "";
+            var index = 0;
+            $.each(situation_info, function (title, info) {
+                html += "<div class='type_item p-2 mx-2 mb-2 bg-white text-primary'>";
+                html += "<i class='fa fa-caret-down item_extent fa-2x' onclick='show_sub_item(" + index + ");'></i>";
+                html += "<img class='item_img' src='image/" + info.img + "'>";
+                html += "<div class='item_title text-primary' style='font-size: 20px;'>" + title + "</div>";
+                html += "<div id='sub_" + index + "' class='sub_item_list text-light bg-primary p-2 mt-2' style='display: none;'>";
+                var special_style = "border-bottom: none;";
+                $.each(info.sub_items, function (idx, itm) {
+                    if (idx == info.sub_items.length - 1) {
+                        special_style = "";
+                    }
+                    html += "<div onclick='show_item_detail(\"" + itm + "\");' class='sub_item w-100 d-flex justify-content-end pr-2' style='position: relative; " + special_style + "'><i class='fa fa-bookmark' style='position: absolute; top:5px; left: 10px;'></i>" + itm + "</div>";
+                });
+                html += "</div>";
+                html += "</div>";
+                index++;
+            });
+            $("#content").html(html);
+        }
+
+        function show_sub_item(sub_index) {
+            sub_index = "sub_" + sub_index;
+            $("#" + sub_index).slideToggle(200);
+        }
+
+        function show_item_detail(title) {
+            $("#current_title").text(title);
+            var html = "";
+            $.each(situation_relation[title], function (idx, itm) {
+                var eng_word_wrap = get_query_sentence_from_normal(itm[0]);
+                html += "<div class='w-100 detail_item bg-info text-warning pl-3 py-2'>" + eng_word_wrap + "</div>";
+            });
+            $("#detail_list").html(html);
+            // 注册单词点击翻译
+            regist_word_translate(top.set_explain_word, top.query_word_callback);
+            $('#pop_dialog').slideToggle(200);
+        }
+    </script>
+</head>
+<body class="bg-primary text-white">
+<div id='title' class='mb-1 p-2 d-flex text-white justify-content-end'
+     style='position:relative; box-shadow: 0 2px 50px #000; z-index: 998;'>各种场景英文用语
+</div>
+<div id="content" class="mt-2" style="overflow-y: auto;">
+</div>
+<div id="pop_dialog" class="bg-dark p-2" style="display: none;">
+    <i class="fa fa-close" style="float: right;" onclick="$('#pop_dialog').slideToggle(200);"></i>
+    <div id="detail_title" class="my-2"><span id="current_title" class="py-1 px-2 bg-primary text-light"></span></div>
+    <div id="detail_list" style="overflow-y: auto;">
+    </div>
+</div>
+</body>
+</html>
