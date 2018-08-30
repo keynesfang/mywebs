@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
+    <title>在学习中成长</title>
+    <link rel='stylesheet' type='text/css' href='lib/bootstrap-4.0.0/css/bootstrap.min.css'>
+    <link rel='stylesheet' type='text/css' href='/lib/font-awesome-4.7.0/css/font-awesome.min.css'>
+    <script src='/lib/jquery-3.2.1.min.js'></script>
+    <script src='/lib/bootstrap-4.0.0/js/bootstrap.min.js'></script>
+    <style>
+        .abs {
+            position: absolute;
+        }
+    </style>
+    <script>
+        $(function () {
+            set_video_size();
+        });
+
+        function set_video_size() {
+            var bar = $("#video_control_bar");
+            var bar_width = bar.width();
+            var bar_left_pos = bar.offset().left;
+            bar.css("left", bar_left_pos - bar_width / 2);
+        }
+    </script>
+</head>
+<body>
+<div id="video_container" class="w-100 text-center" style="position: relative;">
+    <video id="video" class="w-100" style="max-width: 600px;">
+        <source src="/function/english/video/resources/1.mp4" type="video/mp4">
+        <track label="English" kind="subtitles" srclang="en" src="/function/english/video/resources/1_eng.vtt" default>
+        <track label="Chinese" kind="subtitles" srclang="cn" src="/function/english/video/resources/1_chn.vtt">
+    </video>
+    <div id="video_control_bar" class="w-100"
+         style="position: absolute; bottom: 6px; left: 50%; height: 50px; background-color: #000; max-width: 600px;">
+        <div id="video_controls">
+            <button id="play_pause" class="abs btn btn-outline-light"><i class="fa fa-play"></i></button>
+        </div>
+    </div>
+</div>
+</body>
+</html>
