@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
+    <link rel="icon" href="/image/myicon.png" type="image/x-icon"/>
+    <link rel='stylesheet' type='text/css' href='/lib/bootstrap-4.0.0/css/bootstrap.min.css'>
+    <link rel='stylesheet' type='text/css' href='/lib/font-awesome-4.7.0/css/font-awesome.min.css'>
+    <link rel='stylesheet' type='text/css' href='/common.css'>
+    <link rel='stylesheet' type='text/css' href='/lib/video_fj/video.css'>
+    <script src='/lib/jquery-3.2.1.min.js'></script>
+    <script src='/lib/popper.min.js'></script>
+    <script src='/lib/bootstrap-4.0.0/js/bootstrap.min.js'></script>
+    <script src='/lib/common.js'></script>
+    <script src='/lib/video_fj/video.js'></script>
+    <title>在学习中成长</title>
+    <style>
+    </style>
+    <script>
+        var id = "";
+        var title = "";
+        var poster = "";
+        var favorite = "";
+        var unfavorite = "";
+        var eng = "";
+        var chn = "";
+        var control_list = {};
+        var bar_width = 0;
+        var control_btn_width = 40;
+        var video = undefined;
+        $(function () {
+            id = GetQueryString("id");
+            poster = GetQueryString("poster");
+            favorite = GetQueryString("favorite");
+            unfavorite = GetQueryString("unfavorite");
+            title = GetQueryString("title");
+            eng = GetQueryString("eng");
+            chn = GetQueryString("chn");
+            var content_height = parent.$("#sub_frame").height() - 50;
+            $("#video_page").css("height", content_height);
+            $("#title").text(title);
+            $("#video_page").html(create_video());
+            video = document.getElementById("video");
+            set_video_size();
+            control_init();
+            popover_init();
+            process_bar_init();
+            control_button_click();
+        });
+    </script>
+</head>
+<body class="bg-primary text-white">
+<div id="subscription_popover" style="display: none;"></div>
+<div id="speed_popover" style="display: none;">
+    <button class="btn btn-primary px-1 py-0 speed_popover"
+            onclick="popover_btn_click(this, 'speed_popover'); video.playbackRate=1;">正常
+    </button>
+    <button class="btn btn-secondary px-1 py-0 speed_popover"
+            onclick="popover_btn_click(this, 'speed_popover'); video.playbackRate=0.8;">较慢
+    </button>
+    <button class="btn btn-secondary px-1 py-0 speed_popover"
+            onclick="popover_btn_click(this, 'speed_popover'); video.playbackRate=0.6;">缓慢
+    </button>
+</div>
+<div id='title' class='mb-1 p-2 d-flex text-white'
+     style='position:relative; box-shadow: 0 2px 50px #000; z-index: 998;'></div>
+<div id='video_duration' style='position: fixed; font-size: 14px; top: 10px; right: 0;  padding: 0 10px; z-index: 999;'></div>
+<div id="video_page" class="mt-2" style="overflow-y: auto;">
+    <div id="loading" style="text-align: center;">
+        <div class="fa-3x">
+            <i class="fa fa-spinner fa-spin"></i>
+        </div>
+        <div class="mt-2">视频内容加载中！</div>
+    </div>
+</div>
+</body>
+</html>

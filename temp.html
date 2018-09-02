@@ -33,10 +33,11 @@
             height: 15px;
             border-radius: 0;
             bottom: -10px;
+            max-width: 600px;
         }
     </style>
     <script>
-        var control_name_list = ["play", "fast", "slow", "sound", "speed", "full_screen", "subscription", "expand"];
+        var control_name_list = ["play", "fast", "slow", "sound", "speed", "subscription", "lessen"];
         var control_list = {};
         var bar_width = 0;
         var control_btn_width = 40;
@@ -55,15 +56,23 @@
                     console.log(video.textTracks[i].language);
                 }
             }
+            var expand = $("#expand");
             var control_count = control_name_list.length;
             var control_total_width = control_btn_width * control_count;
             var blank_width = parseInt((bar_width - control_total_width) / (control_count + 1));
-            var current_let_pos = 0;
+            var current_left_pos = 0;
             $.each(control_name_list, function (idx, name) {
                 control_list[name] = $("#" + name);
-                control_list[name].css("left", current_let_pos);
+                control_list[name].css("left", current_left_pos);
                 control_list[name].css("margin-left", blank_width);
-                current_let_pos += 40 + blank_width;
+                if (idx == control_count - 1) {
+                    expand.css("left", current_left_pos + $("#video_control_bar").offset().left);
+                    expand.css("margin-left", blank_width);
+                }
+                current_left_pos += 40 + blank_width;
+            });
+            $(".set_process_bar_status").click(function () {
+                video_control.set_process_bar_status();
             });
         }
 
@@ -74,9 +83,6 @@
                 video_control.play();
                 var process_val = (e.pageX - $(this).offset().left) / $(this).width();
                 video.currentTime = process_val * video.duration;
-                process_val *= 100;
-                play_process.css("width", process_val + '%');
-                play_process.text(Math.floor(process_val) + '%');
             });
         }
 
@@ -125,9 +131,11 @@
 
         function set_video_size() {
             var bar = $("#video_control_bar");
+            var progress = $("#progress");
             bar_width = bar.width();
             var bar_left_pos = bar.offset().left;
             bar.css("left", bar_left_pos - bar_width / 2);
+            progress.css("left", bar_left_pos - bar_width / 2);
         }
 
         var video_control = {
@@ -136,8 +144,6 @@
                 video_control.exchange_icon(self, "fa-play", "fa-pause");
                 video.addEventListener('timeupdate', process_bar_listener, false);
                 video.play();
-                //video.textTracks[1].mode = 'showing';
-                //video.textTracks[0].mode = 'hidden';
             },
             pause: function (self) {
                 video_control.exchange_icon(self, "fa-pause", "fa-play");
@@ -158,11 +164,7 @@
                 $(self).children("i").addClass(after);
             },
             class_confirm: function (self, class_name) {
-                if ($(self).children("i").hasClass(class_name)) {
-                    return true;
-                } else {
-                    return false;
-                }
+                return $(self).children("i").hasClass(class_name);
             },
             toggle_click: function (self, class_name, func1, func2) {
                 if ($(self).children("i").hasClass(class_name)) {
@@ -170,41 +172,53 @@
                 } else {
                     func2(self);
                 }
+            },
+            set_subtitles: function (self, index) {
+                if ($(self).hasClass("btn-primary")) {
+                    $(self).removeClass("btn-primary");
+                    $(self).addClass("btn-secondary");
+                    video.textTracks[index].mode = 'hidden';
+                } else {
+                    $(self).removeClass("btn-secondary");
+                    $(self).addClass("btn-primary");
+                    video.textTracks[index].mode = 'showing';
+                }
+                $("#subscription_popover").html($(self).parent().html());
+                $('[data-toggle="popover"]').popover("hide");
+            },
+            set_process: function (time) {
+                video.currentTime += time;
+            },
+            set_process_bar_status: function () {
+                $("#expand").toggle();
+                $("#video_control_bar").toggle();
             }
         };
-
-        function set_subtitles(index) {
-            if (index == -1) {
-                for (var i = 0; i < video.textTracks.length; i++) {
-                    video.textTracks[i].mode = 'hidden';
-                }
-            } else {
-                video.textTracks[index].mode = 'showing';
-            }
-        }
     </script>
 </head>
 <body>
 <div id="subscription_popover" style="display: none;">
-    <button class="btn btn-primary px-1 py-0 subscription_popover"
-            onclick="popover_btn_click(this, 'subscription_popover'); set_subtitles(-1);">关闭
+    <button class="btn btn-secondary px-1 py-0 subscription_popover"
+            onclick="video_control.set_subtitles(this, 0);">英文
     </button>
     <button class="btn btn-secondary px-1 py-0 subscription_popover"
-            onclick="popover_btn_click(this, 'subscription_popover'); set_subtitles(0);">中文
-    </button>
-    <button class="btn btn-secondary px-1 py-0 subscription_popover"
-            onclick="popover_btn_click(this, 'subscription_popover'); set_subtitles(1);">英文
+            onclick="video_control.set_subtitles(this, 1);">中文
     </button>
 </div>
 <div id="speed_popover" style="display: none;">
-    <button class="btn btn-primary px-1 py-0 speed_popover" onclick="popover_btn_click(this, 'speed_popover'); video.playbackRate=1;">正常
+    <button class="btn btn-primary px-1 py-0 speed_popover"
+            onclick="popover_btn_click(this, 'speed_popover'); video.playbackRate=1;">正常
     </button>
-    <button class="btn btn-secondary px-1 py-0 speed_popover" onclick="popover_btn_click(this, 'speed_popover'); video.playbackRate=0.8;">较慢
+    <button class="btn btn-secondary px-1 py-0 speed_popover"
+            onclick="popover_btn_click(this, 'speed_popover'); video.playbackRate=0.8;">较慢
     </button>
-    <button class="btn btn-secondary px-1 py-0 speed_popover" onclick="popover_btn_click(this, 'speed_popover'); video.playbackRate=0.6;">缓慢
+    <button class="btn btn-secondary px-1 py-0 speed_popover"
+            onclick="popover_btn_click(this, 'speed_popover'); video.playbackRate=0.6;">缓慢
     </button>
 </div>
 <div id="video_container" class="w-100 text-center" style="position: relative;">
+    <button id="expand" class="abs btn btn-outline-light control_btn set_process_bar_status"
+            style="bottom: 15px; z-index: 999; display: none;"><i class="fa fa-arrows-h"></i></button>
     <video id="video" class="w-100" style="max-width: 600px;">
         <source src="/function/english/video/resources/1.mp4" type="video/mp4">
         <track label="English" kind="subtitles" srclang="en" src="/function/english/video/resources/1_eng.vtt">
@@ -212,26 +226,28 @@
     </video>
     <div id="video_control_bar" class="w-100 abs">
         <div id="video_controls">
-            <div id="progress" class="abs progress w-100">
-                <div id="play_process" class="progress-bar progress-bar-striped progress-bar-animated"
-                     role="progressbar"
-                     aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
-            </div>
             <button id="play" class="abs btn btn-outline-light control_btn"
                     onclick="video_control.toggle_click(this, 'fa-play', video_control.play, video_control.pause);"><i
                     class="fa fa-play"></i></button>
-            <button id="fast" class="abs btn btn-outline-light control_btn"><i class="fa fa-backward"></i></button>
-            <button id="slow" class="abs btn btn-outline-light control_btn"><i class="fa fa-forward"></i></button>
+            <button id="fast" class="abs btn btn-outline-light control_btn" onclick="video_control.set_process(-5);"><i
+                    class="fa fa-backward"></i></button>
+            <button id="slow" class="abs btn btn-outline-light control_btn" onclick="video_control.set_process(5);"><i
+                    class="fa fa-forward"></i></button>
             <button id="sound" class="abs btn btn-outline-light control_btn" onclick="video_control.muted(this);"><i
                     class="fa fa-volume-up"></i></button>
             <button id="speed" class="abs btn btn-outline-light control_btn" data-toggle="popover"
                     data-placement="top" data-original-title="播速"><i class="fa fa-flash"></i></button>
-            <button id="full_screen" class="abs btn btn-outline-light control_btn"><i class="fa fa-expand"></i>
-            </button>
+            <!--<button id="full_screen" class="abs btn btn-outline-light control_btn"><i class="fa fa-expand"></i>-->
+            <!--</button>-->
             <button id="subscription" class="abs btn btn-outline-light control_btn" data-toggle="popover"
                     data-placement="top" data-original-title="字幕"><i class="fa fa-cc"></i></button>
-            <button id="expand" class="abs btn btn-outline-light control_btn"><i class="fa fa-arrows-h"></i></button>
+            <button id="lessen" class="abs btn btn-outline-light control_btn set_process_bar_status"><i class="fa fa-times"></i></button>
         </div>
+    </div>
+    <div id="progress" class="abs progress w-100">
+        <div id="play_process" class="progress-bar progress-bar-striped progress-bar-animated"
+             role="progressbar"
+             aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
     </div>
     <div id="video_duration" class="abs" style="bottom: -10px; right: 2px; font-size: 5px;"></div>
 </div>
