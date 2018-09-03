@@ -37,3 +37,7 @@
 .popover-header {
     color: #000;
 }
+
+.video_show {
+    display: none;
+}

@@ -28,6 +28,7 @@
         var bar_width = 0;
         var control_btn_width = 40;
         var video = undefined;
+        var video_canvas = undefined;
         $(function () {
             id = GetQueryString("id");
             poster = GetQueryString("poster");
@@ -39,13 +40,7 @@
             var content_height = parent.$("#sub_frame").height() - 50;
             $("#video_page").css("height", content_height);
             $("#title").text(title);
-            $("#video_page").html(create_video());
-            video = document.getElementById("video");
-            set_video_size();
-            control_init();
-            popover_init();
-            process_bar_init();
-            control_button_click();
+            create_video();
         });
     </script>
 </head>
@@ -66,12 +61,6 @@
      style='position:relative; box-shadow: 0 2px 50px #000; z-index: 998;'></div>
 <div id='video_duration' style='position: fixed; font-size: 14px; top: 10px; right: 0;  padding: 0 10px; z-index: 999;'></div>
 <div id="video_page" class="mt-2" style="overflow-y: auto;">
-    <div id="loading" style="text-align: center;">
-        <div class="fa-3x">
-            <i class="fa fa-spinner fa-spin"></i>
-        </div>
-        <div class="mt-2">视频内容加载中！</div>
-    </div>
 </div>
 </body>
 </html>
