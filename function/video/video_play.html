@@ -20,6 +20,7 @@
         var id = "";
         var title = "";
         var poster = "";
+        var view_count = "";
         var favorite = "";
         var unfavorite = "";
         var eng = "";
@@ -32,6 +33,7 @@
         $(function () {
             id = GetQueryString("id");
             poster = GetQueryString("poster");
+            view_count = parseInt(GetQueryString("view_count")) + 1;
             favorite = GetQueryString("favorite");
             unfavorite = GetQueryString("unfavorite");
             title = GetQueryString("title");
@@ -41,7 +43,29 @@
             $("#video_page").css("height", content_height);
             $("#title").text(title);
             create_video();
+            init_video_data();
+            add_count("view_count");
         });
+
+        function init_video_data() {
+            $("#view_count").val("已浏览：" + view_count);
+            $("#favorite").text(favorite);
+            $("#unfavorite").text(unfavorite);
+        }
+        
+        function add_count(name) {
+            var condition = "id='" + id + "'";
+            if(name == "favorite" || name == "unfavorite") {
+                $(".add_count").attr("onclick", "");
+            }
+            $("#favorite").text(favorite);
+            $("#unfavorite").text(unfavorite);
+            $.post("local_logic.php", {
+                type: "add_count_by_name",
+                fieldName: name,
+                condition: condition
+            });
+        }
     </script>
 </head>
 <body class="bg-primary text-white">
@@ -59,8 +83,20 @@
 </div>
 <div id='title' class='mb-1 p-2 d-flex text-white'
      style='position:relative; box-shadow: 0 2px 50px #000; z-index: 998;'></div>
-<div id='video_duration' style='position: fixed; font-size: 14px; top: 10px; right: 0;  padding: 0 10px; z-index: 999;'></div>
+<div id='video_duration'
+     style='position: fixed; font-size: 14px; top: 10px; right: 0;  padding: 0 10px; z-index: 999;'></div>
 <div id="video_page" class="mt-2" style="overflow-y: auto;">
+    <div id='video_container' class='w-100 text-center'></div>
+    <div class="input-group mb-3" style="margin-top: 11px;">
+        <input id="view_count" type="text" class="form-control" style="border-radius: 0;" disabled>
+        <div class="input-group-append add_count" onclick="favorite++; add_count('favorite');" disabled="true">
+            <label class="input-group-text"><i class="fa fa-thumbs-up mr-2"></i><span id="favorite"></span></label>
+        </div>
+        <div class="input-group-append add_count" onclick="unfavorite++; add_count('unfavorite');">
+            <label class="input-group-text" style="border-radius: 0;"><i class="fa fa-thumbs-down mr-2"></i><span
+                    id="unfavorite"></span></label>
+        </div>
+    </div>
 </div>
 </body>
 </html>

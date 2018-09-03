@@ -10,5 +10,16 @@ if ($type == "get_video_list") {
     echo json_encode($result);
 }
 
+if ($type == "add_count_by_name") {
+    $fieldName = $_REQUEST['fieldName'];
+    $condition = $_REQUEST['condition']; // a='b' and c='d'
+    $result = $dbop->field_update_itself("eng_video", $fieldName, 1, $condition);
+    if ($result) {
+        echo "success";
+    } else {
+        echo "fail";
+    }
+}
+
 
 

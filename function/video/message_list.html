@@ -76,10 +76,11 @@
                     var eng = message_info[item].eng;
                     var chn = message_info[item].chn;
                     var poster = message_info[item].poster;
+                    var view_count = message_info[item].view_count;
                     var favorite = message_info[item].favorite;
                     var unfavorite = message_info[item].unfavorite;
                     html += "<div class='video_info p-2'>";
-                    html += "<i class='fa fa-youtube-play fa-2x play_btn pr-2 pb-2' onclick='play_video(\"" + id + "\", \"" + poster + "\", \"" + favorite + "\", \"" + unfavorite + "\", \"" + title + "\", \"" + eng + "\", \"" + chn + "\");'></i>";
+                    html += "<i class='fa fa-youtube-play fa-2x play_btn pr-2 pb-2' onclick='play_video(\"" + id + "\", \"" + poster + "\", \"" + view_count + "\", \"" + favorite + "\", \"" + unfavorite + "\", \"" + title + "\", \"" + eng + "\", \"" + chn + "\");'></i>";
                     html += "<img class='video_img w-100' src='/function/english/video/resources/" + poster + ".png'>";
                     html += "<div class='video_show w-100 text-light px-2'>";
                     html += "<span class='title'>" + title + "</span>";
@@ -104,8 +105,8 @@
             });
         }
 
-        function play_video(id, poster, favorite, unfavorite, title, eng, chn) {
-            location.href = "video_play.html?id=" + id + "&poster=" + poster + "&favorite=" + favorite + "&unfavorite=" + unfavorite + "&title=" + title + "&eng=" + eng + "&chn=" + chn;
+        function play_video(id, poster, view_count, favorite, unfavorite, title, eng, chn) {
+            location.href = "video_play.html?id=" + id + "&poster=" + poster + "&view_count=" + view_count + "&favorite=" + favorite + "&unfavorite=" + unfavorite + "&title=" + title + "&eng=" + eng + "&chn=" + chn;
         }
     </script>
 </head>
