@@ -22,10 +22,6 @@
             overflow-x: hidden;
         }
 
-        #show_date {
-            margin-left: 10px;
-        }
-
         #header {
             position: relative;
             width: 100%;
@@ -70,7 +66,7 @@
 
         #explain_bar {
             position: fixed;
-            top: 55px;
+            top: 0;
             width: 100%;
         }
 
@@ -88,13 +84,9 @@
             max-width: 600px;
             width: 100%;
             z-index: 999;
-            display: none;
             position: relative;
             border-radius: 5px;
-        }
-
-        .func_link {
-            position: absolute;
+            display: none;
         }
 
         .func_icon {
@@ -276,6 +268,8 @@
         }
 
         function query() {
+            $("#loading").show();
+            $("#explain_detail").hide();
             var word = $("#query_word").val();
             word = $.trim(word);
             if (word) {
@@ -382,10 +376,12 @@
             $.each(function_info, function (name, info) {
                 blank_width = index ? 10 : 0;
                 var div_attr = "link='" + info.url + "'";
+                var div_class = "menu_btn";
                 if (!info.url) {
                     div_attr = "onclick='" + info.func + "'";
+                    div_class = "";
                 }
-                html += "<div " + div_attr + " class='menu_btn' style='display: inline-block; width: 24px; margin-left: " + blank_width + "px;'><img class='func_icon' src='image/" + name + ".png'><div class='menu_name'>" + info.name + "</div></div>";
+                html += "<div " + div_attr + " class='" + div_class + "' style='display: inline-block; width: 24px; margin-left: " + blank_width + "px;'><img class='func_icon' src='image/" + name + ".png'><div class='menu_name'>" + info.name + "</div></div>";
                 left_pos += func_width + blank_width;
                 index++;
             });
@@ -415,12 +411,12 @@
     <!--<div id="title" class="mt-4">在学习中成长</div>-->
     <!--<div id="sub_title">Growth In Learning</div>-->
     <!--</div>-->
-    <div id="show_header_simple" class="w-100 ml-1 pt-1" style="position: relative;">
+    <div id="show_header_simple" class="w-100 ml-2 pt-1" style="position: relative;">
         <img src="image/head_bak.jpg" style="width:42px; height: 42px; border-radius: 25px; border: 3px solid #fff;">
         <h5 class="ml-2 mb-0 d-inline-block" style="position: absolute; top: 10px;">在学习中成长</h5>
         <!--<div id="sub_title2" style="position: absolute; top: 31px; left: 55px;">Growth In Learning</div>-->
     </div>
-    <div id="function_bar" class="w-100 px-3" style="text-align: center;"></div>
+    <div id="function_bar" class="w-100 px-3" style="text-align: right; position: absolute; top: 43px;"></div>
     <!--<div id="header_switch"-->
     <!--style="position: absolute; top: 0; left: 100px; border: 1px solid #fff; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px;"-->
     <!--class="bg-danger px-2">-->
@@ -454,7 +450,6 @@
 
 <div id="explain_bar">
     <div id="explain" class="bg-dark">
-        <i class="fa fa-caret-up fa-2x text-dark" style="position: absolute; top: -21px; right: 170px;"></i>
         <div id="loading" style="text-align: center; display: none;">
             <div class="fa-3x">
                 <i class="fa fa-spinner fa-spin"></i>
