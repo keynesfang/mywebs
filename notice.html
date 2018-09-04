@@ -12,116 +12,53 @@
     <script src='/lib/stamp/stamp.js'></script>
     <title>在学习中成长</title>
     <style>
-        .title {
-            font-size: 16px;
-            border-radius: 5px;
-        }
-
-        .section {
-            text-indent: 2em;
-            margin-top: 15px;
-        }
-
-        key {
-            color: greenyellow;
-        }
-
-        key2 {
-            color: #ffc107;
-        }
-
-        #canvas {
-            float: right;
-            position: absolute;
-            top: 2px;
-            right: 2px;
+        section {
+            margin-top: 5px;
         }
     </style>
     <script>
         $(function () {
-            $("#page").css("height", document.documentElement.clientHeight);
-            createSeal('canvas', '在学习中成长', "2018-6-6");
-            $("#canvas").css("width", "100px");
-//            if (document.documentElement.clientHeight < 450) {
-//                $("#canvas").css("width", "100px");
-//            } else {
-//                $("#canvas").css("width", "150px");
-//            }
+            var content_height = parent.$("#sub_frame").height() - 50;
+            $("#notice_info").css("height", content_height);
         });
     </script>
 </head>
 <body id="page" class=" bg-primary text-white" style="position: relative;">
-<h5 class="m-0 p-2 bg-primary text-white">英语是怎样炼成的</h5>
-<hr class="mt-0">
-<div id="notice" class="p-2">
-    <canvas id="canvas" width="250" height="250"></canvas>
-    <div class="title bg-success text-light p-2">
-        学好英语的要素
-    </div>
-    <div class="section">
-        有许多人都在问怎么才能学好英语，在这里谈谈我的个人观点，仅供参考。
-    </div>
-    <div class="section">
-        首先，来谈谈学英语想到达到的目的是什么？个人认为是--“听、读、说、写”。有的人说学英语是为了应付考试，其实仔细想想，要想考得好，是不是也最终落到那四个字上了？
-    </div>
-    <div class="section">
-        【<key>听</key>】-- 重点在于听得懂，也就是理解别人想表达的意思。这需要以下能力：
-        <ul style="text-indent: 0; font-size: 14px;" class="text-warning mt-2">
-            <li>词汇量：理解听到单词的含义；</li>
-            <li>单词发音：听得清别人说的单词；</li>
-            <li>英语语法：听得懂别人说的句子。</li>
+<div id='title' class='mb-1 p-2 d-flex text-white'
+     style='position:relative; box-shadow: 0 2px 50px #000; z-index: 998;'>英语是怎样炼成的
+</div>
+<div id="notice_info" class="mt-2" style="overflow-y: auto;">
+    <div class="jumbotron text-dark mb-0 py-3" style="font-size: 14px;">
+        <h3>Hello, <span class="text-primary">Reader</span>!</h3>
+        <p>有许多人都在问怎么才能学好英语，在这里谈谈我的个人观点，仅供参考。</p>
+        <hr class="my-2">
+        <p>首先来谈谈学英语想到达到的目的是什么？个人认为是--“听、读、说、写”。其实仔细想想，可以把这个目标分解为3个学习要素-<span class="text-primary">词汇量、单词发音、英语语法</span>！
+        </p>
+        <p class="lead">
+        <ul class="list-group">
+            <li class="list-group-item active">单词发音</li>
+            <li class="list-group-item">
+                <section>对单词发音的熟悉程度是听和说的关键。如果掌握不好，别人说你听不懂；你说别人也听不懂。</section>
+                <section>如果是初学者或发音不好的人，建议从音标开始学！但注意不要脱离单词去学音标，先学好48个音标的发音，然后在记忆单词时，再对音标进行巩固即可！</section>
+            </li>
+            <li class="list-group-item active mt-2">扩展词汇</li>
+            <li class="list-group-item">
+                <section>不会语法能表达的很少，没有词汇你什么都不能表达！</section>
+                <section>但死记硬背的内容是最容易遗忘的，所以不要为了背词而背词！记住我们是为了使用单词才需要背单词。所以我们应该通过日常的听、读、说、写等活动来学会用单词。就像学游泳一样，只要学会了就不会再遗忘！
+                </section>
+            </li>
+            <li class="list-group-item active mt-2">英语语法</li>
+            <li class="list-group-item">
+                <section>不会语法能表达的很少，但如果用了错误的语法，有时候比不能表达更糟！</section>
+                <section>语法就是把单词正确组合起来的一套规则。但不是必须去弄懂所有句子里包含的所有语法，就像你不能保证你说的所有中文语法都是对的一样！</section>
+            </li>
+            <li class="list-group-item active mt-2">学习方法</li>
+            <li class="list-group-item">
+                <section>学习时，上面提到的3点没有先后顺序，因为它们本来就是相互依存的！</section>
+                <section>在本站可以找到相关的学习资源，你可以免费使用，但仅限于个人学习用途！</section>
+            </li>
         </ul>
-    </div>
-    <div class="section">
-        【<key>读</key>】-- 与听一样，都是在理解别人表达的内容，只是形式不同。这需要以下能力：
-        <ul style="text-indent: 0; font-size: 14px;" class="text-warning mt-2">
-            <li>词汇量：理解看到单词的含义；</li>
-            <li>英语语法：读得懂别人写的句子。</li>
-        </ul>
-    </div>
-    <div class="section">
-        【<key>说</key>】-- 重点在于能把自己的想法表达出来，并让别人听得懂。这需要以下能力：
-        <ul style="text-indent: 0; font-size: 14px;" class="text-warning mt-2">
-            <li>词汇量：有足够的单词来表达；</li>
-            <li>单词发音：让别人听得清单词；</li>
-            <li>英语语法：让别人听得懂句子。</li>
-        </ul>
-    </div>
-    <div class="section">
-        【<key>写</key>】-- 与说一样，都是在表达自己的想法，并让别人读得懂。这需要以下能力：
-        <ul style="text-indent: 0; font-size: 14px;" class="text-warning mt-2">
-            <li>词汇量：有足够的单词来表达；</li>
-            <li>英语语法：让别人读得懂句子。</li>
-        </ul>
-    </div>
-    <div class="section mb-3">
-        总结一下可见，学好英语的关键有三要素：<key2>1.词汇量</key2>，<key2>2.掌握单词发音</key2>，<key2>3.掌握英语语法</key2>。
-        而【<key>听</key>】，【<key>说</key>】之所以比【<key>读</key>】，【<key>写</key>】难，就在于多了一个<key2>单词发音</key2>。
-    </div>
-    <div class="title bg-success text-light p-2 d-flex justify-content-end">
-        英语学习流程
-    </div>
-    <div class="section">
-        有的人学英语有热情，但今天这里学一点，明天那里学一点，过了一段时间发现没什么进步，于是热情慢慢的被磨光了。
-        这往往就是学习方法不当导致的，也是我以前走过的弯路，为了避免更多人走相同的弯路，所以我创建了这个网站，希望能为大家提供一个参考，共同进步。
-    </div>
-    <div class="section">
-        如果你的英语基础不是太好，我推荐的学习流程是这样的：
-        <ul style="text-indent: 0; font-size: 14px;" class="text-warning mt-2">
-            <li>用使用频率最高的词汇构建起自己的第一套词库。词库本站已准备好，可参考【词汇】菜单内容。</li>
-            <li>在学习高频词汇的同时，学习单词的发音方法。本站已准备了“自然拼读法”与“国际音标”，可参考【发音】菜单内容。</li>
-            <li>怎样把单词组成想要表达的句子，可参考【语法】菜单内容。</li>
-            <li>在【新闻】菜单中，每天会提供1篇超短新闻。你可以每天花点时间，通过它提高阅读能力、听力能力、扩展你的词库、同时保持对英语的学习热情。</li>
-        </ul>
-    </div>
-    <div class="section mb-3">
-        希望通常结合以上方法与本站资源学习英语，能为你的英语学习提供帮助。如果有好的建议，请通过顶部<key>客服</key>图标与我联系。
-    </div>
-    <div class="title bg-success text-light p-2">
-        本站申明
-    </div>
-    <div class="section mb-3">
-        本站资源全部免费提供，仅用于学习。部分资料来源于网络，如有侵权，请联系删除。
+        </p>
     </div>
 </div>
 </body>
