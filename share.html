@@ -13,55 +13,59 @@
     <script src='/lib/stamp/stamp.js'></script>
     <title>在学习中成长</title>
     <style>
+        .info_title {
+            color: #007bff;
+        }
+
+        .info_icon {
+            width: 20px;
+            height: 20px;
+        }
     </style>
     <script>
         $(function () {
-            $("#page").css("height", document.documentElement.clientHeight);
-            createSeal('canvas', '在学习中成长', "2018-6-6");
-            if (document.documentElement.clientHeight < 450) {
-                $("#canvas").css("width", "100px");
-            } else {
-                $("#canvas").css("width", "150px");
-            }
+            var content_height = parent.$("#sub_frame").height() - 50;
+            $("#author_info").css("height", content_height);
         });
     </script>
 </head>
-<body id="page" class=" bg-primary text-white" style="position: relative;">
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-    <ol class="carousel-indicators">
-        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-    </ol>
-    <div class="carousel-inner">
-        <div class="carousel-item p-2 active">
-            <div class="text-warning">作者微信</div>
-            <div class="m-2" style="font-size: 14px;">
-                <ul class="pl-2">
-                    <li>有任何建议和意见可加作者微信反馈，好的内容将被更新在网站中；</li>
-                    <li>如果本站对你有用，可以对作者打赏，激励作者更玩命的创作热情。</li>
-                </ul>
-            </div>
-            <img class="d-block w-100 img-thumbnail p-2" src="/image/share_author.png">
-        </div>
-        <div class="carousel-item p-2">
-            <div class="text-warning">QQ学习群</div>
-            <div class="m-2" style="font-size: 14px;">
-                <ul class="pl-2">
-                    <li>加入QQ群，一起学习，共同进步。</li>
-                    <li>作者QQ号：3476626837。有好的建议请加好友。</li>
-                </ul>
-            </div>
-            <img class="d-block w-100" src="/image/share_qq_group.png" alt="Second slide">
-        </div>
+<body class="bg-primary text-white">
+<div id='title' class='mb-1 p-2 d-flex text-white'
+     style='position:relative; box-shadow: 0 2px 50px #000; z-index: 998;'>作者信息
+</div>
+<div id="author_info" class="mt-2" style="overflow-y: auto;">
+    <div class="jumbotron text-dark mb-0 py-3" style="font-size: 14px;">
+        <h3>Hello, <span class="text-primary">Reader</span>!</h3>
+        <p>欢迎使用本站资源来进行英语学习，申明本站资源仅限用于个人学习！</p>
+        <hr class="my-2">
+        <p>如果你在学习过程中遇到问题，可以联系作者。也可加入群组一起学习，共同进步！</p>
+        <p class="lead">
+        <ul class="list-group">
+            <li class="list-group-item active">联系方式，加我请留言：学习</li>
+            <li class="list-group-item"><span class="info_title">QQ</span><span style="float: right;">403026875</span>
+            </li>
+            <li class="list-group-item"><span class="info_title">Q群</span><span style="float: right;">796710129</span>
+            </li>
+            <li class="list-group-item"><span class="info_title">微信</span><span style="float: right;">keynesfang</span>
+            </li>
+        </ul>
+        <ul class="list-group mt-3">
+            <li class="list-group-item active">其它平台，总有一款适合你</li>
+            <li class="list-group-item"><span class="info_title">大鱼号</span><span style="float: right;">知识可以这样学</span>
+            </li>
+            <li class="list-group-item"><span class="info_title">百家号</span><span style="float: right;">知识可以这样学</span>
+            </li>
+            <li class="list-group-item"><span class="info_title">企鹅号</span><span style="float: right;">知识可以这样学</span>
+            </li>
+            <li class="list-group-item"><span class="info_title">头条号</span><span style="float: right;">知识可以这样学</span>
+            </li>
+            <li class="list-group-item"><span class="info_title">微信公众号</span><span
+                    style="float: right;">I在学习中成长ing</span></li>
+            <li class="list-group-item"><span class="info_title">新浪微博</span><span style="float: right;">知识可以这样学</span>
+            </li>
+        </ul>
+        </p>
     </div>
-    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
 </div>
 </body>
 </html>
