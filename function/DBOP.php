@@ -145,6 +145,29 @@ Class DB
         return true;
     }
 
+    //数据存在则更新，不存在则插入
+    public function update_or_insert($table, $dataArray, $fieldName, $num)
+    {
+        $field = "";
+        $value = "";
+        if (!is_array($dataArray) || count($dataArray) <= 0) {
+            $this->halt('没有要插入的数据');
+            return false;
+        }
+        while (list($key, $val) = each($dataArray)) {
+            $field .= "$key,";
+            $value .= "'$val',";
+        }
+        $field = substr($field, 0, -1);
+        $value = substr($value, 0, -1);
+        $sql = "insert into $table ($field) values ($value) ON DUPLICATE KEY UPDATE $fieldName=$fieldName+$num";
+        $this->write_log("插入更新 " . $sql);
+        if (!$this->query($sql))
+            return false;
+
+        return true;
+    }
+
     //删除
     public function delete($table, $condition = "")
     {

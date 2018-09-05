@@ -172,3 +172,9 @@ if ($type == "eng_word_translate") {
     $result = file_get_contents($url);
     echo $result;
 }
+
+if ($type == "update_view_record") {
+    $table_name = "eng_view_record";
+    $fields_value_array = $_REQUEST['fields_value_array']; // fields_value_array[a] = b
+    $result = $dbop->update_or_insert($table_name, $fields_value_array, "view_count", 1);
+}
