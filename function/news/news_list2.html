@@ -36,6 +36,8 @@
         var load_complete = false;
         $(function () {
             load_news();
+            var content_height = parent.$("#sub_frame").height() -50;
+            $("#news_list").css("height", content_height);
         });
 
         function regScrollbar() {
@@ -99,8 +101,8 @@
     </script>
 </head>
 <body class=" bg-primary text-white">
-<div id='title' class='mb-1 p-2 d-flex text-white mb-2 d-flex justify-content-end' style='position:relative; box-shadow: 0 2px 50px #000; z-index: 998;'>英语短新闻</div>
-<div id="news_list">
+<div id='title' class='mb-1 p-2 d-flex text-white mb-2' style='position:relative; box-shadow: 0 2px 50px #000; z-index: 998;'>英语短新闻</div>
+<div id="news_list" style="overflow-y: auto;">
     <div id="loading" style="text-align: center;">
         <div class="fa-3x">
             <i class="fa fa-spinner fa-spin"></i>
