@@ -131,7 +131,11 @@
         var source_type = ""; // 增加生词的来源类型
         var source_id = ""; // 增加生词的来源标识
         var function_info = {
-            "video": {
+            "home_page": {
+                name: "首页",
+                url: "",
+                func: "show_home_page();"
+            },"video": {
                 name: "视频",
                 url: "/function/video/message_list.html"
             },
@@ -388,6 +392,11 @@
                 index++;
             });
             $("#function_bar").html(html);
+        }
+
+        function show_home_page() {
+            $("#main_page").show();
+            $("#sub_frame").hide();
         }
     </script>
 </head>
