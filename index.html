@@ -50,6 +50,14 @@
             left: 2%;
         }
 
+        #back_page {
+            border: 0;
+            width: 94%;
+            position: fixed;
+            top: 91px;
+            left: 3%
+        }
+
         #sub_frame, #main_page {
             border: 0;
             width: 94%;
@@ -99,18 +107,6 @@
             color: #ffc107;
         }
 
-        #page_loading {
-            position: absolute;
-            top: 200px;
-            width: 200px;
-            text-align: center;
-            background: rgba(2, 2, 2, 0.6);
-            padding: 20px;
-            border-radius: 10px;
-            z-index: 999;
-            font-size: 6px;
-        }
-
         section {
             margin-top: 5px;
         }
@@ -135,7 +131,7 @@
                 name: "首页",
                 url: "",
                 func: "show_home_page();"
-            },"video": {
+            }, "video": {
                 name: "视频",
                 url: "/function/video/message_list.html"
             },
@@ -165,11 +161,11 @@
                 url: "/function/message/message_list.html"
             }
         };
-//        ,
-//        "announcement": {
-//            name: "秘诀",
-//                    url: "/notice.html"
-//        }
+        //        ,
+        //        "announcement": {
+        //            name: "秘诀",
+        //                    url: "/notice.html"
+        //        }
         $(function () {
             var type = GetQueryString("type");
             var id = GetQueryString("id");
@@ -177,18 +173,26 @@
                 var url = "";
                 if (type == "news") {
                     url = "/function/news/news_detail2.html?news_id=" + id;
+                    $("#btn_2").removeClass("btn-dark");
+                    $("#btn_2").addClass("btn-warning");
                 }
                 if (type == "introduce") {
                     url = "/notice.html";
                 }
                 if (type == "pronunciation") {
                     url = "/function/pronunciation/introduce.html";
+                    $("#btn_1").removeClass("btn-dark");
+                    $("#btn_1").addClass("btn-warning");
                 }
                 if (type == "glossary") {
                     url = "/function/glossary/menu.html";
+                    $("#btn_3").removeClass("btn-dark");
+                    $("#btn_3").addClass("btn-warning");
                 }
                 if (type == "express") {
-                    url = "/function/express/express_menu.html";
+                    url = "/function/express/express_menu.html"
+                    $("#btn_4").removeClass("btn-dark");
+                    $("#btn_4").addClass("btn-warning");
                 }
                 $("#sub_frame").show();
                 $("#main_page").hide();
@@ -198,17 +202,14 @@
             explain = $("#explain");
             set_frame_height();
             var sub_frame_width = $("#sub_frame").width();
-            $("#page_loading").css("left", (sub_frame_width - 200) / 2);
             $("#menu").css("width", sub_frame_width);
 
             // $(".show_date").html(getToday());
             $(".menu_btn, .my_menu").click(function () {
-                $("#page_loading").show();
                 explain.hide();
                 $(".bottom_menu_btn").removeClass("btn-warning");
                 $(".bottom_menu_btn").addClass("btn-dark");
                 $("#sub_frame").attr("src", $(this).attr("link"));
-                $("#page_loading").hide();
                 $("#sub_frame").show();
                 $("#main_page").hide();
             });
@@ -225,6 +226,7 @@
         function set_frame_height() {
             var sub_height = 134;
             document.getElementById("sub_frame").height = document.documentElement.clientHeight - sub_height;
+            $("#back_page").css("height", document.documentElement.clientHeight - sub_height);
             var main_page_height = document.getElementById("main_page").height = document.documentElement.clientHeight - sub_height;
             $("#notice_info").css("height", main_page_height - 48);
         }
@@ -402,12 +404,6 @@
 </head>
 <body class="text-white">
 <div id="header">
-    <div id="page_loading" style="display: none;">
-        <div class="fa-3x">
-            <i class="fa fa-spinner fa-spin"></i>
-            <div class="pb-2">页面加载中...</div>
-        </div>
-    </div>
     <div id="show_header_simple" class="w-100 ml-2 pt-1" style="position: relative;">
         <img src="image/head_bak.jpg" style="width:42px; height: 42px; border-radius: 25px; border: 3px solid #fff;">
         <h5 class="ml-2 mb-0 d-inline-block" style="position: absolute; top: 10px;">我要自学英语</h5>
@@ -415,6 +411,12 @@
     </div>
     <div id="function_bar" class="w-100 px-3" style="text-align: right; position: absolute; top: 43px;"></div>
     <div id="output_bar"></div>
+    <div id="back_page" class="bg-primary" style="text-align: center;">
+        <div class="fa-3x mt-5">
+            <i class="fa fa-spinner fa-spin"></i>
+        </div>
+        <div class="pb-2">页面载入中！</div>
+    </div>
     <div id="main_page" class="bg-primary">
         <div id='title' class="mb-1 p-2 d-flex text-white"
              style='position:relative; box-shadow: 0 2px 50px #000; z-index: 998;'>如何将自学英语进行到底
@@ -438,7 +440,8 @@
                     <li class="list-group-item list-group-item-success">
                         <section>如果一件事能让你快乐，相信没人提醒你也会主动的去做并尽量做好。如：追剧、看小说、打游戏等。</section>
                         <section>那么怎么能让学英语也变成一件快乐的事情呢？根据每个人的心理需求不一样，方法也不一样。所以在这里我只举几个例子。</section>
-                        <section>1.完成目标后觉得有成就感的人：每天为自己制定一个学习完成的小目标，如果忙的时候哪怕是背一个单词也好。这样每天都在积累成功，会使自己越学越有信心，最终迈向更大的成功！</section>
+                        <section>1.完成目标后觉得有成就感的人：每天为自己制定一个学习完成的小目标，如果忙的时候哪怕是背一个单词也好。这样每天都在积累成功，会使自己越学越有信心，最终迈向更大的成功！
+                        </section>
                         <section>2.渴望得到赞扬的人：把每天的学习成果总结一下，发朋友圈什么的，每天的得到的点赞也许就是你学习的动力！</section>
                         <section>3.好胜心较强的人：找一个同样性格的朋友一起学英语，经常相互用英语交流来看谁学得更好，多较较劲英语就好了！</section>
                         <section>你对快乐的定义是怎样的呢？快乐是一天，不快乐也是一天，快为自学英语找点快乐吧！</section>
@@ -449,7 +452,8 @@
                     <li class="list-group-item list-group-item-success">
                         <section>学习有了乐趣，可以事半功倍。好的学习方法同样如此！虽说条条大路通罗马，但总有远、近；大路、小路、山路之分吧。而好的方法可以称为一条捷径！</section>
                         <section>要谈方法，首先要明确目的是什么？个人认为学英语是为了能--“听、读、说、写”。其实仔细想想，可以把这个目标分解为3个学习要素-<span
-                                class="text-primary">词汇量、单词发音、英语语法</span>！</section>
+                                class="text-primary">词汇量、单词发音、英语语法</span>！
+                        </section>
                         <section>3个要素是相互依存的，学习时不存在先后顺序，当然有一点单词量后再学语法后比较好。</section>
                         <section>为自己制定学习目标。有目标才知道该学什么，完成什么；没有目标容易才学习变得迷茫！</section>
                     </li>
@@ -491,16 +495,16 @@
     <div id="menu" class="bg-primary">
         <div class="btn-toolbar mb-3 d-flex justify-content-center h-100" role="toolbar">
             <div class="btn-group mr-2" role="group">
-                <button type="button" class="btn btn-dark menu_btn bottom_menu_btn"
+                <button id="btn_1" type="button" class="btn btn-dark menu_btn bottom_menu_btn"
                         link="/function/pronunciation/introduce.html">发音
                 </button>
-                <button type="button" class="btn btn-dark menu_btn bottom_menu_btn"
+                <button id="btn_2" type="button" class="btn btn-dark menu_btn bottom_menu_btn"
                         link="/function/news/news_list2.html">新闻
                 </button>
-                <button type="button" class="btn btn-dark menu_btn bottom_menu_btn"
+                <button id="btn_3" type="button" class="btn btn-dark menu_btn bottom_menu_btn"
                         link="/function/glossary/menu.html">词汇
                 </button>
-                <button type="button" class="btn btn-dark menu_btn bottom_menu_btn"
+                <button id="btn_4" type="button" class="btn btn-dark menu_btn bottom_menu_btn"
                         link="/function/express/express_menu.html">语法
                 </button>
             </div>
