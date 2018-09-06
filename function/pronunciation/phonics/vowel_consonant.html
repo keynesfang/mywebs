@@ -14,14 +14,6 @@
     <script src='/lib/common.js'></script>
     <script src='/lib/english.js'></script>
     <title>在学习中成长</title>
-    <style>
-        .title {
-            border-bottom: 1px solid #fff;
-        }
-        .content {
-            text-indent: 2em;
-        }
-    </style>
     <script>
         $(function () {
             $("#page").css("height", document.documentElement.clientHeight);
@@ -38,22 +30,38 @@
 </head>
 <body id="page" class=" bg-primary text-white" style="position: relative;">
 <div id="notice" class="p-2">
-    <div class="title text-warning d-flex justify-content-end">
-        元音 与 辅音
+    <div class="list-group">
+        <span href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1 text-info">元音与辅音</h5>
+            </div>
+            <p class="mb-1">
+                通常来说，元音字母发的音叫[元音]；辅音字母发的音叫[辅音]。但字母 <kbd class="play_sound">Y</kbd> 虽然是辅音字母，但它也有可能发元音，被称为第6元音；
+            </p>
+            <p class="mb-1">
+                当发辅音时，感觉总会被舌头，牙齿或嘴唇的位置所阻挡，不如元音那么流畅；当发元音时，声音可以很流畅无阻碍的从嘴里发出；元音字母在某些情况下也有可能保持沉没，也就是不发音；每个单词中至少会有一个元音；
+            </p>
+            <p class="mb-1">
+                看到这里，大家要注意一点，在自然拼读法里（phonics）中，不要去想元音、辅音有哪些，具体是什么，这是国际音标（IPA）做的事。你只要了解概念，专注于字母就好。这也是自然拼读法的优势所在。
+            </p>
+        </span>
+        <span href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1 text-info">元音字母与辅音字母</h5>
+            </div>
+            <p class="mb-1">
+                <div id="show_video" class="my-2"></div>
+            </p>
+        </span>
+        <span href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1 text-info">[ Y ]发元音字母[ I ]的音</h5>
+            </div>
+            <p class="mb-1">
+                <div id="show_video2" class="my-2"></div>
+            </p>
+        </span>
     </div>
-    <div class="content my-2">
-        <section>通常来说，元音字母发的音叫[元音]；辅音字母发的音叫[辅音]。但字母 <kbd class="play_sound">Y</kbd> 虽然是辅音字母，但它也有可能发元音，被称为第6元音；</section>
-        <section>当发辅音时，感觉总会被舌头，牙齿或嘴唇的位置所阻挡，不如元音那么流畅；当发元音时，声音可以很流畅无阻碍的从嘴里发出；元音字母在某些情况下也有可能保持沉没，也就是不发音；每个单词中至少会有一个元音；</section>
-        <section>看到这里，大家要注意一点，在自然拼读法里（phonics）中，不要去想元音、辅音有哪些，具体是什么，这是国际音标（IPA）做的事。你只要了解概念，专注于字母就好。这也是自然拼读法的优势所在。</section>
-    </div>
-    <div class="title text-warning">
-        元音字母与辅音字母
-    </div>
-    <div id="show_video" class="content my-2"></div>
-    <div class="title text-warning d-flex justify-content-end">
-        [ Y ]发元音字母[ I ]的音
-    </div>
-    <div id="show_video2" class="content my-2"></div>
 </div>
 <audio id="play_sound"></audio>
 </body>

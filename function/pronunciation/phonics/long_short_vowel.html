@@ -14,14 +14,6 @@
     <script src='/lib/common.js'></script>
     <script src='/lib/english.js'></script>
     <title>在学习中成长</title>
-    <style>
-        .title {
-            border-bottom: 1px solid #fff;
-        }
-        .content {
-            text-indent: 2em;
-        }
-    </style>
     <script>
         $(function () {
             $("#page").css("height", document.documentElement.clientHeight);
@@ -38,22 +30,39 @@
 </head>
 <body id="page" class=" bg-primary text-white" style="position: relative;">
 <div id="notice" class="p-2">
-    <div class="title text-warning d-flex justify-content-end">
-        长元音 与 短元音
+    <div class="list-group">
+        <span href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1 text-info">长元音与短元音</h5>
+            </div>
+            <p class="mb-1">
+                当元音字母在一个单词中的发音[音素音]与该字母的[字母音]相同时，这个音就叫作长元音。如字母A： <kbd class="play_sound">ape</kbd> <kbd class="play_sound">gate</kbd>；
+            </p>
+            <p class="mb-1">
+                当元音字母在一个单词中的发音[音素音]与该字母的[字母音]不同时，这个音就叫作短元音。如字母A： <kbd class="play_sound">apple</kbd> <kbd
+                    class="play_sound">sack</kbd>；
+            </p>
+            <p class="mb-1">
+                概念还是比容易理解的，如果还不清楚，请看下面的视频来巩固一下。
+            </p>
+        </span>
+        <span href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1 text-info">元音分长短</h5>
+            </div>
+            <p class="mb-1">
+                <div id="show_video" class="my-2"></div>
+            </p>
+        </span>
+        <span href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1 text-info">长元音及不发音</h5>
+            </div>
+            <p class="mb-1">
+                <div id="show_video2" class="my-2"></div>
+            </p>
+        </span>
     </div>
-    <div class="content my-2">
-        <section>当元音字母在一个单词中的发音[音素音]与该字母的[字母音]相同时，这个音就叫作长元音。如 <kbd class="play_sound">ape</kbd> <kbd class="play_sound">gate</kbd>；</section>
-        <section>当元音字母在一个单词中的发音[音素音]与该字母的[字母音]不同时，这个音就叫作短元音。如 <kbd class="play_sound">apple</kbd> <kbd class="play_sound">sack</kbd>；</section>
-        <section>概念还是比容易理解的，如果还不清楚，请看下面的视频来巩固一下。</section>
-    </div>
-    <div class="title text-warning">
-        元音分长短
-    </div>
-    <div id="show_video" class="content my-2"></div>
-    <div class="title text-warning d-flex justify-content-end">
-        长元音及不发音
-    </div>
-    <div id="show_video2" class="content my-2"></div>
 </div>
 <audio id="play_sound"></audio>
 </body>

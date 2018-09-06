@@ -14,20 +14,11 @@
     <script src='/lib/common.js'></script>
     <script src='/lib/english.js'></script>
     <title>在学习中成长</title>
-    <style>
-        .title {
-            border-bottom: 1px solid #fff;
-        }
-
-        .content {
-            text-indent: 2em;
-        }
-    </style>
     <script>
         $(function () {
             $("#page").css("height", document.documentElement.clientHeight);
             show_video("show_video", 5, "/function/english/video/resources/", true, "show_video");
-            $("#show_video").append("<section class='mt-2' style='font-size: 14px;'>视频中介绍了26个英文字母，以及它们所对应音标的发音方法。这是所有单词的发音基础，需要大家多练习并记忆。</section>");
+            $("#show_video").append("<section class='mt-2'>视频中介绍了26个英文字母，以及它们所对应音标的发音方法。这是所有单词的发音基础，需要大家多练习并记忆。</section>");
             $(".play_sound").click(function () {
                 var word = $(this).html();
                 play_voice(word);
@@ -37,10 +28,16 @@
 </head>
 <body id="page" class=" bg-primary text-white" style="position: relative;">
 <div id="notice" class="p-2">
-    <div class="title text-warning d-flex justify-content-end">
-        国际音标发声教学
+    <div class="list-group">
+        <span href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1 text-info">国际音标发声教学</h5>
+            </div>
+            <p class="mb-1">
+                <div id="show_video" class="my-2"></div>
+            </p>
+        </span>
     </div>
-    <div id="show_video" class="content my-2"></div>
 </div>
 <audio id="play_sound"></audio>
 </body>

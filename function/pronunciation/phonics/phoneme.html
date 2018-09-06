@@ -14,14 +14,6 @@
     <script src='/lib/common.js'></script>
     <script src='/lib/english.js'></script>
     <title>在学习中成长</title>
-    <style>
-        .title {
-            border-bottom: 1px solid #fff;
-        }
-        .content {
-            text-indent: 2em;
-        }
-    </style>
     <script>
         $(function () {
             $("#page").css("height", document.documentElement.clientHeight);
@@ -36,18 +28,31 @@
 </head>
 <body id="page" class=" bg-primary text-white" style="position: relative;">
 <div id="notice" class="p-2">
-    <div class="title text-warning d-flex justify-content-end">
-        字母音 与 音素音
+    <div class="list-group">
+        <span href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1 text-info">字母音与音素音</h5>
+            </div>
+            <p class="mb-1">
+                [字母音]就是读单个字母时发出来的音，如点击 <kbd class="play_sound">C</kbd> <kbd class="play_sound">A</kbd> <kbd
+                    class="play_sound">T</kbd> 听到的音就是字母音。
+            </p>
+            <p class="mb-1">
+                当字母组合成单词时，听到的读音会和字母音不一样，这时每个字母的读音就叫做[音素音]。如点击 <kbd class="play_sound">cat</kbd> 听到的读音。
+            </p>
+            <p class="mb-1">
+                每个辅音字母，基本上就对应了1个发音。也就是一个辅音的[字母音]对应了一个[音素音]；而每个元音字母对应了多个发音。
+            </p>
+        </span>
+        <span href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1 text-info">学习音素音</h5>
+            </div>
+            <p class="mb-1">
+                <div id="show_video" class="my-2"></div>
+            </p>
+        </span>
     </div>
-    <div class="content my-2">
-        <section>[字母音]就是读单个字母时发出来的音，如点击 <kbd class="play_sound">C</kbd> <kbd class="play_sound">A</kbd> <kbd class="play_sound">T</kbd> 听到的音就是字母音。</section>
-        <section>当字母组合成单词时，听到的读音会和字母音不一样，这时每个字母的读音就叫做[音素音]。如点击 <kbd class="play_sound">cat</kbd> 听到的读音。</section>
-        <section>每个辅音字母，基本上就对应了1个发音。也就是一个辅音的[字母音]对应了一个[音素音]；而每个元音字母对应了多个发音；</section>
-    </div>
-    <div class="title text-warning">
-        学习 音素音
-    </div>
-    <div id="show_video" class="content my-2"></div>
 </div>
 <audio id="play_sound"></audio>
 </body>
