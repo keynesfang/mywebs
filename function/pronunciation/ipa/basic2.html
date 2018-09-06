@@ -27,7 +27,7 @@
         $(function () {
             $("#page").css("height", document.documentElement.clientHeight);
             show_video("show_video", 5, "/function/english/video/resources/", true, "show_video");
-            $("#show_video").append("<section class='mt-2'>视频中介绍了26个英文字母，以及它们所对应音标的发音方法。这是所有单词的发音基础，需要大家多练习并记忆。</section>");
+            $("#show_video").append("<section class='mt-2' style='font-size: 14px;'>视频中介绍了26个英文字母，以及它们所对应音标的发音方法。这是所有单词的发音基础，需要大家多练习并记忆。</section>");
             $(".play_sound").click(function () {
                 var word = $(this).html();
                 play_voice(word);
