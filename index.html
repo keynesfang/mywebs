@@ -123,7 +123,8 @@
                 name: "首页",
                 url: "",
                 func: "show_home_page();"
-            }, "video": {
+            },
+            "video": {
                 name: "视频",
                 url: "/function/video/message_list.html"
             },
@@ -158,38 +159,37 @@
         //            name: "秘诀",
         //                    url: "/notice.html"
         //        }
-        $(function () {
+
+        var page_info = {
+            "news": {url: "/function/news/news_detail2.html?news_id=", para: "id", btn: "btn_2"},
+            "pronunciation": {url: "/function/pronunciation/introduce.html", para: "", btn: "btn_1"},
+            "glossary": {url: "/function/glossary/menu.html", para: "", btn: "btn_3"},
+            "express": {url: "/function/express/express_menu.html", para: "", btn: "btn_4"},
+            "video": {url: "/function/video/message_list.html", para: "", btn: ""},
+            "situaction": {url: "/function/situation/situation_type.html", para: "", btn: ""}
+        };
+
+        function redirect_page() {
             var type = GetQueryString("type");
-            var id = GetQueryString("id");
-            if (type) {
-                var url = "";
-                if (type == "news") {
-                    url = "/function/news/news_detail2.html?news_id=" + id;
-                    $("#btn_2").removeClass("btn-dark");
-                    $("#btn_2").addClass("btn-warning");
+            var url = "";
+            var para = "";
+            if (type && typeof(page_info[type]) != "undefined") {
+                if (page_info[type].para != "") {
+                    para = GetQueryString(page_info[type].para);
                 }
-                if (type == "introduce") {
-                    url = "/notice.html";
-                }
-                if (type == "pronunciation") {
-                    url = "/function/pronunciation/introduce.html";
-                    $("#btn_1").removeClass("btn-dark");
-                    $("#btn_1").addClass("btn-warning");
-                }
-                if (type == "glossary") {
-                    url = "/function/glossary/menu.html";
-                    $("#btn_3").removeClass("btn-dark");
-                    $("#btn_3").addClass("btn-warning");
-                }
-                if (type == "express") {
-                    url = "/function/express/express_menu.html"
-                    $("#btn_4").removeClass("btn-dark");
-                    $("#btn_4").addClass("btn-warning");
+                url = page_info[type].url + para;
+                if (page_info[type].btn != "") {
+                    $("#" + page_info[type].btn).removeClass("btn-dark");
+                    $("#" + page_info[type].btn).addClass("btn-warning");
                 }
                 $("#sub_frame").show();
                 $("#main_page").hide();
                 $("#sub_frame").attr("src", url);
             }
+        }
+
+        $(function () {
+            redirect_page();
             init_functions();
             explain = $("#explain");
             set_frame_height();
