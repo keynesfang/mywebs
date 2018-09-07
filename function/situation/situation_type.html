@@ -65,7 +65,7 @@
         var situation_info = {
             "日常生活用语": {
                 img: "live.png",
-                sub_items: ["早上起床"]
+                sub_items: ["早上起床", "吵架必备"]
             },
             "流行观光用语": {
                 img: "travel.png",
@@ -77,6 +77,10 @@
             $("#pop_dialog").css("height", pop_dialog_height);
             $("#detail_list").css("height", pop_dialog_height - 60);
             init_situation_info();
+            var speaker = document.getElementById("play_sound");
+            speaker.addEventListener('ended', function () {
+                $(".hear_voice").removeClass("fa-spin");
+            }, false);
         });
 
         function init_situation_info() {
@@ -112,12 +116,16 @@
             var html = "";
             $.each(situation_relation[title], function (idx, itm) {
                 var eng_word_wrap = get_query_sentence_from_normal(itm[0]);
-                html += "<div class='w-100 detail_item bg-info text-warning pl-3 py-2'>" + eng_word_wrap + "</div>";
+                html += "<div class='w-100 detail_item text-warning pl-1 py-1'>" + eng_word_wrap + "</div><small class='text-light pl-1'><i ' class='fa fa-volume-up fa-lg text-warning mr-2 hear_voice'></i>" + itm[1] + "</small>";
             });
             $("#detail_list").html(html);
             // 注册单词点击翻译
             regist_word_translate(top.set_explain_word, top.query_word_callback);
             $('#pop_dialog').slideToggle(200);
+            $(".hear_voice").click(function () {
+                $(this).addClass("fa-spin");
+               play_voice($(this).parent().prev().text());
+            });
         }
     </script>
 </head>
@@ -133,5 +141,6 @@
     <div id="detail_list" style="overflow-y: auto;">
     </div>
 </div>
+<audio id="play_sound"></audio>
 </body>
 </html>
