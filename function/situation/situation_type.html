@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name='Keywords' Content='自学英语,听力,词汇,语法,免费资源,无需注册'>
-    <meta name='Description' Content='这里有各类英语场景中你可能需要用到的句型和对话，赶快来了解吧。'>
+    <meta name='keywords' Content='自学英语,日常生活,旅游观光,场景英语'>
+    <meta name='description' Content='本篇选择了各类英语场景下的对话内容，来帮助大家进行英语自学。通过各类英语场景对话的练习，相信你会更快熟练掌握英语对话。'>
     <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
     <link rel="icon" href="/image/myicon.png" type="image/x-icon"/>
     <link rel='stylesheet' type='text/css' href='/lib/bootstrap-4.0.0/css/bootstrap.min.css'>
@@ -13,7 +13,7 @@
     <script src='/lib/common.js'></script>
     <script src='/lib/english.js'></script>
     <script src='relationship.js'></script>
-    <title>在学习中成长</title>
+    <title>自学英语_场景英语_免费资源</title>
     <style>
         .type_item {
             border-radius: 5px;
@@ -67,10 +67,12 @@
         var situation_info = {
             "日常生活用语": {
                 img: "live.png",
+                img_alt: "生活英语",
                 sub_items: ["早上起床", "吵架必备"]
             },
-            "流行观光用语": {
+            "旅游观光用语": {
                 img: "travel.png",
+                img_alt: "旅游英语",
                 sub_items: ["机场", "出租车", "酒店", "餐厅", "购物"]
             }
         };
@@ -91,7 +93,7 @@
             $.each(situation_info, function (title, info) {
                 html += "<div class='type_item p-2 mx-2 mb-2 bg-white text-primary'>";
                 html += "<i class='fa fa-caret-down item_extent fa-2x' onclick='show_sub_item(" + index + ");'></i>";
-                html += "<img class='item_img' src='image/" + info.img + "'>";
+                html += "<img class='item_img' src='image/" + info.img + "' alt='" + info.img_alt + "'>";
                 html += "<div class='item_title text-primary' style='font-size: 20px;'>" + title + "</div>";
                 html += "<div id='sub_" + index + "' class='sub_item_list text-light bg-primary p-2 mt-2' style='display: none;'>";
                 var special_style = "border-bottom: none;";
@@ -126,7 +128,7 @@
             $('#pop_dialog').slideToggle(200);
             $(".hear_voice").click(function () {
                 $(this).addClass("fa-spin");
-               play_voice($(this).parent().prev().text());
+                play_voice($(this).parent().prev().text());
             });
         }
     </script>
