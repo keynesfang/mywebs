@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
+    <link rel="icon" href="/image/myicon.png" type="image/x-icon"/>
+    <link rel='stylesheet' type='text/css' href='/lib/bootstrap-4.0.0/css/bootstrap.min.css'>
+    <link rel='stylesheet' type='text/css' href='/lib/video-js/css/video-js.min.css'>
+    <link rel='stylesheet' type='text/css' href='/lib/font-awesome-4.7.0/css/font-awesome.min.css'>
+    <link rel='stylesheet' type='text/css' href='/common.css'>
+    <link rel='stylesheet' type='text/css' href='./local_css.css'>
+    <script src='/lib/jquery-3.2.1.min.js'></script>
+    <script src='./local_common.js'></script>
+    <script src='/lib/video-js/js/video.min.js'></script>
+    <script src='/lib/video_js_setting.js'></script>
+    <script src='/lib/common.js'></script>
+    <script src='/lib/english.js'></script>
+    <title>英语学习计划</title>
+</head>
+<body id="page" class=" bg-primary text-white" style="position: relative;">
+<div class=" bg-primary p-2">
+    <div class="list-group">
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between item_content">
+                <h5 class="mb-1 text-info">前言</h5>
+                <small class="display_btn"><i class="fa fa-caret-down fa-2x"></i></small>
+            </div>
+            <div>
+                <p class="mb-1">虽然本站提供了各种英语学习资源，但对于初学者或不善于制定学习计划的人来说，还是无法对学习资源进行有效的利用。</p>
+                <p class="mb-1">于是我想到了制定一个英语学习计划来帮助大家能高效的利用本站资源来提高英语水平，希望能帮助到你！</p>
+                <p class="mb-1">为了更好的跟踪大家的学习情况及反馈，需要进行注册才能使用本学习计划（本站中所有资源本身无须注册即可全部使用）。</p>
+                <p class="mb-1">由于本站内容是我个人在业余时间进行开发维护，我会尽力保证内容质量和进度。如大家在使用过程中发现问题或有好的建议，可以通过<span class="set_sub_page" onclick="set_sub_page(this);" link="/share.html">作者</span>页面中的信息通过QQ或微信联系我。</p>
+                <p class="mb-1">希望大家能一起学习，共同进步！</p>
+            </div>
+        </div>
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between item_content">
+                <h5 class="mb-1 text-info">学习规划大纲</h5>
+                <small class="display_btn"><i class="fa fa-caret-down fa-2x"></i></small>
+            </div>
+            <div style="display: none;">
+                <p class="mb-1">对于英语学习的目标，我的想法是从音标入手，到能够无字幕看美剧。至于熟练与外国友人对话，更多的要靠自身的练习，本站能指引方向，但模拟不了真实的对话场景！</p>
+                <p class="mb-1">要完成学习目标，我准备把学习内容分为3个阶段：1.初级阶段；2.中级阶段；3.高级阶段。</p>
+            </div>
+        </div>
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between item_content">
+                <h5 class="mb-1 text-info">初级阶段</h5>
+                <small class="display_btn"><i class="fa fa-caret-down fa-2x"></i></small>
+            </div>
+            <div style="display: none;">
+                <p class="mb-1">1.能读出所有单个音标的发音；</p>
+                <p class="mb-1">2.能根据音标拼出所有单词的发音；</p>
+                <p class="mb-1">3.能进行简单的场景对话。</p>
+            </div>
+        </div>
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between item_content">
+                <h5 class="mb-1 text-info">中级阶段</h5>
+                <small class="display_btn"><i class="fa fa-caret-down fa-2x"></i></small>
+            </div>
+            <div style="display: none;">
+                <p class="mb-1">1.掌握常用的基本语法；</p>
+                <p class="mb-1">2.能读懂简单的新闻并能流利的读出新闻内容；</p>
+                <p class="mb-1">3.能在不看文字的前提下听懂简单的英语新闻。</p>
+            </div>
+        </div>
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between item_content">
+                <h5 class="mb-1 text-info">高级阶段</h5>
+                <small class="display_btn"><i class="fa fa-caret-down fa-2x"></i></small>
+            </div>
+            <div style="display: none;">
+                <p class="mb-1">1.从英语角度出发，了解一些国外的历史背景；</p>
+                <p class="mb-1">2.能无字幕看懂美剧情节。</p>
+            </div>
+        </div>
+    </div>
+</div>
+<audio id="play_sound"></audio>
+</body>
+</html>

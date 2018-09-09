@@ -112,6 +112,42 @@
             background-color: #fff;
             color: #000;
         }
+
+        #main_title {
+            text-shadow: 0 0 0.2em #f87, -0 -0 0.2em #f87;
+            position: absolute;
+            top: 12px;
+            font-size: 20px;
+        }
+
+        #study_plan {
+            color: #fff;
+            position: absolute;
+            top: 8px;
+            right: 15px;
+            -webkit-animation-name: title_text;
+            -webkit-animation-timing-function: linear;
+            -webkit-animation-duration: 2s;
+            -webkit-animation-iteration-count: infinite;
+        }
+
+        @-webkit-keyframes title_text {
+            0% {
+                text-shadow: 0 0 20px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #FF9900, 0 0 70px #FF9900, 0 0 80px #FF9900, 0 0 100px #FF9900, 0 0 150px #FF9900;
+            }
+            50% {
+                text-shadow: 0 0 5px #000, 0 0 10px #000, 0 0 15px #000, 0 0 20px #FF9900, 0 0 35px #00a67c, 0 0 40px #00a67c, 0 0 50px #00a67c, 0 0 75px #00a67c;
+            }
+            100% {
+                text-shadow: 0 0 20px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #FF9900, 0 0 70px #FF9900, 0 0 80px #FF9900, 0 0 100px #FF9900, 0 0 150px #FF9900;
+            }
+        }
+
+        @media (max-width: 500px) {
+            #web_title {
+                display: none;
+            }
+        }
     </style>
     <script>
         var explain = "";
@@ -398,7 +434,8 @@
 <div id="header">
     <div id="show_header_simple" class="w-100 ml-2 pt-1" style="position: relative;">
         <img src="image/head_bak.jpg" style="width:42px; height: 42px; border-radius: 25px; border: 3px solid #fff;">
-        <h5 class="ml-2 mb-0 d-inline-block" style="position: absolute; top: 10px;">我要自学英语</h5>
+        <h1 id="main_title" class="ml-2 mb-0 d-inline-block"><span id="web_title">在学习中成长 -- </span>我要自学英语</h1>
+        <h6 id="study_plan" class="menu_btn" link="/function/study_plan/menu.html">英语自学计划</h6>
         <!--<div id="sub_title2" style="position: absolute; top: 31px; left: 55px;">Growth In Learning</div>-->
     </div>
     <div id="function_bar" class="w-100 px-3" style="text-align: right; position: absolute; top: 43px;"></div>
@@ -416,7 +453,7 @@
         <div id="notice_info" class="mt-2" style="overflow-y: auto;">
             <div class="jumbotron bg-primary text-light m-0 pt-3 pb-1 px-1" style="font-size: 14px;">
                 <h3 class="px-2">Hello, <span class="text-warning">Reader</span>!</h3>
-                <p class="px-2">有许多人都在问怎么才能自学好英语，在这里谈谈我的个人观点，仅供参考。</p>
+                <p class="px-2">本站起初只是为了我个人为了学习英语方便而创建，后来有许多人都在问怎么才能自学好英语。于是独乐乐不如众乐乐，除了学习资料分享给大家外，在这里也谈谈我的个人学习观点，仅供参考。</p>
                 <hr class="my-1">
                 <ul class="list-group">
                     <li class="list-group-item list-group-item-warning mt-2">你中途放弃过英语学习吗？</li>

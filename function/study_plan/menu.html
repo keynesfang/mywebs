@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
+    <link rel="icon" href="/image/myicon.png" type="image/x-icon"/>
+    <link rel='stylesheet' type='text/css' href='/lib/bootstrap-4.0.0/css/bootstrap.min.css'>
+    <link rel='stylesheet' type='text/css' href='/lib/font-awesome-4.7.0/css/font-awesome.min.css'>
+    <link rel='stylesheet' type='text/css' href='/common.css'>
+    <script src='/lib/jquery-3.2.1.min.js'></script>
+    <script src='/lib/common.js'></script>
+    <script src='/lib/menu.js'></script>
+    <script src='/lib/stamp/stamp.js'></script>
+    <title>在学习中成长</title>
+    <script>
+        window.onresize = function () {
+            set_sub_frame_height();
+        };
+
+        var menu_list = {
+            "1.学前必读": "1.html",
+            "未完待续...【关闭】": ""
+        };
+
+        $(function () {
+            create_menu_page();
+            set_sub_frame_height();
+        });
+
+        function set_sub_frame_height() {
+            $("#sub_content").css("height", $("#sub_body").height() - 50);
+        }
+    </script>
+</head>
+<body id="sub_body" class=" bg-primary text-white" style="position: relative;">
+</body>
+</html>
