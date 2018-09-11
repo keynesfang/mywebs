@@ -32,7 +32,12 @@
         }
         .ipa_txt_2 {
             position: absolute;
-            bottom: 3px;
+            bottom: 5px;
+            left: 53px;
+        }
+        .ipa_txt_3 {
+            position: absolute;
+            bottom: 5px;
             right: 3px;
         }
     </style>
@@ -40,17 +45,28 @@
 <body id="page" class=" bg-primary text-white" style="position: relative;">
 <div class=" bg-primary p-2">
     <div class="list-group">
-        <div class="list-group-item list-group-item-action flex-column align-items-start">
+        <div class="list-group-item list-group-item-action flex-column align-items-start p-2">
             <div class="d-flex w-100 justify-content-between item_content">
                 <h5 class="mb-1 text-info">音标与发音</h5>
             </div>
-            <small>学习目标：掌握每个音标的单独发音(单击音标可听发音)。熟悉每个发音可能对应的字母组合。</small>
+            <div class="list-group mt-2">
+                <span class="list-group-item list-group-item-action flex-column align-items-start list-group-item-warning">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">学习目标</h5>
+                        <small>未完成</small>
+                    </div>
+                    <small>1. 掌握每个音标的单独发音（单击音标可听发音）；</small>
+                    <small>2. 熟悉每个发音可能对应的字母组合。
+                    </small>
+                </span>
+            </div>
             <div>
                 <ul class="list-group mt-2">
                     <li class="list-group-item d-flex justify-content-between align-items-center p-1">
                         <span class="ipa bg-info p-2 text-light">iː</span>
-                        <small class="ipa_txt_1">元音，有以下字母组合可能发该音：ee, ea</small>
-                        <span class="badge badge-primary badge-pill ipa_txt_2">01</span>
+                        <small class="ipa_txt_1">元音，有以下字母组合可能发该音：</small>
+                        <small class="ipa_txt_2">ee, ea, e, i, ie</small>
+                        <span class="badge badge-primary badge-pill ipa_txt_3">01</span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         Dapibus ac facilisis in
