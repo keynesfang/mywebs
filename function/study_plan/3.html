@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
-    <meta name='Keywords' Content='自学英语,英文元音音标,元音发音'>
-    <meta name='Description' Content='通过学习了解并掌握元音音标的发音及特点。'>
+    <meta name='Keywords' Content='自学英语,英文辅音音标,辅音发音'>
+    <meta name='Description' Content='通过学习了解并掌握辅音音标的发音及特点。'>
     <link rel="icon" href="/image/myicon.png" type="image/x-icon"/>
     <link rel='stylesheet' type='text/css' href='/lib/bootstrap-4.0.0/css/bootstrap.min.css'>
     <link rel='stylesheet' type='text/css' href='/lib/video-js/css/video-js.min.css'>
@@ -17,7 +17,7 @@
     <script src='/lib/video_js_setting.js'></script>
     <script src='/lib/common.js'></script>
     <script src='/lib/english.js'></script>
-    <title>什么是元音</title>
+    <title>什么是辅音</title>
     <script>
         $(function () {
             show_sound_mark();
@@ -30,7 +30,7 @@
                 var sound_mark_arr = eval("(" + data + ")");
                 var sound_mark_arr_html = "";
                 $.each(sound_mark_arr, function (idx, info) {
-                    if (info.kind == "元音") {
+                    if (info.kind == "辅音") {
                         sound_mark_arr_html += "<span class='sound_mark p-1 mx-1 text-primary' audio_url='" + info.audio_url + "'>" + info.name + "</span>";
                     }
                 });
@@ -51,17 +51,17 @@
             <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1">学习目标</h5>
             </div>
-            <small class="target">1. 学会每个元音音标的发音（音素音）；</small>
+            <small class="target">1. 学会每个辅音音标的发音（音素音）；</small>
             <small class="target">2. 弄清字母音与音素音之间的区别；</small>
-            <small class="target">3. 知道元音的发音特点。</small>
+            <small class="target">3. 知道辅音的发音特点。</small>
         </span>
     </div>
     <div class="list-group">
         <div class="list-group-item list-group-item-action flex-column align-items-start p-2">
             <div class="d-flex w-100 justify-content-between item_content">
-                <h5 class="mb-1 text-info">元音音标（20个）</h5>
+                <h5 class="mb-1 text-info">辅音音标（28个）</h5>
             </div>
-            <small class="mt-2 d-block">点击下列元音音标听发音:</small>
+            <small class="mt-2 d-block">点击下列辅音音标听发音:</small>
             <div id="sound_mark" class="mb-2">
             </div>
         </div>
@@ -71,12 +71,11 @@
             <div class="d-flex w-100 justify-content-between item_content">
                 <h5 class="mb-1 text-info">你需要了解的：</h5>
             </div>
-            <small class="target">1. 元音字母发的音就是元音；</small>
-            <small class="target">2. 两个元音字母组合发双元音（上面带两个符号的音标）；</small>
-            <small class="target">3. 辅音字母【Yy】也有可能发元音，被称为第6元音字母；</small>
-            <small class="target">4. 读单个字母发字母音，读单词里的字母发音素音；</small>
-            <small class="target">5. 发元音时比较顺畅（相对于后面要讲的辅音而言）；</small>
-            <small class="target">6. 每个单词发音里都要有元音，不然发音会很别扭。</small>
+            <small class="target">1. 辅音字母发的音就是辅音；</small>
+            <small class="target">2. 辅音字母【Yy】也有可能发元音，被称为第6元音字母；</small>
+            <small class="target">3. 读单个字母发字母音，读单词里的字母发音素音；</small>
+            <small class="target">4. 通过与元音相比，辅音发音时不那么顺畅；</small>
+            <small class="target">5. 元音与辅音结合发音，使得单词读起来更好听。</small>
         </div>
     </div>
     <div class="d-flex justify-content-center mt-3 mb-2">
