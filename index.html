@@ -14,6 +14,7 @@
     <script src='/lib/popper.min.js'></script>
     <script src='/lib/bootstrap-4.0.0/js/bootstrap.min.js'></script>
     <script src='/lib/common.js'></script>
+    <script src='/lib/jquery.md5.js'></script>
     <script src='/lib/english.js'></script>
     <title>我要自学英语</title>
     <style>
@@ -440,45 +441,104 @@
             $("#main_page").show();
             $("#sub_frame").hide();
         }
+
+        function user_login_out() {
+
+        }
+
+        function login() {
+            var user_info = {};
+            user_info["user"] = $("#user").val();
+            user_info["pass"] = $("#pass").val();
+            user_info["repass"] = $("#repass").val();
+        }
+
+        function register() {
+            var user_info = {};
+            user_info["user"] = $.trim($("#user").val());
+            if (user_info["user"] == "") {
+                $("#user").addClass("is-invalid");
+                return false;
+            }
+            $("#user").removeClass("is-invalid");
+            user_info["pass"] = $.trim($("#pass").val());
+            if (user_info["pass"] == "") {
+                $("#pass").addClass("is-invalid");
+                return false;
+            }
+            $("#pass").removeClass("is-invalid");
+            if (user_info["pass"] != $.trim($("#pass").val())) {
+                $("#repass").addClass("is-invalid");
+                return false;
+            }
+            $("#repass").removeClass("is-invalid");
+            user_info["sex"] = $("input[name='sex']:checked").val();
+            user_info["pass"] = $.md5(user_info["pass"]);
+            $.post("local_logic.php", {
+                type: "add_user",
+                user: user_info["user"],
+                fieldArr: user_info
+            }, function (data) {
+                if (data == "repeat") {
+                    $("#user").addClass("is-invalid");
+                }
+            });
+        }
     </script>
 </head>
 <body class="text-white">
 <div id="login_form" class="h-100 p-3">
-    <i class="fa fa-close fa-2x" onclick="$('#login_form').toggle();" style="position: absolute; top: 5px; right: 10px;"></i>
-    <form>
+    <i class="fa fa-close fa-2x" onclick="$('#login_form').toggle();"
+       style="position: absolute; top: 5px; right: 10px;"></i>
+    <div>
         <div class="form-row">
             <div class="w-100 mt-3 mb-5" style="text-align: center; font-weight: bold; font-size: 25px;">用户登陆 / 注册</div>
             <div class="col-md-4 mb-3">
-                <label for="validationServer01">登陆名称</label>
-                <input type="text" class="form-control" id="validationServer01" placeholder="name" required>
+                <label for="user">登陆名称</label>
+                <input type="text" class="form-control" id="user" placeholder="name">
                 <div class="invalid-feedback">
-                    登陆名称未输入或已存在！
+                    登陆名称为空或已存在！
                 </div>
             </div>
             <div class="col-md-4 mb-3">
-                <label for="validationServer02">用户密码</label>
-                <input type="password" class="form-control" id="validationServer02" required>
+                <label for="pass">用户密码</label>
+                <input type="password" class="form-control" id="pass">
                 <div class="invalid-feedback">
-                    用户密码未输入或不正确！
+                    用户密码为空或不正确！
                 </div>
             </div>
             <div class="col-md-4 mb-3">
-                <label for="validationServer03">密码确认（注册使用）</label>
-                <input type="password" class="form-control" id="validationServer03">
+                <label for="repass">密码确认（注册使用）</label>
+                <input type="password" class="form-control" id="repass">
                 <div class="invalid-feedback">
-                    Looks good!
+                    用户密码不一致！
                 </div>
+            </div>
+            <div class="w-100 my-2" style="text-align: center;">
+                <span class="mr-3">
+                    <input class="form-check-input" type="radio" name="sex" id="male" value="male" checked>
+                    <label class="form-check-label" for="male">
+                        <i class="fa fa-male"></i> 男
+                    </label>
+                </span>
+                <span class="ml-3">
+                    <input class="form-check-input" type="radio" name="sex" id="female" value="female">
+                    <label class="form-check-label" for="female">
+                        <i class="fa fa-female"></i> 女
+                    </label>
+                </span>
             </div>
             <div class="d-flex justify-content-center w-100 mt-3">
-                <button class="btn btn-primary mr-3" type="submit">登 陆</button>
-                <button class="btn badge-warning">注 册</button>
+                <button class="btn btn-primary mr-3">登 陆</button>
+                <button class="btn badge-warning" onclick="register();">注 册</button>
             </div>
         </div>
-    </form>
+    </div>
 </div>
 <div id="header">
     <div id="show_header_simple" class="w-100 ml-2 pt-1" style="position: relative;">
-        <img src="image/head_bak.jpg" style="width:42px; height: 42px; border-radius: 25px; border: 3px solid #fff;">
+        <img src="image/unlogin.png" onclick="$('#login_form').toggle();"
+             style="width:42px; height: 42px; border-radius: 25px; border: 3px solid #fff;">
         <h1 id="main_title" class="ml-2 mb-0 d-inline-block"><span id="web_title">在学习中成长 -- </span>我要自学英语</h1>
         <h6 id="study_plan" class="menu_btn" link="/function/study_plan/menu.html">英语自学计划</h6>
         <!--<div id="sub_title2" style="position: absolute; top: 31px; left: 55px;">Growth In Learning</div>-->

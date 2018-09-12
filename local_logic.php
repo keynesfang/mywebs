@@ -12,3 +12,16 @@ if ($type == "get_all_type_article") {
     $data_array["game"] = query_sql_get_data($dbop, $sql)[0];
     echo json_encode($data_array);
 }
+
+if ($type == "add_user") {
+    $tableName = "eng_user";
+    $user = $_REQUEST['user'];
+    $fieldArr = $_REQUEST['fieldArr'];
+    $result = $dbop->get_all("select * from $tableName where user='$user'");
+    if (count($result) > 0) {
+        echo "repeat";
+    } else {
+        $result = $dbop->insert($tableName, $fieldArr);
+        echo $result;
+    }
+}
