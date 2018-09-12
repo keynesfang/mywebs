@@ -1,31 +1,10 @@
-.key {
-    color: blue;
-    border-bottom: 1px solid blue;
+.target {
+    display: block;
+    margin: 3px 10px 3px 10px;
 }
 
-.explain {
-    font-size: 14px;
-    color: greenyellow;
-}
-
-.eg {
-    border-radius: 5px;
-    color: #fff;
-    margin-top: 15px;
-}
-
-.title {
-    padding: 5px 10px;
-    background-color: #000;
-    border-radius: 5px;
-    border: 1px solid #fff;
-    margin-bottom: 5px;
-}
-
-.content_status {
-    margin-bottom: 20px;
-}
-
-rt {
-    color: greenyellow;
+.char, .sound_mark {
+    border-bottom: 2px solid #28a745;
+    font-size: 20px;
+    display: inline-block;
 }

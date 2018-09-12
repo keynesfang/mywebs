@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
+    <meta name='Keywords' Content='自学英语,英文元音音标,元音发音'>
+    <meta name='Description' Content='通过学习了解并掌握元音音标的发音及特点。'>
     <link rel="icon" href="/image/myicon.png" type="image/x-icon"/>
     <link rel='stylesheet' type='text/css' href='/lib/bootstrap-4.0.0/css/bootstrap.min.css'>
     <link rel='stylesheet' type='text/css' href='/lib/video-js/css/video-js.min.css'>
@@ -15,68 +17,81 @@
     <script src='/lib/video_js_setting.js'></script>
     <script src='/lib/common.js'></script>
     <script src='/lib/english.js'></script>
-    <title>英语学习计划</title>
+    <title>初识元音</title>
     <style>
         li {
             position: relative;
         }
+
         .ipa {
             border-radius: 5px;
             width: 40px;
             text-align: center;
         }
+
         .ipa_txt_1 {
             position: absolute;
             top: 5px;
             left: 50px;
         }
+
         .ipa_txt_2 {
             position: absolute;
             bottom: 5px;
             left: 53px;
         }
+
         .ipa_txt_3 {
             position: absolute;
             bottom: 5px;
             right: 3px;
         }
     </style>
+    <script>
+        $(function () {
+            show_sound_mark();
+        });
+
+        function show_sound_mark() {
+            $.post("local_logic.php", {
+                type: "get_sound_mark"
+            }, function (data) {
+                var sound_mark_arr = eval("(" + data + ")");
+                var sound_mark_arr_html = "";
+                $.each(sound_mark_arr, function (idx, info) {
+                    if (info.kind == "元音") {
+                        sound_mark_arr_html += "<span class='sound_mark p-1 mx-1 text-primary' audio_url='" + info.audio_url + "'>" + info.name + "</span>";
+                    }
+                });
+                $("#sound_mark").html(sound_mark_arr_html);
+                $(".sound_mark").click(function () {
+                    var audio_url = "./audio/" + $(this).attr("audio_url");
+                    $("#play_sound").attr("src", "/function/pronunciation/ipa/" + audio_url);
+                    $("#play_sound")[0].play();
+                });
+            });
+        }
+    </script>
 </head>
 <body id="page" class=" bg-primary text-white" style="position: relative;">
 <div class=" bg-primary p-2">
+    <div class="list-group mb-2">
+        <span class="list-group-item list-group-item-action flex-column align-items-start list-group-item-warning px-2">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">学习目标</h5>
+            </div>
+            <small class="target">1. 学会每个元音音标的发音（音素音）；</small>
+            <small class="target">2. 弄清字母音与音素音之间的区别；</small>
+            <small class="target">3. 知道元音的发音特点。</small>
+        </span>
+    </div>
     <div class="list-group">
         <div class="list-group-item list-group-item-action flex-column align-items-start p-2">
             <div class="d-flex w-100 justify-content-between item_content">
-                <h5 class="mb-1 text-info">音标与发音</h5>
+                <h5 class="mb-1 text-info">元音音标（20个）</h5>
             </div>
-            <div class="list-group mt-2">
-                <span class="list-group-item list-group-item-action flex-column align-items-start list-group-item-warning">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">学习目标</h5>
-                        <small>未完成</small>
-                    </div>
-                    <small>1. 掌握每个音标的单独发音（单击音标可听发音）；</small>
-                    <small>2. 熟悉每个发音可能对应的字母组合。
-                    </small>
-                </span>
-            </div>
-            <div>
-                <ul class="list-group mt-2">
-                    <li class="list-group-item d-flex justify-content-between align-items-center p-1">
-                        <span class="ipa bg-info p-2 text-light">iː</span>
-                        <small class="ipa_txt_1">元音，有以下字母组合可能发该音：</small>
-                        <small class="ipa_txt_2">ee, ea, e, i, ie</small>
-                        <span class="badge badge-primary badge-pill ipa_txt_3">01</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Dapibus ac facilisis in
-                        <span class="badge badge-primary badge-pill">02</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Morbi leo risus
-                        <span class="badge badge-primary badge-pill">03</span>
-                    </li>
-                </ul>
+            <small class="mt-2 d-block">点击下列元音音标听发音:</small>
+            <div id="sound_mark" class="mb-2">
             </div>
         </div>
     </div>
