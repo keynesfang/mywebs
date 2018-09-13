@@ -25,3 +25,15 @@ if ($type == "add_user") {
         echo $result;
     }
 }
+
+if ($type == "login_user") {
+    $tableName = "eng_user";
+    $user = $_REQUEST['user'];
+    $pass = $_REQUEST['pass'];
+    $result = $dbop->get_all("select * from $tableName where user='$user' and pass='$pass'");
+    if (count($result) == 1) {
+        echo $result[0]["sex"];
+    } else {
+        echo "fail";
+    }
+}

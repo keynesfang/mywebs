@@ -15,6 +15,7 @@
     <script src='/lib/bootstrap-4.0.0/js/bootstrap.min.js'></script>
     <script src='/lib/common.js'></script>
     <script src='/lib/jquery.md5.js'></script>
+    <script src='/lib/jquery.cookie.js'></script>
     <script src='/lib/english.js'></script>
     <title>我要自学英语</title>
     <style>
@@ -151,7 +152,7 @@
         }
 
         #login_form {
-
+            display: none;
             position: fixed;
             width: 100%;
             max-width: 600px;
@@ -237,6 +238,7 @@
         }
 
         $(function () {
+            user_login_out();
             redirect_page();
             init_functions();
             explain = $("#explain");
@@ -443,14 +445,47 @@
         }
 
         function user_login_out() {
-
+            if($.cookie("eng_uname")) {
+                $("#login_uname").html($.cookie("eng_uname"));
+                if($.cookie("eng_usex") == "male") {
+                    $("#user_head_img").attr("src", "/image/male.png");
+                } else {
+                    $("#user_head_img").attr("src", "/image/female.png");
+                }
+                $("#login").hide();
+                $("#logout").show();
+            } else {
+                $("#user_head_img").attr("src", "/image/unlogin.png")
+                $("#login").show();
+                $("#logout").hide();
+            }
         }
 
         function login() {
-            var user_info = {};
-            user_info["user"] = $("#user").val();
-            user_info["pass"] = $("#pass").val();
-            user_info["repass"] = $("#repass").val();
+            $("#user").removeClass("is-invalid");
+            $("#pass").removeClass("is-invalid");
+            $("#repass").removeClass("is-invalid");
+            $.post("local_logic.php", {
+                type: "login_user",
+                user: $("#user").val(),
+                pass: $.md5($("#pass").val())
+            }, function (data) {
+                if (data == "fail") {
+                    $("#pass").addClass("is-invalid");
+                } else {
+                    $.cookie("eng_uname", $("#user").val());
+                    $.cookie("eng_usex", data);
+                    user_login_out();
+                    $('#login_form').hide();
+                }
+            });
+        }
+
+        function logout() {
+            $.cookie("eng_uname", "");
+            $.cookie("eng_usex", "");
+            user_login_out();
+            $('#login_form').hide();
         }
 
         function register() {
@@ -481,6 +516,11 @@
             }, function (data) {
                 if (data == "repeat") {
                     $("#user").addClass("is-invalid");
+                } else {
+                    $.cookie("eng_uname", user_info["user"]);
+                    $.cookie("eng_usex", user_info["sex"]);
+                    user_login_out();
+                    $('#login_form').hide();
                 }
             });
         }
@@ -488,23 +528,30 @@
 </head>
 <body class="text-white">
 <div id="login_form" class="h-100 p-3">
-    <i class="fa fa-close fa-2x" onclick="$('#login_form').toggle();"
+    <i class="fa fa-close fa-2x" onclick="$('#login_form').hide();"
        style="position: absolute; top: 5px; right: 10px;"></i>
-    <div>
+    <div id="logout">
+        <div class="w-100 mt-5 mb-5" style="text-align: center;">
+            <img src="/image/female.png" style="width: 150px; height: 150px;">
+            <div style="font-size: 20px" id="login_uname"></div>
+            <button class="btn btn-warning mt-3" onclick="logout();">注 销</button>
+        </div>
+    </div>
+    <div id="login">
         <div class="form-row">
             <div class="w-100 mt-3 mb-5" style="text-align: center; font-weight: bold; font-size: 25px;">用户登陆 / 注册</div>
             <div class="col-md-4 mb-3">
                 <label for="user">登陆名称</label>
                 <input type="text" class="form-control" id="user" placeholder="name">
                 <div class="invalid-feedback">
-                    登陆名称为空或已存在！
+                    登陆名称已存在！
                 </div>
             </div>
             <div class="col-md-4 mb-3">
                 <label for="pass">用户密码</label>
                 <input type="password" class="form-control" id="pass">
                 <div class="invalid-feedback">
-                    用户密码为空或不正确！
+                    用户密码不正确！
                 </div>
             </div>
             <div class="col-md-4 mb-3">
@@ -529,15 +576,15 @@
                 </span>
             </div>
             <div class="d-flex justify-content-center w-100 mt-3">
-                <button class="btn btn-primary mr-3">登 陆</button>
-                <button class="btn badge-warning" onclick="register();">注 册</button>
+                <button class="btn btn-primary mr-3" onclick="login();">登 陆</button>
+                <button class="btn badge-success" onclick="register();">注 册</button>
             </div>
         </div>
     </div>
 </div>
 <div id="header">
     <div id="show_header_simple" class="w-100 ml-2 pt-1" style="position: relative;">
-        <img src="image/unlogin.png" onclick="$('#login_form').toggle();"
+        <img id="user_head_img" src="image/unlogin.png" onclick="$('#login_form').show();"
              style="width:42px; height: 42px; border-radius: 25px; border: 3px solid #fff;">
         <h1 id="main_title" class="ml-2 mb-0 d-inline-block"><span id="web_title">在学习中成长 -- </span>我要自学英语</h1>
         <h6 id="study_plan" class="menu_btn" link="/function/study_plan/menu.html">英语自学计划</h6>
