@@ -32,7 +32,7 @@ if ($type == "login_user") {
     $pass = $_REQUEST['pass'];
     $result = $dbop->get_all("select * from $tableName where user='$user' and pass='$pass'");
     if (count($result) == 1) {
-        echo $result[0]["sex"];
+        echo json_encode($result[0]);
     } else {
         echo "fail";
     }

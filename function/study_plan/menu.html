@@ -10,12 +10,27 @@
     <script src='/lib/jquery-3.2.1.min.js'></script>
     <script src='/lib/common.js'></script>
     <script src='/lib/menu.js'></script>
-    <script src='/lib/stamp/stamp.js'></script>
+    <script src='/lib/jquery.cookie.js'></script>
     <title>在学习中成长</title>
+    <style>
+        #study_process {
+            position: fixed;
+            bottom: 0;
+            z-index: 999;
+        }
+
+        #head_img {
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            top: -18px;
+        }
+    </style>
     <script>
-        window.onresize = function () {
-            set_sub_frame_height();
-        };
+        var user_head =
+                window.onresize = function () {
+                    set_sub_frame_height();
+                };
 
         var menu_list = {
             "0. 学前必读": "0.html",
@@ -28,10 +43,49 @@
         $(function () {
             create_menu_page();
             set_sub_frame_height();
+            var process_html = "<div id='study_process' class='w-100'><div class='progress w-100' style='height: 10px; border-radius: 0;'>";
+            process_html += "<div id='study_process_bar' class='progress-bar progress-bar-striped progress-bar-animated bg-warning' role='progressbar' ></div>";
+            process_html += "</div></div>";
+            $("#sub_body").append(process_html);
+            init_menu_status();
+            set_study_process();
         });
+
+        function init_menu_status() {
+            var eng_study = $.cookie("eng_study") ? $.cookie("eng_study") : 0;
+            var menu_count = $(".menu_btn").length;
+            $.each($(".menu_btn"), function (idx) {
+                if (idx == menu_count - 1) {
+                    return false;
+                }
+                var temp_ele = $(this).children("td").children("i");
+                if (idx > parseInt(eng_study)) {
+                    $(this).css("color", "silver");
+                    temp_ele.removeClass("fa-bookmark");
+                    temp_ele.addClass("fa-lock");
+                } else {
+                    temp_ele.css("color", "#ffc107");
+                }
+            });
+        }
 
         function set_sub_frame_height() {
             $("#sub_content").css("height", $("#sub_body").height() - 50);
+        }
+
+        function set_study_process() {
+            var head_html = "<div id='head_area' class='w-100' style='position: relative;'>";
+            var left = (parseInt($("#study_process_bar").width()) - 20) < 0 ? 0 : parseInt($("#study_process_bar").width()) - 20;
+            head_html += "<img id='head_img' src='" + $.cookie("user_head_img") + "' style='left:" + left + "px;'>";
+            head_html += "</div>";
+            $("#study_process").prepend(head_html);
+        }
+
+        function login_before_study() {
+            if (!$.cookie("eng_uname")) {
+                $("#sub_content").attr("src", "0.html");
+                top.$("#login_form").show();
+            }
         }
     </script>
 </head>

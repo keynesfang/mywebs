@@ -445,20 +445,22 @@
         }
 
         function user_login_out() {
-            if($.cookie("eng_uname")) {
+            if ($.cookie("eng_uname")) {
                 $("#login_uname").html($.cookie("eng_uname"));
-                if($.cookie("eng_usex") == "male") {
-                    $("#user_head_img").attr("src", "/image/male.png");
+                if ($.cookie("eng_usex") == "male") {
+                    $.cookie("user_head_img", "/image/male.png");
                 } else {
-                    $("#user_head_img").attr("src", "/image/female.png");
+                    $.cookie("user_head_img", "/image/female.png");
                 }
                 $("#login").hide();
                 $("#logout").show();
             } else {
-                $("#user_head_img").attr("src", "/image/unlogin.png")
+                $.cookie("user_head_img", "/image/unlogin.png");
                 $("#login").show();
                 $("#logout").hide();
             }
+            $("#user_head_img").attr("src", $.cookie("user_head_img"));
+            $("#user_head_img_2").attr("src", $.cookie("user_head_img"));
         }
 
         function login() {
@@ -470,13 +472,15 @@
                 user: $("#user").val(),
                 pass: $.md5($("#pass").val())
             }, function (data) {
-                if (data == "fail") {
+                if (typeof(data) == "string" && data == "fail") {
                     $("#pass").addClass("is-invalid");
                 } else {
+                    var user = eval("(" + data + ")");
                     $.cookie("eng_uname", $("#user").val());
-                    $.cookie("eng_usex", data);
+                    $.cookie("eng_usex", user["sex"]);
+                    $.cookie("eng_study", user["study"]);
                     user_login_out();
-                    $('#login_form').hide();
+                    document.location.reload();
                 }
             });
         }
@@ -484,8 +488,9 @@
         function logout() {
             $.cookie("eng_uname", "");
             $.cookie("eng_usex", "");
-            user_login_out();
-            $('#login_form').hide();
+            $.cookie("eng_study", 0);
+            $.cookie("user_head_img", "/image/unlogin.png");
+            document.location.reload();
         }
 
         function register() {
@@ -502,7 +507,7 @@
                 return false;
             }
             $("#pass").removeClass("is-invalid");
-            if (user_info["pass"] != $.trim($("#pass").val())) {
+            if (user_info["pass"] != $.trim($("#repass").val())) {
                 $("#repass").addClass("is-invalid");
                 return false;
             }
@@ -519,8 +524,9 @@
                 } else {
                     $.cookie("eng_uname", user_info["user"]);
                     $.cookie("eng_usex", user_info["sex"]);
+                    $.cookie("eng_study", 0);
                     user_login_out();
-                    $('#login_form').hide();
+                    document.location.reload();
                 }
             });
         }
@@ -532,7 +538,7 @@
        style="position: absolute; top: 5px; right: 10px;"></i>
     <div id="logout">
         <div class="w-100 mt-5 mb-5" style="text-align: center;">
-            <img src="/image/female.png" style="width: 150px; height: 150px;">
+            <img id="user_head_img_2" src="/image/female.png" style="width: 150px; height: 150px;">
             <div style="font-size: 20px" id="login_uname"></div>
             <button class="btn btn-warning mt-3" onclick="logout();">注 销</button>
         </div>

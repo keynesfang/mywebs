@@ -21,6 +21,7 @@
         var char = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
         var vowel = ["A", "E", "I", "O", "U"];
         $(function () {
+            parent.login_before_study();
             gen_char_list();
             var speaker = document.getElementById("play_sound");
             speaker.addEventListener('ended', function () {
@@ -55,7 +56,8 @@
             </div>
             <small class="target">1. 掌握每个字母的大小写；</small>
             <small class="target">2. 学会全部单个字母发音（字母音）；</small>
-            <small class="target">3. 了解字母分元音字母与辅音字母。下面红色的为<span class="text-danger">元音字母</span>，其余的为<span class="text-primary">辅音字母</span>。
+            <small class="target">3. 了解字母分元音字母与辅音字母。下面红色的为<span class="text-danger">元音字母</span>，其余的为<span
+                    class="text-primary">辅音字母</span>。
             </small>
         </span>
     </div>
@@ -70,7 +72,8 @@
         </div>
     </div>
     <div class="d-flex justify-content-center mt-3 mb-2">
-        <button class="btn btn-success w-100">已掌握，继续学！</button>
+        <button class="btn btn-success w-100 mr-1">已掌握</button>
+        <button class="btn btn-warning w-100 ml-1" disabled>下一节</button>
     </div>
 </div>
 <audio id="play_sound"></audio>
