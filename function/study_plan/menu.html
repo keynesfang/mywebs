@@ -47,8 +47,9 @@
             process_html += "<div id='study_process_bar' class='progress-bar progress-bar-striped progress-bar-animated bg-warning' role='progressbar' ></div>";
             process_html += "</div></div>";
             $("#sub_body").append(process_html);
-            init_menu_status();
             set_study_process();
+            var eng_study = $.cookie("eng_study") ? $.cookie("eng_study") : 0;
+            $("#study_process_bar").css("width", eng_study + "%");
         });
 
         function init_menu_status() {
@@ -86,6 +87,49 @@
                 $("#sub_content").attr("src", "0.html");
                 top.$("#login_form").show();
             }
+        }
+
+        function before_menu_open() {
+            init_menu_status();
+        }
+
+        function process_add(url) {
+            if ($.cookie("eng_uname")) {
+                var arrUrl = url.split("/");
+                var strPage = arrUrl[arrUrl.length - 1];
+                var cur_page_index = parseInt(strPage.split(".")[0]);
+                var eng_study = $.cookie("eng_study") ? $.cookie("eng_study") : 0;
+                if (parseInt(eng_study) == cur_page_index) {
+                    var condition = "user='" + $.cookie("eng_uname") + "'";
+                    $.post("./local_logic.php", {
+                        type: "study_process_add",
+                        condition: condition
+                    }, function (data) {
+                        if (data == "success") {
+                            $.cookie("eng_study", parseInt(eng_study) + 1);
+                            $("#study_process_bar").css("width", $.cookie("eng_study") + "%");
+                        }
+                    });
+                }
+                set_study_page("next", url);
+            } else {
+                top.$("#login_form").show();
+            }
+        }
+
+        function set_study_page(direction, url) {
+            var arrUrl = url.split("/");
+            var strPage = arrUrl[arrUrl.length - 1];
+            var cur_page_index = parseInt(strPage.split(".")[0]);
+            if (direction == "next") {
+                cur_page_index++;
+            } else {
+                cur_page_index--;
+            }
+            $(".menu_btn").removeClass("bg-primary");
+            $("#" + cur_page_index).addClass("bg-primary");
+            $("#sub_content").attr("src", cur_page_index + ".html");
+            $("#title").html($("#" + cur_page_index).text() + "&nbsp;<span id='subtitle' style='font-size: 10px;' class='text-warning pt-1'></span>");
         }
     </script>
 </head>
