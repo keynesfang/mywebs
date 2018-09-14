@@ -19,7 +19,22 @@
     <script src='/lib/english.js'></script>
     <title>什么是辅音</title>
     <script>
+        var study_target = [
+            "学会每个辅音音标的发音（音素音）",
+            "弄清字母音与音素音之间的区别",
+            "知道辅音的发音特点"
+        ];
+
+        var notice = [
+            "辅音字母发的音就是辅音",
+            "辅音字母【Yy】也有可能发元音，被称为第6元音字母",
+            "读单个字母发字母音，读单词里的字母发音素音",
+            "通过与元音相比，辅音发音时不那么顺畅",
+            "元音与辅音结合发音，使得单词读起来更好听"
+        ];
         $(function () {
+            parent.create_notes_by_arr("study_target", "学习目标", study_target, true);
+            parent.create_notes_by_arr("notice", "你需要了解的", notice, false);
             show_sound_mark();
             var speaker = document.getElementById("play_sound");
             speaker.addEventListener('ended', function () {
@@ -51,17 +66,8 @@
 </head>
 <body id="page" class=" bg-primary text-white" style="position: relative;">
 <div class=" bg-primary p-2">
-    <div class="list-group mb-2">
-        <span class="list-group-item list-group-item-action flex-column align-items-start list-group-item-warning px-2">
-            <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1">学习目标</h5>
-            </div>
-            <small class="target">1. 学会每个辅音音标的发音（音素音）；</small>
-            <small class="target">2. 弄清字母音与音素音之间的区别；</small>
-            <small class="target">3. 知道辅音的发音特点。</small>
-        </span>
-    </div>
-    <div class="list-group">
+    <div id="study_target"></div>
+    <div class="list-group my-2">
         <div class="list-group-item list-group-item-action flex-column align-items-start p-2">
             <div class="d-flex w-100 justify-content-between item_content">
                 <h5 class="mb-1 text-info">辅音音标（28个）</h5>
@@ -71,18 +77,7 @@
             </div>
         </div>
     </div>
-    <div class="list-group mt-2">
-        <div class="list-group-item list-group-item-action flex-column align-items-start p-2">
-            <div class="d-flex w-100 justify-content-between item_content">
-                <h5 class="mb-1 text-info">你需要了解的：</h5>
-            </div>
-            <small class="target">1. 辅音字母发的音就是辅音；</small>
-            <small class="target">2. 辅音字母【Yy】也有可能发元音，被称为第6元音字母；</small>
-            <small class="target">3. 读单个字母发字母音，读单词里的字母发音素音；</small>
-            <small class="target">4. 通过与元音相比，辅音发音时不那么顺畅；</small>
-            <small class="target">5. 元音与辅音结合发音，使得单词读起来更好听。</small>
-        </div>
-    </div>
+    <div id="notice"></div>
     <div class="d-flex justify-content-center mt-3 mb-2">
         <button class="btn btn-secondary w-100">下一节正在建设中</button>
     </div>

@@ -18,9 +18,16 @@
     <script src='/lib/english.js'></script>
     <title>零基础学字母</title>
     <script>
+        var study_target = [
+            "掌握每个字母的大小写",
+            "学会全部单个字母发音（字母音）",
+            "了解字母分元音字母与辅音字母"
+        ];
+
         var char = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
         var vowel = ["A", "E", "I", "O", "U"];
         $(function () {
+            parent.create_notes_by_arr("study_target", "学习目标", study_target, true);
             parent.login_before_study();
             gen_char_list();
             var speaker = document.getElementById("play_sound");
@@ -49,24 +56,13 @@
 </head>
 <body id="page" class=" bg-primary text-white" style="position: relative;">
 <div class=" bg-primary p-2">
-    <div class="list-group mb-2">
-        <span class="list-group-item list-group-item-action flex-column align-items-start list-group-item-warning px-2">
-            <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1">学习目标</h5>
-            </div>
-            <small class="target">1. 掌握每个字母的大小写；</small>
-            <small class="target">2. 学会全部单个字母发音（字母音）；</small>
-            <small class="target">3. 了解字母分元音字母与辅音字母。下面红色的为<span class="text-danger">元音字母</span>，其余的为<span
-                    class="text-primary">辅音字母</span>。
-            </small>
-        </span>
-    </div>
-    <div class="list-group">
+    <div id="study_target"></div>
+    <div class="list-group my-2">
         <div class="list-group-item list-group-item-action flex-column align-items-start p-2">
             <div class="d-flex w-100 justify-content-between item_content">
                 <h5 class="mb-1 text-info mt-2">26个英文字母</h5>
             </div>
-            <small class="mt-2 d-block">点击下列字母听发音:</small>
+            <small class="mt-2 d-block">下面红色的为元音字母，其他为辅音字母，点击字母听发音:</small>
             <div id="char" class="mb-2">
             </div>
         </div>
