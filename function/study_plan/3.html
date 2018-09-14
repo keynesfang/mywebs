@@ -21,6 +21,10 @@
     <script>
         $(function () {
             show_sound_mark();
+            var speaker = document.getElementById("play_sound");
+            speaker.addEventListener('ended', function () {
+                $(".sound_mark").css("border-bottom", "2px solid #28a745");
+            }, false);
         });
 
         function show_sound_mark() {
@@ -36,6 +40,7 @@
                 });
                 $("#sound_mark").html(sound_mark_arr_html);
                 $(".sound_mark").click(function () {
+                    $(this).css("border-bottom", "2px solid #dc3545");
                     var audio_url = "./audio/" + $(this).attr("audio_url");
                     $("#play_sound").attr("src", "/function/pronunciation/ipa/" + audio_url);
                     $("#play_sound")[0].play();

@@ -33,29 +33,50 @@
         $(function () {
             id = GetQueryString("id");
             poster = GetQueryString("poster");
-            view_count = parseInt(GetQueryString("view_count")) + 1;
-            favorite = GetQueryString("favorite");
-            unfavorite = GetQueryString("unfavorite");
-            title = GetQueryString("title");
-            eng = GetQueryString("eng");
-            chn = GetQueryString("chn");
+            if (poster) {
+                view_count = parseInt(GetQueryString("view_count")) + 1;
+                favorite = GetQueryString("favorite");
+                unfavorite = GetQueryString("unfavorite");
+                title = GetQueryString("title");
+                eng = GetQueryString("eng");
+                chn = GetQueryString("chn");
+                local_create_video();
+            } else {
+                $.post("local_logic.php", {
+                    type: "get_video_info_by_id",
+                    id: id
+                }, function (data) {
+                    var video_info = eval("(" + data + ")");
+                    poster = video_info["poster"];
+                    view_count = parseInt(video_info["view_count"]) + 1;
+                    favorite = video_info["favorite"];
+                    unfavorite = video_info["unfavorite"];
+                    title = video_info["title"];
+                    eng = video_info["eng"];
+                    chn = video_info["chn"];
+                    local_create_video();
+                });
+            }
             var content_height = parent.$("#sub_frame").height() - 50;
             $("#video_page").css("height", content_height);
+        });
+
+        function local_create_video() {
             $("#title").text(title);
             create_video();
             init_video_data();
             add_count("view_count");
-        });
+        }
 
         function init_video_data() {
             $("#view_count").val("已浏览：" + view_count);
             $("#favorite").text(favorite);
             $("#unfavorite").text(unfavorite);
         }
-        
+
         function add_count(name) {
             var condition = "id='" + id + "'";
-            if(name == "favorite" || name == "unfavorite") {
+            if (name == "favorite" || name == "unfavorite") {
                 $(".add_count").attr("onclick", "");
             }
             $("#favorite").text(favorite);
@@ -65,6 +86,13 @@
                 fieldName: name,
                 condition: condition
             });
+        }
+
+        function set_parent_page_height() {
+            var parent_video_frame = parent.$("#video_sub_frame");
+            if (parent_video_frame) {
+                parent_video_frame.css("height", $("body").height());
+            }
         }
     </script>
 </head>
@@ -97,7 +125,9 @@
                     id="unfavorite"></span></label>
         </div>
     </div>
-    <div class="p-2 text-primary" style="font-size: 14px; background-color: #e9ecef;">由于视频播放兼容性问题，如字幕和播速等无法正常设置时，建议换用【谷歌浏览器】打开本站！</div>
+    <div class="p-2 text-primary" style="font-size: 14px; background-color: #e9ecef;">
+        由于视频播放兼容性问题，如字幕和播速等无法正常设置时，建议换用【谷歌浏览器】打开本站！
+    </div>
 </div>
 </body>
 </html>

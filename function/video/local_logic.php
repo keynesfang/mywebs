@@ -10,6 +10,13 @@ if ($type == "get_video_list") {
     echo json_encode($result);
 }
 
+if ($type == "get_video_info_by_id") {
+    $id = $_REQUEST['id'];
+    $sql = "SELECT * FROM eng_video where id='$id'";
+    $result = $dbop->get_one($sql);
+    echo json_encode($result);
+}
+
 if ($type == "add_count_by_name") {
     $fieldName = $_REQUEST['fieldName'];
     $condition = $_REQUEST['condition']; // a='b' and c='d'
