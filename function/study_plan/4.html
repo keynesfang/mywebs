@@ -36,30 +36,34 @@
         $(function () {
             parent.create_notes_by_arr("study_target", "学习目标", study_target, true);
             parent.create_notes_by_arr("notice", "注意事项", notice, false);
-            show_sound_mark();
+            show_word();
             var speaker = document.getElementById("play_sound");
             speaker.addEventListener('ended', function () {
-                $(".sound_mark").css("border-bottom", "2px solid #28a745");
+                $(".word").css("border-bottom", "2px solid #28a745");
             }, false);
         });
 
-        function show_sound_mark() {
+        function show_word() {
             $.post("local_logic.php", {
-                type: "get_sound_mark"
+                type: "get_word",
+                word_type: "人"
             }, function (data) {
-                var sound_mark_arr = eval("(" + data + ")");
-                var sound_mark_arr_html = "";
-                $.each(sound_mark_arr, function (idx, info) {
-                    if (info.kind == "辅音") {
-                        sound_mark_arr_html += "<span class='sound_mark p-1 mx-1 text-primary' audio_url='" + info.audio_url + "'>" + info.name + "</span>";
-                    }
+                var word_arr = eval("(" + data + ")");
+                var word_arr_html = "";
+                $.each(word_arr, function (idx, info) {
+                    word_arr_html += "<span class='w-100 word m-1 mb-2 text-primary' style='text-align: center;' word='" + info.word + "'><ruby>" + info.word + "<rt>[" + info.sound_mark + "]</rt></ruby></span>";
+                    word_arr_html += "<img class='w-100 word_image' src='/function/english/image/" + info.word + ".jpg' alt='" + info.word + "'>";
                 });
-                $("#sound_mark").html(sound_mark_arr_html);
-                $(".sound_mark").click(function () {
+                $("#word").html(word_arr_html);
+                $(".word").click(function () {
                     $(this).css("border-bottom", "2px solid #dc3545");
-                    var audio_url = "./audio/" + $(this).attr("audio_url");
-                    $("#play_sound").attr("src", "/function/pronunciation/ipa/" + audio_url);
-                    $("#play_sound")[0].play();
+                    var c = $(this).attr("word");
+                    play_sound(c, "play_sound");
+                });
+                $(".word_image").click(function () {
+                    var word = $(this).attr("alt");
+                    word = top.set_explain_word(word);
+                    query_word(word, top.query_word_callback);
                 });
             });
         }
@@ -74,8 +78,8 @@
             <div class="d-flex w-100 justify-content-between item_content">
                 <h5 class="mb-1 text-info">单词拼读-人物篇（30个）</h5>
             </div>
-            <small class="mt-2 d-block">点击下列辅音音标听发音:</small>
-            <div id="sound_mark" class="mb-2">
+            <small class="mt-2 d-block">点单词听音，点图片查词（听音前先尝试用音标拼读单词，'符号表重读）:</small>
+            <div id="word" class="mb-2">
             </div>
         </div>
     </div>

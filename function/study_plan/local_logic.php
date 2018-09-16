@@ -8,6 +8,13 @@ if ($type == "get_sound_mark") {
     echo json_encode($result);
 }
 
+if ($type == "get_word") {
+    $c_classify = $_REQUEST['word_type'];
+    $sql = "SELECT * FROM eng_word where c_classify='$c_classify'";
+    $result = $dbop->get_all($sql);
+    echo json_encode($result);
+}
+
 if ($type == "study_process_add") {
     $condition = $_REQUEST['condition']; // a='b' and c='d'
     $result = $dbop->field_update_itself("eng_user", "study", 1, $condition);
@@ -17,5 +24,4 @@ if ($type == "study_process_add") {
         echo "fail";
     }
 }
-
 
