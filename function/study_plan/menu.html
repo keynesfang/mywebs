@@ -38,6 +38,7 @@
             "2. 什么是元音": "2.html",
             "3. 什么是辅音": "3.html",
             "4. 单词拼读-人物篇": "4.html",
+            "5. 单词拼读-动物篇": "5.html",
             "未完待续...【关闭】": ""
         };
 
@@ -66,7 +67,9 @@
                     temp_ele.removeClass("fa-bookmark");
                     temp_ele.addClass("fa-lock");
                 } else {
+                    $(this).css("color", "#fff");
                     temp_ele.removeClass("fa-bookmark");
+                    temp_ele.removeClass("fa-lock");
                     temp_ele.addClass("fa-unlock");
                     temp_ele.css("color", "#ffc107");
                 }

@@ -27,15 +27,8 @@
             "注意总结音标与字母组合的关系"
         ];
 
-        var notice = [
-            "552个基础词汇是单词拼读的全部内容，人物篇是其中的一部分，后面还会有其它分类词汇",
-            "单词拼读系列的目的是让你完全掌握音标，可以正确的读，清楚的听，并建立起基础词库",
-            "在背词时，尽量不要查询中文意思，根据图片信息来背含义，就像我们小时候学中文一样"
-        ];
-
         $(function () {
             parent.create_notes_by_arr("study_target", "学习目标", study_target, true);
-            parent.create_notes_by_arr("notice", "注意事项", notice, false);
             show_word();
             var speaker = document.getElementById("play_sound");
             speaker.addEventListener('ended', function () {
@@ -46,7 +39,7 @@
         function show_word() {
             $.post("local_logic.php", {
                 type: "get_word",
-                word_type: "人"
+                word_type: "动物"
             }, function (data) {
                 var word_arr = eval("(" + data + ")");
                 var word_arr_html = "";
@@ -72,11 +65,10 @@
 <body id="page" class=" bg-primary text-white" style="position: relative;">
 <div class=" bg-primary p-2">
     <div id="study_target" class="mb-2"></div>
-    <div id="notice"></div>
     <div class="list-group my-2">
         <div class="list-group-item list-group-item-action flex-column align-items-start p-2">
             <div class="d-flex w-100 justify-content-between item_content">
-                <h5 class="mb-1 text-info">单词拼读-人物篇（30个）</h5>
+                <h5 class="mb-1 text-info">单词拼读-人物篇（10个）</h5>
             </div>
             <small class="mt-2 d-block">点单词听音，点图片查词（听音前先尝试用音标拼读单词，'符号表重读）:</small>
             <div id="word" class="mb-2">
@@ -84,7 +76,7 @@
         </div>
     </div>
     <div class="d-flex justify-content-center mt-3 mb-2">
-        <button class="btn btn-success w-100" onclick="parent.process_add(window.location.href);">已掌握，踏上新的征程！</button>
+        <button class="btn btn-secondary w-100">下一节正在建设中</button>
     </div>
 </div>
 <audio id="play_sound"></audio>
