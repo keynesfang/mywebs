@@ -51,9 +51,9 @@
             process_html += "<div id='study_process_bar' class='progress-bar progress-bar-striped progress-bar-animated bg-warning' role='progressbar' ></div>";
             process_html += "</div></div>";
             $("#sub_body").append(process_html);
-            set_study_process();
             var eng_study = $.cookie("eng_study") ? $.cookie("eng_study") : 0;
             $("#study_process_bar").css("width", eng_study + "%");
+            set_study_process();
         });
 
         function init_menu_status() {
