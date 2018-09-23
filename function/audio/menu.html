@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
+    <meta name='Keywords' Content='自学英语,英语歌曲,学唱英语歌'>
+    <meta name='Description' Content='背单词,学语法,练听力,如果学累了,来首英语歌吧。'>
+    <link rel="icon" href="/image/myicon.png" type="image/x-icon"/>
+    <link rel='stylesheet' type='text/css' href='/lib/bootstrap-4.0.0/css/bootstrap.min.css'>
+    <link rel='stylesheet' type='text/css' href='/lib/font-awesome-4.7.0/css/font-awesome.min.css'>
+    <link rel='stylesheet' type='text/css' href='/common.css'>
+    <script src='/lib/jquery-3.2.1.min.js'></script>
+    <script src='/lib/common.js'></script>
+    <script src='/lib/menu.js'></script>
+    <title>学唱英语歌</title>
+    <script>
+        var menu_list = {
+            "Take Me To Your Heart": "play_audio.html?song=TakeMeToYourHeart",
+            "My Heart Will Go On": "play_audio.html?song=MyHeartWillGoOn",
+            "未完待续...【关闭】": ""
+        };
+
+        $(function () {
+            create_menu_page();
+            set_sub_frame_height();
+            $("#menu").html("<i class='fa fa-tasks'></i> 歌 单");
+        });
+
+        function set_sub_frame_height() {
+            $("#sub_content").css("height", $("#sub_body").height() - 50);
+        }
+    </script>
+</head>
+<body id="sub_body" class=" bg-primary text-white" style="position: relative;">
+</body>
+</html>

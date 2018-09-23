@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
+    <meta name='Keywords' Content='自学英语,英语歌曲,学唱英语歌'>
+    <meta name='Description' Content='背单词,学语法,练听力,如果学累了,来首英语歌吧。'>
+    <link rel="icon" href="/image/myicon.png" type="image/x-icon"/>
+    <link rel='stylesheet' type='text/css' href='/lib/bootstrap-4.0.0/css/bootstrap.min.css'>
+    <link rel='stylesheet' type='text/css' href='/lib/font-awesome-4.7.0/css/font-awesome.min.css'>
+    <link rel='stylesheet' type='text/css' href='/common.css'>
+    <script src='/lib/jquery-3.2.1.min.js'></script>
+    <script src='/lib/bootstrap-4.0.0/js/bootstrap.min.js'></script>
+    <script src='/lib/common.js'></script>
+    <script src='audio.js'></script>
+    <title>学唱英语歌</title>
+    <style>
+        #player {
+            position: relative;
+        }
+
+        .play_control_left {
+            margin-left: 15px;
+        }
+
+        .play_control_right {
+            float: right;
+            margin-right: 15px;
+        }
+
+        .play_control_char {
+            font-size: 14px;
+        }
+
+        #progress {
+            border-radius: 0;
+            height: 5px;
+        }
+
+        #lrc {
+            overflow-y: auto;
+            text-align: center;
+        }
+
+        .current_lrc {
+            font-size: 20px;
+            text-shadow: 0 0 10px #fff,
+            0 0 20px #fff,
+            0 0 30px #fff,
+            0 0 40px #FF1177,
+            0 0 70px #FF1177,
+            0 0 80px #FF1177,
+            0 0 100px #FF1177,
+            0 0 150px #FF1177;
+        }
+    </style>
+</head>
+<body class="bg-dark text-white">
+<audio id="my_audio">
+    您的浏览器不支持 audio 标签。
+</audio>
+<div id="song_info" class="mt-2" style="overflow-y: auto;">
+    <div id="player">
+        <div id='audio_control_bar' class='w-100 px-2 pb-2 pt-0'>
+            <i id="play_pause" class="fa fa-play" onclick="audio_control.play_pause(this);"></i>
+            <i class="fa fa-backward play_control_left" onclick="audio_control.fast();"></i>
+            <i class="fa fa-forward play_control_left" onclick="audio_control.slow();"></i>
+            <span id="audio_duration" class="play_control_char ml-3"></span>
+            <i class="fa fa-building play_control_right pt-1 mr-0 text-warning"> <span
+                    class="play_control_char">词</span></i>
+        </div>
+        <div id='progress' class='progress w-100'>
+            <div id='play_process' class='progress-bar progress-bar-striped progress-bar-animated bg-danger'
+                 role='progressbar'
+                 aria-valuenow='75' aria-valuemin='0' aria-valuemax='100' style='width: 0;'></div>
+        </div>
+    </div>
+    <div id="lrc" class="w-100 mt-2"></div>
+</div>
+</body>
+</html>
