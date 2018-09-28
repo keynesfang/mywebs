@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
-    <meta name='Keywords' Content='自学英语,单词拼读,自然相关词汇'>
+    <meta name='Keywords' Content='自学英语,单词拼读,方向相关词汇'>
     <meta name='Description' Content='同时学习音标发音,听力,口语发音,基本单词记忆等各方面基础内容,为以后的英语成长打个基础。'>
     <link rel="icon" href="/image/myicon.png" type="image/x-icon"/>
     <link rel='stylesheet' type='text/css' href='/lib/bootstrap-4.0.0/css/bootstrap.min.css'>
@@ -39,7 +39,7 @@
         function show_word() {
             $.post("local_logic.php", {
                 type: "get_word",
-                word_type: "大自然"
+                word_type: "方向"
             }, function (data) {
                 var word_arr = eval("(" + data + ")");
                 var word_arr_html = "";
@@ -68,7 +68,7 @@
     <div class="list-group my-2">
         <div class="list-group-item list-group-item-action flex-column align-items-start p-2">
             <div class="d-flex w-100 justify-content-between item_content">
-                <h5 class="mb-1 text-info">单词拼读-自然篇（34个）</h5>
+                <h5 class="mb-1 text-info">单词拼读-方向篇（17个）</h5>
             </div>
             <small class="mt-2 d-block">点单词听音，点图片查词（听音前先尝试用音标拼读单词，'符号表重读）:</small>
             <div id="word" class="mb-2">
@@ -76,7 +76,7 @@
         </div>
     </div>
     <div class="d-flex justify-content-center mt-3 mb-2">
-        <button class="btn btn-success w-100" onclick="parent.process_add(window.location.href);">已掌握，踏上新的征程！</button>
+        <button class="btn btn-secondary w-100">下一节正在建设中</button>
     </div>
 </div>
 <audio id="play_sound"></audio>
