@@ -54,6 +54,7 @@
             data_arr["title"] = news_title;
             data_arr["chn"] = news_text;
             data_arr["mytranslate"] = 1;
+            data_arr["issue_date"] = getToday();
 
             $.post("/function/common_logic.php", {
                 type: "modify_sql_get_data",

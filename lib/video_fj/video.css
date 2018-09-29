@@ -1,10 +1,10 @@
 #video_control_bar {
     padding-top: 3px;
-    background-color: rgba(0, 0, 0, 0.3);
-    bottom: 6px;
+    bottom: -26px;
     left: 50%;
     height: 33px;
     max-width: 600px;
+    background-color: #000;
 }
 
 .abs {
@@ -20,7 +20,7 @@
 #progress {
     height: 15px;
     border-radius: 0;
-    bottom: -10px;
+    bottom: -40px;
     max-width: 600px;
 }
 

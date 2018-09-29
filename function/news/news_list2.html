@@ -57,7 +57,7 @@
         }
         // 加载新闻列表，同时删除加载图标
         function load_news() {
-            var sql = "SELECT * FROM english_news WHERE mytranslate=1 order by news_date DESC LIMIT " + current_news_index + ", " + per_page_news_cont;
+            var sql = "SELECT * FROM english_news WHERE mytranslate=1 order by issue_date DESC LIMIT " + current_news_index + ", " + per_page_news_cont;
             $.post("../common_logic.php", {
                 type: "query_sql_get_data2",
                 sql: sql
