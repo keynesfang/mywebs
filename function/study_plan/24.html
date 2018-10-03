@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
+    <meta name='Keywords' Content='自学英语,动词的时态'>
+    <meta name='Description' Content='背单词不是背单词的中文意思，也不仅仅是背单词的字母组合，还有更多的内容你需要记忆。'>
+    <link rel="icon" href="/image/myicon.png" type="image/x-icon"/>
+    <link rel='stylesheet' type='text/css' href='/lib/bootstrap-4.0.0/css/bootstrap.min.css'>
+    <link rel='stylesheet' type='text/css' href='/lib/video-js/css/video-js.min.css'>
+    <link rel='stylesheet' type='text/css' href='/lib/font-awesome-4.7.0/css/font-awesome.min.css'>
+    <link rel='stylesheet' type='text/css' href='/common.css'>
+    <link rel='stylesheet' type='text/css' href='./local_css.css'>
+    <script src='/lib/jquery-3.2.1.min.js'></script>
+    <script src='./local_common.js'></script>
+    <script src='/lib/video-js/js/video.min.js'></script>
+    <script src='/lib/video_js_setting.js'></script>
+    <script src='/lib/common.js'></script>
+    <script src='/lib/jquery.cookie.js'></script>
+    <script src='/lib/english.js'></script>
+    <title>英语中的动词</title>
+    <script>
+        $(function () {
+            regist_word_translate(top.set_explain_word, top.query_word_callback);
+            $(".word_image").click(function () {
+                $(this).css("border", "5px solid #dc3545");
+                var sentence = $(this).attr("sentence");
+                play_sound(sentence, "play_sound");
+            });
+            var speaker = document.getElementById("play_sound");
+            speaker.addEventListener('ended', function () {
+                $(".word_image").css("border", "0");
+            }, false);
+        });
+    </script>
+</head>
+<body id="page" class=" bg-primary text-white" style="position: relative; font-size: 14px;">
+<div class=" bg-primary p-2">
+    <div class="list-group">
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between item_content">
+                <h6 class="mb-1 text-primary">什么是动词</h6>
+            </div>
+            <div>
+                <p class="mb-1">简单来说，描述动作的词就叫作“<span class="font-weight-bold">动词</span>”。</p>
+                <p class="mb-1">动词比较复杂，所以这里单独用一个章节来简单描述动词的各种特性。先有个了解，在后继的学习中才会觉得轻松。</p>
+                <p class="mb-1">注意：以下内容中，点词查词，点图听例句。</p>
+            </div>
+        </div>
+
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between item_content">
+                <h6 class="mb-1 text-primary">1. 及物与不及物</h6>
+            </div>
+            <div>
+                <p class="mb-1 font-weight-bold">及物表示动作有承受者，称为及物动词（
+                    <query>transitive</query>
+                    <query>verb</query>
+                    ，简称 vt）。
+                </p>
+                <p class="mb-1">例：
+                    <eg>
+                        <query>I</query>
+                        <query>eat</query>
+                        <query>an</query>
+                        <query>apple</query>
+                        .
+                    </eg>
+                </p>
+                <img class="w-100 word_image" sentence="I eat an apple." src="/function/english/image/eat_apple.jpg"
+                     alt="verb">
+                <p class="my-1">其中动词
+                    <query>eat</query>
+                    为及物动词，因为
+                    <query>apple</query>
+                    是动词的承受者。
+                </p>
+                <p class="mb-1 font-weight-bold">不及物表示动作没有承受者，称为不及物动词（
+                    <query>intransitive</query>
+                    <query>verb</query>
+                    ，简称 vi）。
+                </p>
+                <p class="mb-1">例：
+                    <eg>
+                        <query>I</query>
+                        <query>run</query>
+                        .
+                    </eg>
+                </p>
+                <img class="w-100 word_image" sentence="I run." src="/function/english/image/run.jpg" alt="verb">
+                <p class="my-1">其中动词
+                    <query>run</query>
+                    为不及物动词，因为动作没有承受者。
+                </p>
+                <p class="my-1">有很多动词既是及物动词同是也是不及物动词，但同一动词做及物或不及物时，单词含义会有一些差异，可根据要表达的内容需要来使用。</p>
+            </div>
+        </div>
+
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between item_content">
+                <h6 class="mb-1 text-primary">2. 动词的时态</h6>
+            </div>
+            <div>
+                <p class="mb-1">时态就是动作<span class="font-weight-bold">发生的时间</span>与<span
+                        class="font-weight-bold">当前的状态</span>。</p>
+                <p class="mb-1">发生的时间可分为：过去、现在、将来、过去将来（我本来打算做什么）；</p>
+                <p class="mb-1">当前的状态可分为：已完成、进行中、未发生、习惯性动作。</p>
+                <p class="mb-1">时间有4种，状态有4种，它们两两之间可以进行组合，所以英语中共有16种可能的时态组合。如：过去完成时等。</p>
+                <img class="w-100 word_image" sentence="verb tense" src="/function/english/image/tense.jpg" alt="verb">
+                <p class="my-1">要描述英语句子中的不同时间与状态都是通过对动词不同时态的变形来完成的，由此可见动词的重要性与复杂性。</p>
+            </div>
+        </div>
+
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between item_content">
+                <h6 class="mb-1 text-primary">3. 动词不定式</h6>
+            </div>
+            <div>
+                <p class="mb-1">动词不定式就是由<span class="font-weight-bold">动词不定式符号to加动词原形</span>构成了一种非谓语动词结构（也有动词可以不带to）。
+                </p>
+                <p class="mb-1">例：
+                    <eg>
+                        <query>I</query>
+                        <query>want</query>
+                        <query>to</query>
+                        <query>go</query>
+                        .
+                    </eg>
+                </p>
+                <img class="w-100 word_image" sentence="I want to go." src="/function/english/image/iwanttogo.jpg"
+                     alt="sea">
+                <p class="my-1">例句中有两个动词
+                    <query>want</query>
+                    与
+                    <query>go</query>
+                    。其中
+                    <query>want</query>
+                    是主语的直接动作，可以通过对它的变形来展现句子的时态；
+                    而
+                    <query>go</query>
+                    是主语想做的动作，但不确定什么时候做，也就无法确认时态，所以要用到动词不定式。
+                </p>
+                <p class="my-1">不清楚什么是谓语？将在下一节中进行说明，这里只须要有个印象即可。</p>
+            </div>
+        </div>
+
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between item_content">
+                <h6 class="mb-1 text-primary">4. 动词变形简单举例</h6>
+            </div>
+            <div>
+                <p class="mb-1">一个动词可以进行变形，在不同的句子和时态环境中需要使用到不同的动词形态来表达到相应的含义。</p>
+                <p class="mb-1">本节先粗讲一下动词有哪些形态，在什么情况下会用到哪种动词变形，后面会通过实例详细说明。</p>
+                <p class="mb-1">以动词
+                    <query>go</query>
+                    为例，各变形如下：
+                </p>
+                <p class="mb-1">1. <span class="font-weight-bold">动词原型（<query>go</query>）</span>；</p>
+                <p class="mb-1">2. <span class="font-weight-bold">动词过去式（<query>went</query>）</span>；</p>
+                <p class="mb-1">3. <span class="font-weight-bold">动词现在分词（<query>going</query>）</span>；</p>
+                <p class="mb-1">4. <span class="font-weight-bold">动词过去分词（<query>gone</query>）</span>；</p>
+                <p class="mb-1">5. <span class="font-weight-bold">动词单数三人称（<query>goes</query>）</span>。</p>
+                <p class="mb-1">所以记忆一个动词，你须要对动词的5种形态都进行了解，才算是掌握了。不过也不要担心，大部分动词都是有规律可循的。</p>
+            </div>
+        </div>
+
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between item_content">
+                <h6 class="mb-1 text-primary">5. 后继学习计划</h6>
+            </div>
+            <div>
+                <p class="mb-1">本节只是对动词的相关特性做了一个大致的介绍，还有很有细节的地方，会在后面结合实际句子进行详细说明。</p>
+                <p class="mb-1">
+                    为了锻炼英语思维，在当前的初学阶段，尽量多锻炼英语思维。即大家尽量在看单词、句子的时候直接通过图片来联想含义，尽量不要通过中文去转换！开始可能比较困难，但如果养成习惯后，对英语的学习帮助是非常大的。</p>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-center mt-3 mb-2">
+            <button class="btn btn-success w-100" onclick="parent.process_add(window.location.href);">已掌握，踏上新的征程！
+            </button>
+        </div>
+    </div>
+</div>
+<audio id="play_sound"></audio>
+</body>
+</html>

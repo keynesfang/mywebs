@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
+    <meta name='Keywords' Content='自学英语,动词的时态'>
+    <meta name='Description' Content='背单词不是背单词的中文意思，也不仅仅是背单词的字母组合，还有更多的内容你需要记忆。'>
+    <link rel="icon" href="/image/myicon.png" type="image/x-icon"/>
+    <link rel='stylesheet' type='text/css' href='/lib/bootstrap-4.0.0/css/bootstrap.min.css'>
+    <link rel='stylesheet' type='text/css' href='/lib/video-js/css/video-js.min.css'>
+    <link rel='stylesheet' type='text/css' href='/lib/font-awesome-4.7.0/css/font-awesome.min.css'>
+    <link rel='stylesheet' type='text/css' href='/common.css'>
+    <link rel='stylesheet' type='text/css' href='./local_css.css'>
+    <script src='/lib/jquery-3.2.1.min.js'></script>
+    <script src='./local_common.js'></script>
+    <script src='/lib/video-js/js/video.min.js'></script>
+    <script src='/lib/video_js_setting.js'></script>
+    <script src='/lib/common.js'></script>
+    <script src='/lib/jquery.cookie.js'></script>
+    <script src='/lib/english.js'></script>
+    <title>五大基础句型</title>
+    <script>
+        $(function () {
+            regist_word_translate(top.set_explain_word, top.query_word_callback);
+            $(".word_image").click(function () {
+                $(this).css("border", "5px solid #dc3545");
+                var sentence = $(this).attr("sentence");
+                play_sound(sentence, "play_sound");
+            });
+            var speaker = document.getElementById("play_sound");
+            speaker.addEventListener('ended', function () {
+                $(".word_image").css("border", "0");
+            }, false);
+        });
+    </script>
+</head>
+<body id="page" class=" bg-primary text-white" style="position: relative; font-size: 14px;">
+<div class=" bg-primary p-2">
+    <div class="list-group">
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between item_content">
+                <h6 class="mb-1 text-primary">什么是五大基础句型</h6>
+            </div>
+            <div>
+                <p class="mb-1">从根本来说，句子是由单词组成的；但如果把每个句子中的修饰成份都去掉，那么可以归纳出5种最基本的句型。</p>
+                <p class="mb-1">也就是说，不含任何修饰成份的句子结构有5种，英语中所有的复杂句子都是通过向这5个句型中添加修改词而扩展而来的。</p>
+                <p class="mb-1">下面就来说一说这5个基本句型结构：</p>
+            </div>
+        </div>
+
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between item_content">
+                <h6 class="mb-1 text-primary">1. 主谓结构</h6>
+            </div>
+            <div>
+                <p class="mb-1">句中只有<span class="font-weight-bold">主语</span>与<span class="font-weight-bold">谓语</span>两个词。表明主语做了什么动作。
+                </p>
+                <p class="mb-1">例：
+                    <eg>
+                        <query>I</query>
+                        <query>escape</query>
+                        .
+                    </eg>
+                </p>
+                <img class="w-100 word_image" sentence="I escape." src="/function/english/image/escape.jpg"
+                     alt="verb">
+                <p class="my-1">还记得什么是不及物动词吗？这里的动词没有承受者，所以只能是不及物动词。</p>
+            </div>
+        </div>
+
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between item_content">
+                <h6 class="mb-1 text-primary">2. 主谓宾结构</h6>
+            </div>
+            <div>
+                <p class="mb-1">句中只有<span class="font-weight-bold">主语</span>、<span class="font-weight-bold">谓语</span>加上<span class="font-weight-bold">谓语的承受者</span>三个部分。表明主语对什么做了什么动作。
+                </p>
+                <p class="mb-1">例：
+                    <eg>
+                        <query>I</query>
+                        <query>eat</query>
+                        <query>an</query>
+                        <query>apple</query>
+                        .
+                    </eg>
+                </p>
+                <img class="w-100 word_image" sentence="I eat an apple." src="/function/english/image/eat_apple.jpg"
+                     alt="verb">
+                <p class="my-1">这里的动词有承受者，所以只能用及物动词。</p>
+            </div>
+        </div>
+
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between item_content">
+                <h6 class="mb-1 text-primary">3. 主谓双宾结构</h6>
+            </div>
+            <div>
+                <p class="mb-1">相比主谓宾结构，这个句型把宾语分为了<span class="font-weight-bold">直接宾语</span>与<span class="font-weight-bold">间接宾语</span>。</p>
+                <p class="mb-1"><span class="font-weight-bold">直接宾语</span>是谓语动词的直接承受者，<span class="font-weight-bold">间接宾语</span>则是间承受者。
+                </p>
+                <p class="mb-1">例：
+                    <eg>
+                        <query>I</query>
+                        <query>buy</query>
+                        <query>you</query>
+                        <query>a</query>
+                        <query>book</query>
+                        .
+                    </eg>
+                </p>
+                <img class="w-100 word_image" sentence="I buy you a book." src="/function/english/image/buy_book.jpg"
+                     alt="verb">
+                <p class="my-1"><query>book</query> 是动词 <query>buy</query> 的直接承受者为直接宾语，而 <query>you</query> 为间接承受者为间接宾语。</p>
+            </div>
+        </div>
+
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between item_content">
+                <h6 class="mb-1 text-primary">4. 主谓宾宾补结构</h6>
+            </div>
+            <div>
+                <p class="mb-1">相比主谓宾结构，这个句型为宾语加上了<span class="font-weight-bold">宾语补足语</span>。宾补是对宾语的补充说明。</p>
+                <p class="mb-1">例：
+                    <eg>
+                        <query>I</query>
+                        <query>named</query>
+                        <query>the</query>
+                        <query>dog</query>
+                        <query>Candy</query>
+                        .
+                    </eg>
+                </p>
+                <img class="w-100 word_image" sentence="I named the dog Candy." src="/function/english/image/dog.jpg"
+                     alt="verb">
+                <p class="my-1">当主谓宾语义不完整时，就可以为句子加上宾语补足语进行进一步说明。</p>
+            </div>
+        </div>
+
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between item_content">
+                <h6 class="mb-1 text-primary">5. 主系表结构</h6>
+            </div>
+            <div>
+                <p class="mb-1">前面4种结构都是在说明主语做了什么动作。而主系表结构则是用来表明主语的身份、类别、特征、状态。</p>
+                <p class="mb-1">例：
+                    <eg>
+                        <query>He</query>
+                        <query>looks</query>
+                        <query>handsome</query>
+                        .
+                    </eg>
+                </p>
+                <img class="w-100 word_image" sentence="He looks handsome." src="/function/english/image/look_handsome.jpg"
+                     alt="verb">
+                <p class="my-1">主系表可以这样理解：表语是对主语的某种说明，而系动词是联系主语与表语的一种特殊动词，相对于动作来说更侧重为一种联系。</p>
+            </div>
+        </div>
+
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between item_content">
+                <h6 class="mb-1 text-primary">小结</h6>
+            </div>
+            <div>
+                <p class="mb-1">以后所有更为复杂的句型，基本都是为通过为这几种基本句型中的成分添加修饰或说明扩展而来的。</p>
+                <p class="mb-1">比如可以用一个<span class="font-weight-bold">定语</span>来修饰<span class="font-weight-bold">宾语</span>。如果用一个句子替代<span class="font-weight-bold">定语</span>来修饰<span class="font-weight-bold">宾语</span>，那这个句子就叫作定语从句。</p>
+                <p class="mb-1">而从句也是由基本句型扩展而来的。</p>
+                <p class="mb-1">本节从总体上阐述了句子的构成原理，可以理解为总纲。后续会深入细化的对句子中的各种组合成分进行分析。</p>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-center mt-3 mb-2">
+            <button class="btn btn-secondary w-100">下一节正在建设中</button>
+        </div>
+    </div>
+</div>
+<audio id="play_sound"></audio>
+</body>
+</html>
