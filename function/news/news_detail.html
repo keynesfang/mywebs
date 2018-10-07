@@ -90,6 +90,8 @@
                 // 单词总数
                 word_count = $("query").length;
                 update_word_show();
+                document.oncontextmenu = null;
+                document.onselectstart = null;
             });
             // 调整播放速度
             $(".audio_speed_item").click(function () {

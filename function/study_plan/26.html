@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
+    <meta name='Keywords' Content='自学英语,句子成份'>
+    <meta name='Description' Content='背单词不是背单词的中文意思，也不仅仅是背单词的字母组合，还有更多的内容你需要记忆。'>
+    <link rel="icon" href="/image/myicon.png" type="image/x-icon"/>
+    <link rel='stylesheet' type='text/css' href='/lib/bootstrap-4.0.0/css/bootstrap.min.css'>
+    <link rel='stylesheet' type='text/css' href='/lib/video-js/css/video-js.min.css'>
+    <link rel='stylesheet' type='text/css' href='/lib/font-awesome-4.7.0/css/font-awesome.min.css'>
+    <link rel='stylesheet' type='text/css' href='/common.css'>
+    <link rel='stylesheet' type='text/css' href='./local_css.css'>
+    <script src='/lib/jquery-3.2.1.min.js'></script>
+    <script src='./local_common.js'></script>
+    <script src='/lib/video-js/js/video.min.js'></script>
+    <script src='/lib/video_js_setting.js'></script>
+    <script src='/lib/common.js'></script>
+    <script src='/lib/jquery.cookie.js'></script>
+    <script src='/lib/english.js'></script>
+    <title>详解句子成分</title>
+    <script>
+        $(function () {
+            regist_word_translate(top.set_explain_word, top.query_word_callback);
+            $(".word_image").click(function () {
+                $(this).css("border", "5px solid #dc3545");
+                var sentence = $(this).attr("sentence");
+                play_sound(sentence, "play_sound");
+            });
+            var speaker = document.getElementById("play_sound");
+            speaker.addEventListener('ended', function () {
+                $(".word_image").css("border", "0");
+            }, false);
+        });
+    </script>
+</head>
+<body id="page" class=" bg-primary text-white" style="position: relative; font-size: 14px;">
+<div class=" bg-primary p-2">
+    <div class="list-group">
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between item_content">
+                <h6 class="mb-1 text-primary">什么是句子成分</h6>
+            </div>
+            <div>
+                <p class="mb-1">组成句子的各个部分叫句子成分。如上一节说到的：主语、谓语、宾语等。</p>
+                <p class="mb-1">因为上节只是说明了最基础的句型，所以还有一些句子成分并未提到，今天我们来把它补全。</p>
+                <p class="mb-1"><span class="font-weight-bold">主语、谓语、表语、宾语、定语、状语、补语</span> -
+                    接下来我们一一说明（下文中，点词查义，点图听句）：</p>
+            </div>
+        </div>
+
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between item_content">
+                <h6 class="mb-1 text-primary">1. 主语</h6>
+            </div>
+            <div>
+                <p class="mb-1">主语表示句子主要说明的人或事物，一般由<span class="font-weight-bold">名词，代词，数词，不定式</span>等充当。</p>
+                <p class="mb-1">例：
+                    <eg>
+                        <span class="font-weight-bold"><query>He</query></span>
+                        <query>likes</query>
+                        <query>watching</query>
+                        <query>TV</query>
+                        .
+                    </eg>
+                </p>
+                <p class="mb-1">译：他喜欢看电视。</p>
+                <img class="w-100 word_image" sentence="He likes watching TV." src="/function/english/image/watch.jpg"
+                     alt="verb">
+                <p class="my-1"><span class="font-weight-bold">名词，代词，数词</span>等都是单词的属性，这个和中文一样，在背单词的时候了解一下就行。</p>
+            </div>
+        </div>
+
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between item_content">
+                <h6 class="mb-1 text-primary">2. 谓语</h6>
+            </div>
+            <div>
+                <p class="mb-1">谓语说明主语的动作，状态或特征。一般可分为两类：</p>
+                <p class="mb-1">2.1 <span class="font-weight-bold">简单谓语</span> - 由动词(或短语动词)构成。 可以有不同的时态，语态和语气。</p>
+                <p class="mb-1">例：
+                    <eg>
+                        <query>We</query>
+                        <span class="font-weight-bold"><query>study</query></span>
+                        <query>for</query>
+                        <query>the</query>
+                        <query>people</query>
+                        .
+                    </eg>
+                </p>
+                <p class="mb-1">译：我们学习为人民。</p>
+                <img class="w-100 word_image" sentence="We study for the people."
+                     src="/function/english/image/study.jpg"
+                     alt="verb">
+                <p class="my-1">2.2 <span class="font-weight-bold">复合谓语</span> - 情态动词+不定式。</p>
+                <p class="mb-1">例：
+                    <eg>
+                        <query>I</query>
+                        <span class="font-weight-bold"><query>can</query></span>
+                        <span class="font-weight-bold"><query>speak</query></span>
+                        <query>a</query>
+                        <query>little</query>
+                        <query>English</query>
+                        .
+                    </eg>
+                </p>
+                <p class="mb-1">译：我能说一点英语。</p>
+                <img class="w-100 word_image" sentence="I can speak a little English."
+                     src="/function/english/image/speak.jpg"
+                     alt="verb">
+                <p class="my-1">
+                    <query>can</query>
+                    为情态动词；
+                    <query>speak</query>
+                    为不定式。
+                </p>
+            </div>
+        </div>
+
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between item_content">
+                <h6 class="mb-1 text-primary">3. 表语</h6>
+            </div>
+            <div>
+                <p class="mb-1">表语位于系动词，如
+                    <query>be</query>
+                    之后，说明主语身份，特征，属性或状态。一般由名词，代词，形容词，副词，不定式，介词短语等充当。
+                </p>
+                <p class="mb-1">例：
+                    <eg>
+                        <query>My</query>
+                        <query>sister</query>
+                        <query>is</query>
+                        <query>a</query>
+                        <span class="font-weight-bold"><query>nurse</query></span>
+                        .
+                    </eg>
+                </p>
+                <p class="mb-1">译：我姐姐是一个护士。</p>
+                <img class="w-100 word_image" sentence="My sister is a nurse." src="/function/english/image/nurse.jpg"
+                     alt="verb">
+                <p class="my-1">表语
+                    <query>nurse</query>
+                    ，表明了主语的职业。
+                </p>
+            </div>
+        </div>
+
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between item_content">
+                <h6 class="mb-1 text-primary">4. 宾语</h6>
+            </div>
+            <div>
+                <p class="mb-1">宾语表示动作行为的对象，跟在及物动词之后，能作宾语的有名词，代词，数词，动词不定式等。</p>
+                <p class="mb-1">例：
+                    <eg>
+                        <query>We</query>
+                        <query>like</query>
+                        <span class="font-weight-bold"><query>English</query></span>
+                        .
+                    </eg>
+                </p>
+                <p class="mb-1">译：我们喜欢英语。</p>
+                <img class="w-100 word_image" sentence="We like English." src="/function/english/image/english.jpg"
+                     alt="verb">
+                <p class="mb-1">宾语
+                    <query>English</query>
+                    为动词
+                    <query>like</query>
+                    的作用对象。
+                </p>
+                <p class="my-1">有些及物动词可以带两个宾语，往往一个指人，一个指物，指人的叫间接宾语，指物的叫直接宾语。</p>
+                <p class="mb-1">例：
+                    <eg>
+                        <query>He</query>
+                        <query>gave</query>
+                        <span class="font-weight-bold"><query>me</query></span>
+                        <query>some</query>
+                        <span class="font-weight-bold"><query>ink</query></span>
+                        .
+                    </eg>
+                </p>
+                <p class="mb-1">译：他给了我一些墨水。</p>
+                <img class="w-100 word_image" sentence="He gave me some ink." src="/function/english/image/ink.jpg"
+                     alt="verb">
+                <p class="my-1">
+                    <query>me</query>
+                    是间接宾语；
+                    <query>ink</query>
+                    是直接宾语。
+                </p>
+            </div>
+        </div>
+
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between item_content">
+                <h6 class="mb-1 text-primary">5. 定语</h6>
+            </div>
+            <div>
+                <p class="mb-1">在句中修饰名词或代词的成分叫定语。</p>
+                <p class="mb-1">用作定语的主要是<span class="font-weight-bold">形容词，代词，数词，名词，副词，动词不定式，介词短语</span>等。</p>
+                <p class="mb-1">例：
+                    <eg>
+                        <query>He</query>
+                        <query>is</query>
+                        <query>a</query>
+                        <span class="font-weight-bold"><query>new</query></span>
+                        <query>student</query>
+                        .
+                    </eg>
+                </p>
+                <p class="mb-1">译：他是一个新来的学生。</p>
+                <img class="w-100 word_image" sentence="He is a new student." src="/function/english/image/student.jpg"
+                     alt="verb">
+                <p class="my-1">定语
+                    <query>new</query>
+                    是形容词，用于修饰宾语（名词）
+                    <query>student</query>
+                    。
+                </p>
+            </div>
+        </div>
+
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between item_content">
+                <h6 class="mb-1 text-primary">6. 状语</h6>
+            </div>
+            <div>
+                <p class="mb-1">修饰动词，形容词，副词以及全句的句子成分，叫做状语。</p>
+                <p class="mb-1">用作状语的通常是<span class="font-weight-bold">副词，介词短语，不定式和从句</span>等。状语一般放在被修饰的词之后或放在句尾。副词作状语时可放在被修饰的词前或句首。
+                </p>
+                <p class="mb-1">例：
+                    <eg>
+                        <query>He</query>
+                        <query>lives</query>
+                        <span class="font-weight-bold"><query>in</query></span>
+                        <query>London</query>
+                        .
+                    </eg>
+                </p>
+                <p class="mb-1">译：他生活在伦敦。</p>
+                <img class="w-100 word_image" sentence="He lives in London." src="/function/english/image/london.jpg"
+                     alt="verb">
+                <p class="my-1">状语
+                    <query>in</query>
+                    是介词，用于修饰谓语（动词）
+                    <query>live</query>
+                    。
+                </p>
+            </div>
+        </div>
+
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between item_content">
+                <h6 class="mb-1 text-primary">7. 补语</h6>
+            </div>
+            <div>
+                <p class="mb-1">补语用来说明宾语或主语所处的状态或正在进行的动作。</p>
+                <p class="mb-1">例：
+                    <eg>
+                        <query>We</query>
+                        <query>will</query>
+                        <query>make</query>
+                        <query>our</query>
+                        <query>country</query>
+                        <query>more</query>
+                        <span class="font-weight-bold"><query>beautiful</query></span>
+                        .
+                    </eg>
+                </p>
+                <p class="mb-1">译：我们会使我们的祖国更加美丽。</p>
+                <img class="w-100 word_image" sentence="We will make our country more beautiful." src="/function/english/image/beautiful.jpg"
+                     alt="verb">
+                <p class="my-1">例句中
+                    <query>We</query>
+                    <query>will</query>
+                    <query>make</query>
+                    <query>our</query>
+                    <query>country</query>. 是一个主谓宾结构的句子，但句子意思并不完整，所以要加上补语进行补充说明。
+                </p>
+            </div>
+        </div>
+
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between item_content">
+                <h6 class="mb-1 text-primary">小结</h6>
+            </div>
+            <div>
+                <p class="mb-1">本节介绍了句子的基本成分，大家在平时的阅读中可以多看、多分析，这样用助于对句子的更深刻理解。</p>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-center mt-3 mb-2">
+            <button class="btn btn-success w-100" onclick="parent.process_add(window.location.href);">已掌握，踏上新的征程！
+        </div>
+    </div>
+</div>
+<audio id="play_sound"></audio>
+</body>
+</html>

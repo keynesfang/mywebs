@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
+    <meta name='Keywords' Content='自学英语,单词拼读,动词相关词汇'>
+    <meta name='Description' Content='同时学习音标发音,听力,口语发音,基本单词记忆等各方面基础内容,为以后的英语成长打个基础。'>
+    <link rel="icon" href="/image/myicon.png" type="image/x-icon"/>
+    <link rel='stylesheet' type='text/css' href='/lib/bootstrap-4.0.0/css/bootstrap.min.css'>
+    <link rel='stylesheet' type='text/css' href='/lib/video-js/css/video-js.min.css'>
+    <link rel='stylesheet' type='text/css' href='/lib/font-awesome-4.7.0/css/font-awesome.min.css'>
+    <link rel='stylesheet' type='text/css' href='/common.css'>
+    <link rel='stylesheet' type='text/css' href='./local_css.css'>
+    <script src='/lib/jquery-3.2.1.min.js'></script>
+    <script src='./local_common.js'></script>
+    <script src='/lib/video-js/js/video.min.js'></script>
+    <script src='/lib/video_js_setting.js'></script>
+    <script src='/lib/common.js'></script>
+    <script src='/lib/english.js'></script>
+    <title>常用动词解读</title>
+    <script>
+        var study_target = [
+            "按照单词拼读的方法记忆单个动词",
+            "根据句子了解动词的各种形态及用法",
+            "掌握最常用9种时态的用法"
+        ];
+
+        var tense = [
+                ["一般现在时*", "用动词原形"],
+                ["一般过去时*", "用动词过去时"],
+                ["现在进行时*", "be(am, is, are) + 动词ing"],
+                ["过去进行时*", "was/were + 动词ing"],
+                ["一般将来时*", "will + 动词原形 或 be(am, is, are) going to +动词原形"],
+                ["过去将来时", "would + 动词原形 或 was/were going to +动词原形"],
+                ["现在完成时*", "have/has + 动词过去分词"],
+                ["过去完成时*", "had + 动词过去分词"],
+                ["现在完成进行时", "have/has been + 动词ing"],
+                ["过去完成进行时", "had been + 动词ing"],
+                ["一般将来进行时*", "will be + 动词ing"],
+                ["过去将来进行时", "would be + 动词ing"],
+                ["将来完成时*", "will have + 动词过去分词"],
+                ["过去将来完成时", "would have + 动词过去分词"],
+                ["将来完成进行时", "will have been + 动词ing"],
+                ["过去将来完成进行时", "would have been + 动词ing"]
+        ];
+
+        $(function () {
+            parent.create_notes_by_arr("study_target", "学习目标", study_target, true);
+            show_word();
+            var speaker = document.getElementById("play_sound");
+            speaker.addEventListener('ended', function () {
+                $(".word").css("border-bottom", "2px solid #28a745");
+            }, false);
+        });
+
+        function show_word() {
+            $.post("local_logic.php", {
+                type: "get_word",
+                word_type: "动词"
+            }, function (data) {
+                var word_arr = eval("(" + data + ")");
+                var word_arr_html = "";
+                $.each(word_arr, function (idx, info) {
+                    word_arr_html += "<span class='w-100 word m-1 mb-2 text-primary' style='text-align: center;' word='" + info.word + "'><ruby>" + info.word + "<rt>[" + info.sound_mark + "]</rt></ruby></span>";
+                    word_arr_html += "<img class='w-100 word_image' src='/function/english/image/" + info.word + ".jpg' alt='" + info.word + "'>";
+                });
+                $("#word").html(word_arr_html);
+                $(".word").click(function () {
+                    $(this).css("border-bottom", "2px solid #dc3545");
+                    var c = $(this).attr("word");
+                    play_sound(c, "play_sound");
+                });
+                $(".word_image").click(function () {
+                    var word = $(this).attr("alt");
+                    word = top.set_explain_word(word);
+                    query_word(word, top.query_word_callback);
+                });
+            });
+        }
+    </script>
+</head>
+<body id="page" class=" bg-primary text-white" style="position: relative;">
+<div class=" bg-primary p-2">
+    <div id="study_target" class="mb-2"></div>
+    <div class="list-group my-2">
+        <div class="list-group-item list-group-item-action flex-column align-items-start p-2">
+            <div class="d-flex w-100 justify-content-between item_content">
+                <h5 class="mb-1 text-info">常用动词解读（一）</h5>
+            </div>
+            <small class="mt-2 d-block">点单词听音，点图片查词（听音前先尝试用音标拼读单词，'符号表重读）:</small>
+            <div id="word" class="mb-2">
+            </div>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center mt-3 mb-2">
+        <button class="btn btn-secondary w-100">下一节正在建设中</button>
+    </div>
+</div>
+<audio id="play_sound"></audio>
+</body>
+</html>
