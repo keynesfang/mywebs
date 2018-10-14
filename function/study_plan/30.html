@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
+    <meta name='Keywords' Content='自学英语,时态的对比'>
+    <meta name='Description' Content='英语时态是相对比较复杂的内容，有很多时态表达的信息比较相似，。'>
+    <link rel="icon" href="/image/myicon.png" type="image/x-icon"/>
+    <link rel='stylesheet' type='text/css' href='/lib/bootstrap-4.0.0/css/bootstrap.min.css'>
+    <link rel='stylesheet' type='text/css' href='/lib/video-js/css/video-js.min.css'>
+    <link rel='stylesheet' type='text/css' href='/lib/font-awesome-4.7.0/css/font-awesome.min.css'>
+    <link rel='stylesheet' type='text/css' href='/common.css'>
+    <link rel='stylesheet' type='text/css' href='./local_css.css'>
+    <script src='/lib/jquery-3.2.1.min.js'></script>
+    <script src='./local_common.js'></script>
+    <script src='/lib/video-js/js/video.min.js'></script>
+    <script src='/lib/video_js_setting.js'></script>
+    <script src='/lib/common.js'></script>
+    <script src='/lib/jquery.cookie.js'></script>
+    <script src='/lib/english.js'></script>
+    <title>时态的对比</title>
+    <script>
+        $(function () {
+            regist_word_translate(top.set_explain_word, top.query_word_callback);
+            $(".word_image").click(function () {
+                $(this).css("border", "5px solid #dc3545");
+                var sentence = $(this).attr("sentence");
+                play_sound(sentence, "play_sound");
+            });
+            var speaker = document.getElementById("play_sound");
+            speaker.addEventListener('ended', function () {
+                $(".word_image").css("border", "0");
+            }, false);
+        });
+    </script>
+</head>
+<body id="page" class=" bg-primary text-white" style="position: relative; font-size: 14px;">
+<div class=" bg-primary p-2">
+    <div class="list-group">
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between item_content">
+                <h6 class="mb-1 text-primary">时态间的对比（一）</h6>
+            </div>
+            <div>
+                <p class="mb-1">经过前面的学习，大家都有时态有了一定的了解和概念。但有许多朋友可能也会产生一些迷茫。比如一般过去式与过去进行时，感谢表达的意思差不多。</p>
+                <p class="mb-1">那么到底什么时候用什么时态，今天我们再来做一番总结。</p>
+            </div>
+        </div>
+
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between item_content">
+                <h6 class="mb-1 text-primary">一般现在时 与 现在进行时</h6>
+            </div>
+            <div>
+                <p class="mb-1"><kbd>差别 1：</kbd></p>
+                <p class="mb-1"><span class="font-weight-bold">一般现在时</span>，表经常性动作；<span class="font-weight-bold">现在进行时</span>，表现在或现阶段正在发生的动作。</p>
+                <p class="mb-1">* 一般现在时：<br>
+                    <eg>
+                        <query>John</query>
+                        <span class="font-weight-bold"><query>works</query></span>
+                        <query>hard</query>
+                        .
+                    </eg>
+                </p>
+                <p class="mb-1">译：约翰工作努力。（过去、现在、将来都是如此）</p>
+                <p class="mb-1">* 现在进行时：<br>
+                    <eg>
+                        <query>John</query>
+                        <span class="font-weight-bold"><query>is</query></span>
+                        <span class="font-weight-bold"><query>working</query></span>
+                        <query>hard</query>
+                        .
+                    </eg>
+                </p>
+                <p class="mb-1">译：约翰正在努力工作。（现在如此，过去和将来不得而知）</p>
+                <img class="w-100 word_image" sentence="John is working hard." src="/function/english/image/complete.jpg"
+                     alt="verb">
+            </div>
+            <div>
+                <p class="mb-1"><kbd>差别 2：</kbd></p>
+                <p class="mb-1"><span class="font-weight-bold">一般现在时</span>，表现在的状态；<span class="font-weight-bold">现在进行时</span>，表眼前看到见的动作。</p>
+                <p class="mb-1">* 一般现在时：<br>
+                    <eg>
+                        <query>The</query>
+                        <query>house</query>
+                        <span class="font-weight-bold"><query>falls</query></span>
+                        <query>down</query>
+                        .
+                    </eg>
+                </p>
+                <p class="mb-1">译：房子倒了。（描述已经倒了的状态）</p>
+                <p class="mb-1">* 现在进行时：<br>
+                    <eg>
+                        <query>The</query>
+                        <query>house</query>
+                        <span class="font-weight-bold"><query>is</query></span>
+                        <span class="font-weight-bold"><query>falling</query></span>
+                        <query>down</query>
+                        .
+                    </eg>
+                </p>
+                <p class="mb-1">译：房子正在倒塌。（描述倒塌的过程）</p>
+                <img class="w-100 word_image" sentence="The house falls down." src="/function/english/image/falldown.jpg"
+                     alt="verb">
+            </div>
+            <div>
+                <p class="mb-1"><kbd>差别 3：</kbd></p>
+                <p class="mb-1"><span class="font-weight-bold">一般现在时</span>，不带感情色彩；<span class="font-weight-bold">现在进行时</span>，常带感情色彩。</p>
+                <p class="mb-1">* 一般现在时：<br>
+                    <eg>
+                        <query>He</query>
+                        <query>always</query>
+                        <span class="font-weight-bold"><query>sleeps</query></span>
+                        <query>in</query>
+                        <query>the</query>
+                        <query>afternoon</query>
+                        .
+                    </eg>
+                </p>
+                <p class="mb-1">译：他下午总<span class="font-weight-bold">要</span>睡觉。（单纯的表示一种习惯）</p>
+                <p class="mb-1">* 现在进行时：<br>
+                    <eg>
+                        <query>He</query>
+                        <span class="font-weight-bold"><query>is</query></span>
+                        <query>always</query>
+                        <span class="font-weight-bold"><query>sleeping</query></span>
+                        <query>in</query>
+                        <query>the</query>
+                        <query>afternoon</query>
+                        .
+                    </eg>
+                </p>
+                <p class="mb-1">译：他下午总<span class="font-weight-bold">是</span>睡觉。（一下午都睡过去了，有一种不满的情绪）</p>
+                <img class="w-100 word_image" sentence="He is always sleeping in the afternoon." src="/function/english/image/sleep.jpg"
+                     alt="verb">
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-center mt-3 mb-2">
+            <button class="btn btn-secondary w-100">下一节正在建设中</button>
+        </div>
+    </div>
+</div>
+<audio id="play_sound"></audio>
+</body>
+</html>
