@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
+    <meta name='Keywords' Content='自学英语,时态的对比'>
+    <meta name='Description' Content='英语时态是相对比较复杂的内容，有很多时态表达的信息比较相似，。'>
+    <link rel="icon" href="/image/myicon.png" type="image/x-icon"/>
+    <link rel='stylesheet' type='text/css' href='/lib/bootstrap-4.0.0/css/bootstrap.min.css'>
+    <link rel='stylesheet' type='text/css' href='/lib/video-js/css/video-js.min.css'>
+    <link rel='stylesheet' type='text/css' href='/lib/font-awesome-4.7.0/css/font-awesome.min.css'>
+    <link rel='stylesheet' type='text/css' href='/common.css'>
+    <link rel='stylesheet' type='text/css' href='./local_css.css'>
+    <script src='/lib/jquery-3.2.1.min.js'></script>
+    <script src='./local_common.js'></script>
+    <script src='/lib/video-js/js/video.min.js'></script>
+    <script src='/lib/video_js_setting.js'></script>
+    <script src='/lib/common.js'></script>
+    <script src='/lib/jquery.cookie.js'></script>
+    <script src='/lib/english.js'></script>
+    <title>时态的对比</title>
+    <script>
+        $(function () {
+            regist_word_translate(top.set_explain_word, top.query_word_callback);
+            $(".word_image").click(function () {
+                $(this).css("border", "5px solid #dc3545");
+                var sentence = $(this).attr("sentence");
+                play_sound(sentence, "play_sound");
+            });
+            var speaker = document.getElementById("play_sound");
+            speaker.addEventListener('ended', function () {
+                $(".word_image").css("border", "0");
+            }, false);
+        });
+    </script>
+</head>
+<body id="page" class=" bg-primary text-white" style="position: relative; font-size: 14px;">
+<div class=" bg-primary p-2">
+    <div class="list-group">
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div>
+                <p class="mb-1">那么到底什么时候用什么时态，今天我们再来做第二番总结。</p>
+            </div>
+        </div>
+
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between item_content">
+                <h6 class="mb-1 text-primary">一般过去时 与 过去进行时</h6>
+            </div>
+            <div>
+                <p class="mb-1"><kbd>差别 1：</kbd></p>
+                <p class="mb-1"><span class="font-weight-bold">一般过去时</span>，过去某时间发生的动作；<span class="font-weight-bold">过去进行时</span>，过去某一时刻或某段时间内正在进行的动作。</p>
+                <p class="mb-1">* 一般过去时：<br>
+                    <eg>
+                        <query>He</query>
+                        <span class="font-weight-bold"><query>began</query></span>
+                        <query>to</query>
+                        <query>have</query>
+                        <query>breakfast</query>
+                        <query>at</query>
+                        <query>8</query>
+                        <query>yesterday</query>
+                        .
+                    </eg>
+                </p>
+                <p class="mb-1">译：他昨天8点开始吃早餐。（过去发生的动作）</p>
+                <p class="mb-1">* 过去进行时：<br>
+                    <eg>
+                        <query>He</query>
+                        <span class="font-weight-bold"><query>was</query></span>
+                        <span class="font-weight-bold"><query>having</query></span>
+                        <query>breakfast</query>
+                        <query>at</query>
+                        <query>8</query>
+                        <query>yesterday</query>
+                        .
+                    </eg>
+                </p>
+                <p class="mb-1">译：昨天8点他正在吃早餐。（过去正在进行的动作）</p>
+                <img class="w-100 word_image" sentence="He was having breakfast at 8 yesterday." src="/function/english/image/breakfast.jpg"
+                     alt="verb">
+            </div>
+            <div>
+                <p class="mb-1"><kbd>差别 2：</kbd></p>
+                <p class="mb-1"><span class="font-weight-bold">一般过去时</span>，过去某时间存在的状态；<span class="font-weight-bold">过去进行时</span>，过去某一时刻或某段时间内正在进行的动作。</p>
+                <p class="mb-1">* 一般过去时：<br>
+                    <eg>
+                        <query>Mary</query>
+                        <span class="font-weight-bold"><query>wrote</query></span>
+                        <query>a</query>
+                        <query>letter</query>
+                        <query>to</query>
+                        <query>her</query>
+                        <query>parents</query>
+                        <query>last</query>
+                        <query>night</query>
+                        .
+                    </eg>
+                </p>
+                <p class="mb-1">译：玛丽昨晚给她父母写了一封信。（信写完了的状态）</p>
+                <p class="mb-1">* 过去进行时：<br>
+                    <eg>
+                        <query>Mary</query>
+                        <span class="font-weight-bold"><query>was</query></span>
+                        <span class="font-weight-bold"><query>writing</query></span>
+                        <query>a</query>
+                        <query>letter</query>
+                        <query>to</query>
+                        <query>her</query>
+                        <query>parents</query>
+                        <query>last</query>
+                        <query>night</query>
+                        .
+                    </eg>
+                </p>
+                <p class="mb-1">译：玛丽昨晚一直在给她父母写信。（是否写完，不得而知）</p>
+                <img class="w-100 word_image" sentence="Mary was writing a letter to her parents last night." src="/function/english/image/letter.jpg"
+                     alt="verb">
+            </div>
+            <div>
+                <p class="mb-1"><kbd>差别 3：</kbd></p>
+                <p class="mb-1"><span class="font-weight-bold">一般过去时</span>，侧重在说明事实；<span class="font-weight-bold">过去进行时</span>，侧重在动作持续时间的长度。</p>
+                <p class="mb-1">* 一般过去时：<br>
+                    <eg>
+                        <query>It</query>
+                        <span class="font-weight-bold"><query>rained</query></span>
+                        <query>last</query>
+                        <query>night</query>
+                        .
+                    </eg>
+                </p>
+                <p class="mb-1">译：昨夜下雨了。（表明一个事实）</p>
+                <p class="mb-1">* 过去进行时：<br>
+                    <eg>
+                        <query>It</query>
+                        <span class="font-weight-bold"><query>was</query></span>
+                        <span class="font-weight-bold"><query>raining</query></span>
+                        <query>last</query>
+                        <query>night</query>
+                        .
+                    </eg>
+                </p>
+                <p class="mb-1">译：昨晚下了一夜雨。（强调持续的时间）</p>
+                <img class="w-100 word_image" sentence="He is always sleeping in the afternoon." src="/function/english/image/rain.jpg"
+                     alt="verb">
+            </div>
+            <div>
+                <p class="mb-1"><kbd>差别 4：</kbd></p>
+                <p class="mb-1"><span class="font-weight-bold">一般过去时</span>，与 <query>always</query>, <query>constantly</query>, <query>actually</query> 等连用，表“过去经常性习惯性的动作”；<span class="font-weight-bold">过去进行时</span>，与上述词连用时，除了表“经常性”外，还带有“厌烦的情绪”。</p>
+                <p class="mb-1">* 一般过去时：<br>
+                    <eg>
+                        <query>He</query>
+                        <query>always</query>
+                        <span class="font-weight-bold"><query>rang</query></span>
+                        <query>me</query>
+                        <query>up</query>
+                        .
+                    </eg>
+                </p>
+                <p class="mb-1">译：他经常给我打电话。（经常性习惯动作）</p>
+                <p class="mb-1">* 过去进行时：<br>
+                    <eg>
+                        <query>He</query>
+                        <span class="font-weight-bold"><query>was</query></span>
+                        <query>always</query>
+                        <span class="font-weight-bold"><query>ringing</query></span>
+                        <query>me</query>
+                        <query>up</query>
+                        .
+                    </eg>
+                </p>
+                <p class="mb-1">译：他老是给我打电话。（令人生厌）</p>
+                <img class="w-100 word_image" sentence="He is always sleeping in the afternoon." src="/function/english/image/telephone.jpg"
+                     alt="verb">
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-center mt-3 mb-2">
+            <button class="btn btn-secondary w-100">下一节正在建设中</button>
+        </div>
+    </div>
+</div>
+<audio id="play_sound"></audio>
+</body>
+</html>
