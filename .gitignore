@@ -2,6 +2,7 @@
 backup/
 function/audio/resource/
 function/english/video/resources/
+function/english/video/ted/
 lib/bootstrap-3.3.7/
 lib/bootstrap-4.0.0/
 lib/bootstrap-treeview/
