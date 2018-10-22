@@ -1,21 +1,16 @@
-var word_times = null;
-var sentence_times = null;
-var click_count = 0;
-var click_word = "";
-
 function get_ted_info_html() {
     var ted_html = "";
     var is_new_p = true;
     for (var i = 0; i < ted_info.length; i++) {
         if (is_new_p) {
-            ted_html += "<p class='section mb-2' index='" + i + "'><i class='fa fa-play-circle mr-2'></i>";
+            ted_html += "<p class='mb-2' index='" + i + "'><i class='section fa fa-play-circle mr-2'></i>";
             is_new_p = false;
         }
         if (ted_info[i].eng[0] == "(") {
             is_new_p = true;
             ted_html += "<i class='fa fa-file ml-2'></i></p>";
-            ted_html += "<p class='section mb-2' index='" + i + "'><i class='fa fa-play-circle mr-2'></i>";
-            ted_html += " " + ted_info[i].eng;
+            ted_html += "<p class='mb-2' index='" + i + "'><i class='section fa fa-play-circle mr-2'></i>";
+            ted_html += " " + get_query_sentence_from_normal(ted_info[i].eng);
             ted_html += "</p>";
             continue;
         }
@@ -23,16 +18,48 @@ function get_ted_info_html() {
     }
     $("#subtitle_info").html(ted_html);
 
-    // $(".section .sentence").click(function () {
-    //     var index = $(this).attr("index");
-    //     video.currentTime = get_second_from_time(ted_info[index].start);
-    //     video.play();
-    // });
+    $("query").click(function () {
+        if ($('#click_mode').is(":checked")) {
+            var word = $(this).html();
+            if (typeof(top.set_explain_word) == "function") {
+                word = top.set_explain_word(word);
+            }
+            query_word(word, top.query_word_callback);
+        } else {
+            var index = $(this).parent().attr("index");
+            video.currentTime = get_second_from_time(ted_info[index].start);
+            video.play();
+            check_play_icon();
+        }
+    });
 
-    regist_word_translate(top.set_explain_word, top.query_word_callback);
+    $(".section").click(function () {
+        var index = $(this).parent().attr("index");
+        video.currentTime = get_second_from_time(ted_info[index].start);
+        video.play();
+        check_play_icon();
+    });
 }
 
 function get_second_from_time(time) { // 00:05:12 => 312
     var times = time.split(":");
     return (parseInt(times[0]) * 3600 + parseInt(times[1] * 60 + parseInt(times[2])));
+}
+
+function check_play_icon() {
+    if(video.paused) {
+        play_control.removeClass("fa-pause");
+        play_control.addClass("fa-play");
+    } else {
+        play_control.removeClass("fa-play");
+        play_control.addClass("fa-pause");
+    }
+}
+
+function video_play_pause() {
+    if(video.paused) {
+        video.play();
+    } else {
+        video.pause();
+    }
 }

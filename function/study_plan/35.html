@@ -21,22 +21,31 @@
     <title>英语句子小结</title>
     <script>
         var video = undefined;
+        var play_control = undefined;
         $(function () {
             video = document.getElementById("video");
+            play_control = $("#play_control");
             var subtitle_info = $("#subtitle_info");
-            subtitle_info.css("height", document.documentElement.clientHeight - subtitle_info.offset().top - 40 + "px");
+            var title = "How to gain control of your free time";
+            $("#title").html(get_query_sentence_from_normal(title));
+            video.addEventListener('canplaythrough',function(){
+                $("#section_translate").css("height", $("#video").height());
+                subtitle_info.css("height", document.documentElement.clientHeight - subtitle_info.offset().top - 15 + "px");
+            });
             get_ted_info_html();
         });
     </script>
 </head>
 <body id="page" class=" bg-primary text-white" style="position: relative; font-size: 14px;">
-<video id="video" controls src="../english/video/ted/How_to_gain_control_of_your_free_time.mp4" class="w-100" controlsList="nodownload"></video>
+<video id="video" src="../english/video/ted/How_to_gain_control_of_your_free_time.mp4" class="w-100"></video>
+<div style="position: fixed; z-index: 99; top: 0; display: none;" class="w-100 p-2 bg-primary" id="section_translate">afsdf</div>
 <div class=" bg-primary">
     <div class="list-group">
         <span class="list-group-item list-group-item-action flex-column align-items-start p-2">
             <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1"><input type="checkbox" value="" id="opt_mode"> <query>List</query> <query>group</query> <query>item</query> <query>heading</query></h5>
-                <small class="text-muted"><i class='fa fa-file ml-2'></i></small>
+                <h6 class="mb-1 text-primary"><i id="play_control" class='fa fa-play'
+                                                 onclick="video_play_pause(); check_play_icon();"></i> <span id="title"></span></h6>
+                <small class="text-muted"><input id="click_mode" type="checkbox" id="opt_mode" checked></small>
             </div>
             <hr class="my-1">
             <div id="subtitle_info" style="overflow-y: auto;">
