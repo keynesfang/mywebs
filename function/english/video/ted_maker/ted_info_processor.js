@@ -1,3 +1,5 @@
+var current_play_index = 0;
+
 function get_ted_info_html() {
     var ted_html = "";
     var is_new_p = true;
@@ -10,11 +12,11 @@ function get_ted_info_html() {
             is_new_p = true;
             ted_html += "<i class='fa fa-file ml-2 section_translate' index='" + i + "'></i></p>";
             ted_html += "<p class='mb-2' index='" + i + "'><i class='section fa fa-play-circle mr-2'></i>";
-            ted_html += " " + get_query_sentence_from_normal(ted_info[i].eng);
+            ted_html += " <span id='" + i + "' class='sentence' index='" + i + "'>" + get_query_sentence_from_normal(ted_info[i].eng) + "</span>";
             ted_html += "</p>";
             continue;
         }
-        ted_html += " <span class='sentence' index='" + i + "'>" + get_query_sentence_from_normal(ted_info[i].eng) + "</span>";
+        ted_html += " <span id='" + i + "' class='sentence' index='" + i + "'>" + get_query_sentence_from_normal(ted_info[i].eng) + "</span>";
     }
     $("#subtitle_info").html(ted_html);
 
@@ -27,16 +29,20 @@ function get_ted_info_html() {
             query_word(word, top.query_word_callback);
         } else {
             var index = $(this).parent().attr("index");
-            video.currentTime = get_second_from_time(ted_info[index].start);
+            current_play_index = index;
+            video.currentTime = parseInt(ted_info[index].start);
             video.play();
+            video.addEventListener('timeupdate', process_bar_listener, false);
             check_play_icon();
         }
     });
 
     $(".section").click(function () {
         var index = $(this).parent().attr("index");
-        video.currentTime = get_second_from_time(ted_info[index].start);
+        current_play_index = index;
+        video.currentTime = parseInt(ted_info[index].start);
         video.play();
+        video.addEventListener('timeupdate', process_bar_listener, false);
         check_play_icon();
     });
 
@@ -44,7 +50,7 @@ function get_ted_info_html() {
         var start = parseInt($(this).parent().attr("index"));
         var end = parseInt($(this).attr("index"));
         var translate = "";
-        for(var i=start; i<end; i++) {
+        for (var i = start; i < end; i++) {
             translate += ted_info[i]["chn"];
         }
         $("#section_translate_content").html(translate);
@@ -54,11 +60,11 @@ function get_ted_info_html() {
 
 function get_second_from_time(time) { // 00:05:12 => 312
     var times = time.split(":");
-    return (parseInt(times[0]) * 3600 + parseInt(times[1] * 60 + parseInt(times[2])));
+    return (parseInt(times[0]) * 3600 + parseInt(times[1]) * 60 + parseInt(times[2]));
 }
 
 function check_play_icon() {
-    if(video.paused) {
+    if (video.paused) {
         play_control.removeClass("fa-pause");
         play_control.addClass("fa-play");
     } else {
@@ -68,13 +74,26 @@ function check_play_icon() {
 }
 
 function video_play_pause() {
-    if(video.paused) {
+    if (video.paused) {
         video.play();
+        video.addEventListener('timeupdate', process_bar_listener, false);
     } else {
         video.pause();
+        video.removeEventListener('timeupdate', process_bar_listener, false);
     }
 }
 
 function section_translate_close(self) {
     $(self).parent().slideUp(500);
+}
+
+function process_bar_listener() {
+    if (video.ended) {
+        video.removeEventListener('timeupdate', process_bar_listener, false);
+    }
+    if (this.currentTime > ted_info[current_play_index].start) {
+        $(".sentence").removeClass("text-primary");
+        $("#" + current_play_index).addClass("text-primary");
+        current_play_index++;
+    }
 }
