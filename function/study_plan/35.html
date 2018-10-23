@@ -28,7 +28,7 @@
             var subtitle_info = $("#subtitle_info");
             var title = "How to gain control of your free time";
             $("#title").html(get_query_sentence_from_normal(title));
-            video.addEventListener('canplaythrough',function(){
+            video.addEventListener('canplaythrough', function () {
                 $("#section_translate").css("height", $("#video").height());
                 subtitle_info.css("height", document.documentElement.clientHeight - subtitle_info.offset().top - 15 + "px");
             });
@@ -38,13 +38,18 @@
 </head>
 <body id="page" class=" bg-primary text-white" style="position: relative; font-size: 14px;">
 <video id="video" src="../english/video/ted/How_to_gain_control_of_your_free_time.mp4" class="w-100"></video>
-<div style="position: fixed; z-index: 99; top: 0; display: none;" class="w-100 p-2 bg-primary" id="section_translate">afsdf</div>
+<div style="position: fixed; z-index: 99; top: 0; overflow-y: auto; display: none;" class="w-100 p-2 bg-primary"
+     id="section_translate">
+    <i onclick="section_translate_close(this);" class="fa fa-close fa-2x text-warning" style="float: right;"></i>
+    <div id="section_translate_content"></div>
+</div>
 <div class=" bg-primary">
     <div class="list-group">
         <span class="list-group-item list-group-item-action flex-column align-items-start p-2">
             <div class="d-flex w-100 justify-content-between">
                 <h6 class="mb-1 text-primary"><i id="play_control" class='fa fa-play'
-                                                 onclick="video_play_pause(); check_play_icon();"></i> <span id="title"></span></h6>
+                                                 onclick="video_play_pause(); check_play_icon();"></i> <span
+                        id="title"></span></h6>
                 <small class="text-muted"><input id="click_mode" type="checkbox" id="opt_mode" checked></small>
             </div>
             <hr class="my-1">

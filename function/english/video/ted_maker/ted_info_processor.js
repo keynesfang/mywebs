@@ -8,7 +8,7 @@ function get_ted_info_html() {
         }
         if (ted_info[i].eng[0] == "(") {
             is_new_p = true;
-            ted_html += "<i class='fa fa-file ml-2'></i></p>";
+            ted_html += "<i class='fa fa-file ml-2 section_translate' index='" + i + "'></i></p>";
             ted_html += "<p class='mb-2' index='" + i + "'><i class='section fa fa-play-circle mr-2'></i>";
             ted_html += " " + get_query_sentence_from_normal(ted_info[i].eng);
             ted_html += "</p>";
@@ -39,6 +39,17 @@ function get_ted_info_html() {
         video.play();
         check_play_icon();
     });
+
+    $(".section_translate").click(function () {
+        var start = parseInt($(this).parent().attr("index"));
+        var end = parseInt($(this).attr("index"));
+        var translate = "";
+        for(var i=start; i<end; i++) {
+            translate += ted_info[i]["chn"];
+        }
+        $("#section_translate_content").html(translate);
+        $("#section_translate").slideDown(500);
+    });
 }
 
 function get_second_from_time(time) { // 00:05:12 => 312
@@ -62,4 +73,8 @@ function video_play_pause() {
     } else {
         video.pause();
     }
+}
+
+function section_translate_close(self) {
+    $(self).parent().slideUp(500);
 }
