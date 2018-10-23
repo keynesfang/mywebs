@@ -20,20 +20,28 @@
     <script src='/function/english/video/ted_maker/ted_info_processor.js'></script>
     <title>英语句子小结</title>
     <script>
+        window.onresize = function () {
+            set_section_translate_height();
+        };
         var video = undefined;
         var play_control = undefined;
+        var subtitle_info = undefined;
         $(function () {
             video = document.getElementById("video");
             play_control = $("#play_control");
-            var subtitle_info = $("#subtitle_info");
+            subtitle_info = $("#subtitle_info");
             var title = "How to gain control of your free time";
             $("#title").html(get_query_sentence_from_normal(title));
             video.addEventListener('canplaythrough', function () {
-                $("#section_translate").css("height", $("#video").height());
-                subtitle_info.css("height", document.documentElement.clientHeight - subtitle_info.offset().top - 15 + "px");
+                set_section_translate_height();
             });
             get_ted_info_html();
         });
+
+        function set_section_translate_height() {
+            $("#section_translate").css("height", $("#video").height());
+            subtitle_info.css("height", top.document.getElementById("sub_frame").height - subtitle_info.offset().top - 15 + "px");
+        }
     </script>
 </head>
 <body id="page" class=" bg-primary text-white" style="position: relative; font-size: 14px;">
@@ -50,7 +58,8 @@
                 <h6 class="mb-1 text-primary"><i id="play_control" class='fa fa-play'
                                                  onclick="video_play_pause(); check_play_icon();"></i> <span
                         id="title"></span></h6>
-                <small class="text-muted"><input id="click_mode" style="width: 20px; height: 20px;" type="checkbox" checked></small>
+                <small class="text-muted"><input id="click_mode" style="width: 20px; height: 20px;" type="checkbox"
+                                                 checked></small>
             </div>
             <hr class="my-1">
             <div id="subtitle_info" style="overflow-y: auto;">

@@ -52,12 +52,26 @@
             left: 2%;
         }
 
-        #sub_frame, #main_page, #back_page {
+        #main_page, #back_page {
             border: 0;
             width: 94%;
             position: absolute;
             top: 91px;
             left: 3%;
+        }
+
+        .iframe_normal_screen {
+            border: 0;
+            width: 94%;
+            position: absolute;
+            top: 91px;
+            left: 3%;
+        }
+
+        .iframe_full_screen {
+            position: fixed;
+            top: 0;
+            width: 100%;
         }
 
         #menu_bar {
@@ -207,6 +221,7 @@
                 url: "/function/message/message_list.html"
             }
         };
+        var sub_frame = undefined;
         //        ,
         //        "announcement": {
         //            name: "秘诀",
@@ -236,19 +251,20 @@
                     $("#" + page_info[type].btn).removeClass("btn-dark");
                     $("#" + page_info[type].btn).addClass("btn-warning");
                 }
-                $("#sub_frame").show();
+                sub_frame.show();
                 $("#main_page").hide();
-                $("#sub_frame").attr("src", url);
+                sub_frame.attr("src", url);
             }
         }
 
         $(function () {
+            sub_frame = $("#sub_frame");
             user_login_out();
             redirect_page();
             init_functions();
             explain = $("#explain");
             set_frame_height();
-            var sub_frame_width = $("#sub_frame").width();
+            var sub_frame_width = sub_frame.width();
             $("#menu").css("width", sub_frame_width);
 
             // $(".show_date").html(getToday());
@@ -256,8 +272,8 @@
                 explain.hide();
                 $(".bottom_menu_btn").removeClass("btn-warning");
                 $(".bottom_menu_btn").addClass("btn-dark");
-                $("#sub_frame").attr("src", $(this).attr("link"));
-                $("#sub_frame").show();
+                sub_frame.attr("src", $(this).attr("link"));
+                sub_frame.show();
                 $("#main_page").hide();
             });
             $(".bottom_menu_btn").click(function () {
@@ -265,7 +281,7 @@
                 $(".bottom_menu_btn").addClass("btn-dark");
                 $(this).removeClass("btn-dark");
                 $(this).addClass("btn-warning");
-                $("#sub_frame").show();
+                sub_frame.show();
                 $("#main_page").hide();
             });
         });
@@ -419,7 +435,7 @@
 
         function set_height() {
             var sub_body = $('#sub_frame').contents().find("#sub_body");
-            sub_body.css("height", $("#sub_frame").height());
+            sub_body.css("height", sub_frame.height());
         }
 
         function init_functions() {
@@ -446,7 +462,7 @@
 
         function show_home_page() {
             $("#main_page").show();
-            $("#sub_frame").hide();
+            sub_frame.hide();
         }
 
         function user_login_out() {
@@ -535,9 +551,27 @@
                 }
             });
         }
+        
+        function iframe_full_screen() {
+            if(sub_frame.hasClass("iframe_normal_screen")) {
+                sub_frame.removeClass("iframe_normal_screen");
+                sub_frame.addClass("iframe_full_screen");
+                document.getElementById("sub_frame").height = document.documentElement.clientHeight
+            } else {
+                sub_frame.removeClass("iframe_full_screen");
+                sub_frame.addClass("iframe_normal_screen");
+                set_frame_height();
+            }
+        }
+
+
     </script>
 </head>
 <body class="text-white">
+<div onclick="iframe_full_screen();" style="position: fixed; top: -5px; right: 120px; border: 2px solid #fff; z-index: 99; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px;" class="px-2 bg-danger">
+    <i class="fa fa-chevron-up text-danger bg-white" style="border-radius: 15px; font-size: 14px;"></i>
+    <i class="fa fa-chevron-down text-danger bg-white" style="border-radius: 15px; font-size: 14px;"></i>
+</div>
 <div id="login_form" class="h-100 p-3">
     <i class="fa fa-close fa-2x" onclick="$('#login_form').hide();"
        style="position: absolute; top: 5px; right: 10px;"></i>
@@ -682,7 +716,7 @@
     </div>
     <!--<iframe id="sub_frame" src="/function/video/message_list.html"></iframe>-->
     <!--<iframe id="sub_frame" src="/function/audio/menu.html"></iframe>-->
-    <iframe id="sub_frame" style="display: none;"></iframe>
+    <iframe id="sub_frame" style="display: none; z-index: 98; border: none;" class="iframe_normal_screen"></iframe>
 </div>
 <div id="menu_bar">
     <div id="menu" class="bg-primary">
@@ -705,7 +739,7 @@
     </div>
 </div>
 
-<div id="explain_bar">
+<div id="explain_bar" style="z-index: 100;">
     <div id="explain" class="bg-dark">
         <div id="loading" style="text-align: center; display: none;">
             <div class="fa-3x">
