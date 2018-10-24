@@ -52,13 +52,13 @@
             left: 2%;
         }
 
-        #main_page, #back_page {
-            border: 0;
-            width: 94%;
-            position: absolute;
-            top: 91px;
-            left: 3%;
-        }
+        /*#main_page, #back_page {*/
+        /*border: 0;*/
+        /*width: 94%;*/
+        /*position: absolute;*/
+        /*top: 91px;*/
+        /*left: 3%;*/
+        /*}*/
 
         .iframe_normal_screen {
             border: 0;
@@ -72,6 +72,8 @@
             position: fixed;
             top: 0;
             width: 100%;
+            max-width: 600px;
+            z-index: 98;
         }
 
         #menu_bar {
@@ -181,6 +183,7 @@
         var append_mode = false; // 追加模式查词
         var source_type = ""; // 增加生词的来源类型
         var source_id = ""; // 增加生词的来源标识
+        var sub_height = 134;
         var function_info = {
             "home_page": {
                 name: "首页",
@@ -222,6 +225,8 @@
             }
         };
         var sub_frame = undefined;
+        var main_page = undefined;
+        var back_page = undefined;
         //        ,
         //        "announcement": {
         //            name: "秘诀",
@@ -259,11 +264,13 @@
 
         $(function () {
             sub_frame = $("#sub_frame");
+            main_page = $("#main_page");
+            back_page = $("#back_page");
             user_login_out();
             redirect_page();
             init_functions();
             explain = $("#explain");
-            set_frame_height();
+            set_frame_height(sub_height);
             var sub_frame_width = sub_frame.width();
             $("#menu").css("width", sub_frame_width);
 
@@ -274,7 +281,7 @@
                 $(".bottom_menu_btn").addClass("btn-dark");
                 sub_frame.attr("src", $(this).attr("link"));
                 sub_frame.show();
-                $("#main_page").hide();
+                main_page.hide();
             });
             $(".bottom_menu_btn").click(function () {
                 $(".bottom_menu_btn").removeClass("btn-warning");
@@ -282,18 +289,9 @@
                 $(this).removeClass("btn-dark");
                 $(this).addClass("btn-warning");
                 sub_frame.show();
-                $("#main_page").hide();
+                main_page.hide();
             });
         });
-
-        function set_frame_height() {
-            var sub_height = 134;
-            document.getElementById("sub_frame").height = document.documentElement.clientHeight - sub_height;
-            $("#back_page").css("height", document.documentElement.clientHeight - sub_height);
-            var main_page_height = document.getElementById("main_page").height = document.documentElement.clientHeight - sub_height;
-            $("#notice_info").css("height", main_page_height - 48);
-            $("#login_form").css("left", $("#header").offset().left);
-        }
 
         function append_mode_change(self) {
             var input = $("#query_word");
@@ -461,7 +459,7 @@
         }
 
         function show_home_page() {
-            $("#main_page").show();
+            main_page.show();
             sub_frame.hide();
         }
 
@@ -551,27 +549,38 @@
                 }
             });
         }
-        
+
         function iframe_full_screen() {
-            if(sub_frame.hasClass("iframe_normal_screen")) {
-                sub_frame.removeClass("iframe_normal_screen");
-                sub_frame.addClass("iframe_full_screen");
-                document.getElementById("sub_frame").height = document.documentElement.clientHeight
-            } else {
-                sub_frame.removeClass("iframe_full_screen");
-                sub_frame.addClass("iframe_normal_screen");
-                set_frame_height();
+            var page = [sub_frame, main_page, back_page];
+            // var page_id = ["sub_frame", "main_page", "back_page"];
+            var sub_height_local = 0;
+            for (var i = 0; i < page.length; i++) {
+                if (page[i].hasClass("iframe_normal_screen")) {
+                    page[i].removeClass("iframe_normal_screen");
+                    page[i].addClass("iframe_full_screen");
+                    // document.getElementById(page_id[i]).height = document.documentElement.clientHeight;
+                    // page[i].css("height", document.documentElement.clientHeight);
+                } else {
+                    page[i].removeClass("iframe_full_screen");
+                    page[i].addClass("iframe_normal_screen");
+                    sub_height_local = sub_height;
+                }
             }
+            set_frame_height(sub_height_local);
         }
 
-
+        function set_frame_height(sub_height_local) {
+            document.getElementById("sub_frame").height = document.documentElement.clientHeight - sub_height_local;
+            $("#back_page").css("height", document.documentElement.clientHeight - sub_height_local);
+//            var main_page_height = document.getElementById("main_page").height = document.documentElement.clientHeight - sub_height;
+            var main_page_height = document.documentElement.clientHeight - sub_height_local;
+            main_page.css("height", main_page_height);
+            $("#notice_info").css("height", main_page_height - 48);
+            $("#login_form").css("left", $("#header").offset().left);
+        }
     </script>
 </head>
 <body class="text-white">
-<div onclick="iframe_full_screen();" style="position: fixed; top: -5px; right: 120px; border: 2px solid #fff; z-index: 99; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px;" class="px-2 bg-danger">
-    <i class="fa fa-chevron-up text-danger bg-white" style="border-radius: 15px; font-size: 14px;"></i>
-    <i class="fa fa-chevron-down text-danger bg-white" style="border-radius: 15px; font-size: 14px;"></i>
-</div>
 <div id="login_form" class="h-100 p-3">
     <i class="fa fa-close fa-2x" onclick="$('#login_form').hide();"
        style="position: absolute; top: 5px; right: 10px;"></i>
@@ -637,13 +646,13 @@
     </div>
     <div id="function_bar" class="w-100 px-3" style="text-align: right; position: absolute; top: 43px;"></div>
     <div id="output_bar"></div>
-    <div id="back_page" class="bg-primary" style="text-align: center; max-width: 600px;">
+    <div id="back_page" class="bg-primary iframe_normal_screen" style="text-align: center; max-width: 600px;">
         <div class="fa-3x mt-5">
             <i class="fa fa-spinner fa-spin"></i>
         </div>
         <div class="pb-2">页面载入中！</div>
     </div>
-    <div id="main_page" class="bg-primary">
+    <div id="main_page" class="bg-primary iframe_normal_screen">
         <div id='title' class="mb-1 p-2 d-flex text-white"
              style='position:relative; box-shadow: 0 2px 50px #000; z-index: 998;'>如何将自学英语进行到底
         </div>

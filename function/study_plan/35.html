@@ -18,10 +18,7 @@
     <script src='/lib/english.js'></script>
     <script src='/function/english/video/ted_maker/How_to_gain_control_of_your_free_time.js'></script>
     <script src='/function/english/video/ted_maker/ted_info_processor.js'></script>
-    <title>英语句子小结</title>
-    <script>
-
-    </script>
+    <title>超级听读训练</title>
 </head>
 <body id="page" class=" bg-primary text-white" style="position: relative; font-size: 14px;">
 <video id="video" src="../english/video/ted/How_to_gain_control_of_your_free_time.mp4" class="w-100"></video>
@@ -34,11 +31,12 @@
     <div class="list-group">
         <span class="list-group-item list-group-item-action flex-column align-items-start p-2">
             <div class="d-flex w-100 justify-content-between">
-                <h6 class="mb-1 text-primary"><i id="play_control" class='fa fa-play'
-                                                 onclick="video_play_pause(); check_play_icon();"></i> <span
-                        id="title"></span></h6>
-                <small class="text-muted"><input id="click_mode" style="width: 20px; height: 20px;" type="checkbox"
-                                                 checked></small>
+                <h6 class="mb-1 text-primary">
+                    <i id="play_control" class='fa fa-play' onclick="video_play_pause(); check_play_icon();"></i> <span id="title"></span></h6>
+                <small class="text-muted"><i onclick="top.iframe_full_screen();" class="fa fa-arrows-alt"></i></small>
+            </div>
+            <div>
+                <span style="font-size: 12px;">选中为查词模式，否则为选句模式！</span> <input id="click_mode" style="width: 16px; height: 16px;"  type="checkbox" checked>
             </div>
             <hr class="my-1">
             <div id="subtitle_info" style="overflow-y: auto;">
