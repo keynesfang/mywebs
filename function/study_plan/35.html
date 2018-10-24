@@ -20,28 +20,7 @@
     <script src='/function/english/video/ted_maker/ted_info_processor.js'></script>
     <title>英语句子小结</title>
     <script>
-        window.onresize = function () {
-            set_section_translate_height();
-        };
-        var video = undefined;
-        var play_control = undefined;
-        var subtitle_info = undefined;
-        $(function () {
-            video = document.getElementById("video");
-            play_control = $("#play_control");
-            subtitle_info = $("#subtitle_info");
-            var title = "How to gain control of your free time";
-            $("#title").html(get_query_sentence_from_normal(title));
-            video.addEventListener('canplaythrough', function () {
-                set_section_translate_height();
-            });
-            get_ted_info_html();
-        });
 
-        function set_section_translate_height() {
-            $("#section_translate").css("height", $("#video").height());
-            subtitle_info.css("height", top.document.getElementById("sub_frame").height - subtitle_info.offset().top - 15 + "px");
-        }
     </script>
 </head>
 <body id="page" class=" bg-primary text-white" style="position: relative; font-size: 14px;">
