@@ -1,5 +1,6 @@
 <?php
-require_once("./function/common_logic.php");
+require_once("./function/DBOP.php");
+$dbop = new DB();
 $req_type = $_REQUEST['req_type'];
 
 if ($req_type == "login") {
@@ -18,11 +19,29 @@ if ($req_type == "login") {
         $longitude = $_REQUEST['longitude'];
         $initdate = date("Y-m-d");
         $fieldArr = array("openid" => $result->openid, "nickName" => $nickName, "gender" => $gender, "avatarUrl" => $avatarUrl, "latitude" => $latitude, "longitude" => $longitude, "initdate" => $initdate, "lastdate" => $initdate);
-        add_user($dbop, $result->openid, $fieldArr);
+        $login_type = add_user($dbop, $result->openid, $fieldArr);
+        if ($login_type == "update") {
+            $user_info = $dbop->get_one("select * from wx_user where openid='$result->openid'");
+            $wx_result["is_pos_share"] = $user_info["is_pos_share"];
+        }
     } else {
         $wx_result["openid"] = "openid_error";
     }
     echo json_encode($wx_result);
+}
+
+if ($req_type == "share_position") {
+    $tableName = "wx_user";
+    $openid = $_REQUEST['openid'];
+    $is_pos_share = $_REQUEST['is_pos_share'];
+    $fieldArr = array("is_pos_share" => $is_pos_share);
+    $dbop->update($tableName, $fieldArr, "openid='$openid'");
+}
+
+if ($req_type == "get_around") {
+    $openid = $_REQUEST['openid'];
+    $users_info = $dbop->get_all("select * from wx_user where openid<>'$openid' and is_pos_share='on'");
+    echo json_encode($users_info);
 }
 
 function add_user($dbop, $openid, $fieldArr)
