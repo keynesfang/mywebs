@@ -8,12 +8,13 @@
         var tool = top.tool;
         var $ = tool.$;
         function init() {
-            $("<div>")
-                    .text("xyxz")
-                    .appendTo(document.body);
+            $("#accordion").accordion({
+                collapsible: true
+            });
         }
     </script>
 </head>
-<body onload="init();">
+<body>
+
 </body>
 </html>
