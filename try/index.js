@@ -40,12 +40,12 @@ function addTab() {
     var tabTemplate = "<li><a href='#{href}'>#{label}</a> <span class='ui-icon ui-icon-close' role='presentation'>Remove Tab</span></li>";
     var label = "abc",
         id = "tabs-2x",
-        li = $( tabTemplate.replace( /#\{href\}/g, "#" + id ).replace( /#\{label\}/g, label ) ),
+        li = $(tabTemplate.replace(/#\{href\}/g, "#" + id).replace(/#\{label\}/g, label)),
         tabContentHtml = "lkdjasldkjf";
 
-    tabs.find( ".ui-tabs-nav" ).append( li );
-    tabs.append( "<div id='" + id + "'><p>" + tabContentHtml + "</p></div>" );
-    tabs.tabs( "refresh" );
+    tabs.find(".ui-tabs-nav").append(li);
+    tabs.append("<div id='" + id + "'><p>" + tabContentHtml + "</p></div>");
+    tabs.tabs("refresh");
 }
 
 function sub_menu_func() {
@@ -54,7 +54,8 @@ function sub_menu_func() {
 }
 
 $(function () {
-    menu_init(widgets.menu, "menu_package", "test_menu");
+    init_widgets();
+    widget_menu.init(widgets.menu, "menu_package", "test_menu");
     control_assign();
     control_size_adjust();
     $("#tabs").tabs();
@@ -62,20 +63,28 @@ $(function () {
         control_size_adjust();
     });
     var tabs = $("#tabs");
-    tabs.on( "click", "span.ui-icon-close", function() {
-        var panelId = $( this ).closest( "li" ).remove().attr( "aria-controls" );
-        $( "#" + panelId ).remove();
-        tabs.tabs( "refresh" );
+    tabs.on("click", "span.ui-icon-close", function () {
+        var panelId = $(this).closest("li").remove().attr("aria-controls");
+        $("#" + panelId).remove();
+        tabs.tabs("refresh");
     });
 
-    tabs.on( "keyup", function( event ) {
-        if ( event.altKey && event.keyCode === $.ui.keyCode.BACKSPACE ) {
-            var panelId = tabs.find( ".ui-tabs-active" ).remove().attr( "aria-controls" );
-            $( "#" + panelId ).remove();
-            tabs.tabs( "refresh" );
+    tabs.on("keyup", function (event) {
+        if (event.altKey && event.keyCode === $.ui.keyCode.BACKSPACE) {
+            var panelId = tabs.find(".ui-tabs-active").remove().attr("aria-controls");
+            $("#" + panelId).remove();
+            tabs.tabs("refresh");
         }
     });
 });
+
+function init_widgets() {
+    $.each(widgets, function (widget) {
+        if(typeof(eval("widget_" + widget)) == "object") {
+            console.log(eval("widget_" + widget));
+        }
+    });
+}
 
 function control_assign() {
     $.each(controls, function (id, control) {
