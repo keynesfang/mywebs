@@ -57,7 +57,11 @@ var widgets = {
 function sub_menu_click_func(menu_id, menu_name) {
     console.log("sub menu click!" + menu_id);
     var tab_id = menu_id + "_tab";
-    widget_tabs.addTab(widget_tabs.gen_tab_header_html(tab_id, menu_name, true), widget_tabs.gen_tab_body_html(tab_id));
+    var header = widget_tabs.gen_tab_header_html(tab_id, menu_name, true);
+    if(!header) {
+        return;
+    }
+    widget_tabs.addTab(header, widget_tabs.gen_tab_body_html(tab_id));
 }
 
 $(function () {

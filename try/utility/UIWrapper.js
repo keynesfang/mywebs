@@ -1,6 +1,7 @@
 var widget_tabs = {
     tabs_obj: undefined,
     tabs: undefined,
+    tabs_id_list: [],
     init: function (obj) {
         // 根据生成tabs对象，生成HTML
         widget_tabs.tabs_obj = obj;
@@ -18,7 +19,6 @@ var widget_tabs = {
                 tabs_header_html += widget_tabs.gen_tab_header_html(tab_id, itm.tab_name, false);
             }
             tabs_body_html += widget_tabs.gen_tab_body_html(tab_id);
-            obj.tab_list[idx].tab_id = tab_id;
         });
         tabs_header_html += "</ul>";
         html += tabs_header_html + tabs_body_html + "</div>";
@@ -30,20 +30,16 @@ var widget_tabs = {
     },
 
     gen_tab_header_html: function (tab_id, tab_name, closeable) {
-        console.log(widget_tabs.tabs_obj);
-        var is_tab_exist = false;
-        $.each(widget_tabs.tabs_obj.tab_list, function (idx, itm) {
-            var exist_tab_id = itm.tab_id || "";
-            if(exist_tab_id == tab_id) {
-                is_tab_exist = true;
-                return false;
-            }
-        });
-        // 如果页面已存在，则不创建。
-        if(is_tab_exist) {
+        var tab_index = $.inArray(tab_id, widget_tabs.tabs_id_list);
+        if (tab_index != -1) {
+            $( ".selector" ).tabs({
+                active: tab_index
+            });
             return false;
         }
-
+        // 把新Tab id 加入到现有列表中
+        widget_tabs.tabs_id_list.push(tab_id);
+        console.log(widget_tabs.tabs_obj);
         var html = "<li><a href='#" + tab_id + "'>" + tab_name + "</a>";
         if (closeable) {
             html += " <span class='ui-icon ui-icon-close' role='presentation'></span>";
