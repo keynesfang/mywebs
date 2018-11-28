@@ -1,8 +1,7 @@
 var controls = {
     header: undefined,
     menu_package: undefined,
-    tab_package: undefined,
-    tabs: undefined
+    tab_package: undefined
 };
 
 var widgets = {
@@ -22,14 +21,18 @@ var widgets = {
     menu: {
         id: "test_menu",
         parent_id: "menu_package",
-        default_func_valid: true,
+        default_click_func_valid: true,
         click_func: function () {
             console.log("menu common function");
         },
         menu_list: [
             {
                 menu_name: "用户管理",
-                sub_menu_list: ["用户一览", "新增用户", "权限设置"]
+                sub_menu_list: [
+                    {
+                        sub_menu_name: "用户一览",
+                        sub_menu_click_func: "sub_menu_click_func"
+                    }, "新增用户", "权限设置"]
             },
             {
                 menu_name: "菜单一",
@@ -51,21 +54,10 @@ var widgets = {
     }
 };
 
-function addTab() {
-    var tabTemplate = "<li><a href='#{href}'>#{label}</a> <span class='ui-icon ui-icon-close' role='presentation'>Remove Tab</span></li>";
-    var label = "abc",
-        id = "tabs-2x",
-        li = $(tabTemplate.replace(/#\{href\}/g, "#" + id).replace(/#\{label\}/g, label)),
-        tabContentHtml = "lkdjasldkjf";
-
-    controls.tabs.find(".ui-tabs-nav").append(li);
-    controls.tabs.append("<div id='" + id + "'><p>" + tabContentHtml + "</p></div>");
-    controls.tabs.tabs("refresh");
-}
-
-function sub_menu_click_func() {
-    console.log("sub menu click!");
-    addTab();
+function sub_menu_click_func(menu_id, menu_name) {
+    console.log("sub menu click!" + menu_id);
+    var tab_id = menu_id + "_tab";
+    widget_tabs.addTab(widget_tabs.gen_tab_header_html(tab_id, menu_name, true), widget_tabs.gen_tab_body_html(tab_id));
 }
 
 $(function () {
