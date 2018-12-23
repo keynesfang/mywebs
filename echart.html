@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="/lib/echarts/echarts.min.js"></script>
+</head>
+<body>
+<div id="chartmain" style="width:600px; height: 400px;"></div>
+<script type="text/javascript">
+    //指定图标的配置和数据
+    option = {
+        tooltip : {
+            trigger: 'axis',
+            axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+            }
+        },
+        legend: {
+            data:['隐患1','隐患2','隐患3','隐患4','隐患5']
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis : [
+            {
+                type : 'category',
+                data : ['一月','二月','三月','四月','五月','六月','七月']
+            }
+        ],
+        yAxis : [
+            {
+                type : 'value'
+            }
+        ],
+        series : [
+            {
+                name:'隐患1',
+                type:'bar',
+                data:[320, 332, 301, 334, 390, 330, 320]
+            },
+            {
+                name:'隐患2',
+                type:'bar',
+                stack: '广告',
+                data:[120, 132, 101, 134, 90, 230, 210]
+            },
+            {
+                name:'隐患3',
+                type:'bar',
+                stack: '广告',
+                data:[220, 182, 191, 234, 290, 330, 310]
+            },
+            {
+                name:'隐患4',
+                type:'bar',
+                stack: '广告',
+                data:[150, 232, 201, 154, 190, 330, 410]
+            },
+            {
+                name:'隐患5',
+                type:'bar',
+                data:[862, 1018, 964, 1026, 1679, 1600, 1570],
+                markLine : {
+                    lineStyle: {
+                        normal: {
+                            type: 'dashed'
+                        }
+                    },
+                    data : [
+                        [{type : 'min'}, {type : 'max'}]
+                    ]
+                }
+            }
+        ]
+    };
+    //初始化echarts实例
+    var myChart = echarts.init(document.getElementById('chartmain'));
+
+    //使用制定的配置项和数据显示图表
+    myChart.setOption(option);
+</script>
+</body>
+</html>
