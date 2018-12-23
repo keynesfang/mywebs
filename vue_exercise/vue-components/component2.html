@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue-demo</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+<div id="app">
+
+    <todo-item></todo-item>
+</div>
+<script>
+    var Child = {
+        template: '<div>A custom component!</div>'
+    };
+    new Vue({
+        el:'#app',
+        components:{
+            'todo-item': Child
+        }
+    });
+</script>
+</body>
+</html>

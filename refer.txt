@@ -1,3 +1,4 @@
 参考项目：https://github.com/lin-xin/vue-manage-system
 Element: http://element-cn.eleme.io/#/zh-CN/component/quickstart
 Vue: https://vuejs.bootcss.com/v2/guide/components-registration.html
+Vue: 练习项目：https://github.com/liwudi/Vue
